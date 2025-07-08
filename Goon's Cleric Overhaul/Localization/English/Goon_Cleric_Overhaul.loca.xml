@@ -1,15 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentList>
 	<!-- "DiscipleOfLife" --> <content contentuid="h0451c245ga622g4458g8053g5c3b1017b7f6" version="1">Your devotion empowers your healing spells. When successfully healing a creature with a healing spell or &lt;LSTag Type="Spell" Tooltip="Shout_AuraOfVitality"&gt;Restore Vitality&lt;/LSTag&gt;, the target regains additional <LSTag Tooltip="HitPoints">hit points</LSTag> equal to 2 + the spell's level..</content>
+
+	<!-- DIVINE STRIKE -->
 	<!-- Divine Strike spell containers --> <content contentuid="h7b53070eg4870g4886gb44dg47d1f8d503cb" version="1">Once per turn, deal [1] in addition to your melee weapon's [2], or your ranged weapon's [3] when you make a &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.</content>
 	<!-- "Target_DivineStrike_Nature_Container" --> <content contentuid="h0f065c9cgac5fg4958g9598gf8c0211b81f6" version="1">Once per turn, deal [1], [4], or [5] in addition to your melee weapon's [2], or your ranged weapon's [3] when you make a &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.</content>
 	<!-- "Target_DivineStrike_War_Container" --> <content contentuid="ha9ff1eb9gad90g4d42ga9b0g214a435ea56d" version="1">Once per turn, deal [1], in addition to your melee weapon's [2], or [3] in addition to your ranged weapon's [4] when you make a &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.</content>
+
 	<!-- Melee Divine Strikes --> <content contentuid="h2359d19fge23cg4bb5g91e7g338a25a88953" version="1">Once per turn, deal [1] in addition to your weapon's [2] when you make a &lt;LSTag Tooltip="MeleeWeaponAttack"&gt;Melee Weapon Attack&lt;/LSTag&gt;.</content>
 	<!-- Ranged Divine Strikes --> <content contentuid="h6a0ce4ecg90fbg4fe8ga8c1gdb3b4451171b" version="1">Once per turn, deal [1] in addition to your weapon's [2] when you make a &lt;LSTag Tooltip="RangedWeaponAttack"&gt;Ranged Weapon Attack&lt;/LSTag&gt;.</content>
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
+
+	<!-- Divine Strike extra descriptions --> <content contentuid="he6408978g1601g4f81ga1ecg61fbaee27845" version="1">At Cleric level 14, the additional damage increases to to [1].</content>
+	<!-- "Target_DivineStrike_War_Container" --> <content contentuid="ha2485c8fg87a4g4ac0g9d62gf3d1c8e7f37d" version="1">At Cleric level 14, the additional damage increases to [1] or [2].</content>
+	<!-- "Target_DivineStrike_Nature_Container" --> <content contentuid="h6709a0f7g6fa2g4857gaca5g3e0838988f49" version="1">At Cleric level 14, the additional damage increases to [1], [2] or [3].</content>
+
+	<!-- Interrupts --> <content contentuid="h8604826ag2880g427eg8d51gf5b48f388507" version="1">Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.</content>
+
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
