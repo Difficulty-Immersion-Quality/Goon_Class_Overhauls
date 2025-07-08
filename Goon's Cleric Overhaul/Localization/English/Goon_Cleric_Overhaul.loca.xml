@@ -10,7 +10,7 @@
 	<!-- Melee Divine Strikes --> <content contentuid="h2359d19fge23cg4bb5g91e7g338a25a88953" version="1">Once per turn, deal [1] in addition to your weapon's [2] when you make a &lt;LSTag Tooltip="MeleeWeaponAttack"&gt;Melee Weapon Attack&lt;/LSTag&gt;.</content>
 	<!-- Ranged Divine Strikes --> <content contentuid="h6a0ce4ecg90fbg4fe8ga8c1gdb3b4451171b" version="1">Once per turn, deal [1] in addition to your weapon's [2] when you make a &lt;LSTag Tooltip="RangedWeaponAttack"&gt;Ranged Weapon Attack&lt;/LSTag&gt;.</content>
 
-	<!-- Divine Strike extra descriptions --> <content contentuid="he6408978g1601g4f81ga1ecg61fbaee27845" version="1">At Cleric level 14, the additional damage increases to to [1].</content>
+	<!-- Divine Strike extra descriptions --> <content contentuid="he6408978g1601g4f81ga1ecg61fbaee27845" version="1">At Cleric level 14, the additional damage increases to [1].</content>
 	<!-- "Target_DivineStrike_War_Container" --> <content contentuid="ha2485c8fg87a4g4ac0g9d62gf3d1c8e7f37d" version="1">At Cleric level 14, the additional damage increases to [1] or [2].</content>
 	<!-- "Target_DivineStrike_Nature_Container" --> <content contentuid="h6709a0f7g6fa2g4857gaca5g3e0838988f49" version="1">At Cleric level 14, the additional damage increases to [1], [2] or [3].</content>
 

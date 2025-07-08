@@ -133,6 +133,55 @@ using "Interrupt_DivineStrike_Cold_Critical"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem();"
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 
+// Expansion:
+new entry "Interrupt_DivineStrike_Cold_EXP"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Cold"
+using "Interrupt_DivineStrike_Cold_EXP"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "DescriptionParams" "DealDamage(1d8,Cold);DealDamage(2d8,Cold)"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+// data "Properties" "IF(not ClassLevelHigherOrEqualThan(14,'Cleric')):DealDamage(1d8,Cold,Magical);IF(ClassLevelHigherOrEqualThan(14,'Cleric')):DealDamage(2d8,Cold,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Cold,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_Cold_EXP_Critical"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Cold_Critical"
+using "Interrupt_DivineStrike_Cold_EXP_Critical"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "DescriptionParams" "DealDamage(1d8,Cold);DealDamage(2d8,Cold)"
+// data "Properties" "DealDamage(LevelMapValue(DivineStrikes),Cold,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Cold,Magical,,0,,true,true)"
+// data "Icon" "Action_DivineStrike_Cold_Critical"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+
+new entry "Interrupt_DivineStrike_Cold_2"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Cold"
+using "Interrupt_DivineStrike_Cold_2"
+// data "DescriptionParams" "DealDamage(2d8,Cold)"
+data "DescriptionParams" "DealDamage(1d8,Cold);DealDamage(2d8,Cold)"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+// data "Properties" "DealDamage(2d8,Cold,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Cold,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_Cold_2_Critical"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Cold_Critical"
+using "Interrupt_DivineStrike_Cold_2_Critical"
+// data "DescriptionParams" "DealDamage(2d8,Cold)"
+data "DescriptionParams" "DealDamage(1d8,Cold);DealDamage(2d8,Cold)"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+
 // ==================================== Nature Domain - Divine Strike: Fire ====================================
 
 new entry "Target_DivineStrike_Melee_Nature_Fire"
@@ -213,6 +262,55 @@ using "Interrupt_DivineStrike_Fire_Critical"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem();"
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 
+// Expansion:
+new entry "Interrupt_DivineStrike_Fire_EXP"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Fire"
+using "Interrupt_DivineStrike_Fire_EXP"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "DescriptionParams" "DealDamage(1d8,Fire);DealDamage(2d8,Fire)"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+// data "Properties" "DealDamage(LevelMapValue(DivineStrikes),Fire,Magical);DealDamage(2d8,Fire,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Fire,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_Fire_EXP_Critical"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Fire_Critical"
+using "Interrupt_DivineStrike_Fire_EXP_Critical"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "DescriptionParams" "DealDamage(1d8,Fire);DealDamage(2d8,Fire)"
+// data "Properties" "DealDamage(LevelMapValue(DivineStrikes),Fire,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Fire,Magical,,0,,true,true)"
+// data "Icon" "Action_DivineStrike_Fire_Critical"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+
+new entry "Interrupt_DivineStrike_Fire_2"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Fire"
+using "Interrupt_DivineStrike_Fire_2"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+// data "DescriptionParams" "DealDamage(2d8,Fire)"
+data "DescriptionParams" "DealDamage(1d8,Fire);DealDamage(2d8,Fire)"
+// data "Properties" "DealDamage(2d8,Fire,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Fire,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_Fire_2_Critical"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Fire_Critical"
+using "Interrupt_DivineStrike_Fire_2_Critical"
+// data "DescriptionParams" "DealDamage(2d8,Fire)"
+data "DescriptionParams" "DealDamage(1d8,Fire);DealDamage(2d8,Fire)"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+
 // ==================================== Nature Domain - Divine Strike: Lightning ====================================
 
 new entry "Target_DivineStrike_Melee_Nature_Lightning"
@@ -291,6 +389,55 @@ using "Interrupt_DivineStrike_Lightning_Critical"
 // data "DisplayName" "h1a9e2eeeg8e2eg421eg856fgf51ae9cc63f6;2"
 // data "Icon" "Action_DivineStrike_Lightning_Critical"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem();"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+
+// Expansion:
+new entry "Interrupt_DivineStrike_Lightning_EXP"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Lightning"
+using "Interrupt_DivineStrike_Lightning_EXP"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "DescriptionParams" "DealDamage(1d8,Lightning);DealDamage(2d8,Lightning)"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+// data "Properties" "DealDamage(LevelMapValue(DivineStrikes),Lightning,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Lightning,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_Lightning_EXP_Critical"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Lightning_Critical"
+using "Interrupt_DivineStrike_Lightning_EXP_Critical"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "DescriptionParams" "DealDamage(1d8,Lightning);DealDamage(2d8,Lightning)"
+// data "Properties" "DealDamage(LevelMapValue(DivineStrikes),Lightning,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Lightning,Magical,,0,,true,true)"
+// data "Icon" "Action_DivineStrike_Lightning_Critical"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+
+new entry "Interrupt_DivineStrike_Lightning_2"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Lightning"
+using "Interrupt_DivineStrike_Lightning_2"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+// data "DescriptionParams" "DealDamage(2d8,Lightning)"
+data "DescriptionParams" "DealDamage(1d8,Lightning);DealDamage(2d8,Lightning)"
+// data "Properties" "DealDamage(2d8,Lightning,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Lightning,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_Lightning_2_Critical"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Lightning_Critical"
+using "Interrupt_DivineStrike_Lightning_2_Critical"
+// data "DescriptionParams" "DealDamage(2d8,Lightning)"
+data "DescriptionParams" "DealDamage(1d8,Lightning);DealDamage(2d8,Lightning)"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 
 // ==================================== Death Domain - Divine Strike ====================================
@@ -417,6 +564,32 @@ data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',con
 // data "Properties" "DealDamage(1d8,Necrotic,Magical);ApplyStatus(DIVINESTRIKE_MELEE_CRITICAL_VFX,100,1)"
 data "Properties" "DealDamage(1d8,Necrotic,Magical,,0,,true,true);ApplyStatus(DIVINESTRIKE_MELEE_CRITICAL_VFX,100,1);"
 
+// Expansion:
+new entry "Interrupt_DivineStrike_Necrotic_EXP"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Necrotic"
+using "Interrupt_DivineStrike_Necrotic_EXP"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "DescriptionParams" "DealDamage(1d8,Necrotic);DealDamage(2d8,Necrotic)"
+// data "Properties" "DealDamage(LevelMapValue(DivineStrikes),Necrotic,Magical);ApplyStatus(DIVINESTRIKE_MELEE_VFX,100,1)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Necrotic,Magical,,0,,true,true);ApplyStatus(DIVINESTRIKE_MELEE_VFX,100,1)"
+
+new entry "Interrupt_DivineStrike_Necrotic_Critical_EXP"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Necrotic_Critical"
+using "Interrupt_DivineStrike_Necrotic_Critical_EXP"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "DescriptionParams" "DealDamage(1d8,Necrotic);DealDamage(2d8,Necrotic)"
+// data "Icon" "Action_DivineStrike_Necrotic_Critical"
+// data "Properties" "DealDamage(LevelMapValue(DivineStrikes),Necrotic,Magical);ApplyStatus(DIVINESTRIKE_MELEE_CRITICAL_VFX,100,1)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Necrotic,Magical,,0,,true,true);ApplyStatus(DIVINESTRIKE_MELEE_CRITICAL_VFX,100,1)"
+
 // ==================================== Trickery Domain - Divine Strike ====================================
 
 new entry "Target_DivineStrike_Trickery_Container"
@@ -518,6 +691,72 @@ using "Interrupt_DivineStrike_Poison_Critical"
 // data "DisplayName" "h7a702dcbg8789g48d6ga024gdd0992a28e91;2"
 // data "Icon" "Action_DivineStrike_Poison_Critical"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem();"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+
+// Expansion:
+new entry "Interrupt_DivineStrike_Poison_EXP"
+type "InterruptData"
+using "Interrupt_DivineStrike_Poison_EXP"
+// data "DisplayName" "h372b2acdgf3d2g41a2g8946g07be8ddeb341;2"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "DescriptionParams" "DealDamage(1d8,Poison);DealDamage(2d8,Poison)"
+// At Cleric level 14, the additional damage increases to [1].
+data "ExtraDescription" "he6408978g1601g4f81ga1ecg61fbaee27845;1"
+data "ExtraDescriptionParams" "DealDamage(2d8,Poison)"
+// data "Icon" "Action_DivineStrike_Poison_Melee"
+data "TooltipDamageList" "DealDamage(LevelMapValue(Goon_DivineStrikes),Poison)"
+// data "InterruptContext" "OnCastHit"
+// data "InterruptContextScope" "Self"
+// data "Container" "YesNoDecision"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+// data "Properties" "DealDamage(LevelMapValue(DivineStrikes),Poison,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Poison,Magical,,0,,true,true)"
+// data "Cost" "Interrupt_DivineStrike:1"
+// data "InterruptDefaultValue" "Ask;Enabled"
+// data "EnableCondition" "HasActionResource('Interrupt_DivineStrike', 1, 0, false, false, context.Source) and (not HasStatus('SG_Polymorph') or Tagged('MINDFLAYER') or HasStatus('SG_Disguise'))"
+data "EnableCondition" "HasActionResource('Interrupt_DivineStrike', 1, 0, false, false, context.Source) and (not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus())"
+// data "EnableContext" "OnActionResourcesChanged"
+data "EnableContext" "OnActionResourcesChanged;OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"
+
+new entry "Interrupt_DivineStrike_Poison_EXP_Critical"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Poison_Critical"
+using "Interrupt_DivineStrike_Poison_EXP_Critical"
+// Divine Strike on Critical: Poison
+// data "DisplayName" "h7a702dcbg8789g48d6ga024gdd0992a28e91;2"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "DescriptionParams" "DealDamage(1d8,Poison);DealDamage(2d8,Poison)"
+// data "Properties" "DealDamage(LevelMapValue(DivineStrikes),Poison,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Poison,Magical,,0,,true,true)"
+// data "Icon" "Action_DivineStrike_Poison_Critical"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+
+new entry "Interrupt_DivineStrike_Poison_2"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Poison"
+using "Interrupt_DivineStrike_Poison_2"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+// data "DescriptionParams" "DealDamage(2d8,Poison)"
+data "DescriptionParams" "DealDamage(1d8,Poison);DealDamage(2d8,Poison)"
+// data "Properties" "DealDamage(2d8,Poison,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Poison,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_Poison_2_Critical"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Poison_Critical"
+using "Interrupt_DivineStrike_Poison_2_Critical"
+// data "DescriptionParams" "DealDamage(2d8,Poison)"
+data "DescriptionParams" "DealDamage(1d8,Poison);DealDamage(2d8,Poison)"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 
 // ==================================== War Domain - Divine Strike ====================================
@@ -626,6 +865,7 @@ using "Interrupt_DivineStrike_MeleeWeapon_Critical"
 // data "DisplayName" "heeab29e8gdaa9g4afcgbb60g3bfd43b5c166;2"
 // data "Icon" "Action_DivineStrike_Physical_Critical"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsMeleeAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem();"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsMeleeAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 // data "Properties" "DealDamage(1d8,MainMeleeWeaponDamageType,Magical)"
 data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),MainMeleeWeaponDamageType,Magical,,0,,true,true)"
 
@@ -657,6 +897,101 @@ using "Interrupt_DivineStrike_RangedWeapon_Critical"
 // data "Icon" "Action_DivineStrike_Physical_Critical"
 data "Icon" "Action_DivineStrike_Physical_Ranged"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsRangedAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem();"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsRangedAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+
+// Expansion - Melee:
+new entry "Interrupt_DivineStrike_MeleeWeapon_EXP"
+type "InterruptData"
+// using "Interrupt_DivineStrike_MeleeWeapon"
+using "Interrupt_DivineStrike_MeleeWeapon_EXP"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsMeleeAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+// data "Properties" "IF(not ClassLevelHigherOrEqualThan(14,'Cleric')):DealDamage(1d8,MainMeleeWeaponDamageType,Magical);IF(ClassLevelHigherOrEqualThan(14,'Cleric')):DealDamage(2d8,MainMeleeWeaponDamageType,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),MainMeleeWeaponDamageType,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_MeleeWeapon_EXP_Critical"
+type "InterruptData"
+// using "Interrupt_DivineStrike_MeleeWeapon_Critical"
+using "Interrupt_DivineStrike_MeleeWeapon_EXP_Critical"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsMeleeAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+// data "Properties" "IF(not ClassLevelHigherOrEqualThan(14,'Cleric')):DealDamage(1d8,MainMeleeWeaponDamageType,Magical);IF(ClassLevelHigherOrEqualThan(14,'Cleric')):DealDamage(2d8,MainMeleeWeaponDamageType,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),MainMeleeWeaponDamageType,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_MeleeWeapon_2"
+type "InterruptData"
+// using "Interrupt_DivineStrike_MeleeWeapon"
+using "Interrupt_DivineStrike_MeleeWeapon_2"
+// data "DescriptionParams" "DealDamage(2d8,MainMeleeWeaponDamageType)"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsMeleeAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+// data "Properties" "DealDamage(2d8,MainMeleeWeaponDamageType,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),MainMeleeWeaponDamageType,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_MeleeWeapon_2_Critical"
+type "InterruptData"
+// using "Interrupt_DivineStrike_MeleeWeapon_Critical"
+using "Interrupt_DivineStrike_MeleeWeapon_2_Critical"
+// data "DescriptionParams" "DealDamage(2d8,MainMeleeWeaponDamageType)"
+data "DescriptionParams" "DealDamage(1d8,MainRangedWeaponDamageType);DealDamage(2d8,MainRangedWeaponDamageType)"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsMeleeAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsMeleeAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+
+// Expansion - Ranged:
+new entry "Interrupt_DivineStrike_RangedWeapon_EXP"
+type "InterruptData"
+// using "Interrupt_DivineStrike_RangedWeapon"
+using "Interrupt_DivineStrike_RangedWeapon_EXP"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "DescriptionParams" "DealDamage(1d8,MainRangedWeaponDamageType);DealDamage(2d8,MainRangedWeaponDamageType)"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsMeleeAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+// data "Properties" "DealDamage(LevelMapValue(DivineStrikes),MainRangedWeaponDamageType,Magical);DealDamage(2d8,MainRangedWeaponDamageType,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),MainRangedWeaponDamageType,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_RangedWeapon_EXP_Critical"
+type "InterruptData"
+// using "Interrupt_DivineStrike_RangedWeapon_Critical"
+using "Interrupt_DivineStrike_RangedWeapon_EXP_Critical"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "DescriptionParams" "DealDamage(1d8,MainRangedWeaponDamageType);DealDamage(2d8,MainRangedWeaponDamageType)"
+// data "Icon" "Action_DivineStrike_Physical_Critical"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsRangedAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+// data "Properties" "DealDamage(LevelMapValue(DivineStrikes),MainRangedWeaponDamageType,Magical);DealDamage(2d8,MainRangedWeaponDamageType,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),MainRangedWeaponDamageType,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_RangedWeapon_2"
+type "InterruptData"
+// using "Interrupt_DivineStrike_RangedWeapon"
+using "Interrupt_DivineStrike_RangedWeapon_2"
+// data "DescriptionParams" "DealDamage(2d8,MainRangedWeaponDamageType)"
+data "DescriptionParams" "DealDamage(1d8,MainRangedWeaponDamageType);DealDamage(2d8,MainRangedWeaponDamageType)"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsRangedAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsRangedAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+// data "Properties" "DealDamage(2d8,MainRangedWeaponDamageType,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),MainRangedWeaponDamageType,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_RangedWeapon_2_Critical"
+type "InterruptData"
+// using "Interrupt_DivineStrike_RangedWeapon_Critical"
+using "Interrupt_DivineStrike_RangedWeapon_2_Critical"
+// data "DescriptionParams" "DealDamage(2d8,MainRangedWeaponDamageType)"
+data "DescriptionParams" "DealDamage(1d8,MainRangedWeaponDamageType);DealDamage(2d8,MainRangedWeaponDamageType)"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsRangedAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsRangedAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 
 // ==================================== Life Domain - Divine Strike ====================================
@@ -796,6 +1131,55 @@ using "Interrupt_DivineStrike_Radiant_Critical"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem();"
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsRangedAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 
+// Expansion:
+new entry "Interrupt_DivineStrike_Radiant_EXP"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Radiant"
+using "Interrupt_DivineStrike_Radiant_EXP"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "DescriptionParams" "DealDamage(1d8,Radiant);DealDamage(2d8,Radiant)"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+// data "Properties" "DealDamage(LevelMapValue(DivineStrikes),Radiant,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Radiant,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_Radiant_EXP_Critical"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Radiant_Critical"
+using "Interrupt_DivineStrike_Radiant_EXP_Critical"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "DescriptionParams" "DealDamage(1d8,Radiant);DealDamage(2d8,Radiant)"
+// data "Icon" "Action_DivineStrike_Radiant_Critical"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+// data "Properties" "DealDamage(LevelMapValue(DivineStrikes),Radiant,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Radiant,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_Radiant_2"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Radiant"
+using "Interrupt_DivineStrike_Radiant_2"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+// data "DescriptionParams" "DealDamage(2d8,Radiant)"
+data "DescriptionParams" "DealDamage(1d8,Radiant);DealDamage(2d8,Radiant)"
+// data "Properties" "DealDamage(2d8,Radiant,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Radiant,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_Radiant_2_Critical"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Radiant_Critical"
+using "Interrupt_DivineStrike_Radiant_2_Critical"
+// data "DescriptionParams" "DealDamage(2d8,Radiant)"
+data "DescriptionParams" "DealDamage(1d8,Radiant);DealDamage(2d8,Radiant)"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+
 // ==================================== Tempest Domain - Divine Strike ====================================
 
 new entry "Target_DivineStrike_Tempest_Container"
@@ -897,4 +1281,53 @@ using "Interrupt_DivineStrike_Thunder_Critical"
 // data "DisplayName" "h858f787cg99a6g4adegb997g8fe2a5246b8a;2"
 // data "Icon" "Action_DivineStrike_Thunder_Critical"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem();"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+
+// Expansion:
+new entry "Interrupt_DivineStrike_Thunder_EXP"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Thunder"
+using "Interrupt_DivineStrike_Thunder_EXP"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "DescriptionParams" "DealDamage(1d8,Thunder);DealDamage(2d8,Thunder)"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+// data "Properties" "DealDamage(LevelMapValue(DivineStrikes),Thunder,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Thunder,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_Thunder_EXP_Critical"
+type "InterruptData"
+// using "Interrupt_DivineStrike_Thunder_Critical"
+using "Interrupt_DivineStrike_Thunder_EXP_Critical"
+// Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
+// data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
+// data "DescriptionParams" "DealDamage(1d8,Thunder);DealDamage(2d8,Thunder)"
+// data "Properties" "DealDamage(LevelMapValue(DivineStrikes),Thunder,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Thunder,Magical,,0,,true,true)"
+// data "Icon" "Action_DivineStrike_Thunder_Critical"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+
+new entry "Interrupt_DivineStrike_Thunder_2"
+type "InterruptData"
+using "Interrupt_DivineStrike_Thunder_2"
+// using "Interrupt_DivineStrike_Thunder"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
+// data "DescriptionParams" "DealDamage(2d8,Thunder)"
+data "DescriptionParams" "DealDamage(1d8,Thunder);DealDamage(2d8,Thunder)"
+// data "Properties" "DealDamage(2d8,Thunder,Magical)"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Thunder,Magical,,0,,true,true)"
+
+new entry "Interrupt_DivineStrike_Thunder_2_Critical"
+type "InterruptData"
+using "Interrupt_DivineStrike_Thunder_2_Critical"
+// using "Interrupt_DivineStrike_Thunder_Critical"
+// data "DescriptionParams" "DealDamage(2d8,Thunder)"
+data "DescriptionParams" "DealDamage(1d8,Thunder);DealDamage(2d8,Thunder)"
+// data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
