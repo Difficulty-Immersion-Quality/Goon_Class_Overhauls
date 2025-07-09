@@ -741,6 +741,7 @@ data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
 data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Poison,Magical,,0,,true,true)"
 // data "Icon" "Action_DivineStrike_Poison_Critical"
 // data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 
 new entry "Interrupt_DivineStrike_Poison_2"
 type "InterruptData"
