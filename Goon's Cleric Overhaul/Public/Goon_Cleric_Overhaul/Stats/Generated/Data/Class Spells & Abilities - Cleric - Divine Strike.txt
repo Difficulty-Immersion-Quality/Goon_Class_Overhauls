@@ -1,15 +1,18 @@
-// Bug Fix: Unused icons have been restored across the board.
+// Bug fix: All variations have their beautiful unused icons restored.
 // Bug Fix: Missing spell "DamageTypes" added.
 // Bug Fix: All variants of Divine Strike have an appropriate Divine Strike cost.
 // Bug Fix: Interrupts can be used while under the effects of more non-hostile and non-spellcasting restricted Polymorphs.
-// Bug Fix: Interrupts now have TooltipDamageList values.
+// Bug Fix: Interrupts now have "TooltipDamageList" values.
 // Bug Fix: Other assorted tooltip fixes.
 // Bug Fix: Added missing Honour ruleset bools to prevent damage riders as a damage rider source.
-// Bug Fix: Death Domain variants are now included in the IsDivineStrike function.
+// Bug Fix: Death Domain variants are now included in the "IsDivineStrike" function.
 // Changes: Spell variants only expend the Divine Strike charge on a hit.
+// Changes: Spell variants trigger weapon functors.
 // Changes: Interrupts can now be used by Invisible player characters.
-// Changes: Forced Honour ruleset changes to DRS.
+// Changes: Forced Honour ruleset changes to damage riders not functioning as damage rider sources.
 // Changes: Additional damage scales to 2d8 at Cleric level 14.
+// Changes: The "IsDivineStrike" function edited further to have support for Darkness Domain Cleric, and Expansion's Blessed Strikes.
+// Changes: All changes to vanilla entries are applied to custom Divine Strikes from the two above mods.
 // TODO: Offhand variants.
 
 // ==================================== Nature Domain - Divine Strike: Nature ====================================
