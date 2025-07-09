@@ -6,6 +6,7 @@
 // Bug Fix: Other assorted tooltip fixes.
 // Bug Fix: Added missing Honour ruleset bools to prevent damage riders as a damage rider source.
 // Bug Fix: Death Domain variants are now included in the "IsDivineStrike" function.
+// Bug Fix: Divine Strike Interrupts now display a once per turn cooldown in the tooltip.
 // Changes: Spell variants only expend the Divine Strike charge on a hit.
 // Changes: Spell variants trigger weapon functors.
 // Changes: Interrupts can now be used by Invisible player characters.
