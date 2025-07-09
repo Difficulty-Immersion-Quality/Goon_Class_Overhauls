@@ -39,7 +39,7 @@ data "DescriptionParams" "RegainHitPoints(2+SpellPowerLevel)"
 
 // ==================================== Tempest Domain - Destructive Wrath ====================================
 // Bug Fix: No longer triggers for spells that do not deal damage.
-// Bug Fix: Now works with more non-hostile and non-spellcasting restricted Polymorphs.
+// Bug Fix: Now works while under the effects of more non-hostile and non-spellcasting restricted Polymorphs.
 // Changes: Destructive Wrath will now trigger when damage is dealt instead of when an eligable spell is cast, as to not waste it.
 // Changes: Can now be used by Invisible player characters.
 
