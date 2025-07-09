@@ -20,6 +20,7 @@ data "StatsFunctors" "IF(not Self(Target)):RegainHitPoints(SELF,2+SpellPowerLeve
 
 // ==================================== Life Domain - Disciple of Life ====================================
 // Bug Fix: Description updated to specify that the creature must be healed, not just targeted with a healing spell, and that it function's with Warden of Vitality's Restore Vitality ability.
+// Bug Fix: Restore Vitality now has to provide healing greater than 0 for additional healing to be applied, same as spells.
 
 new entry "DiscipleOfLife"
 type "PassiveData"
@@ -35,6 +36,7 @@ data "DescriptionParams" "RegainHitPoints(2+SpellPowerLevel)"
 // data "Properties" "Highlighted"
 // data "StatsFunctorContext" "OnHeal"
 // data "Conditions" "HealDoneGreaterThan(0) and IsSpell() and not IsCantrip() or SpellId('Target_AuraOfVitality_Activate')"
+data "Conditions" "HealDoneGreaterThan(0) and (IsSpell() or SpellId('Target_AuraOfVitality_Activate')) and not IsCantrip()"
 // data "StatsFunctors" "RegainHitPoints(2+SpellPowerLevel); ApplyStatus(PASSIVE_DISCIPLE_OF_LIFE,100,0)"
 
 // ==================================== Tempest Domain - Destructive Wrath ====================================
