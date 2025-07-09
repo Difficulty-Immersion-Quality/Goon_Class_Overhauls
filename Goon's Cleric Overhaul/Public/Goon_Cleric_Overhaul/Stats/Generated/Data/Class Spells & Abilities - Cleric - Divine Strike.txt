@@ -14,6 +14,8 @@
 // Changes: The "IsDivineStrike" function edited further to have support for Darkness Domain Cleric, and Expansion's Blessed Strikes.
 // Changes: All changes to vanilla entries are applied to custom Divine Strikes from the two above mods.
 // TODO: Offhand variants.
+// TODO: Split interrupts between melee/ranged variants like it is for War Domain.
+// TODO: See if there's a critical version of War Domain's ranged icon.
 
 // ==================================== Nature Domain - Divine Strike: Nature ====================================
 
