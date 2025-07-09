@@ -121,6 +121,7 @@ data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',con
 // data "Properties" "DealDamage(1d8,Cold,Magical)"
 data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Cold,Magical,,0,,true,true)"
 // data "Cost" "Interrupt_DivineStrike:1"
+data "Cooldown" "OncePerTurn"
 // data "InterruptDefaultValue" "Ask;Enabled"
 // data "EnableCondition" "HasActionResource('Interrupt_DivineStrike', 1, 0, false, false, context.Source) and (not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
 data "EnableCondition" "HasActionResource('Interrupt_DivineStrike', 1, 0, false, false, context.Source) and (not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus())"

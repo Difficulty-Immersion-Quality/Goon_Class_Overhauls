@@ -122,6 +122,7 @@ data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',con
 // data "Properties" "IF(HasPassive('INTERRUPT_DIVINE_STRIKE_DARKNESS_DOMAIN_IMPROVED', context.Source)):DealDamage(2d8,Necrotic,Magical);IF(not HasPassive('INTERRUPT_DIVINE_STRIKE_DARKNESS_DOMAIN_IMPROVED', context.Source)):DealDamage(1d8,Necrotic,Magical)"
 data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Necrotic,Magical,,0,,true,true)"
 // data "Cost" "Interrupt_DivineStrike:1"
+data "Cooldown" "OncePerTurn"
 // data "InterruptDefaultValue" "Ask;Enabled"
 // data "EnableCondition" "HasActionResource('Interrupt_DivineStrike', 1, 0, false, false, context.Source) and (not HasStatus('SG_Polymorph') or Tagged('MINDFLAYER'))"
 data "EnableCondition" "HasActionResource('Interrupt_DivineStrike', 1, 0, false, false, context.Source) and (not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus())"
