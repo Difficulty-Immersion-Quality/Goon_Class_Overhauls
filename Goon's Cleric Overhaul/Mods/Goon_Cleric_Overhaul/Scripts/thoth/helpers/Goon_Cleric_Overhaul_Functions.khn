@@ -11,4 +11,7 @@ function IsDivineStrike()
     | SpellId('Target_BlessedStrikes') | SpellId('Projectile_BlessedStrikes')
 	| SpellId('TARGET_DIVINE_STRIKE_DARKNESS_DOMAIN') | SpellId('PROJECTILE_DIVINE_STRIKE_DARKNESS_DOMAIN') 
     | SpellId('TARGET_DIVINE_STRIKE_DEATH_DOMAIN') | SpellId('PROJECTILE_DIVINE_STRIKE_DEATH_DOMAIN')
+    | SpellId('Target_DivineStrike_Melee_Twilight') | SpellId('Projectile_DivineStrike_Ranged_Twilight') 
+    | SpellId('Target_DivineStrike_Melee_Order') | SpellId('Projectile_DivineStrike_Ranged_Order') 
+    | SpellId('Target_DivineStrike_Melee_Forge') | SpellId('Projectile_DivineStrike_Ranged_Forge')
 end
