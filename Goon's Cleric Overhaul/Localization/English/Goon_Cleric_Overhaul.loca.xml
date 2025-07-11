@@ -19,6 +19,20 @@
 
 	<!-- Interrupts --> <content contentuid="h8604826ag2880g427eg8d51gf5b48f388507" version="1">Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.</content>
 
+	<!-- Passives -->
+	<!-- "Divine_Strike_Nature" --> <content contentuid="hb66d9508ge4dbg4a6dgaa2eg52be2a2ec944" version="1">You gain the ability to infuse your weapon strikes with divine energy.&lt;br&gt;&lt;br&gt;Once per turn, deal [1], [4], or [5] in addition to your melee weapon's [2], or your ranged weapon's [3] when you make a &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.</content>
+	<!-- "Divine_Strike_Death_EXP", ""Divine_Strike_Trickery"" --> <content contentuid="h92607583gf4d5g42d7ga87bg4ac23ec96961" version="1">You gain the ability to infuse your weapon strikes with divine energy.&lt;br&gt;&lt;br&gt;Once per turn, deal [1] in addition to your melee weapon's [2], or your ranged weapon's [3] when you make a &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.</content>
+
+	<!-- Blessed Strikes - Expansion -->
+	<!-- "BlessedStrikes" --> <content contentuid="h348aa3f7g9db0g4bf8ga033g2c237f0c9fa5" version="1">You are blessed with divine might in battle.&lt;br&gt;&lt;br&gt;Once per turn, when a creature takes damage from one of your &lt;LSTag Tooltip="Cantrip"&gt;Cantrips&lt;/LSTag&gt; or &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attacks&lt;/LSTag&gt;, you can also deal [1] to that creature.</content>
+	<!-- "Target_BlessedStrikes_Container",  --> <content contentuid="hed007e07ge924g4168ga3acg6e523834858f" version="1">Channel your divine might through a &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt; against a creature, dealing an additional [1].</content>
+	<!-- "Target_BlessedStrikes" --> <content contentuid="h3370a3dbg5027g4353g8068gec07795fb046" version="1">Channel your divine might through a &lt;LSTag Tooltip="MeleeWeaponAttack"&gt;Melee Weapon Attack&lt;/LSTag&gt; against a creature, dealing an additional [1].</content>
+	<!-- "Projectile_BlessedStrikes" --> <content contentuid="hc042084fg0a9cg42cbg998bg654d1204d5ac" version="1">Channel your divine might through a &lt;LSTag Tooltip="RangedWeaponAttack"&gt;Ranged Weapon Attack&lt;/LSTag&gt; against a creature, dealing an additional [1].</content>
+	<!-- "Interrupt_BlessedStrikes" --> <content contentuid="h035f0b97gf7c6g448dgb853g4bfe99ed55b6" version="1">Deal an additional [1] with your &lt;LSTag Tooltip="Cantrip"&gt;Cantrip&lt;/LSTag&gt; or &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.</content>
+
+	<!-- "" --> <content contentuid="" version="1"></content>
+	<!-- "" --> <content contentuid="" version="1"></content>
+	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>

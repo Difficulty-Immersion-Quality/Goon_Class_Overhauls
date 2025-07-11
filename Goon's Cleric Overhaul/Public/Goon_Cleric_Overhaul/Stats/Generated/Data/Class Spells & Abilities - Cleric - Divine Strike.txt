@@ -44,6 +44,22 @@ data "TooltipDamageList" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType)
 // data "TargetSound" "Action_Impact_Cleric_DivineStrikeMeleeDamageFire"
 // data "HitEffect" "e7e0cf06-a83c-46c7-a95f-56f94b857181"
 
+// ==================================== Nature Domain - Divine Strike: Nature (Expansion)
+
+new entry "Divine_Strike_Nature"
+type "PassiveData"
+// using "Divine_Strike_Trickery"
+using "Divine_Strike_Nature"
+// You gain the ability to infuse your weapon strikes with divine energy. Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra [1], [2] or [3] to the target. When you reach 14th level in the Cleric class, it deals an extra [4], [5] or [6].
+// data "Description" "h2ac03398ga868g47bdgbd33g57f28cb1e74c;1"
+// You gain the ability to infuse your weapon strikes with divine energy.&lt;br&gt;&lt;br&gt;Once per turn, deal [1], [4], or [5] in addition to your melee weapon's [2], or your ranged weapon's [3] when you make a &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "hb66d9508ge4dbg4a6dgaa2eg52be2a2ec944;1"
+// At Cleric level 14, the additional damage increases to [1], [2] or [3].
+data "ExtraDescription" "h6709a0f7g6fa2g4857gaca5g3e0838988f49;1"
+// data "DescriptionParams" "DealDamage(LevelMapValue(DivineStrikes),Cold);DealDamage(LevelMapValue(DivineStrikes),Fire);DealDamage(LevelMapValue(DivineStrikes),Lightning)"
+data "DescriptionParams" "DealDamage(LevelMapValue(Goon_DivineStrikes),Cold);DealDamage(LevelMapValue(Goon_DivineStrikes),Fire);DealDamage(LevelMapValue(Goon_DivineStrikes),Lightning)"
+// data "Boosts" "UnlockInterrupt(Interrupt_DivineStrike_Cold_EXP);UnlockInterrupt(Interrupt_DivineStrike_Cold_EXP_Critical);UnlockInterrupt(Interrupt_DivineStrike_Fire_EXP);UnlockInterrupt(Interrupt_DivineStrike_Fire_EXP_Critical);UnlockInterrupt(Interrupt_DivineStrike_Lightning_EXP);UnlockInterrupt(Interrupt_DivineStrike_Lightning_EXP_Critical);ActionResource(Interrupt_DivineStrike,1,0);UnlockSpell(Target_DivineStrike_Nature_Container)"
+
 // ==================================== Nature Domain - Divine Strike: Cold ====================================
 
 new entry "Target_DivineStrike_Melee_Nature_Cold"
@@ -140,7 +156,8 @@ using "Interrupt_DivineStrike_Cold_Critical"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem();"
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 
-// Expansion:
+// ==================================== Nature Domain - Divine Strike: Cold (Expansion)
+
 new entry "Interrupt_DivineStrike_Cold_EXP"
 type "InterruptData"
 // using "Interrupt_DivineStrike_Cold"
@@ -269,7 +286,8 @@ using "Interrupt_DivineStrike_Fire_Critical"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem();"
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 
-// Expansion:
+// ==================================== Nature Domain - Divine Strike: Fire (Expansion)
+
 new entry "Interrupt_DivineStrike_Fire_EXP"
 type "InterruptData"
 // using "Interrupt_DivineStrike_Fire"
@@ -398,7 +416,8 @@ using "Interrupt_DivineStrike_Lightning_Critical"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem();"
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 
-// Expansion:
+// ==================================== Nature Domain - Divine Strike: Lightning (Expansion)
+
 new entry "Interrupt_DivineStrike_Lightning_EXP"
 type "InterruptData"
 // using "Interrupt_DivineStrike_Lightning"
@@ -571,7 +590,25 @@ data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',con
 // data "Properties" "DealDamage(1d8,Necrotic,Magical);ApplyStatus(DIVINESTRIKE_MELEE_CRITICAL_VFX,100,1)"
 data "Properties" "DealDamage(1d8,Necrotic,Magical,,0,,true,true);ApplyStatus(DIVINESTRIKE_MELEE_CRITICAL_VFX,100,1);"
 
-// Expansion:
+// ==================================== Death Domain - Divine Strike (Expansion)
+
+new entry "Divine_Strike_Death_EXP"
+type "PassiveData"
+// using "Divine_Strike_Death"
+using "Divine_Strike_Death_EXP"
+// Divine Strike
+// data "DisplayName" "hf4b8bbe1gfd39g4f73g8054g0280eba4e009;1"
+// You gain the ability to infuse your weapon strikes with divine energy. Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra [1] to the target. When you reach 14th level in the Cleric class, it deals an extra [2].
+// data "Description" "hc08958d6g4695g43d8g9f88gca62ed683dcb;1"
+// You gain the ability to infuse your weapon strikes with divine energy.&lt;br&gt;&lt;br&gt;Once per turn, deal [1] in addition to your melee weapon's [2], or your ranged weapon's [3] when you make a &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h92607583gf4d5g42d7ga87bg4ac23ec96961;1"
+// At Cleric level 14, the additional damage increases to [1].
+data "ExtraDescription" "he6408978g1601g4f81ga1ecg61fbaee27845;1"
+// data "DescriptionParams" "DealDamage(LevelMapValue(DivineStrikes),Necrotic)"
+data "DescriptionParams" "DealDamage(LevelMapValue(Goon_DivineStrikes),Necrotic)"
+// data "Properties" "Highlighted"
+// data "Boosts" "UnlockInterrupt(Interrupt_DivineStrike_Necrotic_EXP);UnlockInterrupt(Interrupt_DivineStrike_Necrotic_Critical_EXP);ActionResource(Interrupt_DivineStrike,1,0);UnlockSpell(Target_DivineStrike_Death_Container)"
+
 new entry "Interrupt_DivineStrike_Necrotic_EXP"
 type "InterruptData"
 // using "Interrupt_DivineStrike_Necrotic"
@@ -700,10 +737,30 @@ using "Interrupt_DivineStrike_Poison_Critical"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem();"
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 
-// Expansion:
+// ==================================== Trickery Domain - Divine Strike (Expansion)
+
+new entry "Divine_Strike_Trickery"
+type "PassiveData"
+using "Divine_Strike_Trickery"
+// Divine Strike
+// data "DisplayName" "hf4b8bbe1gfd39g4f73g8054g0280eba4e009;1"
+// You gain the ability to infuse your weapon strikes with divine energy. Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra [1] to the target. When you reach 14th level in the Cleric class, it deals an extra [2].
+// data "Description" "hc08958d6g4695g43d8g9f88gca62ed683dcb;1"
+// You gain the ability to infuse your weapon strikes with divine energy.&lt;br&gt;&lt;br&gt;Once per turn, deal [1] in addition to your melee weapon's [2], or your ranged weapon's [3] when you make a &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h92607583gf4d5g42d7ga87bg4ac23ec96961;1"
+// At Cleric level 14, the additional damage increases to [1].
+data "ExtraDescription" "he6408978g1601g4f81ga1ecg61fbaee27845;1"
+// data "DescriptionParams" "DealDamage(LevelMapValue(DivineStrikes),Poison)"
+data "DescriptionParams" "DealDamage(LevelMapValue(Goon_DivineStrikes),Poison)"
+// data "Icon" "Action_DivineStrike_Melee"
+data "Icon" "Action_DivineStrike_Poison_Melee"
+// data "Properties" "Highlighted"
+// data "Boosts" "UnlockInterrupt(Interrupt_DivineStrike_Poison_EXP);UnlockInterrupt(Interrupt_DivineStrike_Poison_EXP_Critical);ActionResource(Interrupt_DivineStrike,1,0);UnlockSpell(Target_DivineStrike_Trickery_Container)"
+
 new entry "Interrupt_DivineStrike_Poison_EXP"
 type "InterruptData"
 using "Interrupt_DivineStrike_Poison_EXP"
+// Divine Strike: Poison
 // data "DisplayName" "h372b2acdgf3d2g41a2g8946g07be8ddeb341;2"
 // Deal an additional [1] with a weapon attack or [2] when you've reached 14th level in the Cleric class.
 // data "Description" "hb3b0a6a8g76e7g4f19gaddeg76773e5fe74f;1"
@@ -907,7 +964,18 @@ data "Icon" "Action_DivineStrike_Physical_Ranged"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsRangedAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem();"
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsRangedAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 
-// Expansion - Melee:
+// ==================================== War Domain - Divine Strike (Expansion)
+
+new entry "Divine_Strike_War"
+type "PassiveData"
+// using "Divine_Strike_Trickery"
+using "Divine_Strike_War"
+// data "DescriptionParams" "DealDamage(MainMeleeWeapon+LevelMapValue(DivineStrikes), MainMeleeWeaponDamageType)"
+data "DescriptionParams" "DealDamage(MainMeleeWeapon+LevelMapValue(Goon_DivineStrikes), MainMeleeWeaponDamageType)"
+// data "Icon" "Action_DivineStrike_Melee"
+data "Icon" "Action_DivineStrike_Physical_Melee"
+// data "Boosts" "UnlockInterrupt(Interrupt_DivineStrike_MeleeWeapon_EXP);UnlockInterrupt(Interrupt_DivineStrike_MeleeWeapon_EXP_Critical);UnlockInterrupt(Interrupt_DivineStrike_RangedWeapon_EXP);UnlockInterrupt(Interrupt_DivineStrike_RangedWeapon_EXP_Critical);ActionResource(Interrupt_DivineStrike,1,0);UnlockSpell(Target_DivineStrike_War_Container)"
+
 new entry "Interrupt_DivineStrike_MeleeWeapon_EXP"
 type "InterruptData"
 // using "Interrupt_DivineStrike_MeleeWeapon"
@@ -952,7 +1020,8 @@ data "DescriptionParams" "DealDamage(1d8,MainRangedWeaponDamageType);DealDamage(
 // data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsMeleeAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsMeleeAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 
-// Expansion - Ranged:
+
+
 new entry "Interrupt_DivineStrike_RangedWeapon_EXP"
 type "InterruptData"
 // using "Interrupt_DivineStrike_RangedWeapon"
@@ -1047,7 +1116,6 @@ using "Target_DivineStrike_Melee_Life"
 data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);DealDamage(LevelMapValue(Goon_DivineStrikes),Radiant,Magical,,0,,true,true);ExecuteWeaponFunctors(MainHand)"
 data "RequirementConditions" "HasActionResource('Interrupt_DivineStrike', 1, 0, false, false, context.Source)"
 // data "TargetConditions" "Character() and not Self()"
-data "TargetConditions" "not Self()"
 data "HitCosts" "Interrupt_DivineStrike:1"
 // data "Icon" "Action_DivineStrike_Melee"
 data "Icon" "Action_DivineStrike_Radiant_Melee"
@@ -1088,7 +1156,7 @@ using "Projectile_DivineStrike_Ranged_Life"
 data "SpellSuccess" "DealDamage(MainRangedWeapon, MainRangedWeaponDamageType);DealDamage(LevelMapValue(Goon_DivineStrikes),Radiant,Magical,,0,,true,true);ExecuteWeaponFunctors(MainHand)"
 data "RequirementConditions" "HasActionResource('Interrupt_DivineStrike', 1, 0, false, false, context.Source)"
 // data "TargetConditions" "not Self() and not Dead()"
-data "TargetConditions" "not Self()"
+data "TargetConditions" "Character() and not Self()"
 data "HitCosts" "Interrupt_DivineStrike:1"
 // data "SpellFail" ""
 // data "ExtraProjectileTargetConditions" ""
@@ -1139,7 +1207,18 @@ using "Interrupt_DivineStrike_Radiant_Critical"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem();"
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsRangedAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 
-// Expansion:
+// ==================================== Life Domain - Divine Strike (Expansion)
+
+new entry "Divine_Strike_Life"
+type "PassiveData"
+// using "Divine_Strike_Trickery"
+using "Divine_Strike_Life"
+// data "DescriptionParams" "DealDamage(LevelMapValue(DivineStrikes),Radiant)"
+data "DescriptionParams" "DealDamage(LevelMapValue(Goon_DivineStrikes),Radiant)"
+// data "Icon" "Action_DivineStrike_Melee"
+data "Icon" "Action_DivineStrike_Radiant_Melee"
+// data "Boosts" "UnlockInterrupt(Interrupt_DivineStrike_Radiant_EXP);UnlockInterrupt(Interrupt_DivineStrike_Radiant_EXP_Critical);ActionResource(Interrupt_DivineStrike,1,0);UnlockSpell(Target_DivineStrike_Life_Container)"
+
 new entry "Interrupt_DivineStrike_Radiant_EXP"
 type "InterruptData"
 // using "Interrupt_DivineStrike_Radiant"
@@ -1163,6 +1242,7 @@ using "Interrupt_DivineStrike_Radiant_EXP_Critical"
 // Deal an additional [1] with your &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
 data "Description" "h8604826ag2880g427eg8d51gf5b48f388507;1"
 // data "DescriptionParams" "DealDamage(1d8,Radiant);DealDamage(2d8,Radiant)"
+data "DescriptionParams" "DealDamage(1d8,Radiant)"
 // data "Icon" "Action_DivineStrike_Radiant_Critical"
 // data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
 // data "Properties" "DealDamage(LevelMapValue(DivineStrikes),Radiant,Magical)"
@@ -1175,7 +1255,7 @@ using "Interrupt_DivineStrike_Radiant_2"
 // data "Conditions" "Self(context.Source,context.Observer) and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem() and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes')"
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 // data "DescriptionParams" "DealDamage(2d8,Radiant)"
-data "DescriptionParams" "DealDamage(1d8,Radiant);DealDamage(2d8,Radiant)"
+data "DescriptionParams" "DealDamage(1d8,Radiant)"
 // data "Properties" "DealDamage(2d8,Radiant,Magical)"
 data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Radiant,Magical,,0,,true,true)"
 
@@ -1291,7 +1371,18 @@ using "Interrupt_DivineStrike_Thunder_Critical"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem();"
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 
-// Expansion:
+// ==================================== Tempest Domain - Divine Strike (Expansion)
+
+new entry "Divine_Strike_Tempest"
+type "PassiveData"
+// using "Divine_Strike_Trickery"
+using "Divine_Strike_Tempest"
+// data "DescriptionParams" "DealDamage(LevelMapValue(DivineStrikes),Thunder)"
+data "DescriptionParams" "DealDamage(LevelMapValue(Goon_DivineStrikes),Thunder)"
+// data "Icon" "Action_DivineStrike_Melee"
+data "Icon" "Action_DivineStrike_Thunder_Melee"
+// data "Boosts" "UnlockInterrupt(Interrupt_DivineStrike_Thunder_EXP);UnlockInterrupt(Interrupt_DivineStrike_Thunder_EXP_Critical);ActionResource(Interrupt_DivineStrike,1,0);UnlockSpell(Target_DivineStrike_Tempest_Container)"
+
 new entry "Interrupt_DivineStrike_Thunder_EXP"
 type "InterruptData"
 // using "Interrupt_DivineStrike_Thunder"

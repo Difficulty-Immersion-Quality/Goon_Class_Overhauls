@@ -1,12 +1,34 @@
-// new entry "Target_BlessedStrikes_Container"
-// type "SpellData"
-// data "SpellType" "Target"
+new entry "BlessedStrikes"
+type "PassiveData"
+using "BlessedStrikes"
+// Blessed Strikes
+// data "DisplayName" "hbb1fd0f1g2054g4753gb108g483fe1a6fd81;1"
+// You are blessed with divine might in battle. Once per turn, when a creature takes damage from one of your cantrips or weapon attacks, you can also deal [1] to that creature.
+// data "Description" "h5e154cc9gab5bg485dg95a2gc5718ec6a5f5;1"
+// You are blessed with divine might in battle.&lt;br&gt;&lt;br&gt;Once per turn, when a creature takes damage from one of your &lt;LSTag Tooltip="Cantrip"&gt;Cantrips&lt;/LSTag&gt; or &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attacks&lt;/LSTag&gt;, you can also deal [1] to that creature.
+data "Description" "h348aa3f7g9db0g4bf8ga033g2c237f0c9fa5;1"
+// data "DescriptionParams" "DealDamage(1d8,Radiant)"
+// data "Icon" "PassiveFeature_BlessedStrikes"
+// data "Properties" "Highlighted"
+// data "Boosts" "UnlockSpell(Target_BlessedStrikes_Container);UnlockInterrupt(Interrupt_BlessedStrikes);UnlockInterrupt(Interrupt_BlessedStrikes_Critical);ActionResource(Interrupt_DivineStrike,1,0)"
+
+new entry "Target_BlessedStrikes_Container"
+type "SpellData"
+data "SpellType" "Target"
 // using "Target_MainHandAttack"
+using "Target_BlessedStrikes_Container"
 // data "ContainerSpells" "Target_BlessedStrikes;Projectile_BlessedStrikes"
 // data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType); ExecuteWeaponFunctors(MainHand);DealDamage(1d8,Radiant,Magical,,0,,true,true)"
+data "RequirementConditions" "HasActionResource('Interrupt_DivineStrike', 1, 0, false, false, context.Source)"
+// data "TargetConditions" "not Self() and not Dead()"
+data "TargetConditions" "not Self() and Character()"
 // data "Icon" "Action_BlessedStrikes_Melee"
+// Blessed Strikes
 // data "DisplayName" "hbb1fd0f1g2054g4753gb108g483fe1a6fd81;1"
+// Channel your divine might through a weapon attack, dealing an additional [1].
 // data "Description" "h1bd07421gda31g40c6gaaa2gda8363f244c0;1"
+// Channel your divine might through a &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt; against a creature, dealing an additional [1].
+data "Description" "hed007e07ge924g4168ga3acg6e523834858f;1"
 // data "DescriptionParams" "DealDamage(1d8,Radiant)"
 // data "TooltipDamageList" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);DealDamage(1d8,Radiant)"
 // data "CastSound" "Spell_Cast_Damage_Radiant_DivineSmite_L1to3"
@@ -23,23 +45,38 @@
 // data "DamageType" "Radiant"
 // data "SpellSoundMagnitude" "Big"
 
-// new entry "Target_BlessedStrikes"
-// type "SpellData"
+// TODO: Is this supposed to be a projectile???
+new entry "Target_BlessedStrikes"
+type "SpellData"
 // data "SpellType" "Projectile"
+// data "SpellType" "Target" // BUG FIX?>?!!?!??!
 // using "Target_BlessedStrikes_Container"
+using "Target_BlessedStrikes"
+data "Cooldown" "OncePerTurn"
 // data "SpellContainerID" "Target_BlessedStrikes_Container"
+// Channel your divine might through a weapon attack, dealing an additional [1].
+// data "Description" "h1bd07421gda31g40c6gaaa2gda8363f244c0;1"
+// Channel your divine might through a &lt;LSTag Tooltip="MeleeWeaponAttack"&gt;Melee Weapon Attack&lt;/LSTag&gt; against a creature, dealing an additional [1].
+data "Description" "h3370a3dbg5027g4353g8068gec07795fb046;1"
 
-// new entry "Projectile_BlessedStrikes"
-// type "SpellData"
-// data "SpellType" "Projectile"
+new entry "Projectile_BlessedStrikes"
+type "SpellData"
+data "SpellType" "Projectile"
+using "Projectile_BlessedStrikes"
 // using "Projectile_MainHandAttack"
 // data "SpellContainerID" "Target_BlessedStrikes_Container"
+data "Cooldown" "OncePerTurn"
 // data "SpellRoll" "Attack(AttackType.RangedWeaponAttack)"
 // data "SpellSuccess" "DealDamage(MainRangedWeapon, MainRangedWeaponDamageType); ExecuteWeaponFunctors(MainHand);DealDamage(1d8,Radiant,Magical,,0,,true,true)"
+data "RequirementConditions" "HasActionResource('Interrupt_DivineStrike', 1, 0, false, false, context.Source)"
 // data "TargetConditions" "not Self() and Character()"
 // data "Icon" "Action_BlessedStrikes_Ranged"
+// Blessed Strikes
 // data "DisplayName" "hbb1fd0f1g2054g4753gb108g483fe1a6fd81;1"
+// Channel your divine might through a weapon attack, dealing an additional [1].
 // data "Description" "h1bd07421gda31g40c6gaaa2gda8363f244c0;1"
+// Channel your divine might through a &lt;LSTag Tooltip="RangedWeaponAttack"&gt;Ranged Weapon Attack&lt;/LSTag&gt; against a creature, dealing an additional [1].
+data "Description" "hc042084fg0a9cg42cbg998bg654d1204d5ac;1"
 // data "DescriptionParams" "DealDamage(1d8,Radiant)"
 // data "TooltipDamageList" "DealDamage(MainRangedWeapon, MainRangedWeaponDamageType);DealDamage(1d8,Radiant)"
 // data "CastSound" "Spell_Cast_Damage_Radiant_DivineSmite_L1to3"
@@ -56,9 +93,12 @@
 new entry "Interrupt_BlessedStrikes"
 type "InterruptData"
 using "Interrupt_BlessedStrikes"
+// Blessed Strikes
 // data "DisplayName" "hbb1fd0f1g2054g4753gb108g483fe1a6fd81;1"
 // When a creature takes damage from one of your cantrips or weapon attacks, you can also deal [1] to that creature.
 // data "Description" "h0277f46cg7ef8g4262gbb31gc06a1e5c4e85;1"
+// Deal an additional [1] with your &lt;LSTag Tooltip="Cantrip"&gt;Cantrip&lt;/LSTag&gt; or &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
+data "Description" "h035f0b97gf7c6g448dgb853g4bfe99ed55b6;1"
 // data "DescriptionParams" "1d8"
 data "DescriptionParams" "DealDamage(1d8,Radiant)"
 // data "Icon" "PassiveFeature_BlessedStrikes"
@@ -74,12 +114,14 @@ data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',con
 // data "EnableCondition" "not HasStatus('SG_Polymorph') or Tagged('MINDFLAYER') or HasStatus('SG_Disguise')"
 data "EnableCondition" "HasActionResource('Interrupt_DivineStrike', 1, 0, false, false, context.Source) and (not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus())"
 // data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+data "EnableContext" "OnActionResourcesChanged;OnStatusApplied;OnStatusRemoved"
 data "InterruptFlags" "InterruptWhileInvisible"
 
 new entry "Interrupt_BlessedStrikes_Critical"
 type "InterruptData"
 // using "Interrupt_BlessedStrikes"
 using "Interrupt_BlessedStrikes_Critical"
+// Blessed Strikes Critical
 // data "DisplayName" "h85090cd1ge9fbg4df5g8277ge15c1e83157e;1"
 // data "Conditions" "not Dead(context.Observer) and Character() and Self(context.Source, context.Observer) and HasFunctor(StatsFunctorType.DealDamage) and not IsKillingBlow() and (IsCantrip() or IsWeaponAttack()) and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes') and IsHit() and not AnyEntityIsItem() and IsCritical() and not IsDivineStrike()"
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and Character() and Self(context.Source, context.Observer) and HasFunctor(StatsFunctorType.DealDamage) and not IsKillingBlow() and (IsCantrip() or IsWeaponAttack()) and not SpellId('Target_BlessedStrikes') and not SpellId('Projectile_BlessedStrikes') and IsHit() and not AnyEntityIsItem() and IsCritical() and not IsDivineStrike()"
