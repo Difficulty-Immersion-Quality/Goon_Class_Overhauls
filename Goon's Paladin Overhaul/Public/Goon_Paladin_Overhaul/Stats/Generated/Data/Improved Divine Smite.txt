@@ -1,3 +1,7 @@
+// Changes: Now a toggleable passive.
+// Changes: Additional damage also applies when throwing melee weapons.
+// Changes: Native support for ChizFreak's Improved Unholy Smite for Oathbreakers.
+
 // ==================================== Improved Divine Smite ====================================
 
 new entry "ImprovedDivineSmite"
