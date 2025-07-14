@@ -31,7 +31,8 @@
 	<!-- "Projectile_BlessedStrikes" --> <content contentuid="hc042084fg0a9cg42cbg998bg654d1204d5ac" version="1">Channel your divine might through a &lt;LSTag Tooltip="RangedWeaponAttack"&gt;Ranged Weapon Attack&lt;/LSTag&gt; against a creature, dealing an additional [1].</content>
 	<!-- "Interrupt_BlessedStrikes" --> <content contentuid="h035f0b97gf7c6g448dgb853g4bfe99ed55b6" version="1">Deal an additional [1] with your &lt;LSTag Tooltip="Cantrip"&gt;Cantrip&lt;/LSTag&gt; or &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.</content>
 
-	<!-- "" --> <content contentuid="" version="1"></content>
+	<!-- "7d03673f-17c0-4bf7-9858-c169d1391e8e" --> <content contentuid="h516a0fc7g341bg4e06gbbc9ga710ddda3852" version="1">Does not consume a Divine Strike charge.</content>
+
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>

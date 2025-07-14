@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<save>
+    <version major="4" minor="5" revision="0" build="600"/>
+    <region id="TooltipExtraTexts">
+        <node id="root">
+            <children>
+                <node id="TooltipExtraTexts">
+                    <!-- Does not consume a Divine Strike charge. -->
+                    <attribute id="Text" type="TranslatedString" handle="h516a0fc7g341bg4e06gbbc9ga710ddda3852" version="1"/>
+                    <attribute id="UUID" type="guid" value="7d03673f-17c0-4bf7-9858-c169d1391e8e"/>
+                </node>
+            </children>
+        </node>
+    </region>
+</save>

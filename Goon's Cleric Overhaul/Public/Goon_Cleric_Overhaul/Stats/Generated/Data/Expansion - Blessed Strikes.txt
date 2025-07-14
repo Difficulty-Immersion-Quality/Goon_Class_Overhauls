@@ -31,6 +31,8 @@ data "TargetConditions" "not Self() and Character()"
 data "Description" "hed007e07ge924g4168ga3acg6e523834858f;1"
 // data "DescriptionParams" "DealDamage(1d8,Radiant)"
 // data "TooltipDamageList" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);DealDamage(1d8,Radiant)"
+// Does not consume a Divine Strike charge.
+data "TooltipOnMiss" "7d03673f-17c0-4bf7-9858-c169d1391e8e"
 // data "CastSound" "Spell_Cast_Damage_Radiant_DivineSmite_L1to3"
 // data "TargetSound" "Spell_Impact_Damage_Radiant_DivineSmite_L1to3"
 // data "SpellAnimation" "71369b20-18f1-4d33-89ad-a99b10f0444c,,;48beee2b-7124-4fa1-b820-dab4d89198d4,,;bcecc5ce-e7c9-4391-b4b6-5f93872ba2e6,,;9add032c-e500-4e88-a2ea-ef6c905bd656,,;3b9da8d4-3eff-43bd-9eaa-1c13fba0045e,,;d9feef5a-3726-4e23-95e5-6ec295efdc96,,;0b07883a-08b8-43b6-ac18-84dc9e84ff50,,;,,;,,"
@@ -79,6 +81,8 @@ data "RequirementConditions" "HasActionResource('Interrupt_DivineStrike', 1, 0, 
 data "Description" "hc042084fg0a9cg42cbg998bg654d1204d5ac;1"
 // data "DescriptionParams" "DealDamage(1d8,Radiant)"
 // data "TooltipDamageList" "DealDamage(MainRangedWeapon, MainRangedWeaponDamageType);DealDamage(1d8,Radiant)"
+// Does not consume a Divine Strike charge.
+data "TooltipOnMiss" "7d03673f-17c0-4bf7-9858-c169d1391e8e"
 // data "CastSound" "Spell_Cast_Damage_Radiant_DivineSmite_L1to3"
 // data "TargetSound" "Spell_Impact_Damage_Radiant_DivineSmite_L1to3"
 // data "HitCosts" "Interrupt_DivineStrike:1"
