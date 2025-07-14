@@ -4,6 +4,10 @@
 	<!-- "AURA_OF_HATE" --> <content contentuid="h8e371248gddd7g40dag8d49g785183b1f9eb" version="1">The Paladin and any nearby Fiends and Undead deal an additional [1] with melee &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt;.</content>
 	<!-- "AURA_OF_HATE_BUFF" --> <content contentuid="hb7b88a5bg94a0g459cga5e4gea0863985113" version="1">Deals an additional [2] with melee &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; while within [1] of the spellcaster.</content>
 	<!-- "Shout_AuraOf_Hate", "AURA_OF_HATE", "AURA_OF_HATE_BUFF" --> <content contentuid="h246e33fegca9bg4d1bgb44dgc9312a2da877" version="1">Additional[1] scales with the Paladin's &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt;.</content>
+	
+	<!-- "ImprovedDivineSmite" --> <content contentuid="h81f9760cg8453g48c4gbed3g13853747deb8" version="1">Suffuse your melee weapon with divine might.&lt;br&gt;&lt;br&gt;Melee and thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; using melee weapons deal an additional [1].</content>
+	<!-- "ImprovedUnholySmite" --> <content contentuid="h0b02bb5dg7b6bg4c19g9e57gec3ade165694" version="1">Suffuse your melee weapon with unholy might.&lt;br&gt;&lt;br&gt;Melee and thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; using melee weapons deal an additional [1].</content>
+	
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>

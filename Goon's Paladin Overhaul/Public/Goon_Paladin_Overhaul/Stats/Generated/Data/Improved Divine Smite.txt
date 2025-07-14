@@ -1,0 +1,38 @@
+// ==================================== Improved Divine Smite ====================================
+
+new entry "ImprovedDivineSmite"
+type "PassiveData"
+using "ImprovedDivineSmite"
+// Improved Divine Smite
+// data "DisplayName" "ha4025fdeg9e73g4867g8e6dg1f5b402f7a77;2"
+// Your attacks are suffused with divine might.&lt;br&gt;&lt;br&gt;Melee weapon attacks deal an additional [1].
+// data "Description" "h9846f8c5gdfb6g43c2gbf2agbbb5e0f29b19;3"
+// Suffuse your melee weapon with divine might.&lt;br&gt;&lt;br&gt;Melee and thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; using melee weapons deal an additional [1].
+data "Description" "h81f9760cg8453g48c4gbed3g13853747deb8;1"
+// data "DescriptionParams" "DealDamage(1d8,Radiant)"
+// You may toggle this feature on and off.
+data "ExtraDescription" "h71374fc8g784cg41e3ga5f0g9cc48ba14c84;2"
+// data "Icon" "PassiveFeature_ImprovedDivineSmite"
+// data "Properties" "Highlighted"
+data "Properties" "Highlighted;IsToggled;ToggledDefaultOn;ToggledDefaultAddToHotbar"
+// data "Boosts" "IF(IsMeleeAttack()):CharacterWeaponDamage(1d8,Radiant)"
+data "Boosts" "IF(IsMeleeAttack()):CharacterWeaponDamage(1d8,Radiant);IF(IsRangedUnarmedAttack() and Goon_IsWeapon(context.HitDescription.ThrownObject)):CharacterUnarmedDamage(1d8,Radiant)"
+
+// ==================================== ChizFreak's Improved Unholy Smite for Oathbreakers ====================================
+
+new entry "ImprovedUnholySmite"
+type "PassiveData"
+// using "ImprovedDivineSmite"
+using "ImprovedUnholySmite"
+// Improved Unholy Smite
+// data "DisplayName" "hb41d8759gbed8gfd14ge53bg3717c74ad1b7;1"
+// Your attacks are suffused with unholy might.&lt;br&gt;&lt;br&gt;Melee weapon attacks deal an additional [1].
+// data "Description" "h660d1613gc23fg8182gcb7dg49e8c657aeca;1"
+// Suffuse your melee weapon with unholy might.&lt;br&gt;&lt;br&gt;Melee and thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; using melee weapons deal an additional [1].
+data "Description" "h0b02bb5dg7b6bg4c19g9e57gec3ade165694;1"
+// data "DescriptionParams" "DealDamage(1d8,Necrotic)"
+// data "Icon" "ImprovedUnholySmitePassive"
+// data "Boosts" "IF(IsMeleeAttack()):CharacterWeaponDamage(1d8,Necrotic)"
+data "Boosts" "IF(IsMeleeAttack()):CharacterWeaponDamage(1d8,Necrotic);IF(IsRangedUnarmedAttack() and Goon_IsWeapon(context.HitDescription.ThrownObject)):CharacterUnarmedDamage(1d8,Necrotic)"
+
+
