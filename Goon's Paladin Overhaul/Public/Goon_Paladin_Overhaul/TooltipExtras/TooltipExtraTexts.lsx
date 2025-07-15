@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<save>
+    <version major="4" minor="5" revision="0" build="600"/>
+    <region id="TooltipExtraTexts">
+        <node id="root">
+            <children>
+                <node id="TooltipExtraTexts">
+                    <!-- Does not spend a &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt;. -->
+                    <!-- <attribute id="Text" type="TranslatedString" handle="hea463d7fg404cg4825g8dedgdeebc97b9914" version="1"/> -->
+                    <!-- Does not consume a &lt;LSTag Tooltip="SpellSlot"&gt;Spell Slot&lt;/LSTag&gt;. -->
+                    <attribute id="Text" type="TranslatedString" handle="h516a0fc7g341bg4e06gbbc9ga710ddda3852" version="1"/>
+                    <attribute id="UUID" type="guid" value="4639a885-0f45-4bc9-93c7-1e0c39eb39ec"/>
+                </node>
+            </children>
+        </node>
+    </region>
+</save>
