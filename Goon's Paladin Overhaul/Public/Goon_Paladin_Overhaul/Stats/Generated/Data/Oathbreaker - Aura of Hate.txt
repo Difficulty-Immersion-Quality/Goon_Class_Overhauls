@@ -1,5 +1,5 @@
 // ==================================== Oathbreaker - Aura of Hate ====================================
-// Changes: The additional damage works with all melee attacks.
+// Changes: The additional Necrotic damage now works with all melee attacks.
 // Changes: Descriptions overhauled to inform of all functionality.
 
 new entry "Shout_AuraOf_Hate"
