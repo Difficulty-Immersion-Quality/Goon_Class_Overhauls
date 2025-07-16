@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentList>
-	<!-- "" --> <content contentuid="" version="1"></content>
+	<!-- "RakishAudacity" --> <content contentuid="hba8f1eeeg12c1g43dag9a43g15d42b380150" version="1">You gain a +[1] bonus to Initiative rolls. This scales with your Rogue level.&lt;br&gt;&lt;br&gt;You no longer need &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; to trigger &lt;LSTag Type="Spell" Tooltip="Target_SneakAttack"&gt;Sneak Attack&lt;/LSTag&gt; if there are no other combatants within [2] of the target or if you have an ally within that range. All the other rules for Sneak Attack still apply to you.</content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>

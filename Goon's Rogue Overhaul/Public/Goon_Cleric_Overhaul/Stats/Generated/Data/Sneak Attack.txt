@@ -90,48 +90,6 @@ data "HitCosts" "SneakAttack_Charge:1"
 // data "CastEffect" "bf5fa9ef-7d14-4061-b393-10852789ff1b"
 // data "Sheathing" "Ranged"
 
-// ==================================== Sneak Attack - Spells (Swashbuckler)
-
-new entry "Target_SneakAttack_Rakish"
-type "SpellData"
-data "SpellType" "Target"
-// using "Target_SneakAttack_Swarm"
-using "Target_SneakAttack_Rakish"
-// data "TargetConditions" "Character() and not Self() and not Dead() and (HasAdvantage(AttackType.MeleeWeaponAttack) or HasAllyWithinRange('SG_Incapacitated',1.5) or (not HasEnemyWithinRange('SG_Incapacitated',1.5, nil, 2,context.Source,context.Target) and not HasAllyWithinRange('SG_Incapacitated',1.5, nil,false,context.Source,context.Target))) and not HasDisadvantage(AttackType.MeleeWeaponAttack) and not Tagged('INANIMATE');"
-data "TargetConditions" "Character() and not Self() and not Dead() and ((HasAdvantage(AttackType.MeleeWeaponAttack) or HasAllyWithinRange('SG_Incapacitated',1.5)) or (not HasEnemyWithinRange('SG_Incapacitated',1.5, nil, 2,context.Target,context.Target) and not HasAllyWithinRange('SG_Incapacitated',1.5, nil,false,context.Target,context.Target))) and not HasDisadvantage(AttackType.MeleeWeaponAttack) and not Tagged('INANIMATE')"
-// data "Icon" "Action_RakishAudacity_SneakAttack_Melee"
-// Rakish Sneak Attack (Melee)
-// data "DisplayName" "h25821f6agfc1ag4cecg92bbgecf41a1db0db;2"
-// Deal extra damage to a foe you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against. You can also use this attack without Advantage if there are no other combatants within [1] of the target, or if you have an ally within that range.
-// data "Description" "h2dc80234gde9cg4159g9b33gfdc583e61533;5"
-// data "DescriptionParams" "Distance(2)"
-data "DescriptionParams" "Distance(1.5)"
-// You can't use this attack if you have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
-// data "ExtraDescription" "h76d453acgeab3g4378g9916g94d1b467999d;1"
-// data "ExtraDescriptionParams" ""
-// data "CastSound" "Spell_Cast_Rogue_RakishAudacityMelee"
-// data "TargetSound" "Impact_Rogue_RakishAudacityMelee"
-
-new entry "Projectile_SneakAttack_Rakish"
-type "SpellData"
-data "SpellType" "Projectile"
-// using "Projectile_SneakAttack"
-using "Projectile_SneakAttack_Rakish"
-// data "TargetConditions" "Character() and not Self() and not Dead() and not Tagged('INANIMATE') and ((HasAdvantage(AttackType.MeleeWeaponAttack) or HasAllyWithinRange('SG_Incapacitated',1.5)) or (not HasEnemyWithinRange('SG_Incapacitated',1.5, nil, 2,context.Source,context.Target) and not HasAllyWithinRange('SG_Incapacitated',1.5, nil,false,context.Source,context.Target))) and not HasDisadvantage(AttackType.RangedWeaponAttack);"
-data "TargetConditions" "Character() and not Self() and not Dead() and ((HasAdvantage(AttackType.RangedWeaponAttack) or HasAllyWithinRange('SG_Incapacitated',1.5)) or (not HasEnemyWithinRange('SG_Incapacitated',1.5, nil, 2,context.Target,context.Target) and not HasAllyWithinRange('SG_Incapacitated',1.5, nil,false,context.Target,context.Target))) and not HasDisadvantage(AttackType.RangedWeaponAttack) and not Tagged('INANIMATE')"
-// data "ExtraProjectileTargetConditions" "Character() and not Ally();"
-// data "Icon" "Action_RakishAudacity_SneakAttack_Ranged"
-// Rakish Sneak Attack (Ranged)
-// data "DisplayName" "h1472d877gd13dg4e5bg9cefg430db373640f;2"
-// Deal extra damage to a foe you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against. You can also use this attack without Advantage if there are no other combatants within [1] of the target, or if you have an ally within that range.
-// data "Description" "h8d0277f2g00aeg45f2ga5b5g53233c5076b5;6"
-// data "DescriptionParams" "Distance(2)"
-data "DescriptionParams" "Distance(1.5)"
-// You can't use this attack if you have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
-// data "ExtraDescription" "hd7406e1cgb9f5g4f4fgb846ga8e16500b357;1"
-// data "ExtraDescriptionParams" ""
-// data "CastSound" "Spell_Cast_Rogue_RakishAudacityRanged"
-
 // ==================================== Sneak Attack - Interrupts
 
 new entry "Interrupt_SneakAttack"
@@ -178,41 +136,3 @@ data "Properties" "IF(IsAttackType(AttackType.MeleeWeaponAttack)):DealDamage(Lev
 // data "InterruptDefaultValue" "Enabled"
 data "InterruptDefaultValue" "Ask;Enabled"
 
-// ==================================== Sneak Attack - Interrupts (Swashbuckler)
-
-new entry "Interrupt_SneakAttack_Rakish"
-type "InterruptData"
-// using "Interrupt_SneakAttack"
-using "Interrupt_SneakAttack_Rakish"
-// Rakish Sneak Attack
-// data "DisplayName" "h65030d75gbed6g4271g905eg9faa0a1a91f4;1"
-// Deal extra damage to a foe you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against. You can also use this attack without Advantage if there are no other combatants within [1] of the target, or if you have an ally within that range.
-// data "Description" "ha1365754g4f79g4a78g93acgcab60d3acc30;3"
-// data "DescriptionParams" "Distance(2)"
-data "DescriptionParams" "Distance(1.5)"
-// You can't use this attack if you have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
-// data "ExtraDescription" "ha3a08c23g045eg455cg8365g0aab1c2fccd0;2"
-// data "Icon" "Action_RakishAudacity_SneakAttack_Melee"
-// data "Conditions" "Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack())) and not IsCritical() and not IsKillingBlow() and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and ((HasAdvantage(AttackType.MeleeWeaponAttack) or HasAllyWithinRange('SG_Incapacitated',1.5)) or (not HasEnemyWithinRange('SG_Incapacitated',1.5, nil, 2,context.Source,context.Target) and not HasAllyWithinRange('SG_Incapacitated',1.5, nil,false,context.Source,context.Target))) and not AnyEntityIsItem();"
-data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack())) and not IsCritical() and not IsKillingBlow() and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and ((HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) or (not HasEnemyWithinRange('SG_Incapacitated',1.5, nil, 2,context.Target,context.Target) and not HasAllyWithinRange('SG_Incapacitated',1.5, nil,false,context.Target,context.Target))) and not AnyEntityIsItem() and not Goon_IsSneakAttack()"
-// data "Properties" "IF(IsMeleeAttack()):DealDamage(LevelMapValue(SneakAttack), MainMeleeWeaponDamageType);IF(IsRangedAttack()):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType);IF(HasPassive('MAG_ForcefulSneakAttack_Passive', context.Source)):DealDamage(1d4, Force,Magical);"
-// data "Properties" "IF(IsMeleeAttack()):DealDamage(LevelMapValue(SneakAttack), MainMeleeWeaponDamageType,,,0,,true,true);IF(IsRangedAttack()):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType,,,0,,true,true);IF(HasPassive('MAG_ForcefulSneakAttack_Passive', context.Source)):DealDamage(1d4, Force,Magical,,0,,true,true);"
-data "Properties" "IF(IsAttackType(AttackType.MeleeWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainMeleeWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), OffhandMeleeWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), OffhandRangedWeaponDamageType,,,0,,true,true);IF(IsThrowAttackRoll()):DealDamage(LevelMapValue(SneakAttack), ThrownWeaponDamageType,,,0,,true,true);IF(HasPassive('MAG_ForcefulSneakAttack_Passive', context.Source)):DealDamage(1d4, Force,Magical,,0,,true,true)"
-
-new entry "Interrupt_SneakAttack_Rakish_Critical"
-type "InterruptData"
-// using "Interrupt_SneakAttack_Critical"
-using "Interrupt_SneakAttack_Rakish_Critical"
-// Rakish Sneak Attack (Critical Hit)
-// data "DisplayName" "hce8fc065g31ceg42e9g9302gad480abf540c;2"
-// Deal extra damage to a foe you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against. You can also use this attack without Advantage if there are no other combatants within [1] of the target, or if you have an ally within that range.
-// data "Description" "h9fb058c8g566dg472egb2dcg1ce062ceab0c;2"
-// data "DescriptionParams" "Distance(2)"
-data "DescriptionParams" "Distance(1.5)"
-// You can't use this attack if you have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
-// data "ExtraDescription" "h2a70fe3fg9251g483cga71bgc5489fc03330;2"
-// data "Icon" "Action_RakishAudacity_SneakAttack_Melee"
-// data "Conditions" "Self(context.Source,context.Observer) and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack())) and IsCritical() and not IsKillingBlow() and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and ((HasAdvantage(AttackType.MeleeWeaponAttack) or HasAllyWithinRange('SG_Incapacitated',1.5)) or (not HasEnemyWithinRange('SG_Incapacitated',1.5, nil, 2,context.Source,context.Target) and not HasAllyWithinRange('SG_Incapacitated',1.5, nil,false,context.Source,context.Target))) and not AnyEntityIsItem();"
-data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack())) and not not IsCritical() and not IsKillingBlow() and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and ((HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) or (not HasEnemyWithinRange('SG_Incapacitated',1.5, nil, 2,context.Target,context.Target) and not HasAllyWithinRange('SG_Incapacitated',1.5, nil,false,context.Target,context.Target))) and not AnyEntityIsItem() and not Goon_IsSneakAttack()"
-// data "Properties" "IF(IsMeleeAttack()):DealDamage(LevelMapValue(SneakAttack), MainMeleeWeaponDamageType,,,0,,true,true);IF(IsRangedAttack()):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType,,,0,,true,true);IF(HasPassive('MAG_ForcefulSneakAttack_Passive', context.Source)):DealDamage(1d4, Force,Magical,,0,,true,true);"
-data "Properties" "IF(IsAttackType(AttackType.MeleeWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainMeleeWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), OffhandMeleeWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), OffhandRangedWeaponDamageType,,,0,,true,true);IF(IsThrowAttackRoll()):DealDamage(LevelMapValue(SneakAttack), ThrownWeaponDamageType,,,0,,true,true);IF(HasPassive('MAG_ForcefulSneakAttack_Passive', context.Source)):DealDamage(1d4, Force,Magical,,0,,true,true)"
