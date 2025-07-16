@@ -6,6 +6,7 @@
 // Changes: Interrupts can be used by Invisible players.
 // Changes: Interrupts are now defaulted to ask, instead of being used automatically.
 // Changes: Forced Honour ruleset changes to damage riders not functioning as damage rider sources.
+// Changes: Removed once per turn cooldowns. (This doesn't change existing functionality, but would allow for more than one use in a theoretical situation where a character has more than one Sneak Attack charge.)
 // TODO: Offhand & throw spell variants, put them in a container.
 // TODO: Make it work for Dex based Wildshape stuff and not like, big brawny bears.
 

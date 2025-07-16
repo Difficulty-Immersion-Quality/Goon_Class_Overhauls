@@ -18,7 +18,7 @@ data "Description" "hba8f1eeeg12c1g43dag9a43g15d42b380150;1"
 
 // ==================================== Rakish Sneak Attack ====================================
 // Bug Fix: Range check mechanics now function as intended, and as described in the tooltips.
-// Bug Fix: Tooltip now states the correct distance.
+// Bug Fix: Tooltips now state the correct distance.
 
 new entry "Target_SneakAttack_Rakish"
 type "SpellData"
