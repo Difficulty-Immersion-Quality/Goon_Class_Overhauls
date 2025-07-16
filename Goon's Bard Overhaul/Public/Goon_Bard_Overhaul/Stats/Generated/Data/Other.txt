@@ -1,0 +1,13 @@
+// ==================================== College of Lore - Additional Proficiencies ====================================
+// Bug Fix: Now correctly states that you choose 3 skills, not that you get Arcana, Intimidation and Sleight of Hand.
+
+new entry "CollegeOfLore_Proficiency"
+type "PassiveData"
+using "CollegeOfLore_Proficiency"
+// Additional Proficiencies
+// data "DisplayName" "hfb7e7e63g81ddg4cabga6d7g3c494180d9fa;1"
+// Gain &lt;LSTag Tooltip="Proficiency"&gt;Proficiency&lt;/LSTag&gt; in Arcana, Intimidation and Sleight of Hand.
+// data "Description" "hf232d3e3g0926g4d8bga86cg3a680ff04884;3"
+// Gain 3 &lt;LSTag Tooltip="Proficiency"&gt;Skill Proficiencies&lt;/LSTag&gt; of your choosing.
+data "Description" "ha24cc477g59aeg416fgbb71gd138d97d0747;1"
+// data "Boosts" "ProficiencyBonus(Skill,Arcana);ProficiencyBonus(Skill,Intimidation);ProficiencyBonus(Skill,SleightOfHand)"
