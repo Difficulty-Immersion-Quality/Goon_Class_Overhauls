@@ -1,0 +1,63 @@
+// ==================================== Dirty Trick: Sand Toss ====================================
+// Bug Fix: Now uses Maneuver Save DC instead of Spell Save DC.
+
+new entry "Target_DirtyTrick_Blind"
+type "SpellData"
+data "SpellType" "Target"
+using "Target_DirtyTrick_Blind"
+// data "TargetRadius" "1.5"
+// data "SpellRoll" "Attack(AttackType.MeleeWeaponAttack)"
+// data "SpellSuccess" "IF(not SavingThrow(Ability.Constitution, SourceSpellDC())):ApplyStatus(BLINDED,100,2);DealDamage(1d6,Bludgeoning);ApplyStatus(SELF,SWASHBUCKLER_ADV,100,2);"
+data "SpellSuccess" "IF(not SavingThrow(Ability.Constitution, ManeuverSaveDC())):ApplyStatus(BLINDED,100,2);DealDamage(1d6,Bludgeoning);ApplyStatus(SELF,SWASHBUCKLER_ADV,100,2);"
+// data "TargetConditions" "Character() and not Self() and not Dead()"
+// data "Icon" "Action_DirtyTrick_Blind"
+// Dirty Trick: Sand Toss
+// data "DisplayName" "ha448fc01g646dg4ed0ga550g158422f51674;2"
+// Toss a handful of sand at your enemy and possibly &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blind&lt;/LSTag&gt; them.
+// data "Description" "h6e2b835ag8a22g4de2ga90fg92ccd012c642;2"
+// Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next attack.
+// data "ExtraDescription" "h6d6058c1g275ag4dd4gb148ge7394c7aea45;1"
+// data "TooltipDamageList" "DealDamage(1d6,Bludgeoning)"
+// data "TooltipAttackSave" "Constitution"
+// data "TooltipStatusApply" "ApplyStatus(BLINDED,100,2);ApplyStatus(SWASHBUCKLER_ADV,100,1)"
+// data "PrepareSound" "Spell_Prepare_Rogue_Blind"
+// data "CastSound" "Spell_Cast_Rogue_Blind"
+// data "TargetSound" "Impact_Rogue_Blind"
+// data "CastTextEvent" "Cast"
+// data "UseCosts" "BonusActionPoint:1"
+// data "SpellAnimation" "d2581ca5-a65b-4f64-9c07-d5b30496fe77,,;,,;37f8dd10-af67-46b4-bd17-13dd7f883077,37f8dd10-af67-46b4-bd17-13dd7f883077,37f8dd10-af67-46b4-bd17-13dd7f883077;685ff488-c0a9-4bfd-8f87-6a2b6d404fe0,685ff488-c0a9-4bfd-8f87-6a2b6d404fe0,685ff488-c0a9-4bfd-8f87-6a2b6d404fe0;02d9af16-7aa1-418a-9abf-6d9187f88a7f,,;,,;6264a75d-c43d-4755-86fe-cca2765334f3,,;,,;,,"
+// data "DualWieldingSpellAnimation" "8b8bb757-21ce-4e02-a2f3-97d55cf2f90b,,;6606c30b-be1c-4f17-ae6b-1a591c80b18c,,;f4ac302b-1569-404f-bd52-1fe443e265df,,:722df2d7-7898-4b0b-b930-5a850b55ccf0,,;a693a7c3-e7e7-4edb-98dd-db5fd700663f,,;7bb52cd4-0b1c-4926-9165-fa92b75876a3,,;2b81c18b-9698-4262-a623-932c2bb1296d,,;0b07883a-08b8-43b6-ac18-84dc9e84ff50,,;,,;,,"
+// data "VerbalIntent" "Debuff"
+// data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsHarmful;DisableBlood;IsMelee"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "PrepareEffect" "2f3cf899-3a58-4471-8804-5df322318918"
+// data "CastEffect" "4ef49b96-fddb-42a8-9aac-8998ae33071d"
+// data "TargetEffect" "00a61849-564a-4bdc-8299-2d86ed240dc1"
+// data "Sheathing" "Somatic"
+
+// ==================================== Dirty Trick: Vicious Mockery ====================================
+// TODO: "When target fails the save, battle log states erroneously that the caster failed the save."
+// It's gotta just me from having a SELF status, so could do a technical applier and put the swap in there.
+
+// new entry "Target_DirtyTrick_Vicious"
+// type "SpellData"
+// data "SpellType" "Target"
+// using "Target_ViciousMockery"
+// data "SpellSuccess" "ApplyStatus(VICIOUSMOCKERY,100,1);DealDamage(LevelMapValue(D4Cantrip),Psychic,Magical);ApplyStatus(SELF,SWASHBUCKLER_ADV,100,2);"
+// data "Icon" "Action_DirtyTrick_ViciousMockery"
+// Dirty Trick: Vicious Mockery
+// data "DisplayName" "h5d259314g1895g4578ga2efg34184a6c08e2;1"
+// Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next attack.
+// data "ExtraDescription" "h8d81a3c6ge530g47f8ga9f9g53d6f89ce4e0;1"
+// data "TooltipStatusApply" "ApplyStatus(VICIOUSMOCKERY,100,1);ApplyStatus(SWASHBUCKLER_ADV,100,1);"
+// data "PrepareSound" "Spell_Prepare_Rogue_ViciousMockery"
+// data "CastSound" "Spell_Cast_Rogue_ViciousMockery"
+// data "TargetSound" "Impact_Rogue_ViciousMockery"
+// data "UseCosts" "BonusActionPoint:1"
+// data "SpellAnimation" "d2581ca5-a65b-4f64-9c07-d5b30496fe77,,;,,;ebc9253d-d2b2-4657-b8c1-df334c6047b1,,;3aa138db-f6d7-495b-a34f-281b1d71fbc9,,;02d9af16-7aa1-418a-9abf-6d9187f88a7f,,;,,;6264a75d-c43d-4755-86fe-cca2765334f3,,;,,;,,"
+// data "SpellStyleGroup" "Class"
+// data "PrepareEffect" "79cab826-6ec4-4512-837f-278d0fc94394"
+// data "CastEffect" "6f7d94a8-e808-49ec-b7be-3a1f02a51df7"
+// data "TargetEffect" "57593949-e63b-4b31-8b3b-5039ed5ed1cf"
+// data "BeamEffect" "0da84949-2469-439b-b28e-06e7b33a52b1"
