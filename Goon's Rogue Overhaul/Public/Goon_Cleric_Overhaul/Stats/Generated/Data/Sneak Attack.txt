@@ -8,7 +8,6 @@
 // Changes: Forced Honour ruleset changes to damage riders not functioning as damage rider sources.
 // TODO: Offhand & throw spell variants, put them in a container.
 // TODO: Make it work for Dex based Wildshape stuff and not like, big brawny bears.
-// TODO: Rakish Audacity passive fixes
 
 // ==================================== Sneak Attack - Spells
 

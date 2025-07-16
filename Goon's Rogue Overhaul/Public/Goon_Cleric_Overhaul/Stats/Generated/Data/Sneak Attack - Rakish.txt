@@ -17,7 +17,7 @@ data "Description" "hba8f1eeeg12c1g43dag9a43g15d42b380150;1"
 // data "Boosts" "IF(not ClassLevelHigherOrEqualThan(5,'Rogue')):Initiative(2);IF(ClassLevelHigherOrEqualThan(5,'Rogue') and not ClassLevelHigherOrEqualThan(10,'Rogue')):Initiative(3);IF(ClassLevelHigherOrEqualThan(10,'Rogue')):Initiative(4);"
 
 // ==================================== Rakish Sneak Attack ====================================
-// Bug Fix: Range check mechanics now functions as intended, and as described in the tooltips.
+// Bug Fix: Range check mechanics now function as intended, and as described in the tooltips.
 // Bug Fix: Tooltip now states the correct distance.
 
 new entry "Target_SneakAttack_Rakish"
