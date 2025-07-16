@@ -1,7 +1,6 @@
 // ==================================== Rakish Audacity ====================================
 // Bug Fix: Description of mechanics is now accurate to functionality.
 
-
 new entry "RakishAudacity"
 type "PassiveData"
 using "RakishAudacity"
@@ -17,7 +16,9 @@ data "Description" "hba8f1eeeg12c1g43dag9a43g15d42b380150;1"
 // data "BoostContext" "OnCombatStarted;OnCreate"
 // data "Boosts" "IF(not ClassLevelHigherOrEqualThan(5,'Rogue')):Initiative(2);IF(ClassLevelHigherOrEqualThan(5,'Rogue') and not ClassLevelHigherOrEqualThan(10,'Rogue')):Initiative(3);IF(ClassLevelHigherOrEqualThan(10,'Rogue')):Initiative(4);"
 
-// ==================================== Sneak Attack - Spells (Swashbuckler)
+// ==================================== Rakish Sneak Attack ====================================
+// Bug Fix: Range check mechanics now functions as intended, and as described in the tooltips.
+// Bug Fix: Tooltip now states the correct distance.
 
 new entry "Target_SneakAttack_Rakish"
 type "SpellData"
