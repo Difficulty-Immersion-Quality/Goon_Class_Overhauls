@@ -1,0 +1,55 @@
+// ==================================== Slashing Flourish ====================================
+// Bug Fix: Tooltip damage now Shows Bardic Inspiration.
+
+new entry "Zone_BladeFlourish_Slashing"
+type "SpellData"
+data "SpellType" "Zone"
+// using "Zone_Cleave"
+using "Zone_BladeFlourish_Slashing"
+// data "Cooldown" ""
+// data "SpellSuccess" "DealDamage(MainMeleeWeapon + LevelMapValue(BardicInspiration), MainWeaponDamageType);GROUND:ExecuteWeaponFunctors(MainHand)"
+// data "Icon" "Action_SlashingFlourish_Melee"
+// Slashing Flourish (Melee)
+// data "DisplayName" "hd10ce415gd4b5g478dgb2a5ga762aea981dd;5"
+// Attack up to [1] enemies at once.
+// data "Description" "h220ea5ebg4051g43e3ga04age5adb1149822;4"
+// data "DescriptionParams" "2"
+// data "TooltipDamageList" "DealDamage(MainMeleeWeapon+1d6, MainWeaponDamageType)"
+data "TooltipDamageList" "DealDamage(MainMeleeWeapon + LevelMapValue(BardicInspiration), MainMeleeWeaponDamageType)"
+// data "TooltipAttackSave" "MeleeWeaponAttack"
+// data "PrepareSound" "Action_Prepare_Bard_Flourish"
+// data "PrepareLoopSound" "Action_Loop_Bard_Flourish"
+// data "CastSound" "Action_Cast_Bard_SlashingFlourishMelee"
+// data "HitCosts" "BardicInspiration:1"
+// data "SpellAnimation" "a09de2c8-ec46-4c27-a502-bc92cf293fe5,,;711781fb-5f5a-4b9a-bd8b-e0b4ff9dec46,711781fb-5f5a-4b9a-bd8b-e0b4ff9dec46,711781fb-5f5a-4b9a-bd8b-e0b4ff9dec46;a17a7bf3-7381-4191-83f4-304d37c738e0,a17a7bf3-7381-4191-83f4-304d37c738e0,a17a7bf3-7381-4191-83f4-304d37c738e0;1172e0b6-08d1-4f28-a651-a01681b84ee6,1172e0b6-08d1-4f28-a651-a01681b84ee6,1172e0b6-08d1-4f28-a651-a01681b84ee6;244b53cb-dc0f-4932-afd0-ab19c6df1b34,,;0002afee-5ad9-4109-ae64-9b2571601226,0002afee-5ad9-4109-ae64-9b2571601226,0002afee-5ad9-4109-ae64-9b2571601226;0b07883a-08b8-43b6-ac18-84dc9e84ff50,,;,,;,,"
+// data "SpellFlags" "IsHarmful"
+// data "RechargeValues" ""
+// data "MaximumTargets" "2"
+// data "PrepareEffect" "9b55a45f-1859-4f55-8fd4-44a27d3fcba1"
+// data "CastEffect" "2f81d1ba-1975-45be-8164-7c22dd8b9cda"
+
+// ==================================== Slashing Flourish (Ranged)
+// Changes: Can no longer target the same entity more than once.
+
+new entry "Projectile_BladeFlourish_Slashing"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_BladeFlourish_Defensive"
+using "Projectile_BladeFlourish_Slashing"
+// data "AmountOfTargets" "2"
+// data "SpellSuccess" "DealDamage(max(1,MainRangedWeapon + LevelMapValue(BardicInspiration)), MainRangedWeaponDamageType); ExecuteWeaponFunctors(MainHand)"
+// data "SpellFail" "IF(HasStatus('YSRSLIDFWWADNIWHWIHLY')):SpawnExtraProjectiles(Projectile_BladeFlourish_Slashing);ApplyStatus(YSRSLIDFWWADNIWHWIHLY_YWNK,100,1)"
+// data "Icon" "Action_SlashingFlourish_Ranged"
+// Slashing Flourish (Ranged)
+// data "DisplayName" "heb634e12g0cefg4e3eg98d1ge9640cf537ae;3"
+// Attack up to [1] enemies at once.
+// data "Description" "h41a799d2gcfaag4f5cga5caga114345edb03;4"
+// data "DescriptionParams" "2;DealDamage(MainRangedWeapon, MainRangedWeaponDamageType)"
+// data "TooltipStatusApply" ""
+// data "SpellFlags" "HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful"
+data "SpellFlags" "HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful;IgnorePreviouslyPickedEntities"
+// data "PrepareSound" "Action_Prepare_Bard_Flourish"
+// data "PrepareLoopSound" "Action_Loop_Bard_Flourish"
+// data "CastSound" "Action_Cast_Bard_SlashingFlourishRanged"
+// data "PrepareEffect" "00d37401-b1a7-42eb-ad64-ca4954111a85"
+// data "CastEffect" "27ae62db-1606-4e42-9bc9-aeb09dcc4f64"
