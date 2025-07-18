@@ -11,6 +11,9 @@
 	<!-- "BrutalCritical_2" --> <content contentuid="he262b6f3g1cd5g4f60g8644g22656a49c0e1" version="1">You've trained to strike swift and true.&lt;br&gt;&lt;br&gt;When you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt; with your melee or thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt;, you roll two extra damage die as well as the normal additional critical dice.</content>
 	<!-- "BrutalCritical_3" --> <content contentuid="h0b25804dg22f5g4d23gbd9agf11bbf168f29" version="1">You've trained to strike swift and true.&lt;br&gt;&lt;br&gt;When you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt; with your melee or thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt;, you roll three extra damage die as well as the normal additional critical dice.</content>
 
+	<!-- "GOON_RAGE_STOP_REMOVE_DISPLAY" --> <content contentuid="ha25eb620g8154g47d1g98ccge7a3d82fc327" version="1">Rage Sustained</content>
+	<!-- "GOON_RAGE_STOP_REMOVE_DISPLAY" --> <content contentuid="hd10cc4b0g12d6g4aa3gac31ge1c121123e1f" version="1">Your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt; will not end this turn.</content>
+	
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>

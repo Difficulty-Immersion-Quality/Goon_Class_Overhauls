@@ -11,7 +11,7 @@ data "RemoveConditions" "not HasPassive('PersistentRage') and not HasStatus('RAG
 // data "TickFunctors" "IF(not Combat(context.Source)):RemoveStatus(SG_Rage)"
 data "TickFunctors" "IF(not HasPassive('PersistentRage') and not HasStatus('RAGE_STOP_REMOVE') and not Combat(context.Source)):RemoveStatus(SG_Rage)"
 
-// Barbarian QoL edits
+// Inheriting and changing Barbarian QoL edits
 new entry "RAGE_STOP_REMOVE"
 type "StatusData"
 data "StatusType" "BOOST"
@@ -27,9 +27,9 @@ new entry "GOON_RAGE_STOP_REMOVE_DISPLAY"
 type "StatusData"
 data "StatusType" "BOOST"
 // Rage Sustained
-data "DisplayName" "h017604bbb2b944bfa5464eb2e2306a30ae9g;1"
+data "DisplayName" "ha25eb620g8154g47d1g98ccge7a3d82fc327;1"
 // Your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt; will not end this turn.
-data "Description" "h6b3623a5f0364412829224032eb5643dg4b7;1"
+data "Description" "hd10cc4b0g12d6g4aa3gac31ge1c121123e1f;1"
 data "Icon" "GenericIcon_Intent_Damage"
 data "TickType" "EndTurn"
 data "RemoveConditions" "not HasStatus('SG_Rage') and not HasStatus('RAGE_STOP_REMOVE')"
@@ -46,5 +46,6 @@ using "PersistentRage"
 // data "Conditions" "StatusID('RAGE_STOP_REMOVE') or StatusHasStatusGroup('SG_Rage')"
 data "Conditions" "HasStatus('SG_Rage')"
 // data "StatsFunctors" "IF(not HasStatus('PERSISTENT_RAGE',context.Source)):ApplyStatus(PERSISTENT_RAGE,100,-1)"
-data "StatsFunctors" "IF(StatusId('RAGE_STOP_REMOVE')):ApplyStatus(RAGE_STOP_REMOVE,100,1)"
-data "StatsFunctorContext" "OnStatusRemoved"
+data "StatsFunctors" "IF(context.HasContextFlag(StatsFunctorContext.OnStatusRemoved) and StatusId('RAGE_STOP_REMOVE')):ApplyStatus(RAGE_STOP_REMOVE,100,1);IF(not context.HasContextFlag(StatsFunctorContext.OnStatusRemoved) and not HasStatus('PERSISTENT_RAGE',context.Source)):ApplyStatus(PERSISTENT_RAGE,100,-1)"
+// data "StatsFunctorContext" "OnCreate;OnMovedDistance;OnCombatStarted"
+data "StatsFunctorContext" "OnCreate;OnMovedDistance;OnCombatStarted;OnStatusRemoved"
