@@ -1,0 +1,42 @@
+// ==================================== Storm Sorcery - Heart of the Storm ====================================
+// Bug Fix: No longer inappropriately functions with cantrips.
+// Bug Fix: Can be used while under the effects of more non-hostile and non-spellcasting restricted Polymorphs.
+// Changes: Can now be used by Invisible player characters.
+
+new entry "Interrupt_HeartOfTheStorm_Lightning"
+type "InterruptData"
+using "Interrupt_HeartOfTheStorm_Lightning"
+// Heart of the Storm: Lightning
+// data "DisplayName" "h16ce0037g0b42g454dg96cdgd77f403c3eb0;2"
+// When you cast a spell of Level 1 or higher that deals Lightning damage, you cause a small, local storm. All enemies within [2] take [1].
+// data "Description" "h19c2405fg17a7g4310ga182g4a9c0c1e1e68;2"
+// data "DescriptionParams" "DealDamage(ClassLevel(Sorcerer)/2,Lightning);Distance(6)"
+// data "Icon" "PassiveFeature_HeartOfTheStorm_Lightning"
+// data "InterruptContext" "OnSpellCast"
+// data "InterruptContextScope" "Self"
+// data "Container" "YesNoDecision"
+// data "Conditions" "Self(context.Source, context.Observer) and IsSpell() and SpellDamageTypeIs(DamageType.Lightning) and not AnyEntityIsItem()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source, context.Observer) and IsSpell() and not IsCantrip() and SpellDamageTypeIs(DamageType.Lightning) and not AnyEntityIsItem()"
+// data "Properties" "CreateExplosion(OBSERVER_OBSERVER,Projectile_HeartOfTheStorm_Lightning)"
+// data "Stack" "HeartOfTheStorm"
+// data "InterruptDefaultValue" "Enabled"
+// data "EnableCondition" "not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
+data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
+// data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"
+
+new entry "Interrupt_HeartOfTheStorm_Thunder"
+type "InterruptData"
+// using "Interrupt_HeartOfTheStorm_Lightning"
+using "Interrupt_HeartOfTheStorm_Thunder"
+// Heart of the Storm: Thunder
+// data "DisplayName" "h8885d812g7862g4d6ag9ef1gb1896a9bd4ee;2"
+// When you cast a spell of Level 1 or higher that deals Thunder damage, you cause a small, local storm. All enemies within [2] take [1].
+// data "Description" "hed5bead4gb65eg409dgb5a5g5a747e87457c;1"
+// data "DescriptionParams" "DealDamage(ClassLevel(Sorcerer)/2,Thunder);Distance(6)"
+// data "Icon" "PassiveFeature_HeartOfTheStorm_Thunder"
+// data "Conditions" "Self(context.Source, context.Observer) and IsSpell() and SpellDamageTypeIs(DamageType.Thunder) and not AnyEntityIsItem()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source, context.Observer) and IsSpell() and not IsCantrip() and SpellDamageTypeIs(DamageType.Thunder) and not AnyEntityIsItem()"
+// data "Properties" "CreateExplosion(OBSERVER_OBSERVER,Projectile_HeartOfTheStorm_Thunder)"
+// data "EnableCondition" "not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
+data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
