@@ -1,5 +1,5 @@
 // ==================================== Brutal Critical ====================================
-// Changes: Now rolls extra dice for Critical Hits with thrown and offhand weapon attacks.
+// Changes: Now rolls extra dice for Critical Hits with thrown and offhand weapon attacks. (Includes Expansion's Brutal Critical 2 and 3.)
 
 new entry "BrutalCritical"
 type "PassiveData"

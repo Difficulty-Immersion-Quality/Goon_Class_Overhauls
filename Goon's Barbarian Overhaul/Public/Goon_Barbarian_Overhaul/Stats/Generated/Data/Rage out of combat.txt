@@ -1,6 +1,7 @@
 // ==================================== Rage now functions out of combat ====================================
-// Relevant mods: Expansion & Barbarian QoL.
-// TODO: Make these edits friendly for only using one mod or the other.
+// Changes: All Rages check for if Expansion's level 15 Barbarian feature Persistant Rage exists before removing the condition, so it won't be removed immediately when exiting combat.
+// Bonus: Sparing the details a bit, but beyond that it's just compatibility patching for Expansion and Barbarian Quality of Life's implementations when it comes to loosening the reigns on Rage restrictions.
+// TODO: Add support for custom Rages as needed, especially 5e Barbarian Subclasses Combined﻿.
 
 new entry "RAGE"
 type "StatusData"

@@ -1,5 +1,5 @@
 // ==================================== Wildheart - Primal Stampede ====================================
-// Bug Fix: Now deals melee unarmed damage instead of a flat 1d4, this fixes multiple interactions.
+// Bug Fix: Now deals unarmed damage instead of a flat 1d4, this fixes lots of interactions.
 
 new entry "Rush_Primal_Stampede"
 type "SpellData"
