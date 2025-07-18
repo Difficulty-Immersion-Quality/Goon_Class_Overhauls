@@ -17,7 +17,7 @@ data "Boosts" "IF(Goon_IsFlourish()):DamageBonus(1d6)"
 // data "ToggleOffFunctors" "RemoveStatus(MASTERS_FLOURISH)"
 
 // ==================================== Slashing Flourish ====================================
-// Bug Fix: Tooltip damage now Shows Bardic Inspiration.
+// Bug Fix: Tooltip damage now includes Bardic Inspiration.
 // Changes: Is now a "Target" spell instead of a "Zone" spell. You can select two targets within melee range. Now full 360 degrees instead of 120, both a QoL improvement and thematically matching with the spinning animation.
 
 new entry "Zone_BladeFlourish_Slashing"

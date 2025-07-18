@@ -1,0 +1,41 @@
+// ==================================== College of Lore - Cutting Words ====================================
+// Bug Fix: Now checks for level 15 Bard's d12 Bardic Inspiration for the roll, instead of capping at d10.
+// Bug Fix: Can no longer be used while Silenced.
+// Bug Fix: Interrupt can be used while under the effects of more non-hostile and non-spellcasting restricted Polymorphs.
+// Changes: Now checks for all Silenced conditions, not just "SILENCED" itself.
+// Changes: Can now be used by Invisible player characters.
+// Changes: Cutting Words condition is now considered a Charm and part of the SG_Charmed status group.
+// Changes: Cannot be used on characters who are Deafened, or immunte to Charms.
+// TODO: Check against updated Expansion entry for the edits I gave Celes.
+
+new entry "Interrupt_CuttingWords"
+type "InterruptData"
+using "Interrupt_CuttingWords"
+// Cutting Words
+// data "DisplayName" "h04cd9c24g4e19g422bg983bge808593fb7c0;1"
+// The target receives a [1] penalty to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;, &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt; or damage dealt.
+// data "Description" "h3ab0da6aga36dg4861g906egff10a4c63cc8;3"
+// data "DescriptionParams" "LevelMapValue(BardicInspiration)"
+// data "Icon" "PassiveFeature_CuttingWords"
+// data "InterruptContext" "OnPostRoll"
+// data "InterruptContextScope" "Nearby"
+// data "Container" "YesNoDecision"
+// data "Conditions" "IsAbleToReact(context.Observer) and ((HasInterruptedAttack() and Enemy(context.Source,context.Observer) and ((not ClassLevelHigherOrEqualThan(5,'Bard') and IsFlatValueInterruptInteresting(6, context.Source)) or (ClassLevelHigherOrEqualThan(5,'Bard') and not ClassLevelHigherOrEqualThan(10,'Bard') and IsFlatValueInterruptInteresting(8, context.Source)) or (ClassLevelHigherOrEqualThan(10,'Bard') and IsFlatValueInterruptInteresting(10, context.Source)))) or (HasInterruptedSavingThrow() and Enemy(context.Target,context.Observer) and ((not ClassLevelHigherOrEqualThan(5,'Bard') and IsFlatValueInterruptInteresting(6)) or (ClassLevelHigherOrEqualThan(5,'Bard') and not ClassLevelHigherOrEqualThan(10,'Bard') and IsFlatValueInterruptInteresting(8)) or (ClassLevelHigherOrEqualThan(10,'Bard') and IsFlatValueInterruptInteresting(10))))) and not AnyEntityIsItem()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and IsAbleToReact(context.Observer) and ((HasInterruptedAttack() and Enemy(context.Source,context.Observer) and ((not ClassLevelHigherOrEqualThan(5,'Bard') and IsFlatValueInterruptInteresting(6, context.Source)) or (ClassLevelHigherOrEqualThan(5,'Bard') and not ClassLevelHigherOrEqualThan(10,'Bard') and IsFlatValueInterruptInteresting(8, context.Source)) or (ClassLevelHigherOrEqualThan(10,'Bard') and not ClassLevelHigherOrEqualThan(15,'Bard') and IsFlatValueInterruptInteresting(10, context.Source)) or (ClassLevelHigherOrEqualThan(15,'Bard') and IsFlatValueInterruptInteresting(12)))) or (HasInterruptedSavingThrow() and Enemy(context.Target,context.Observer) and ((not ClassLevelHigherOrEqualThan(5,'Bard') and IsFlatValueInterruptInteresting(6)) or (ClassLevelHigherOrEqualThan(5,'Bard') and not ClassLevelHigherOrEqualThan(10,'Bard') and IsFlatValueInterruptInteresting(8)) or (ClassLevelHigherOrEqualThan(10,'Bard') and not ClassLevelHigherOrEqualThan(15,'Bard') and IsFlatValueInterruptInteresting(10)) or (ClassLevelHigherOrEqualThan(15,'Bard') and IsFlatValueInterruptInteresting(12))))) and not AnyEntityIsItem()"
+// data "Properties" "AdjustRoll(OBSERVER_OBSERVER,0-LevelMapValue(BardicInspiration));ApplyStatus(OBSERVER_SOURCE,INTERRUPT_CUTTING_WORDS_TARGET,100,0);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_CUTTING_WORDS,100,0);IF(not Self(context.Target, context.Observer)):UseSpell(OBSERVER_SOURCE,Target_CuttingWords,true,true,true)"
+data "Properties" ""
+data "Roll" "not HasStatus('SG_Deafened') and not IsImmuneToStatus('SG_Charmed')"
+data "Success" "AdjustRoll(OBSERVER_OBSERVER,0-LevelMapValue(BardicInspiration));ApplyStatus(OBSERVER_SOURCE,INTERRUPT_CUTTING_WORDS_TARGET,100,0);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_CUTTING_WORDS,100,0);IF(not Self(context.Target, context.Observer)):UseSpell(OBSERVER_SOURCE,Target_CuttingWords,true,true,true)"
+data "Failure" "ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_CUTTING_WORDS,100,0);IF(not Self(context.Target, context.Observer)):UseSpell(OBSERVER_SOURCE,Target_CuttingWords,true,true,true)"
+// data "Cost" "ReactionActionPoint:1;BardicInspiration:1"
+// data "InterruptDefaultValue" "Enabled;Ask"
+// data "EnableCondition" "not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
+data "EnableCondition" "(not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()) and not HasStatus('SG_Silenced')"
+// data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"
+
+new entry "CUTTING_WORDS"
+type "StatusData"
+data "StatusType" "BOOST"
+using "CUTTING_WORDS"
+data "StatusGroups" "SG_Charmed"
