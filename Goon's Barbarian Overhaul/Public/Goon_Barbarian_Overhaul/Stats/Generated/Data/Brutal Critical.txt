@@ -1,0 +1,40 @@
+// ==================================== Brutal Critical ====================================
+// Changes: Now rolls extra dice for Critical Hits with thrown and offhand weapon attacks.
+
+new entry "BrutalCritical"
+type "PassiveData"
+using "BrutalCritical"
+// You've trained to strike swift and true. When you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;, you roll an extra damage die as well as the normal additional critical dice.
+// data "Description" "h853b555ege835g49e1g9e27g74680e24aef4;4"
+// You've trained to strike swift and true.&lt;br&gt;&lt;br&gt;When you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt; with your melee or thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt;, you roll an extra damage die as well as the normal additional critical dice.
+data "Description" "h59de2df6g8084g4da3gae09g45f1434dce93;1"
+// data "Boosts" "CriticalHitExtraDice(1, MeleeWeaponAttack);CriticalHitExtraDice(1, MeleeUnarmedAttack);"
+data "Boosts" "CriticalHitExtraDice(1,MeleeWeaponAttack);CriticalHitExtraDice(1,MeleeOffHandWeaponAttack);CriticalHitExtraDice(1,MeleeUnarmedAttack);CriticalHitExtraDice(1,RangedUnarmedAttack)"
+
+// ==================================== Brutal Critical 2 & 3 (Expansion) ====================================
+
+new entry "BrutalCritical_2"
+type "PassiveData"
+// using "BrutalCritical"
+using "BrutalCritical_2"
+// Brutal Critical (2)
+// data "DisplayName" "hb4197b0bg925dg4964g99d1g2c9d20ca1cb3;1"
+// You've trained to strike swift and true. When you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;, you roll two extra damage die as well as the normal additional critical dice.
+// data "Description" "he873159dg34d0g498dga6d6g02f0d571a5b4;1"
+// You've trained to strike swift and true.&lt;br&gt;&lt;br&gt;When you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt; with your melee or thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt;, you roll two extra damage die as well as the normal additional critical dice.
+data "Description" "he262b6f3g1cd5g4f60g8644g22656a49c0e1;1"
+// data "Boosts" "CriticalHitExtraDice(2, MeleeWeaponAttack);CriticalHitExtraDice(2, MeleeUnarmedAttack);"
+data "Boosts" "CriticalHitExtraDice(2,MeleeWeaponAttack);CriticalHitExtraDice(2,MeleeOffHandWeaponAttack);CriticalHitExtraDice(2,MeleeUnarmedAttack);CriticalHitExtraDice(2,RangedUnarmedAttack)"
+
+new entry "BrutalCritical_3"
+type "PassiveData"
+// using "BrutalCritical"
+using "BrutalCritical_3"
+// Brutal Critical (3)
+// data "DisplayName" "h51fac8c6g39bfg48f1g81a5g69ae30f9af9e;1"
+// You've trained to strike swift and true. When you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;, you roll three extra damage die as well as the normal additional critical dice.
+// data "Description" "hec23c32ag45feg4ba3g834dg9a1532dfffd9;1"
+// You've trained to strike swift and true.&lt;br&gt;&lt;br&gt;When you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt; with your melee or thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt;, you roll three extra damage die as well as the normal additional critical dice.
+data "Description" "h0b25804dg22f5g4d23gbd9agf11bbf168f29;1"
+// data "Boosts" "CriticalHitExtraDice(3, MeleeWeaponAttack);CriticalHitExtraDice(3, MeleeUnarmedAttack);"
+data "Boosts" "CriticalHitExtraDice(3,MeleeWeaponAttack);CriticalHitExtraDice(3,MeleeOffHandWeaponAttack);CriticalHitExtraDice(3,MeleeUnarmedAttack);CriticalHitExtraDice(3,RangedUnarmedAttack)"

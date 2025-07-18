@@ -1,5 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentList>
+	<!-- Barbarian - Reckless Attack -->
+	<!-- "RECKLESS_ATTACK" --> <content contentuid="haf358f05g511eg45d6gbe12ga887810e74b2" version="1">Attacking Recklessly</content>
+	<!-- "RecklessAttack", "Interrupt_RecklessAttack" --> <content contentuid="hfc92c4e0g549fg4e2cgbe0ega95a16d7e7d7" version="1">Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Melee and Throwing &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; until the end of your turn, but enemies also have Advantage against you.</content>
+	<!-- "5eRecklessAttack_Toggle" --> <content contentuid="h165683bdgb77cg4e2bgb66dgfaf56a86f9e9" version="1">When you make your first &lt;LSTag Tooltip="AttackRoll"&gt;attack&lt;/LSTag&gt; on your turn, you can decide to attack recklessly. Doing so gives you &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Melee and Throwing Attack Rolls during this turn, but Attack Rolls against you have Advantage until your next turn.</content>
+	<!-- "5E_RECKLESS_ATTACKED", "5E_RECKLESS_ATTACK_VISUALS" --> <content contentuid="hff0cda90gb8f0g426eg805bgc23a08bd440b" version="1">Affected entity has &lt;LSTag Tooltip="Advantage"&gt;advantage&lt;/LSTag&gt; on Melee and Throwing &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; on their turn, and any Attack Roll against them has Advantage.</content>
+
+	<!-- Brutal Critical -->
+	<!-- "BrutalCritical" --> <content contentuid="h59de2df6g8084g4da3gae09g45f1434dce93" version="1">You've trained to strike swift and true.&lt;br&gt;&lt;br&gt;When you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt; with your melee or thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt;, you roll an extra damage die as well as the normal additional critical dice.</content>
+	<!-- "BrutalCritical_2" --> <content contentuid="he262b6f3g1cd5g4f60g8644g22656a49c0e1" version="1">You've trained to strike swift and true.&lt;br&gt;&lt;br&gt;When you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt; with your melee or thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt;, you roll two extra damage die as well as the normal additional critical dice.</content>
+	<!-- "BrutalCritical_3" --> <content contentuid="h0b25804dg22f5g4d23gbd9agf11bbf168f29" version="1">You've trained to strike swift and true.&lt;br&gt;&lt;br&gt;When you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt; with your melee or thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt;, you roll three extra damage die as well as the normal additional critical dice.</content>
+
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
