@@ -1,0 +1,65 @@
+// ==================================== Beast Master - Wolf Spider Companion's Cocooned Condition ====================================
+// Bug Fix: The condition's Strength Saving Throw from Aranea Major and Aranea Aculeata's Cocoon spell now scales by using SourceSpellDC, same as the initial Saving Throw against the spell itself. (Note: Also found in Goon's Condition and Surface Overhaul)
+
+// new entry "Target_Entomb_Spider"
+// type "SpellData"
+// data "SpellType" "Target"
+// data "TargetRadius" "1.5"
+// data "SpellRoll" "not SavingThrow(Ability.Dexterity, SourceSpellDC())"
+// data "SpellSuccess" "ApplyStatus(ENTOMBED,100,3)"
+// data "TargetConditions" "not Self() and not Dead() and not Item()"
+// data "Icon" "Action_Spider_Entomb"
+// Cocoon
+// data "DisplayName" "h0db780d1g1bf4g4975ga3d8g09215803ff86;2"
+// Trap a creature in your web to &lt;LSTag Type="Status" Tooltip="ENTOMBED"&gt;Cocoon&lt;/LSTag&gt; it.
+// data "Description" "h1aad3e58gc805g4ffeg8b03ge9b40dbf38f8;2"
+// data "TooltipAttackSave" "Dexterity"
+// data "TooltipStatusApply" "ApplyStatus(ENTOMBED,100,3)"
+// data "TooltipPermanentWarnings" "a71e9779-ab72-47d8-b8d7-e0f16e1d0d9b"
+// data "CastSound" "CrSpell_Cast_SpiderGiant_Entomb"
+// data "TargetSound" "CrSpell_Impact_SpiderGiant_Entomb"
+// data "CastTextEvent" "Cast"
+// data "UseCosts" "ActionPoint:1"
+// data "SpellAnimation" "5dbb5519-171c-4d30-9e41-c097b9c396ff,,;b9731d73-1c4d-408d-8f58-c79682d1a2d2,,;eba1052b-84f3-4356-9834-38dcca1f5bbc,,;ba73f38f-5c26-4f0b-b0a6-8b9a94c2791b,,;e7da05dc-3222-4ceb-aa80-311848aec7bd,,;,,;,,;,,;,,"
+// data "VerbalIntent" "Debuff"
+// data "SpellFlags" "IsMelee"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "PrepareEffect" "c3353db7-ab31-4c3d-8b57-fde10435add7"
+// data "CastEffect" "a43564e2-eb0b-4474-9915-94c5915e3646"
+// data "Sheathing" "DontChange"
+
+new entry "ENTOMBED"
+type "StatusData"
+data "StatusType" "INCAPACITATED"
+// using "PETRIFIED"
+using "ENTOMBED"
+// Cocooned
+// data "DisplayName" "h9b4059cdg4b17g419egbe15gdeef6902d857;2"
+// Trapped in a spider's web. Can't move or take actions, bonus actions, or reactions.&lt;br&gt;&lt;br&gt;The condition ends upon taking damage.
+// data "Description" "hd01118f6g0560g43f1g90e7g616cddc499c8;2"
+// Trapped in a spider's web. Can't move or take &lt;LSTag Tooltip="Action"&gt;Actions&lt;/LSTag&gt;, &lt;LSTag Tooltip="BonusAction"&gt;Bonus Actions&lt;/LSTag&gt;, or &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reactions&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;The condition ends upon taking damage.
+data "Description" "h2baf4d23g8e9ag44feg8b26ga6e3e896724b;1"
+// data "Icon" "Action_Spider_Entomb"
+// data "FormatColor" ""
+// data "AnimationStart" "4c6636ea-1496-4072-83cc-f2bed762b103(STAT_Snare_Combat_01_Start)"
+// data "AnimationLoop" "0f46a165-c4a4-4123-8bcf-9cd0b96bae1a(STAT_Snare_Combat_01_Loop)"
+// data "AnimationEnd" "c6596d70-68b6-4174-8303-d7fa398d8f7a(STAT_Snare_Combat_01_End)"
+// data "StillAnimationPriority" "Snared"
+// data "StackId" "ENTOMBED"
+// data "FreezeTime" ""
+// data "Boosts" "Resistance(Piercing,Resistant);Resistance(Bludgeoning,Resistant);Resistance(Slashing,Resistant);Resistance(Acid,Resistant);Resistance(Cold,Resistant);Resistance(Fire,Resistant);Resistance(Force,Resistant);Resistance(Lightning,Resistant);Resistance(Necrotic,Resistant);Resistance(Poison,Resistant);Resistance(Psychic,Resistant);Resistance(Radiant,Resistant);Resistance(Thunder,Resistant);Attribute(Grounded);StatusImmunity(SG_Poisoned);Advantage(AttackTarget);Disadvantage(SavingThrow,Strength);AbilityFailedSavingThrow(Dexterity);DetectDisturbancesBlock(true);"
+// data "TooltipSave" "Strength"
+// data "StatusPropertyFlags" "InitiateCombat"
+// data "RemoveEvents" "OnDamage"
+// data "OnTickRoll" "not SavingThrow(Ability.Strength,12)"
+data "OnTickRoll" "not SavingThrow(Ability.Strength,SourceSpellDC())"
+// data "OnTickFail" "RemoveStatus(ENTOMBED)"
+// data "StatusEffect" "e42a30ba-b2b7-4038-a85b-fadeb9a869ef"
+
+// ==================================== Hunter - Whirlwind ====================================
+// I put this here and don't really remember why.
+
+// Shout_Whirlwind
+
+// Strike out at all nearby foes, making separate <LSTag Tooltip="AttackRoll">attack rolls</LSTag> against each target. 
+// data "Description" "h06746addg056dg43f1gada6g851e17ef5b22;5"
