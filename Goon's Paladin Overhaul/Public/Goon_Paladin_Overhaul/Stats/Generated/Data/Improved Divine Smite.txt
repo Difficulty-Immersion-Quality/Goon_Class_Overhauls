@@ -20,7 +20,7 @@ data "ExtraDescription" "h71374fc8g784cg41e3ga5f0g9cc48ba14c84;2"
 // data "Properties" "Highlighted"
 data "Properties" "Highlighted;IsToggled;ToggledDefaultOn;ToggledDefaultAddToHotbar"
 // data "Boosts" "IF(IsMeleeAttack()):CharacterWeaponDamage(1d8,Radiant)"
-data "Boosts" "IF(IsMeleeAttack()):CharacterWeaponDamage(1d8,Radiant);IF(IsRangedUnarmedAttack() and Goon_IsWeapon(context.HitDescription.ThrownObject)):CharacterUnarmedDamage(1d8,Radiant)"
+data "Boosts" "IF(IsMeleeAttack() or (IsRangedUnarmedAttack() and HasWeaponProperty(WeaponProperties.Melee, context.HitDescription.ThrownObject))):DamageBonus(1d8,Radiant)"
 
 // ==================================== ChizFreak's Improved Unholy Smite for Oathbreakers ====================================
 
@@ -37,6 +37,6 @@ data "Description" "h0b02bb5dg7b6bg4c19g9e57gec3ade165694;1"
 // data "DescriptionParams" "DealDamage(1d8,Necrotic)"
 // data "Icon" "ImprovedUnholySmitePassive"
 // data "Boosts" "IF(IsMeleeAttack()):CharacterWeaponDamage(1d8,Necrotic)"
-data "Boosts" "IF(IsMeleeAttack()):CharacterWeaponDamage(1d8,Necrotic);IF(IsRangedUnarmedAttack() and Goon_IsWeapon(context.HitDescription.ThrownObject)):CharacterUnarmedDamage(1d8,Necrotic)"
+data "Boosts" "IF(IsMeleeAttack() or (IsRangedUnarmedAttack() and HasWeaponProperty(WeaponProperties.Melee, context.HitDescription.ThrownObject))):DamageBonus(1d8,Necrotic)"
 
 
