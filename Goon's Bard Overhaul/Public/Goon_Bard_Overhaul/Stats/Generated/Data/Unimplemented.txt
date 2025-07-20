@@ -1,0 +1,23 @@
+// "Added a missing part of the Blade Flourish feature - When you make a main hand attack of any kind you are granted +3 meters of movement until the end of your turn."
+// I just don't think College of Swords needs this as well, it's already the best, this is overkill. Might change my mind but eh.
+
+// new entry "Blade_Flourish_Movement_Speed"
+// type "PassiveData"
+// data "Icon" "Action_SlashingFlourish_Melee"
+// data "Properties" "Highlighted"
+// Blade Flourish
+// data "DisplayName" "hdf01a14eg5040g4caeg9c66g53ca380dd54f;1"
+// Whenever you take the Attack action on your turn, your walking speed increases by 3 meters until the end of the turn.
+// data "Description" "h051ffef6gc18fg49ebga204g0268a7d710e0;1"
+// data "StatsFunctorContext" "OnAttack"
+// data "Conditions" "IsWeaponAttack() and IsMainHandAttack()"
+// data "StatsFunctors" "ApplyStatus(SELF,Blade_Flourish_Movement_Speed_Boost,100,1)"
+
+// new entry "Blade_Flourish_Movement_Speed_Boost"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// data "StackId" "Blade_Flourish_Movement_Speed_Boost"
+// data "TickType" "EndTurn"
+// data "Boosts" "ActionResource(Movement,3,0)"
+// data "StatusGroups" "SG_RemoveOnRespec"
+// data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
