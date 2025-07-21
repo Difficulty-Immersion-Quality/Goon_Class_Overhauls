@@ -21,11 +21,11 @@
           <attribute id="StartupLevelName" type="FixedString" value="" />
           <attribute id="Tags" type="LSString" value="" />
           <attribute id="Type" type="FixedString" value="Add-on" />
-          <attribute id="UUID" type="FixedString" value="hbc9746f3g1ccag4a19gbd5eg335c878ec1ff" />
-          <attribute id="Version64" type="int64" value="36028797018963968" />
+          <attribute id="UUID" type="FixedString" value="9b086038-0313-4508-b335-2642b3f42abc" />
+          <attribute id="Version64" type="int64" value="36028797018963969" />
           <children>
             <node id="PublishVersion">
-              <attribute id="Version64" type="int64" value="36028797018963968" />
+              <attribute id="Version64" type="int64" value="36028797018963969" />
             </node>
             <node id="Scripts" />
             <node id="TargetModes">
