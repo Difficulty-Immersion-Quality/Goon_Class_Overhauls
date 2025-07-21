@@ -27,7 +27,7 @@
 // data "DamageType" "Bludgeoning"
 // data "Sheathing" "Sheathed"
 
-// ==================================== Flurry of Blows : Push
+// ==================================== Flurry of Blows: Push
 // Changes: Can now slightly control the trajectory of the push based on cursor position on the target entity. 
 
 new entry "Target_OpenHandTechnique_Push"
