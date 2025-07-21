@@ -7,7 +7,7 @@
 // Changes: Interrupts are now defaulted to ask, instead of being used automatically.
 // Changes: Forced Honour ruleset changes to damage riders not functioning as damage rider sources.
 // Changes: Removed once per turn cooldowns. (This doesn't change existing functionality, but would allow for more than one use in a theoretical situation where a character has more than one Sneak Attack charge.)
-// Changes: Interrupts can be used by wildshape melee and ranged attacks that deal Piercing, Slashing or Bludgeoning damage.
+// Changes: Interrupts can be used by wildshape (not Myrmidon) melee and ranged attacks that deal Piercing, Slashing or Bludgeoning damage.
 // TODO: Offhand & throw spell variants, put them in a container.
 // TODO: Make it work for Dex based Wildshape stuff and not like, big brawny bears.
 
