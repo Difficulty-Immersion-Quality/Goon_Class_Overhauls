@@ -1,6 +1,6 @@
 // ==================================== Way of Four Elements - Spells ====================================
 
-// Changes: All Way of Four Elements spells are now considered spells. This allows synergy with items that unintuitively do not work with Monk spells in vanilla.
+// Changes: All Way of Four Elements spells are now considered spells. This allows synergy with items, class features etc. that unintuitively do not work with Monk spells in vanilla.
 // TODO: Buff levelmapvalues probably.
 
 // ==================================== Blade of Rime ====================================
@@ -196,7 +196,7 @@ data "SpellFlags" "HasSomaticComponent;AddFallDamageOnLand;IsHarmful;IsSpell"
 
 // ==================================== Fist of Unbroken Air ====================================
 // Changes: Now considered a spell.
-// Changes: Can now slightly control the trajectory of the push based on cursor position on the target entity. 
+// Changes: Can now slightly control the trajectory of the push based on cursor position on the target entity.
 
 new entry "Target_FistOfUnbrokenAir"
 type "SpellData"
