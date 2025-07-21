@@ -1,4 +1,8 @@
 // ==================================== Uncanny Dodge ====================================
+// Bug Fix: Everything listed on the wiki page.
+// Bug Fix: Will only trigger from being attacked or inside evadable AOE.
+// Changes: Now an Interrupt instead of a Passive with automatic functionality.
+// Changes: Can be used while under the effects of all non-hostile polymorphs.
 
 new entry "UncannyDodge"
 type "PassiveData"
