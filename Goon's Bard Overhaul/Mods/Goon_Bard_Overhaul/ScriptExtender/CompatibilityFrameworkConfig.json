@@ -1,13 +1,19 @@
 {
   "FileVersion": 1,
-  "Lists": [
+  "Progressions": [
     {
-      "Comment": "Bard Blade Flourish spells",
-			"Action": "Insert",
-      "UUID": "246ad664-1a53-4d42-8a5e-0ed5cda6af62",
-      "Type": "SpellList",
-      "Items": ["Goon_Interrupt_BladeFlourish_Defensive;Goon_Interrupt_BladeFlourish_Mobile;Goon_Interrupt_BladeFlourish_Slashing"]
-    },
+      "Comment": "Custom - Blade Flourish Interrupts - College of Swords Bard Level 3",
+      "UUID": "647925f6-a7de-44a8-834c-1bc6e496921a",
+      "Strings": [
+        {
+          "Action": "Insert",
+          "Type": "PassivesAdded",
+          "Strings": ["Goon_BladeFlourishInterrupts_Unlock"]
+        }
+      ]
+    }
+  ],
+  "Lists": [
     {
       "Comment": "Lore Bard Magical Secrets 6 - (Vanilla list in comment below) - // TODO: Patch #8 spells, and anything else that might be missing.
       Target_RemoveCurse;Teleportation_Revivify;Target_SleetStorm;Target_Slow;Shout_SpiritGuardians;Target_VampiricTouch;Target_ArcaneLock;Shout_Blur;Target_Darkness;Target_Darkvision;Target_MistyStep;Shout_PassWithoutTrace;Projectile_RayOfEnfeeblement;Projectile_ScorchingRay;Target_SpikeGrowth;Target_SpiritualWeapon;Target_Web;Shout_ArmorOfAgathys;Target_Bless;Projectile_ChromaticOrb;Target_Command_Container;Target_Entangle;Shout_FalseLife;Projectile_GuidingBolt;Shout_HellishRebuke;Target_Hex;Target_HuntersMark;Projectile_IceKnife;Projectile_MagicMissile;Target_Sanctuary;Target_Smite_Thunderous;Target_ChillTouch;Projectile_EldritchBlast;Projectile_FireBolt;Projectile_RayOfFrost;Target_SacredFlame",
