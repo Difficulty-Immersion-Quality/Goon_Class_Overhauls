@@ -2,7 +2,7 @@
 // Changes: All 3 flourishes have Interrupt counterparts now, with the same QoL you see across my vanilla Interrupt edits.
 // Changes: The Slashing Flourish interrupt supports throwing.
 // Bonus: All changes natively compatible with Master's Flourish from Expansion.
-// Known Issue: When using the Master's Flourish toggle from Expansion the interrupts will have their damage changed and resource cost changed, but it will not be reflected in the tooltip in real time like it is with the spells, and instead just update on a reload. Doubt I can do anything about this.
+// Known Issue: When using the Master's Flourish toggle from Expansion, the interrupts will have their damage and resource cost changed, but it will not be reflected in the tooltip in real time like it is with the spells, instead it will just update on a reload. I doubt I can do anything about this.
 
 new entry "Goon_BladeFlourishInterrupts_Unlock"
 type "PassiveData"
