@@ -46,6 +46,8 @@ data "DisplayName" "hd10ce415gd4b5g478dgb2a5ga762aea981dd;5"
 // data "Description" "h220ea5ebg4051g43e3ga04age5adb1149822;4"
 // Attack up to [1] enemies at once.
 data "Description" "h220ea5ebg4051g43e3ga04age5adb1149822;4"
+// Catch multiple targets in the same motion, attacking up to [1] enemies at once.
+data "Description" "h63b93244g2249g4365g96a0g2f45d87f6350;1"
 // data "DescriptionParams" "2"
 data "DescriptionParams" "2"
 // data "TooltipDamageList" "DealDamage(MainMeleeWeapon+1d6, MainWeaponDamageType)"
@@ -100,6 +102,8 @@ data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDa
 // data "DisplayName" "heb634e12g0cefg4e3eg98d1ge9640cf537ae;3"
 // Attack up to [1] enemies at once.
 // data "Description" "h41a799d2gcfaag4f5cga5caga114345edb03;4"
+// Catch multiple targets in the same motion, attacking up to [1] enemies at once.
+data "Description" "h63b93244g2249g4365g96a0g2f45d87f6350;1"
 // data "DescriptionParams" "2;DealDamage(MainRangedWeapon, MainRangedWeaponDamageType)"
 // data "TooltipStatusApply" ""
 // data "SpellFlags" "HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful"

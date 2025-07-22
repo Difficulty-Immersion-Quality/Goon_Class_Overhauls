@@ -21,13 +21,13 @@ new entry "Goon_Interrupt_BladeFlourish_Slashing"
 type "InterruptData"
 // Slashing Flourish
 data "DisplayName" "h21c7edbdgb0e4g46f6gaf26g69d83cd78c3d;1"
-// Deal additional damage equal to your &lt;LSTag Type="Status" Tooltip="BARDIC_INSPIRATION"&gt;Bardic Inspiration&lt;/LSTag&gt; die. You may attack an additional target afterwards.
+// Catch multiple targets in the same motion, follow up your strike by attacking an additional target.
 data "Description" "hd76159acg060cg40a1g85e3g143fcdf488da;1"
 data "Icon" "Action_SlashingFlourish_Melee"
 data "InterruptContext" "OnCastHit"
 data "InterruptContextScope" "Self"
 data "Container" "YesNoDecision"
-data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and IsAbleToReact(context.Observer) and Self(context.Source,context.Observer) and HasDamageEffectFlag(DamageFlags.Hit) and IsMainHandAttack() and not IsKillingBlow() and not AnyEntityIsItem() and not Goon_IsFlourish()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and IsAbleToReact(context.Observer) and Self(context.Source,context.Observer) and HasDamageEffectFlag(DamageFlags.Hit) and IsMainHandAttack() and not AnyEntityIsItem() and not Goon_IsFlourish()"
 data "Properties" "IF(IsMeleeAttack() and not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(LevelMapValue(BardicInspiration), MainMeleeWeaponDamageType,,,0,,true,true);IF(IsMeleeAttack() and HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(1d6, MainMeleeWeaponDamageType,,,0,,true,true);IF(IsMeleeAttack()):ApplyStatus(SELF,GOON_FLOURISH_SLASHING_EXTRA_ATTACK_MELEE,100,1);IF(IsMeleeAttack()):ApplyStatus(GOON_FLOURISH_SLASHING_TARGET,100,1);IF(IsRangedWeaponAttack() and not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(LevelMapValue(BardicInspiration), MainRangedWeaponDamageType,,,0,,true,true);IF(IsRangedWeaponAttack() and HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(1d6, MainRangedWeaponDamageType,,,0,,true,true);IF(IsRangedWeaponAttack()):ApplyStatus(SELF,GOON_FLOURISH_SLASHING_EXTRA_ATTACK_RANGED,100,1);IF(IsRangedWeaponAttack()):ApplyStatus(GOON_FLOURISH_SLASHING_TARGET,100,1);IF(IsRangedUnarmedAttack() and not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(LevelMapValue(BardicInspiration), ThrownWeaponDamageType,,,0,,true,true);IF(IsRangedUnarmedAttack() and HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(1d6, ThrownWeaponDamageType,,,0,,true,true);IF(IsRangedUnarmedAttack()):ApplyStatus(SELF,GOON_FLOURISH_SLASHING_EXTRA_ATTACK_THROWN,100,1);IF(IsRangedUnarmedAttack()):ApplyStatus(GOON_FLOURISH_SLASHING_TARGET,100,1);IF(HasStatus('MASTERS_FLOURISH',context.Source)):ApplyStatus(SELF,GOON_MASTERS_FLOURISH_TEMPORARY,100,1)"
 data "Cost" "BardicInspiration:1"
 data "Stack" "BladeFlourish"
@@ -53,7 +53,7 @@ new entry "Goon_Masters_Flourish_Temporary_Passive"
 type "PassiveData"
 data "Properties" "IsHidden"
 data "Conditions" ""
-data "StatsFunctorContext" "OnAttack;OnSpellCast"
+data "StatsFunctorContext" "OnAttack;OnCast"
 data "StatsFunctors" "IF((context.HasContextFlag(StatsFunctorContext.OnAttack) or context.HasContextFlag(StatsFunctorContext.OnSpellCast)) and not Goon_IsFlourishTemporarySpell()):RemoveStatus(SELF,GOON_MASTERS_FLOURISH_TEMPORARY)"
 
 // ==================================== Slashing Flourish (Melee)
@@ -135,3 +135,57 @@ data "UseCosts" ""
 data "HitCosts" ""
 data "DualWieldingUseCosts" ""
 data "SpellFlags" "InventorySelection;RangeIgnoreVerticalThreshold;IsHarmful;HasHighGroundRangeExtension;IgnoreSilence;IgnoreVisionBlock;AddFallDamageOnLand;AbortOnSecondarySpellRollFail;CombatLogSetSingleLineRoll;Temporary"
+
+// ==================================== Defensive Flourish ====================================
+
+new entry "Goon_Interrupt_BladeFlourish_Defensive"
+type "InterruptData"
+// Defensive Flourish
+data "DisplayName" "hdde884dcg5155g4d8fgbebagb7254360f335;1"
+// Attack defensively, increasing your &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt; by [1].
+data "Description" "hcf1249b8gf68eg49dfg9f6fgcd78d3036fce;1"
+data "DescriptionParams" "4"
+// You lose your opportunity to use this attack if you take another action or move.
+data "ExtraDescription" "hac754f11g3132g4a02g85f7gc83d8747f741;1"
+data "Icon" "Action_DefensiveFlourish_Melee"
+data "InterruptContext" "OnCastHit"
+data "InterruptContextScope" "Self"
+data "Container" "YesNoDecision"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and IsAbleToReact(context.Observer) and Self(context.Source,context.Observer) and HasDamageEffectFlag(DamageFlags.Hit) and IsMainHandAttack() and not AnyEntityIsItem() and not Goon_IsFlourish()"
+data "Properties" "IF(IsMeleeAttack() and not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(LevelMapValue(BardicInspiration), MainMeleeWeaponDamageType,,,0,,true,true);IF(IsMeleeAttack() and HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(1d6, MainMeleeWeaponDamageType,,,0,,true,true);IF(IsRangedWeaponAttack() and not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(LevelMapValue(BardicInspiration), MainRangedWeaponDamageType,,,0,,true,true);IF(IsRangedWeaponAttack() and HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(1d6, MainRangedWeaponDamageType,,,0,,true,true);IF(IsRangedUnarmedAttack() and not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(LevelMapValue(BardicInspiration), ThrownWeaponDamageType,,,0,,true,true);IF(IsRangedUnarmedAttack() and HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(1d6, ThrownWeaponDamageType,,,0,,true,true);ApplyStatus(SELF,BLADE_FLOURISH_DEFENSIVE,100,1)"
+data "Cost" "BardicInspiration:1"
+data "Stack" "BladeFlourish"
+data "InterruptDefaultValue" "Ask;Enabled"
+data "EnableCondition" "HasActionResource('BardicInspiration',1,0,false,false,context.Source) and (not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus())"
+data "EnableContext" "OnActionResourcesChanged;OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"
+
+// ==================================== Mobile Flourish ====================================
+
+new entry "Goon_Interrupt_BladeFlourish_Mobile"
+type "InterruptData"
+// Mobile Flourish
+data "DisplayName" "hc8737529g9568g46d4g9b1dga69783dda3ae;1"
+// Thrust your weapon with enough force to push your target back [1]. Afterwards, you can &lt;LSTag Type="Spell" Tooltip="Target_BladeFlourish_Mobile_FollowUp"&gt;Teleport&lt;/LSTag&gt; to the target.
+data "Description" "h494961b9g6eaeg43e9gbf12g730cfd610d66;1"
+// You lose your opportunity to use this attack if you take another action or move.
+data "ExtraDescription" "hac754f11g3132g4a02g85f7gc83d8747f741;1"
+data "DescriptionParams" "Distance(6)"
+data "Icon" "Action_MobileFlourish_Melee"
+data "InterruptContext" "OnCastHit"
+data "InterruptContextScope" "Self"
+data "Container" "YesNoDecision"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and IsAbleToReact(context.Observer) and Self(context.Source,context.Observer) and HasDamageEffectFlag(DamageFlags.Hit) and IsMainHandAttack() and not AnyEntityIsItem() and not Goon_IsFlourish()"
+data "Properties" "IF(IsMeleeAttack() and not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(LevelMapValue(BardicInspiration), MainMeleeWeaponDamageType,,,0,,true,true);IF(IsMeleeAttack() and HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(1d6, MainMeleeWeaponDamageType,,,0,,true,true);IF(IsRangedWeaponAttack() and not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(LevelMapValue(BardicInspiration), MainRangedWeaponDamageType,,,0,,true,true);IF(IsRangedWeaponAttack() and HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(1d6, MainRangedWeaponDamageType,,,0,,true,true);IF(IsRangedUnarmedAttack() and not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(LevelMapValue(BardicInspiration), ThrownWeaponDamageType,,,0,,true,true);IF(IsRangedUnarmedAttack() and HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(1d6, ThrownWeaponDamageType,,,0,,true,true);ApplyStatus(BLADE_FLOURISH_MOBILE_TARGET,100,1);ApplyStatus(SELF,BLADE_FLOURISH_MOBILE,100,1);ApplyStatus(GOON_BLADEFLOURISH_MOBILE_PUSH,100,0)"
+data "Cost" "BardicInspiration:1"
+data "Stack" "BladeFlourish"
+data "InterruptDefaultValue" "Ask;Enabled"
+data "EnableCondition" "HasActionResource('BardicInspiration',1,0,false,false,context.Source) and (not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus())"
+data "EnableContext" "OnActionResourcesChanged;OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"
+
+new entry "GOON_BLADEFLOURISH_MOBILE_PUSH"
+type "StatusData"
+data "StatusType" "BOOST"
+data "OnApplyFunctors" "Force(6)"
+data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
