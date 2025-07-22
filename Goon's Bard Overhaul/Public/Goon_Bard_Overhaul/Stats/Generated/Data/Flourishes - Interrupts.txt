@@ -71,6 +71,7 @@ data "SpellType" "Target"
 using "Zone_BladeFlourish_Slashing"
 data "AmountOfTargets" "1"
 data "TargetConditions" "not Self() and not Dead() and not HasStatus('GOON_FLOURISH_SLASHING_TARGET',context.Target,context.Source)"
+data "SpellSuccess" "IF(not HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DealDamage(MainMeleeWeapon + LevelMapValue(BardicInspiration), MainWeaponDamageType);IF(HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DealDamage(MainMeleeWeapon, MainWeaponDamageType);ExecuteWeaponFunctors(MainHand)"
 // Follow up your &lt;LSTag Type="Spell" Tooltip="Goon_Interrupt_BladeFlourish_Slashing"&gt;Slashing Flourish&lt;/LSTag&gt; by attacking an additional target.
 data "Description" "h5352ec95g5439g4ea1gb3d0g6de40769ff7b;1"
 // You lose your opportunity to use this attack if you take another action or move.
@@ -97,6 +98,7 @@ data "SpellType" "Projectile"
 using "Projectile_BladeFlourish_Slashing"
 data "AmountOfTargets" "1"
 data "TargetConditions" "not Self() and not Dead() and not HasStatus('GOON_FLOURISH_SLASHING_TARGET',context.Target,context.Source)"
+data "SpellSuccess" "IF(not HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DealDamage(max(1,MainRangedWeapon + LevelMapValue(BardicInspiration)), MainRangedWeaponDamageType);IF(HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DealDamage(max(1,MainRangedWeapon), MainRangedWeaponDamageType);ExecuteWeaponFunctors(MainHand)"
 // Follow up your &lt;LSTag Type="Spell" Tooltip="Goon_Interrupt_BladeFlourish_Slashing"&gt;Slashing Flourish&lt;/LSTag&gt; by attacking an additional target.
 data "Description" "h5352ec95g5439g4ea1gb3d0g6de40769ff7b;1"
 // You lose your opportunity to use this attack if you take another action or move.
