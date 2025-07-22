@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentList>
 	<!-- "CollegeOfLore_Proficiency" --> <content contentuid="ha24cc477g59aeg416fgbb71gd138d97d0747" version="1">Gain 3 &lt;LSTag Tooltip="Proficiency"&gt;Skill Proficiencies&lt;/LSTag&gt; of your choosing.</content>
-	
+
 	<!-- "Zone_BladeFlourish_Slashing", "Projectile_BladeFlourish_Slashing" --> <content contentuid="h63b93244g2249g4365g96a0g2f45d87f6350" version="1">Catch multiple targets in the same motion, attacking up to [1] enemies at once.</content>
 
 	<!-- "Goon_BladeFlourishInterrupts_Unlock" --> <content contentuid="hdb0856a9g19dfg463fgad8dg2eac257a5eda" version="1">Blade Flourish</content>
@@ -18,7 +18,7 @@
 	<!-- "Goon_Interrupt_BladeFlourish_Slashing" --> <content contentuid="hd76159acg060cg40a1g85e3g143fcdf488da" version="1">Catch multiple targets in the same motion, follow up your strike by attacking an additional target.</content>
 
 	<!-- "Goon_Target_BladeFlourish_Slashing_Temporary", "Goon_Projectile_BladeFlourish_Slashing_Temporary", "Goon_Throw_BladeFlourish_Slashing_Temporary" --> <content contentuid="h5352ec95g5439g4ea1gb3d0g6de40769ff7b" version="1">Follow up your &lt;LSTag Type="Spell" Tooltip="Goon_Interrupt_BladeFlourish_Slashing"&gt;Slashing Flourish&lt;/LSTag&gt; by attacking an additional target.</content>
-	<!-- "Goon_Target_BladeFlourish_Slashing_Temporary", "Goon_Projectile_BladeFlourish_Slashing_Temporary", "Goon_Throw_BladeFlourish_Slashing_Temporary" --> <content contentuid="hac754f11g3132g4a02g85f7gc83d8747f741" version="1">You lose your opportunity to use this attack if you take another action or move.</content>
+	<!-- "Goon_Interrupt_BladeFlourish_Slashing", "Goon_Target_BladeFlourish_Slashing_Temporary", "Goon_Projectile_BladeFlourish_Slashing_Temporary", "Goon_Throw_BladeFlourish_Slashing_Temporary" --> <content contentuid="hac754f11g3132g4a02g85f7gc83d8747f741" version="1">You lose your opportunity to use this attack if you take another action or move.</content>
 
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
