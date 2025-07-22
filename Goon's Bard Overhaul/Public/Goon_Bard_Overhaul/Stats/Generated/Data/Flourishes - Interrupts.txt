@@ -14,10 +14,6 @@ data "Conditions" "SpellId('Goon_Throw_BladeFlourish_Slashing_Temporary')"
 data "StatsFunctorContext" "OnDamage"
 data "StatsFunctors" "IF(not HasWeaponProperty(WeaponProperties.Magical, context.HitDescription.ThrownObject) and not HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DealDamage(LevelMapValue(BardicInspiration), ThrownWeaponDamageType,,,0,,true,true);IF(HasWeaponProperty(WeaponProperties.Magical, context.HitDescription.ThrownObject) and not HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DealDamage(LevelMapValue(BardicInspiration), ThrownWeaponDamageType,Magical,,0,,true,true)"
 
-// HasWeaponProperty(WeaponProperties.Finesse, context.HitDescription.ThrownObject
-
-// ;IF(SpellId('Goon_Throw_BladeFlourish_Slashing_Temporary') and not HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DamageBonus(LevelMapValue(BardicInspiration), ThrownWeaponDamageType);IF(HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DamageBonus(1d6, ThrownWeaponDamageType)
-
 // ==================================== Slashing Flourish ====================================
 // IsMainHandAttack covers throwing, wouldn't have bet on it.
 
