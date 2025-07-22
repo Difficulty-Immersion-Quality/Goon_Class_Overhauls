@@ -1,3 +1,6 @@
+// TODO: Throwing spell variants.
+// TODO: Offhand spell variants would be too cooked for Flourishes, but if they still used actions it would be cool to offer the choice for funtor sake. Would be diving in to Extra Attack code for it though, so, hmmm.
+
 // ==================================== Master's Flourish (Expansion) ====================================
 // Changes: Now checks for more Flourishes, custom ones and such.
 
@@ -12,9 +15,12 @@ using "MastersFlourish"
 // data "Icon" "PassiveFeature_MastersFlourish"
 // data "Properties" "Highlighted;IsToggled;ToggledDefaultAddToHotbar"
 // data "Boosts" "IF(SpellId('Projectile_BladeFlourish_Defensive') or SpellId('Projectile_BladeFlourish_Mobile') or SpellId('Projectile_BladeFlourish_Slashing') or SpellId('Target_BladeFlourish_Defensive') or SpellId('Target_BladeFlourish_Mobile') or SpellId('Zone_BladeFlourish_Slashing')):DamageBonus(1d6)"
-data "Boosts" "IF(Goon_IsFlourish()):DamageBonus(1d6)"
+data "Boosts" "IF((Goon_IsFlourishSpell() or Goon_IsFlourishTemporarySpell()) and not SpellId('Goon_Throw_BladeFlourish_Slashing_Temporary')):DamageBonus(1d6)"
 // data "ToggleOnFunctors" "ApplyStatus(MASTERS_FLOURISH,100,-1)"
 // data "ToggleOffFunctors" "RemoveStatus(MASTERS_FLOURISH)"
+data "Conditions" "SpellId('Goon_Throw_BladeFlourish_Slashing_Temporary')"
+data "StatsFunctorContext" "OnDamage"
+data "StatsFunctors" "IF(not HasWeaponProperty(WeaponProperties.Magical, context.HitDescription.ThrownObject) and HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DealDamage(1d6, ThrownWeaponDamageType,,,0,,true,true);IF(HasWeaponProperty(WeaponProperties.Magical, context.HitDescription.ThrownObject) and HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DealDamage(1d6, ThrownWeaponDamageType,Magical,,0,,true,true)"
 
 // ==================================== Slashing Flourish ====================================
 // Bug Fix: Tooltip damage now includes Bardic Inspiration.
@@ -29,7 +35,7 @@ using "Target_MainHandAttack"
 // data "Cooldown" ""
 // data "SpellSuccess" "DealDamage(MainMeleeWeapon + LevelMapValue(BardicInspiration), MainWeaponDamageType);GROUND:ExecuteWeaponFunctors(MainHand)"
 // data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(MainMeleeWeapon + LevelMapValue(BardicInspiration), MainWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(MainMeleeWeapon, MainWeaponDamageType);GROUND:ExecuteWeaponFunctors(MainHand)" <-- Expansion
-data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon + LevelMapValue(BardicInspiration)), MainWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon, MainWeaponDamageType));GROUND:ExecuteWeaponFunctors(MainHand)"
+data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon + LevelMapValue(BardicInspiration)), MainWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon, MainWeaponDamageType));ExecuteWeaponFunctors(MainHand)"
 // data "Icon" "Action_SlashingFlourish_Melee"
 data "Icon" "Action_SlashingFlourish_Melee"
 // Slashing Flourish (Melee)
@@ -70,7 +76,7 @@ new entry "Zone_BladeFlourish_Slashing_AI"
 type "SpellData"
 data "SpellType" "Target"
 using "Zone_BladeFlourish_Slashing"
-data "AreaRadius" "MeleeMainWeaponRange"
+data "AreaRadius" "2"
 data "MaximumTargets" "2"
 // data "AmountOfTargets" "2"
 data "AmountOfTargets" ""
@@ -87,7 +93,7 @@ data "SpellType" "Projectile"
 using "Projectile_BladeFlourish_Slashing"
 // data "AmountOfTargets" "2"
 // data "SpellSuccess" "DealDamage(max(1,MainRangedWeapon + LevelMapValue(BardicInspiration)), MainRangedWeaponDamageType); ExecuteWeaponFunctors(MainHand)"
-data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon + LevelMapValue(BardicInspiration)), MainRangedWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon), MainRangedWeaponDamageType); ExecuteWeaponFunctors(MainHand)"
+data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon + LevelMapValue(BardicInspiration)), MainRangedWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon), MainRangedWeaponDamageType);ExecuteWeaponFunctors(MainHand)"
 // data "SpellFail" "IF(HasStatus('YSRSLIDFWWADNIWHWIHLY')):SpawnExtraProjectiles(Projectile_BladeFlourish_Slashing);ApplyStatus(YSRSLIDFWWADNIWHWIHLY_YWNK,100,1)"
 // data "Icon" "Action_SlashingFlourish_Ranged"
 // Slashing Flourish (Ranged)
@@ -176,7 +182,7 @@ data "SpellType" "Target"
 // using "Target_BladeFlourish_Defensive"
 using "Target_BladeFlourish_Mobile"
 // data "SpellSuccess" "DealDamage(max(1,MainMeleeWeapon + LevelMapValue(BardicInspiration)), MainMeleeWeaponDamageType); ExecuteWeaponFunctors(MainHand); Force(6); ApplyStatus(BLADE_FLOURISH_MOBILE_TARGET,100,1); ApplyStatus(SELF,BLADE_FLOURISH_MOBILE,100,1)"
-data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon + LevelMapValue(BardicInspiration)), MainMeleeWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon), MainMeleeWeaponDamageType); ExecuteWeaponFunctors(MainHand); Force(6); ApplyStatus(BLADE_FLOURISH_MOBILE_TARGET,100,1); ApplyStatus(SELF,BLADE_FLOURISH_MOBILE,100,1)"
+data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon + LevelMapValue(BardicInspiration)), MainMeleeWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon), MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand);Force(6,OriginToTarget,Aggressive);ApplyStatus(BLADE_FLOURISH_MOBILE_TARGET,100,1);ApplyStatus(SELF,BLADE_FLOURISH_MOBILE,100,1)"
 // data "Icon" "Action_MobileFlourish_Melee"
 // Mobile Flourish (Melee)
 // data "DisplayName" "h1d68bdddgab35g467bgad0dg4a8e07d9d83e;4"
@@ -197,7 +203,7 @@ data "SpellType" "Projectile"
 // using "Projectile_BladeFlourish_Defensive"
 using "Projectile_BladeFlourish_Mobile"
 // data "SpellSuccess" "DealDamage(max(1,MainRangedWeapon + LevelMapValue(BardicInspiration)), MainRangedWeaponDamageType); ExecuteWeaponFunctors(MainHand); Force(6); ApplyStatus(BLADE_FLOURISH_MOBILE_TARGET,100,1); ApplyStatus(SELF,BLADE_FLOURISH_MOBILE,100,1)"
-data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon + LevelMapValue(BardicInspiration)), MainRangedWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon), MainRangedWeaponDamageType); ExecuteWeaponFunctors(MainHand); Force(6); ApplyStatus(BLADE_FLOURISH_MOBILE_TARGET,100,1); ApplyStatus(SELF,BLADE_FLOURISH_MOBILE,100,1)"
+data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon + LevelMapValue(BardicInspiration)), MainRangedWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon),MainRangedWeaponDamageType);ExecuteWeaponFunctors(MainHand);Force(6,OriginToTarget,Aggressive);ApplyStatus(BLADE_FLOURISH_MOBILE_TARGET,100,1);ApplyStatus(SELF,BLADE_FLOURISH_MOBILE,100,1)"
 // data "SpellFail" "IF(HasStatus('YSRSLIDFWWADNIWHWIHLY')):SpawnExtraProjectiles(Projectile_BladeFlourish_Mobile);ApplyStatus(YSRSLIDFWWADNIWHWIHLY_YWNK,100,1)"
 // data "Icon" "Action_MobileFlourish_Ranged"
 // Mobile Flourish (Ranged)

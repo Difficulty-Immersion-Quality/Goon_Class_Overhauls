@@ -1,0 +1,139 @@
+// TODO: Temporary spells check for GOON_MASTERS_FLOURISH_TEMPORARY
+// ==================================== Flourish Interrupt unlock passive ====================================
+
+new entry "Goon_BladeFlourishInterrupts_Unlock"
+type "PassiveData"
+// Blade Flourish
+data "DisplayName" "hdb0856a9g19dfg463fgad8dg2eac257a5eda;1"
+// Use Blade Flourishes as a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt;.
+data "Description" "h5dc48030gf2bfg427agba60ge2d025a3894d;1"
+data "Icon" "Action_SlashingFlourish_Melee"
+data "Properties" "IsHidden"
+data "Boosts" "UnlockInterrupt(Goon_Interrupt_BladeFlourish_Slashing);UnlockInterrupt(Goon_Interrupt_BladeFlourish_Defensive);UnlockInterrupt(Goon_Interrupt_BladeFlourish_Mobile)"
+data "Conditions" "SpellId('Goon_Throw_BladeFlourish_Slashing_Temporary')"
+data "StatsFunctorContext" "OnDamage"
+data "StatsFunctors" "IF(not HasWeaponProperty(WeaponProperties.Magical, context.HitDescription.ThrownObject) and not HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DealDamage(LevelMapValue(BardicInspiration), ThrownWeaponDamageType,,,0,,true,true);IF(HasWeaponProperty(WeaponProperties.Magical, context.HitDescription.ThrownObject) and not HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DealDamage(LevelMapValue(BardicInspiration), ThrownWeaponDamageType,Magical,,0,,true,true)"
+
+// HasWeaponProperty(WeaponProperties.Finesse, context.HitDescription.ThrownObject
+
+// ;IF(SpellId('Goon_Throw_BladeFlourish_Slashing_Temporary') and not HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DamageBonus(LevelMapValue(BardicInspiration), ThrownWeaponDamageType);IF(HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DamageBonus(1d6, ThrownWeaponDamageType)
+
+// ==================================== Slashing Flourish ====================================
+// IsMainHandAttack covers throwing, wouldn't have bet on it.
+
+new entry "Goon_Interrupt_BladeFlourish_Slashing"
+type "InterruptData"
+// Slashing Flourish
+data "DisplayName" "h21c7edbdgb0e4g46f6gaf26g69d83cd78c3d;1"
+// Deal additional damage equal to your &lt;LSTag Type="Status" Tooltip="BARDIC_INSPIRATION"&gt;Bardic Inspiration&lt;/LSTag&gt; die. You may attack an additional target afterwards.
+data "Description" "hd76159acg060cg40a1g85e3g143fcdf488da;1"
+data "Icon" "Action_SlashingFlourish_Melee"
+data "InterruptContext" "OnCastHit"
+data "InterruptContextScope" "Self"
+data "Container" "YesNoDecision"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and IsAbleToReact(context.Observer) and Self(context.Source,context.Observer) and HasDamageEffectFlag(DamageFlags.Hit) and IsMainHandAttack() and not IsKillingBlow() and not AnyEntityIsItem() and not Goon_IsFlourish()"
+data "Properties" "IF(IsMeleeAttack() and not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(LevelMapValue(BardicInspiration), MainMeleeWeaponDamageType,,,0,,true,true);IF(IsMeleeAttack() and HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(1d6, MainMeleeWeaponDamageType,,,0,,true,true);IF(IsMeleeAttack()):ApplyStatus(SELF,GOON_FLOURISH_SLASHING_EXTRA_ATTACK_MELEE,100,1);IF(IsMeleeAttack()):ApplyStatus(GOON_FLOURISH_SLASHING_TARGET,100,1);IF(IsRangedWeaponAttack() and not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(LevelMapValue(BardicInspiration), MainRangedWeaponDamageType,,,0,,true,true);IF(IsRangedWeaponAttack() and HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(1d6, MainRangedWeaponDamageType,,,0,,true,true);IF(IsRangedWeaponAttack()):ApplyStatus(SELF,GOON_FLOURISH_SLASHING_EXTRA_ATTACK_RANGED,100,1);IF(IsRangedWeaponAttack()):ApplyStatus(GOON_FLOURISH_SLASHING_TARGET,100,1);IF(IsRangedUnarmedAttack() and not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(LevelMapValue(BardicInspiration), ThrownWeaponDamageType,,,0,,true,true);IF(IsRangedUnarmedAttack() and HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(1d6, ThrownWeaponDamageType,,,0,,true,true);IF(IsRangedUnarmedAttack()):ApplyStatus(SELF,GOON_FLOURISH_SLASHING_EXTRA_ATTACK_THROWN,100,1);IF(IsRangedUnarmedAttack()):ApplyStatus(GOON_FLOURISH_SLASHING_TARGET,100,1);IF(HasStatus('MASTERS_FLOURISH',context.Source)):ApplyStatus(SELF,GOON_MASTERS_FLOURISH_TEMPORARY,100,1)"
+data "Cost" "BardicInspiration:1"
+data "Stack" "BladeFlourish"
+data "InterruptDefaultValue" "Ask;Enabled"
+data "EnableCondition" "HasActionResource('BardicInspiration',1,0,false,false,context.Source) and (not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus())"
+data "EnableContext" "OnActionResourcesChanged;OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"
+
+new entry "GOON_FLOURISH_SLASHING_TARGET"
+type "StatusData"
+data "StatusType" "BOOST"
+data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
+data "IsUnique" "1"
+
+new entry "GOON_MASTERS_FLOURISH_TEMPORARY"
+type "StatusData"
+data "StatusType" "BOOST"
+data "RemoveEvents" "OnMove"
+data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
+data "Passives" "Goon_Masters_Flourish_Temporary_Passive"
+
+new entry "Goon_Masters_Flourish_Temporary_Passive"
+type "PassiveData"
+data "Properties" "IsHidden"
+data "Conditions" ""
+data "StatsFunctorContext" "OnAttack;OnSpellCast"
+data "StatsFunctors" "IF((context.HasContextFlag(StatsFunctorContext.OnAttack) or context.HasContextFlag(StatsFunctorContext.OnSpellCast)) and not Goon_IsFlourishTemporarySpell()):RemoveStatus(SELF,GOON_MASTERS_FLOURISH_TEMPORARY)"
+
+// ==================================== Slashing Flourish (Melee)
+
+new entry "GOON_FLOURISH_SLASHING_EXTRA_ATTACK_MELEE"
+type "StatusData"
+data "StatusType" "BOOST"
+data "Boosts" "UnlockSpell(Goon_Target_BladeFlourish_Slashing_Temporary)"
+data "RemoveEvents" "OnAttack;OnSpellCast;OnMove"
+data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
+
+new entry "Goon_Target_BladeFlourish_Slashing_Temporary"
+type "SpellData"
+data "SpellType" "Target"
+using "Zone_BladeFlourish_Slashing"
+data "AmountOfTargets" "1"
+data "TargetConditions" "not Self() and not Dead() and not HasStatus('GOON_FLOURISH_SLASHING_TARGET',context.Target,context.Source)"
+// Follow up your &lt;LSTag Type="Spell" Tooltip="Goon_Interrupt_BladeFlourish_Slashing"&gt;Slashing Flourish&lt;/LSTag&gt; by attacking an additional target.
+data "Description" "h5352ec95g5439g4ea1gb3d0g6de40769ff7b;1"
+// You lose your opportunity to use this attack if you take another action or move.
+data "ExtraDescription" "hac754f11g3132g4a02g85f7gc83d8747f741;1"
+data "CastSound" "Action_Cast_Bard_DefensiveFlourishMelee"
+data "UseCosts" ""
+data "HitCosts" ""
+data "DualWieldingUseCosts" ""
+data "SpellFlags" "IsMelee;IsHarmful;Temporary"
+data "CastEffect" "f573afc5-f018-4a87-a3a9-d1c0fe4e5b0d"
+
+// ==================================== Slashing Flourish (Ranged)
+
+new entry "GOON_FLOURISH_SLASHING_EXTRA_ATTACK_RANGED"
+type "StatusData"
+data "StatusType" "BOOST"
+data "Boosts" "UnlockSpell(Goon_Projectile_BladeFlourish_Slashing_Temporary)"
+data "RemoveEvents" "OnAttack;OnSpellCast;OnMove"
+data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
+
+new entry "Goon_Projectile_BladeFlourish_Slashing_Temporary"
+type "SpellData"
+data "SpellType" "Projectile"
+using "Projectile_BladeFlourish_Slashing"
+data "AmountOfTargets" "1"
+data "TargetConditions" "not Self() and not Dead() and not HasStatus('GOON_FLOURISH_SLASHING_TARGET',context.Target,context.Source)"
+// Follow up your &lt;LSTag Type="Spell" Tooltip="Goon_Interrupt_BladeFlourish_Slashing"&gt;Slashing Flourish&lt;/LSTag&gt; by attacking an additional target.
+data "Description" "h5352ec95g5439g4ea1gb3d0g6de40769ff7b;1"
+// You lose your opportunity to use this attack if you take another action or move.
+data "ExtraDescription" "hac754f11g3132g4a02g85f7gc83d8747f741;1"
+data "UseCosts" ""
+data "HitCosts" ""
+data "DualWieldingUseCosts" ""
+data "SpellFlags" "HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful;Temporary"
+data "CastSound" "Action_Cast_Bard_DefensiveFlourishRanged"
+data "SpellAnimation" "a09de2c8-ec46-4c27-a502-bc92cf293fe5,,;9583ecee-cf6c-4735-86db-7ebf1df15eae,,;de006e3f-70fb-4eb7-a98d-d845d15b20e8,,;50696db7-d931-4734-915d-32d038ba99a5,,;244b53cb-dc0f-4932-afd0-ab19c6df1b34,,;,,;f920a0a6-f257-4ce4-8d17-2dcaa7bb7bbb,,;,,;,,"
+
+// ==================================== Slashing Flourish (Thrown)
+
+new entry "GOON_FLOURISH_SLASHING_EXTRA_ATTACK_THROWN"
+type "StatusData"
+data "StatusType" "BOOST"
+data "Boosts" "UnlockSpell(Goon_Throw_BladeFlourish_Slashing_Temporary)"
+data "RemoveEvents" "OnAttack;OnSpellCast;OnMove"
+data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
+
+new entry "Goon_Throw_BladeFlourish_Slashing_Temporary"
+type "SpellData"
+data "SpellType" "Throw"
+using "Throw_Throw"
+data "TargetConditions" "not Self() and not HasStatus('GOON_FLOURISH_SLASHING_TARGET',context.Target,context.Source)"
+// Slashing Flourish (Thrown)
+data "DisplayName" "hec27e8ccge100g4b44ga0a9gb8859efb9a3e;1"
+// Follow up your &lt;LSTag Type="Spell" Tooltip="Goon_Interrupt_BladeFlourish_Slashing"&gt;Slashing Flourish&lt;/LSTag&gt; by attacking an additional target.
+data "Description" "h5352ec95g5439g4ea1gb3d0g6de40769ff7b;1"
+// You lose your opportunity to use this attack if you take another action or move.
+data "ExtraDescription" "hac754f11g3132g4a02g85f7gc83d8747f741;1"
+data "Icon" "Action_SlashingFlourish_Melee"
+data "UseCosts" ""
+data "HitCosts" ""
+data "DualWieldingUseCosts" ""
+data "SpellFlags" "InventorySelection;RangeIgnoreVerticalThreshold;IsHarmful;HasHighGroundRangeExtension;IgnoreSilence;IgnoreVisionBlock;AddFallDamageOnLand;AbortOnSecondarySpellRollFail;CombatLogSetSingleLineRoll;Temporary"

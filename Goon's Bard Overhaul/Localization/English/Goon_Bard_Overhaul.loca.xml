@@ -3,5 +3,16 @@
 	<!-- "CollegeOfLore_Proficiency" --> <content contentuid="ha24cc477g59aeg416fgbb71gd138d97d0747" version="1">Gain 3 &lt;LSTag Tooltip="Proficiency"&gt;Skill Proficiencies&lt;/LSTag&gt; of your choosing.</content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
+
+	<!-- "Goon_BladeFlourishInterrupts_Unlock" --> <content contentuid="hdb0856a9g19dfg463fgad8dg2eac257a5eda" version="1">Blade Flourish</content>
+	<!-- "Goon_BladeFlourishInterrupts_Unlock" --> <content contentuid="h5dc48030gf2bfg427agba60ge2d025a3894d" version="1">Use Blade Flourishes as a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt;.</content>
+
+	<!-- "Goon_Throw_BladeFlourish_Slashing_Temporary" --> <content contentuid="hec27e8ccge100g4b44ga0a9gb8859efb9a3e" version="1">Slashing Flourish (Thrown)</content>
+	<!-- "Goon_Interrupt_BladeFlourish_Slashing" --> <content contentuid="h21c7edbdgb0e4g46f6gaf26g69d83cd78c3d" version="1">Slashing Flourish</content>
+	<!-- "Goon_Interrupt_BladeFlourish_Slashing" --> <content contentuid="hd76159acg060cg40a1g85e3g143fcdf488da" version="1">Deal additional damage equal to your &lt;LSTag Type="Status" Tooltip="BARDIC_INSPIRATION"&gt;Bardic Inspiration&lt;/LSTag&gt; die. You may attack an additional target afterwards.</content>
+
+	<!-- "Goon_Target_BladeFlourish_Slashing_Temporary", "Goon_Projectile_BladeFlourish_Slashing_Temporary", "Goon_Throw_BladeFlourish_Slashing_Temporary" --> <content contentuid="h5352ec95g5439g4ea1gb3d0g6de40769ff7b" version="1">Follow up your &lt;LSTag Type="Spell" Tooltip="Goon_Interrupt_BladeFlourish_Slashing"&gt;Slashing Flourish&lt;/LSTag&gt; by attacking an additional target.</content>
+	<!-- "Goon_Target_BladeFlourish_Slashing_Temporary", "Goon_Projectile_BladeFlourish_Slashing_Temporary", "Goon_Throw_BladeFlourish_Slashing_Temporary" --> <content contentuid="hac754f11g3132g4a02g85f7gc83d8747f741" version="1">You lose your opportunity to use this attack if you take another action or move.</content>
 	<!-- "" --> <content contentuid="" version="1"></content>
+
 </contentList>
