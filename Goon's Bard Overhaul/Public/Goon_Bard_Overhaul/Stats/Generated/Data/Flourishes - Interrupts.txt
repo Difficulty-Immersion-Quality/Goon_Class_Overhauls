@@ -14,7 +14,6 @@ data "StatsFunctorContext" "OnDamage"
 data "StatsFunctors" "IF(not HasWeaponProperty(WeaponProperties.Magical, context.HitDescription.ThrownObject) and not HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DealDamage(LevelMapValue(BardicInspiration), ThrownWeaponDamageType,,,0,,true,true);IF(HasWeaponProperty(WeaponProperties.Magical, context.HitDescription.ThrownObject) and not HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DealDamage(LevelMapValue(BardicInspiration), ThrownWeaponDamageType,Magical,,0,,true,true)"
 
 // ==================================== Slashing Flourish ====================================
-// IsMainHandAttack covers throwing, wouldn't have bet on it.
 
 new entry "Goon_Interrupt_BladeFlourish_Slashing"
 type "InterruptData"
