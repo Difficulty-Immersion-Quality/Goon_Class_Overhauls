@@ -24,7 +24,8 @@ data "StatsFunctors" "IF(not HasWeaponProperty(WeaponProperties.Magical, context
 
 // ==================================== Slashing Flourish ====================================
 // Bug Fix: Tooltip damage now includes Bardic Inspiration.
-// Changes: Is now a "Target" spell instead of a "Zone" spell. You can select two targets within melee range. Now full 360 degrees instead of 120.
+// Changes: Is now a "Target" spell instead of a "Zone" spell.
+// Changes: You can select two targets within melee range in a 360 degree arc.
 
 new entry "Zone_BladeFlourish_Slashing"
 type "SpellData"
@@ -86,7 +87,7 @@ data "AmountOfTargets" ""
 data "CombatAIOverrideSpell" ""
 
 // ==================================== Slashing Flourish (Ranged)
-// Changes: Can no longer target the same entity more than once.
+// Changes: Can no longer target the same entity twice.
 
 new entry "Projectile_BladeFlourish_Slashing"
 type "SpellData"
