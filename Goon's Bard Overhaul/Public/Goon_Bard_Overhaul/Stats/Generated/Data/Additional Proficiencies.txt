@@ -30,25 +30,3 @@
 //       ]
 //     }
 //   ],
-
-// ==================================== Countercharm ====================================
-// Changes: Now checks for if the character is Deafened, prior to providing buffs.
-
-new entry "COUNTERCHARM_AURA"
-type "StatusData"
-data "StatusType" "BOOST"
-using "COUNTERCHARM_AURA"
-// Countercharm Aura
-// data "DisplayName" "h38f66276g1923g42d5g8450g969b6d7fd8ae;1"
-// You and allies within [1] have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; against being &lt;LSTag Type="Status" Tooltip="CHARMED"&gt;Charmed&lt;/LSTag&gt; and &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt;.
-// data "Description" "hc657b2b5g8f74g4eb5g9287g11294b56572a;3"
-// data "DescriptionParams" "Distance(9)"
-// data "Icon" "Action_Bard_Countercharm"
-// data "StackId" "COUNTERCHARM_AURA"
-// data "AuraRadius" "9"
-// data "AuraStatuses" "IF(Character() and not Enemy()):ApplyStatus(COUNTERCHARM,100,-1)"
-data "AuraStatuses" "IF(Character() and not Enemy() and not HasStatus('SG_Deafened')):ApplyStatus(COUNTERCHARM,100,-1)"
-// data "TickType" "StartTurn"
-// data "StatusPropertyFlags" "TickingWithSource;Performing"
-// data "StatusGroups" "SG_RemoveOnRespec"
-// data "PerformEventName" "Bard_Perform_ThePower"
