@@ -1,4 +1,7 @@
 // ==================================== Flourish Interrupt unlock passive ====================================
+// Changes: All 3 flourishes have Interrupt counterparts now, with the same QoL you see across my vanilla Interrupt edits.
+// Changes: The Slashing Flourish interrupt supports throwing.
+// Bonus: All changes natively compatible with Master's Flourish from Expansion.
 
 new entry "Goon_BladeFlourishInterrupts_Unlock"
 type "PassiveData"

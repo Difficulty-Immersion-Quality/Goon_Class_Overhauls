@@ -24,7 +24,7 @@ data "StatsFunctors" "IF(not HasWeaponProperty(WeaponProperties.Magical, context
 
 // ==================================== Slashing Flourish ====================================
 // Bug Fix: Tooltip damage now includes Bardic Inspiration.
-// Changes: Is now a "Target" spell instead of a "Zone" spell. You can select two targets within melee range. Now full 360 degrees instead of 120, both a QoL improvement and thematically matching with the spinning animation.
+// Changes: Is now a "Target" spell instead of a "Zone" spell. You can select two targets within melee range. Now full 360 degrees instead of 120.
 
 new entry "Zone_BladeFlourish_Slashing"
 type "SpellData"
@@ -179,6 +179,7 @@ data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDa
 // data "CastEffect" "27ae62db-1606-4e42-9bc9-aeb09dcc4f64"
 
 // ==================================== Mobile Flourish ====================================
+// Changes: Can now slightly control the trajectory of the push based on cursor position on the target entity.
 
 new entry "Target_BladeFlourish_Mobile"
 type "SpellData"
@@ -200,6 +201,7 @@ data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDa
 // data "CastEffect" "0e0bf555-2c21-4553-834a-d054d04fbd1b"
 
 // ==================================== Mobile Flourish (Ranged)
+// Changes: Can now slightly control the trajectory of the push based on cursor position on the target entity.
 
 new entry "Projectile_BladeFlourish_Mobile"
 type "SpellData"
@@ -223,10 +225,9 @@ data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDa
 
 // ==================================== Mobile Flourish: Teleport
 
-new entry "Target_BladeFlourish_Mobile_FollowUp"
-type "SpellData"
-data "SpellType" "Target"
-using "Target_BladeFlourish_Mobile_FollowUp"
+// new entry "Target_BladeFlourish_Mobile_FollowUp"
+// type "SpellData"
+// data "SpellType" "Target"
 // data "Level" ""
 // data "SpellSchool" ""
 // data "SpellProperties" "GROUND:TeleportSource();RemoveStatus(SELF,BLADE_FLOURISH_MOBILE)"

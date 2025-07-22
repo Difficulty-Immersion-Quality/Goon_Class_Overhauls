@@ -1,5 +1,6 @@
 // ==================================== Countercharm ====================================
-// Changes: Now checks for if the character is Deafened, prior to providing buffs.
+// Changes: Now checks for, and only applies if the character is not Deafened. (Custom condition, more support to come.)
+// Changes: Added the "AI_UNPREFERRED_TARGET" tag to the instrument so enemy AI is much less likely to waste turns attacking an invincible target.
 
 new entry "COUNTERCHARM_AURA"
 type "StatusData"
@@ -12,6 +13,7 @@ using "COUNTERCHARM_AURA"
 // data "DescriptionParams" "Distance(9)"
 // data "Icon" "Action_Bard_Countercharm"
 // data "StackId" "COUNTERCHARM_AURA"
+data "Boosts" "Tag(AI_UNPREFERRED_TARGET)"
 // data "AuraRadius" "9"
 // data "AuraStatuses" "IF(Character() and not Enemy()):ApplyStatus(COUNTERCHARM,100,-1)"
 data "AuraStatuses" "IF(Character() and not Enemy() and not HasStatus('SG_Deafened')):ApplyStatus(COUNTERCHARM,100,-1)"
