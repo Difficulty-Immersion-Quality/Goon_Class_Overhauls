@@ -3,6 +3,7 @@
 // Bug Fix: Spell variants no longer expend a Sneak Attack Charge unless you hit your target, for cohesion with Interrupt functionality.
 // Bug Fix: Damage now always matches the weapon's damage type.
 // Bug Fix: Interrupts can be used while under the effects of more non-hostile and non-spellcasting restricted Polymorphs.
+// Bug Fix: Interrupts no longer only deal non-magical damage, instead checking for existing magical properties including Primal Strike﻿, and anything else with the same implementation as Primal Strike.
 // Changes: Interrupts can be used by Invisible players.
 // Changes: Interrupts are now defaulted to ask, instead of being used automatically.
 // Changes: Forced Honour ruleset changes to damage riders not functioning as damage rider sources.
