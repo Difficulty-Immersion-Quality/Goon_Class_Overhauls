@@ -18,7 +18,7 @@ data "Properties" "IF(IsAttackType(AttackType.MeleeWeaponAttack)):DealDamage(Lev
 data "InterruptDefaultValue" "Ask;Enabled"
 // data "EnableContext" "OnActionResourcesChanged;OnEquip;OnStatusApplied;OnStatusRemoved"
 // data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or SpellTypeIs(SpellType.Throw)) and not HasStatus('SG_Polymorph_BeastShape')"
-data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and ((WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or SpellTypeIs(SpellType.Throw)) and (not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus())) or Goon_IsDruidWildshape()"
+data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and ((WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or SpellTypeIs(SpellType.Throw)) and (not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus())) or Goon_IsWildshapeDruidPolymorph()"
 // data "InterruptFlags" "InterruptWhileInvisible"
 
 new entry "Interrupt_DWE_CunningStrike_Disarm"

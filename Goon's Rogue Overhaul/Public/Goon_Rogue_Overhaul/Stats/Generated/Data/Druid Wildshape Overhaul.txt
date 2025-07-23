@@ -7,8 +7,8 @@ data "StatusType" "BOOST"
 using "WSO_WILDSHAPE_MULTICLASS_ROGUE"
 // data "StackId" "WSO_WILDSHAPE_MULTICLASS_ROGUE"
 // data "Boosts" "UnlockInterrupt(WSO_Interrupt_SneakAttack);UnlockInterrupt(WSO_Interrupt_SneakAttack_Critical);IF(ClassLevelHigherOrEqualThan(2,'Rogue')):UnlockSpell(WSO_Shout_Dash_BonusAction);IF(ClassLevelHigherOrEqualThan(2,'Rogue')):UnlockSpell(WSO_Shout_Hide_BonusAction);IF(ClassLevelHigherOrEqualThan(2,'Rogue')):UnlockSpell(WSO_Shout_Disengage_BonusAction)"
-data "Boosts" "IF(ClassLevelHigherOrEqualThan(2,'Rogue') and not HasPassive('Smart_CunningAction',context.Source)):UnlockSpell(Shout_Dash_CunningAction);IF(ClassLevelHigherOrEqualThan(2,'Rogue') and not HasPassive('Smart_CunningAction',context.Source)):UnlockSpell(Shout_Hide_BonusAction);IF(ClassLevelHigherOrEqualThan(2,'Rogue') and not HasPassive('Smart_CunningAction',context.Source)):UnlockSpell(Shout_Disengage_CunningAction)"
-data "Passives" "Goon_Wildshape_Multiclass_Rogue"
+data "Boosts" "IF(ClassLevelHigherOrEqualThan(2,'Rogue')):UnlockSpell(Shout_Dash_CunningAction);IF(ClassLevelHigherOrEqualThan(2,'Rogue')):UnlockSpell(Shout_Hide_BonusAction);IF(ClassLevelHigherOrEqualThan(2,'Rogue')):UnlockSpell(Shout_Disengage_CunningAction)"
+// TODO: data "Passives" "Goon_Wildshape_Multiclass_Rogue" --- Crashing??? --- and not HasPassive('Smart_CunningAction',context.Source)
 
 new entry "Goon_Wildshape_Multiclass_Rogue"
 type "PassiveData"
