@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentList>
+	<!-- "ImprovedMinorIllusion" --> <content contentuid="h6ebaf275g6028g4257g9ff2g1b8885a772f4" version="1">You can cast &lt;LSTag Type="Spell" Tooltip="Target_ImprovedMinorIllusion"&gt;Improved Minor Illusion&lt;/LSTag&gt; using a &lt;LSTag Type="ActionResource" Tooltip="BonusActionPoint"&gt;Bonus Action&lt;/LSTag&gt;.</content>
+
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>

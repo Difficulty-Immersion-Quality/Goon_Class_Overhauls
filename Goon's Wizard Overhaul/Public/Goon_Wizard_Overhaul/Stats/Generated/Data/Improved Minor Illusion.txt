@@ -1,0 +1,32 @@
+// ==================================== Illusion School Wizard - Improved Minor Illusion
+// Bug Fix: Spell description no longer links to itself infinitely, and instead uses the same description as the base Minor Illusion spell.
+// TODO: Maybe stretch this functionality of creating an illusion with a Bonus Action beyond just Minor Illusion.
+
+new entry "Target_ImprovedMinorIllusion"
+type "SpellData"
+data "SpellType" "Target"
+// using "Target_MinorIllusion"
+using "Target_ImprovedMinorIllusion"
+// data "SpellProperties" "GROUND:Summon(a4d03902-0382-4f88-866d-3bb2225a69a3, 20,,,'MinorIllusionStack',MINOR_ILLUSION);"
+// data "Icon" "PassiveFeature_ImprovedMinorIllusion"
+// Improved Minor Illusion
+// data "DisplayName" "h31c9feb0g580fg44a2gafb7g5d8ad9c8b962;2"
+// You can cast &lt;LSTag Type="Spell" Tooltip="Target_ImprovedMinorIllusion"&gt;Minor Illusion&lt;/LSTag&gt; as a bonus action.
+// data "Description" "h0079b0b5ga25dg4cf8g9aaeg8f0e92933326;1"
+// Create an illusion that compels nearby creatures to investigate.
+data "Description" "he5909fe4g02b6g43c9gbc1cgedd73ac97791;2"
+// data "TooltipStatusApply" "ApplyStatus(MINOR_ILLUSION,100,20)"
+// data "UseCosts" "BonusActionPoint:1"
+
+new entry "ImprovedMinorIllusion"
+type "PassiveData"
+using "ImprovedMinorIllusion"
+// Improved Minor Illusion
+// data "DisplayName" "h7a2baad4g7548g4940g8badg69329449d728;2"
+// You can cast &lt;LSTag Type="Spell" Tooltip="Target_ImprovedMinorIllusion"&gt;Minor Illusion&lt;/LSTag&gt; as a bonus action.
+// data "Description" "h6fed206bg8323g46d4ga34eg7c5629490d35;2"
+// You can cast &lt;LSTag Type="Spell" Tooltip="Target_ImprovedMinorIllusion"&gt;Improved Minor Illusion&lt;/LSTag&gt; using a &lt;LSTag Type="ActionResource" Tooltip="BonusActionPoint"&gt;Bonus Action&lt;/LSTag&gt;.
+data "Description" "h6ebaf275g6028g4257g9ff2g1b8885a772f4;1"
+// data "Icon" "PassiveFeature_ImprovedMinorIllusion"
+// data "Properties" "Highlighted"
+// data "Boosts" "UnlockSpell(Target_ImprovedMinorIllusion)"
