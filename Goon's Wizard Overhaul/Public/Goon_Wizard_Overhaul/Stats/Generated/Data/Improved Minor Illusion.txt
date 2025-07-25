@@ -1,5 +1,6 @@
 // ==================================== Illusion School Wizard - Improved Minor Illusion
 // Bug Fix: Spell description no longer links to itself infinitely, and instead uses the same description as the base Minor Illusion spell.
+// Changes: Minor improvements to the passive's description.
 // TODO: Maybe stretch this functionality of creating an illusion with a Bonus Action beyond just Minor Illusion.
 
 new entry "Target_ImprovedMinorIllusion"
