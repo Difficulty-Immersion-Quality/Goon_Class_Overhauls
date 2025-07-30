@@ -1,0 +1,7 @@
+// ==================================== Hunter - Whirlwind ====================================
+// I put this here and don't really remember why.
+
+// Shout_Whirlwind
+
+// Strike out at all nearby foes, making separate <LSTag Tooltip="AttackRoll">attack rolls</LSTag> against each target. 
+// data "Description" "h06746addg056dg43f1gada6g851e17ef5b22;5"

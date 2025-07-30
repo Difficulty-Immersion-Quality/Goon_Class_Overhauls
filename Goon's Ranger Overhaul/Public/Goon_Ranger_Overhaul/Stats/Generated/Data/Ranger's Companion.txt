@@ -1,0 +1,51 @@
+// ==================================== Ranger's Companion ====================================
+// Overview: These changes preserve continuity. You don't have to deal with being restricted to short rests, but you can't immediately re-summon your companion in combat after it has died.
+// Bug Fix: Removed "Poison" "DamageType" from the base spell.
+// Changes: No longer has a once per short rest cooldown.
+// Changes: Can no longer be used in combat.
+
+new entry "Target_RangersCompanion"
+type "SpellData"
+data "SpellType" "Target"
+using "Target_RangersCompanion"
+// data "ContainerSpells" "Target_RangersCompanion_Bear;Target_RangersCompanion_Boar;Target_RangersCompanion_GiantSpider;Target_RangersCompanion_Raven;Target_RangersCompanion_Wolf"
+// data "Cooldown" "OncePerShortRest"
+data "Cooldown" ""
+// data "TargetRadius" "18"
+// data "Icon" "Skill_Ranger_RangersCompanion"
+// Ranger's Companion
+// data "DisplayName" "hca7dcceaga9c5g4dc9ga4eega8b865bde2ab;1"
+// Gain a beast companion that accompanies you on your adventures and fights alongside you.
+// data "Description" "h18f820e5gfdf7g4cc2g9309gb90acd0d2ff7;1"
+// data "CastSound" "Action_Cast_RangersCompanion"
+// data "TargetSound" "Action_Impact_RangersCompanion"
+// data "CastTextEvent" "VFX_Somatic_03"
+// data "UseCosts" "ActionPoint:1"
+data "Requirements" "!Combat"
+// data "SpellAnimation" "85f63b1e-1fe6-4228-863d-71f43a945b46,,;,,;551b8855-805c-45fa-973f-88df0cbe646a,,;394f93b4-106a-44e4-8e08-2feae2881df1,,;db52441a-8a80-4630-bcb8-0f220e1b8323,,;,,;f588875b-9a5f-4e05-ac41-3f3e73cdb4e4,,;,,;,,"
+// data "VerbalIntent" "Summon"
+// data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IgnoreSilence;IsLinkedSpellContainer;CannotTargetItems;CannotTargetCharacter"
+// data "MemoryCost" "1"
+// data "PrepareEffect" "2adc2574-07ac-4116-ba89-9ffe367ff77b"
+// data "CastEffect" "a8bd13f1-3918-4c25-a3c4-ca312ef20178"
+// data "PositionEffect" "47de8912-a859-436b-b88b-e849b1f5e180"
+// data "DamageType" "Poison"
+data "DamageType" ""
+
+// ==================================== Bear Companion
+
+// new entry "Target_RangersCompanion_Bear"
+// type "SpellData"
+// data "SpellType" "Target"
+// using "Target_RangersCompanion"
+// data "SpellContainerID" "Target_RangersCompanion"
+// data "SpellProperties" "GROUND:IF(not ClassLevelHigherOrEqualThan(5,'Ranger')):Summon(d642d398-f349-4eab-b98c-a82cbda19918,Permanent,,,'CombatSummonStack',UNSUMMON_ABLE,RANGERS_COMPANION_BEAR,SHADOWCURSE_SUMMON_CHECK);GROUND:IF(ClassLevelHigherOrEqualThan(5,'Ranger') and not ClassLevelHigherOrEqualThan(7,'Ranger')):Summon(533d21da-878c-421d-a372-54e0125ae3bb,Permanent,,,'CombatSummonStack',UNSUMMON_ABLE,RANGERS_COMPANION_BEAR,SHADOWCURSE_SUMMON_CHECK);GROUND:IF(ClassLevelHigherOrEqualThan(7,'Ranger') and not ClassLevelHigherOrEqualThan(8,'Ranger')):Summon(041f7544-d1fc-446d-b439-2108c02896ed,Permanent,,,'CombatSummonStack',UNSUMMON_ABLE,RANGERS_COMPANION_BEAR,SHADOWCURSE_SUMMON_CHECK);GROUND:IF(ClassLevelHigherOrEqualThan(8,'Ranger') and not ClassLevelHigherOrEqualThan(11,'Ranger')):Summon(2b290dbd-0f5f-4a65-8d23-481fa40f7aa8,Permanent,,,'CombatSummonStack',UNSUMMON_ABLE,RANGERS_COMPANION_BEAR,SHADOWCURSE_SUMMON_CHECK);GROUND:IF(ClassLevelHigherOrEqualThan(11,'Ranger')):Summon(df74b830-20ec-4fc3-b09e-3b82e7db8f80,Permanent,,,'CombatSummonStack',UNSUMMON_ABLE,RANGERS_COMPANION_BEAR,SHADOWCURSE_SUMMON_CHECK)"
+// data "TargetConditions" "CanStand('d642d398-f349-4eab-b98c-a82cbda19918') and not Character() and not Self()"
+// data "Icon" "Action_Ranger_RangersCompanion_Bear"
+// Bear Companion
+// data "DisplayName" "hf81c1131g8ee2g49b1g92bcg1f1492516194;1"
+// Summon a black bear that can endure heavy attacks and draw the enemy's attention with its &lt;LSTag Type="Spell" Tooltip="Shout_GoadingRoar_Bear_Summon"&gt;Goading Roar&lt;/LSTag&gt;.
+// data "Description" "hc6e5b429g521cg4b5ag809fg4a808e557f7a;3"
+
+// ...
