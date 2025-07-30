@@ -1,0 +1,34 @@
+// ==================================== Claws ====================================
+// Changes: Can now slightly control the trajectory of the push based on cursor position on the target entity.
+
+new entry "Target_Claws_Owlbear"
+type "SpellData"
+data "SpellType" "Target"
+// using "Target_Claws"
+using "Target_Claws_Owlbear"
+// data "TargetRadius" "2.5"
+// data "SpellRoll" "Attack(AttackType.MeleeUnarmedAttack)"
+// data "SpellSuccess" "DealDamage(max(1,2d8+UnarmedMeleeAbilityModifier),Slashing);Force(1.5)"
+data "SpellSuccess" "DealDamage(max(1,2d8+UnarmedMeleeAbilityModifier),Slashing);Force(1.5,OriginToTarget,Aggressive)"
+// data "Icon" "Action_Bear_Claws"
+// Lash out with deadly claws and push the target back [1].
+// data "Description" "hef927ed3g0886g4793gbdc3g81335fbc33d4;2"
+// data "DescriptionParams" "Distance(1.5)"
+// data "TooltipDamageList" "DealDamage(2d8+UnarmedMeleeAbilityModifier,Slashing)"
+// data "CastTextEvent" "Cast"
+// data "UseCosts" "ActionPoint:1"
+// data "SpellAnimation" "8b8bb757-21ce-4e02-a2f3-97d55cf2f90b,,;6606c30b-be1c-4f17-ae6b-1a591c80b18c,,;f4ac302b-1569-404f-bd52-1fe443e265df,,;e8a5c57f-855b-4227-acaa-11e8ce8d7d64,,;7bb52cd4-0b1c-4926-9165-fa92b75876a3,,;2b81c18b-9698-4262-a623-932c2bb1296d,,;0b07883a-08b8-43b6-ac18-84dc9e84ff50,,;,,;,,"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "CastEffect" "a37d8fbb-f762-45bf-b335-be9c120ecd72"
+// data "TargetEffect" "5b143818-1f79-47e2-b5ad-a39e97ce83c1"
+
+// ==================================== Wildshape - Claws
+
+new entry "Target_Claws_Owlbear_WildShape"
+type "SpellData"
+data "SpellType" "Target"
+// using "Target_Claws_Owlbear"
+using "Target_Claws_Owlbear_WildShape"
+// data "SpellSuccess" "IF(not HasPassive('PrimalStrike',context.Source)):DealDamage(max(1,2d8+LevelMapValue(WildShapeDamageLow)+UnarmedMeleeAbilityModifier),Slashing);IF(HasPassive('PrimalStrike',context.Source)):DealDamage(max(1,2d8+LevelMapValue(WildShapeDamageLow)+UnarmedMeleeAbilityModifier),Slashing,Magical);Force(1.5);"
+data "SpellSuccess" "IF(not HasPassive('PrimalStrike',context.Source)):DealDamage(max(1,2d8+LevelMapValue(WildShapeDamageLow)+UnarmedMeleeAbilityModifier),Slashing);IF(HasPassive('PrimalStrike',context.Source)):DealDamage(max(1,2d8+LevelMapValue(WildShapeDamageLow)+UnarmedMeleeAbilityModifier),Slashing,Magical);Force(1.5,OriginToTarget,Aggressive)"
+// data "TooltipDamageList" "DealDamage(2d8+LevelMapValue(WildShapeDamageLow)+UnarmedMeleeAbilityModifier,Slashing)"

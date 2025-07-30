@@ -1,0 +1,35 @@
+// ==================================== Claws ====================================
+// Bug Fix: Maneuver Save DC is now used instead of Spell Save DC for the push.
+// Changes: Can now slightly control the trajectory of the push based on cursor position on the target entity.
+
+new entry "Target_Claws_GiantBadger"
+type "SpellData"
+data "SpellType" "Target"
+// using "Target_Claws"
+using "Target_Claws_GiantBadger"
+// data "SpellSuccess" "IF(not SavingThrow(Ability.Strength, SourceSpellDC())):Force(2);IF(not HasPassive('PrimalStrike',context.Source)):DealDamage(max(1,2d4+LevelMapValue(WildShapeDamageMedium)+UnarmedMeleeAbilityModifier),Slashing);IF(HasPassive('PrimalStrike',context.Source)):DealDamage(max(1,2d4+LevelMapValue(WildShapeDamageMedium)+UnarmedMeleeAbilityModifier),Slashing,Magical)"
+data "SpellSuccess" "IF(not SavingThrow(Ability.Strength, ManeuverSaveDC())):Force(2,OriginToTarget,Aggressive);IF(not HasPassive('PrimalStrike',context.Source)):DealDamage(max(1,2d4+LevelMapValue(WildShapeDamageMedium)+UnarmedMeleeAbilityModifier),Slashing);IF(HasPassive('PrimalStrike',context.Source)):DealDamage(max(1,2d4+LevelMapValue(WildShapeDamageMedium)+UnarmedMeleeAbilityModifier),Slashing,Magical)"
+// data "Icon" "Action_GiantBadger_Claws"
+// data "TooltipDamageList" "DealDamage(2d4+LevelMapValue(WildShapeDamageMedium)+UnarmedMeleeAbilityModifier,Slashing)"
+// data "TooltipAttackSave" "MeleeUnarmedAttack;Strength"
+// data "SpellAnimation" "439be620-eee9-496b-83da-36fea96c7b02,,;9fa218b8-9596-4c94-b5a1-13d877d8330c,,;ff2789c1-1d26-43a6-992e-a6fd6af36fb3,,;d91aab3d-0d93-4a31-8bc4-990e109a4eb3,,;26bce56a-9d3f-48c4-b2ff-f1ae32f7817b,,;215d161c-5283-4409-920a-323aaebbd8e5,,;0b07883a-08b8-43b6-ac18-84dc9e84ff50,,;,,;,,"
+// data "SpellFlags" "IsMelee;IsHarmful"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "CastEffect" "a37d8fbb-f762-45bf-b335-be9c120ecd72"
+// data "TargetEffect" "5b143818-1f79-47e2-b5ad-a39e97ce83c1"
+
+// ==================================== Wildshape - Claws
+
+// new entry "Target_Claws_GiantBadger_Wildshape"
+// type "SpellData"
+// data "SpellType" "Target"
+// using "Target_Claws_GiantBadger"
+// Lash out with deadly claws and possibly push the target back [1].
+// data "Description" "h8972b8a8g71ddg4675g8f9agf016e0841267;2"
+// data "DescriptionParams" "Distance(1.5)"
+// data "SpellAnimation" "8b8bb757-21ce-4e02-a2f3-97d55cf2f90b,,;9fa218b8-9596-4c94-b5a1-13d877d8330c,,;ff2789c1-1d26-43a6-992e-a6fd6af36fb3,,;d91aab3d-0d93-4a31-8bc4-990e109a4eb3,,;7bb52cd4-0b1c-4926-9165-fa92b75876a3,,;215d161c-5283-4409-920a-323aaebbd8e5,,;0b07883a-08b8-43b6-ac18-84dc9e84ff50,,;,,;,,"
+// data "SpellFlags" "IsMelee;IsHarmful"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "PrepareEffect" "b54ff1fa-121d-474b-bb07-1f63833e6442"
+// data "CastEffect" "a37d8fbb-f762-45bf-b335-be9c120ecd72"
+// data "TargetEffect" "5b143818-1f79-47e2-b5ad-a39e97ce83c1"

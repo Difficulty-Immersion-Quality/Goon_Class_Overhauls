@@ -23,7 +23,7 @@ data "StackType" "Overwrite"
 data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
 data "OnApplyFunctors" "IF(not HasPassive('PersistentRage')):ApplyStatus(GOON_RAGE_STOP_REMOVE_DISPLAY,100,1)"
 
-// New status (Barbarian QoL loca and handles)
+// New status
 new entry "GOON_RAGE_STOP_REMOVE_DISPLAY"
 type "StatusData"
 data "StatusType" "BOOST"
