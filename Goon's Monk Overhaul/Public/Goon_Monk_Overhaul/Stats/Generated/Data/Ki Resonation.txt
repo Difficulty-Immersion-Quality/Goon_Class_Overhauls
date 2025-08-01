@@ -1,0 +1,32 @@
+// ==================================== Ki Resonation ====================================
+// Bug Fix: Now uses Wisdom for the Spell Save DC instead of Source Spell DC.
+
+new entry "Projectile_KiResonation_Blast_Target"
+type "SpellData"
+data "SpellType" "Projectile"
+using "Projectile_KiResonation_Blast_Target"
+// data "SpellProperties" "IF(HasStatus('KI_RESONATION')):ApplyStatus('KI_RESONATION_TRIGGER');RemoveStatus(SELF,KI_RESONATION_TRIGGER);RemoveStatus(SELF,KI_RESONATION)"
+// data "AreaRadius" "5"
+// data "ExplodeRadius" "5"
+// data "SpellRoll" "not SavingThrow(Ability.Dexterity, SourceSpellDC()) "
+data "SpellRoll" "not SavingThrow(Ability.Dexterity, CalculateSpellDC(Ability.Wisdom))"
+// data "SpellSuccess" "DealDamage(3d6, Force,Magical)"
+// data "SpellFail" "DealDamage((3d6)/2, Force,Magical)"
+// data "TargetConditions" "not Dead() and Character() and not Ally()"
+// data "ProjectileCount" "1"
+// data "Trajectories" "f06c2001-8646-4234-8d52-efe7a64ab1b7,b58e5378-be1a-4488-8b2a-a942b562671e,c263a129-4d33-4155-947b-2e7e34e97edc"
+// data "Icon" "Action_KiResonation_Punch"
+// Ki Resonation: Blast
+// data "DisplayName" "h3590a3c3gfaecg4f70gae28gef36ddb015eb;2"
+// Detonate the ki of a creature &lt;LSTag Type="Status" Tooltip="KI_RESONATION"&gt;Resonating&lt;/LSTag&gt; with you, hitting the creature and any non-allied entities within [1] of it.
+// data "Description" "h1ea4cd68g3f55g4520ga8f0g126c7e3e7d02;5"
+// data "DescriptionParams" "Distance(5)"
+// The resulting explosion causes any nearby creatures Resonating with you to also detonate.
+// data "ExtraDescription" "h81d5f406g1eb1g4e27g805dg13842eb98879;2"
+// data "TooltipDamageList" "DealDamage(3d6, Force)"
+// data "TooltipAttackSave" "Dexterity"
+// data "TooltipOnSave" "f762efbb-f8f1-493e-b248-2de1567b4bd2"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;38cdb41c-2eec-4e03-bb31-83cff0346c35,,;85414f5f-b448-4dda-9370-1b6c4b38b561,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,,"
+// data "VerbalIntent" "Damage"
+// data "SpellFlags" "IsHarmful;CanAreaDamageEvade"
+// data "DamageType" "Force"
