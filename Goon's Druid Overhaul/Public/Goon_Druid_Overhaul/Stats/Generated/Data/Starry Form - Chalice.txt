@@ -1,0 +1,48 @@
+// ==================================== Chalice Healing ====================================
+// Bug Fix: Now uses Wisdom as the spellcasting modifier instead of the default.
+// Bug Fix: Now looks for if a spell costs a spellslot instead of arbitrarily looking for a couple of vanilla spells to blacklist.
+
+new entry "StarryForm_Chalice"
+type "PassiveData"
+using "StarryForm_Chalice"
+// %%% Empty
+// data "DisplayName" "ha2ca4312gdbdfg4decgaa77g0ee6f3af4da3;1"
+// data "Properties" "IsHidden"
+// data "StatsFunctorContext" "OnHeal"
+// data "Conditions" "HealDoneGreaterThan(0) and ((IsSpell() and not IsCantrip()) and not SpellId('Target_AuraOfVitality_Activate') and not SpellId('Target_MAG_HealingWord') and not SpellId('Shout_MAG_HealingWord_Mass'));"
+data "Conditions" "HealDoneGreaterThan(0) and IsSpell() and (HasUseCosts('SpellSlot') or HasUseCosts('WarlockSpellSlot'))"
+// data "StatsFunctors" "ApplyStatus(SELF,STARRYFORM_HEAL,100,1)"
+
+new entry "Target_StarryForm_Chalice_Heal"
+type "SpellData"
+data "SpellType" "Target"
+using "Target_StarryForm_Chalice_Heal"
+// data "Cooldown" "OncePerTurn"
+// data "SpellProperties" "RegainHitPoints(LevelMapValue(StarryForm)+SpellCastingAbilityModifier)"
+data "SpellProperties" "RegainHitPoints(LevelMapValue(StarryForm)+WisdomModifier)"
+// data "TargetRadius" "9"
+// data "RequirementConditions" "HasStatus('STARRYFORM_HEAL')"
+// data "RequirementEvents" "OnSpellCast"
+// data "TargetConditions" "Character() and not Dead() and not Tagged('UNDEAD') and not Tagged('CONSTRUCT')"
+// data "Icon" "Action_ChaliceForm_Heal"
+// Chalice Healing
+// data "DisplayName" "h4ddadf5agf115g4b2bga810g8c57dccc02ef;1"
+// Heal yourself or another creature within reach.
+// data "Description" "h53a9be28gab71g4771g9a36g4dc1dae75355;1"
+// Must be used on the same turn it gets activated.
+// data "ExtraDescription" "hd11f42a3g0eafg4ce5g87cdg9e14d94af4ef;2"
+// data "TooltipDamageList" "RegainHitPoints(LevelMapValue(StarryForm)+SpellCastingAbilityModifier)"
+data "TooltipDamageList" "RegainHitPoints(LevelMapValue(StarryForm)+WisdomModifier)"
+// data "PrepareSound" "Action_Prepare_Druid_ChaliceHeal"
+// data "PrepareLoopSound" "Action_Loop_Druid_ChaliceHeal"
+// data "CastSound" "Action_Cast_Druid_ChaliceHeal"
+// data "TargetSound" "Action_Impact_Druid_ChaliceHeal"
+// data "PreviewCursor" "Cast"
+// data "CastTextEvent" "Cast"
+// data "SpellAnimation" "ce3864ff-f434-4346-9eb6-80a4334bb619,,;,,;2c8af70e-e83a-4a86-829b-a8f434a70907,,;19d69ecd-d0f1-46e3-bc11-e522988dcc3f,,;6b270150-6429-44b5-ad6c-7b618a0e2378,,;,,;ba44bc6c-8a81-44b7-8a4e-facff613aa31,,;,,;,,"
+// data "VerbalIntent" "Healing"
+// data "SpellFlags" "Temporary;Wildshape;HasHighGroundRangeExtension"
+// data "HitAnimationType" "MagicalNonDamage"
+// data "PrepareEffect" "f4858669-8e07-491a-93f2-028cd5a94bb5"
+// data "CastEffect" "0034cc9d-eb37-4b05-9bb4-163dc7313aa8"
+// data "TargetEffect" "0bdb6a9f-4970-40c7-807e-201923999796"
