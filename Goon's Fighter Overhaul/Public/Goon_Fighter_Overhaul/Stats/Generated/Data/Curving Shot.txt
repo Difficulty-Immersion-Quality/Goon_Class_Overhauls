@@ -1,0 +1,19 @@
+// ==================================== Curving Shot ====================================
+// Bug Fix: The once per turn cooldown is now visible in the tooltip.
+
+new entry "Interrupt_CurvingShot"
+type "InterruptData"
+using "Interrupt_CurvingShot"
+// Curving Shot
+// data "DisplayName" "h158c8c37g33c1g42ecgacb1g109770bdad30;1"
+// Use a &lt;LSTag Type="ActionResource" Tooltip="BonusActionPoint"&gt;bonus action&lt;/LSTag&gt; to attack the next closest target with the same attack.
+// data "Description" "hb0f60b08g9b0bg4ebegbb12g1abbef2285fb;2"
+// data "Icon" "PassiveFeature_CurvingShot"
+// data "InterruptContext" "OnPostRoll"
+// data "InterruptContextScope" "Self"
+// data "Container" "YesNoDecision"
+// data "Conditions" "Self(context.Observer, context.Source) and IsAbleToReact(context.Observer) and IsCurvingShot() and IsCurvingShotMiss() and not AnyEntityIsItem() and IsAttackType(AttackType.RangedWeaponAttack) and HasInterruptedAttack() and HasEnemyWithinRange('SG_Incapacitated', 18, nil, 2, context.Target, context.Source)"
+// data "Properties" "ApplyStatus(YSRSLIDFWWADNIWHWIHLY,100,1)"
+// data "Cost" "BonusActionPoint:1;CurvingShot_Charge:1;"
+data "Cooldown" "OncePerTurn"
+// data "InterruptDefaultValue" "Ask;Enabled"

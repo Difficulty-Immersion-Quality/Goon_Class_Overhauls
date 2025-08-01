@@ -1,0 +1,267 @@
+// ==================================== Arcane Shot ====================================
+// Changes: Tooltips now specify that the Spell Save DC of Arcane Shots increase with Intelligence your Intelligence Modifier.
+
+// new entry "ArcaneShot"
+// type "PassiveData"
+// Arcane Shot
+// data "DisplayName" "h2e8de670g9f71g4d53ga652ga2816de3eb8b;2"
+// data "Properties" "IsHidden;OncePerAttack"
+// data "Boosts" "IF(SpellId('Projectile_ArcaneShot_BeguilingArrow') and not TotalDamageDoneGreaterThan(0)):DamageBonus(2d6,Psychic,Magical);IF(SpellId('Projectile_ArcaneShot_ShadowArrow') and not TotalDamageDoneGreaterThan(0)):DamageBonus(2d6,Psychic,Magical);IF(SpellId('Projectile_ArcaneShot_EnfeeblingArrow') and not TotalDamageDoneGreaterThan(0)):DamageBonus(2d6,Necrotic,Magical);IF(SpellId('Projectile_ArcaneShot_GraspingArrow') and not TotalDamageDoneGreaterThan(0)):DamageBonus(2d6,Poison,Magical);IF(SpellId('Projectile_ArcaneShot_SeekingArrow') and not TotalDamageDoneGreaterThan(0)):DamageBonus(1d6,Force,Magical);"
+// data "StatsFunctorContext" "OnAttack"
+// data "Conditions" "(SpellId('Projectile_ArcaneShot_BurstingArrow') and (IsCriticalMiss() or IsMiss()));"
+// data "StatsFunctors" "RestoreResource(SELF,ArcaneShot,1,0)"
+
+// new entry "Projectile_ArcaneShot_Parent"
+// type "SpellData"
+// data "SpellType" "Projectile"
+// data "TargetFloor" "-1"
+// data "TargetConditions" "not Self() and not Dead()"
+// data "ProjectileCount" "1"
+// Arcane Shot
+// data "DisplayName" "h7d1c1319g7142g4ce1ga4f1gbc3245ba6d3b;1"
+// ???
+// data "TooltipOnMiss" "5d31fdf4-1fad-4278-bc05-9667405ea008"
+// data "PreviewCursor" "Bow"
+// data "CastTextEvent" "Cast"
+// data "AlternativeCastTextEvents" "CastOffhand"
+// data "ProjectileType" "Arrow"
+// data "UseCosts" "ActionPoint:1"
+// data "HitCosts" "ArcaneShot:1"
+// data "SpellAnimation" "96760664-e1cc-42e2-a2ab-01be2a4894ed,,;,,;8b5ee54a-b63e-4e5b-8949-a427c38ccc96,,;014e7952-7088-43fa-9124-f74452f5e065,,;c9409594-8480-4ae8-886e-9c50197db5ac,,;b2e9c771-3497-444c-b360-23b4441985a1,,;f920a0a6-f257-4ce4-8d17-2dcaa7bb7bbb,,;,,;,,"
+// data "DualWieldingSpellAnimation" "73afb4e5-8cfe-4479-95cf-16889597fee3,,;7e67bfd0-2fc2-4d10-bed5-cfda9e660de5,,;eb054308-7fce-4b85-bf4c-7a0031fda7ac,,:4a789a60-04b8-4a26-b476-65cf26ca558b,,;a11b8bcb-ba24-417a-aa86-4e4379c41ee2,,;6ec808e1-e128-44ef-9361-a713bf86de8f,,;b2e9c771-3497-444c-b360-23b4441985a1,,;f920a0a6-f257-4ce4-8d17-2dcaa7bb7bbb,,;,,;,,"
+// data "VerbalIntent" "Damage"
+// data "WeaponTypes" "Ammunition"
+// data "Sheathing" "Ranged"
+
+// ==================================== Arcane Shot: Banishing Arrow ====================================
+
+new entry "Projectile_ArcaneShot_BanishingArrow"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_ArcaneShot_Parent"
+using "Projectile_ArcaneShot_BanishingArrow"
+// data "TargetRadius" "RangedMainWeaponRange"
+// data "SpellRoll" "Attack(AttackType.RangedWeaponAttack)"
+// data "SpellSuccess" "TARGET:DealDamage(MainRangedWeapon, MainRangedWeaponDamageType);TARGET:ExecuteWeaponFunctors(MainHand);IF(not SavingThrow(Ability.Charisma,SourceSpellDC(10,context.Source,Ability.Intelligence))):ApplyStatus(BANISHED_TEMP,100,1);ApplyStatus(SELF,ARCANESHOT_USED,100,1);"
+// data "SpellFail" "IF(HasStatus('YSRSLIDFWWADNIWHWIHLY')):SpawnExtraProjectiles(Projectile_ArcaneShot_BanishingArrow);ApplyStatus(YSRSLIDFWWADNIWHWIHLY_YWNK,100,1);"
+// data "TargetConditions" "not Self() and not Dead() and Character()"
+// data "ExtraProjectileTargetConditions" "Character() and not Ally();"
+// data "Trajectories" "3efaa4f7-969e-4daf-b9c0-c6220a2a070c"
+// data "Icon" "Action_ArcaneArcher_BanishingArrow"
+// Arcane Shot: Banishing Arrow
+// data "DisplayName" "h4336aff2gfe2dg43degba75g03c6c427c4c3;2"
+// Use Abjuration magic to potentially &lt;LSTag Type="Status" Tooltip="BANISHED"&gt;Banish&lt;/LSTag&gt; your target to the Feywild.
+// data "Description" "h75544dc1g1199g4beaga7fag75d08d6ec9dc;2"
+// Your &lt;LSTag Tooltip="Intelligence"&gt;Intelligence&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt; increases the &lt;LSTag Tooltip="SpellDifficultyClass"&gt;Spell Save DC&lt;/LSTag&gt; of Arcane Shots.
+data "TooltipPermanentWarnings" "46edbd50-74b9-4e37-9f05-28505b94cf8f"
+// data "TooltipDamageList" "DealDamage(MainRangedWeapon, MainRangedWeaponDamageType)"
+// data "TooltipAttackSave" "RangedWeaponAttack;Charisma"
+// data "TooltipStatusApply" "ApplyStatus(BANISHED,100,2)"
+// data "SpellFlags" "IsAttack;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful"
+// data "HitAnimationType" "PhysicalDamage"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "PrepareEffect" "b5cb1c4e-71db-4e63-86b0-6a1af902947b"
+// data "CastEffect" "ef29bc8a-a6c8-4f05-9995-023694ddd161"
+
+// ==================================== Arcane Shot: Beguiling Arrow ====================================
+
+new entry "Projectile_ArcaneShot_BeguilingArrow"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_ArcaneShot_Parent"
+using "Projectile_ArcaneShot_BeguilingArrow"
+// data "TargetRadius" "RangedMainWeaponRange"
+// data "SpellRoll" "Attack(AttackType.RangedWeaponAttack)"
+// data "SpellSuccess" "TARGET:DealDamage(MainRangedWeapon, MainRangedWeaponDamageType);TARGET:ExecuteWeaponFunctors(MainHand);IF(not SavingThrow(Ability.Wisdom,SourceSpellDC(10,context.Source,Ability.Intelligence))):ApplyStatus(CHARMED,100,2);ApplyStatus(SELF,ARCANESHOT_USED,100,1)"
+// data "SpellFail" "IF(HasStatus('YSRSLIDFWWADNIWHWIHLY')):SpawnExtraProjectiles(Projectile_ArcaneShot_BeguilingArrow);ApplyStatus(YSRSLIDFWWADNIWHWIHLY_YWNK,100,1);"
+// data "TargetConditions" "not Self() and not Dead() and Character()"
+// data "ExtraProjectileTargetConditions" "Character() and not Ally();"
+// data "Trajectories" "7f5d228c-ef43-49e7-a136-9ba66cd64029"
+// data "Icon" "Action_ArcaneArcher_BeguilingArrow"
+// Arcane Shot: Beguiling Arrow
+// data "DisplayName" "h95da6042g7f82g47edga99agb0eb777a43aa;2"
+// Use Enchantment magic to deal an additional [1]. Target must succeed a &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt; or become &lt;LSTag Type="Status" Tooltip="CHARMED"&gt;Charmed&lt;/LSTag&gt;.
+// data "Description" "h493562b3gfa2ag4cd6g8023gcd18d0c5baf0;1"
+// data "DescriptionParams" "DealDamage(2d6,Psychic)"
+// Your &lt;LSTag Tooltip="Intelligence"&gt;Intelligence&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt; increases the &lt;LSTag Tooltip="SpellDifficultyClass"&gt;Spell Save DC&lt;/LSTag&gt; of Arcane Shots.
+data "TooltipPermanentWarnings" "46edbd50-74b9-4e37-9f05-28505b94cf8f"
+// data "TooltipDamageList" "DealDamage(MainRangedWeapon, MainRangedWeaponDamageType);DealDamage(2d6,Psychic)"
+// data "TooltipAttackSave" "RangedWeaponAttack;Wisdom"
+// data "TooltipStatusApply" "ApplyStatus(CHARMED,100,2)"
+// data "SpellFlags" "IsAttack;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful"
+// data "HitAnimationType" "PhysicalDamage"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "PrepareEffect" "e116e9f5-8395-4f67-9bb5-1875fcb84e1d"
+// data "CastEffect" "aa469004-ed29-486d-b8da-e752b89ebb1e"
+
+// ==================================== Arcane Shot: Enfeebling Arrow ====================================
+
+new entry "Projectile_ArcaneShot_EnfeeblingArrow"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_ArcaneShot_Parent"
+using "Projectile_ArcaneShot_EnfeeblingArrow"
+// data "TargetRadius" "RangedMainWeaponRange"
+// data "SpellRoll" "Attack(AttackType.RangedWeaponAttack)"
+// data "SpellSuccess" "TARGET:DealDamage(MainRangedWeapon, MainRangedWeaponDamageType);TARGET:ExecuteWeaponFunctors(MainHand);IF(not SavingThrow(Ability.Constitution,SourceSpellDC(10,context.Source,Ability.Intelligence))):ApplyStatus(ENFEEBLINGARROW,100,2);ApplyStatus(SELF,ARCANESHOT_USED,100,1)"
+// data "SpellFail" "IF(HasStatus('YSRSLIDFWWADNIWHWIHLY')):SpawnExtraProjectiles(Projectile_ArcaneShot_EnfeeblingArrow);ApplyStatus(YSRSLIDFWWADNIWHWIHLY_YWNK,100,1);"
+// data "TargetConditions" "not Self() and not Dead() and Character()"
+// data "ExtraProjectileTargetConditions" "Character() and not Ally();"
+// data "Trajectories" "4b07abd4-5c71-451d-a45e-a0b1fcaae78b"
+// data "Icon" "Action_ArcaneArcher_EnfeeblingArrow"
+// Arcane Shot: Enfeebling Arrow
+// data "DisplayName" "h10c0e295g2834g4139g9cd5g51e611a62f09;2"
+// Use Necromantic magic to deal an additional [1]. Target must succeed a &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt; or become &lt;LSTag Type="Status" Tooltip="ENFEEBLINGARROW"&gt;Feeble&lt;/LSTag&gt;.
+// data "Description" "hecc07b75geffeg4b3dgb7cfg7efa14222c95;1"
+// data "DescriptionParams" "DealDamage(2d6,Necrotic)"
+// Your &lt;LSTag Tooltip="Intelligence"&gt;Intelligence&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt; increases the &lt;LSTag Tooltip="SpellDifficultyClass"&gt;Spell Save DC&lt;/LSTag&gt; of Arcane Shots.
+data "TooltipPermanentWarnings" "46edbd50-74b9-4e37-9f05-28505b94cf8f"
+// data "TooltipDamageList" "DealDamage(MainRangedWeapon, MainRangedWeaponDamageType);DealDamage(2d6,Necrotic)"
+// data "TooltipAttackSave" "RangedWeaponAttack;Constitution"
+// data "TooltipStatusApply" "ApplyStatus(ENFEEBLINGARROW,100,2)"
+// data "SpellFlags" "IsAttack;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful"
+// data "HitAnimationType" "PhysicalDamage"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "PrepareEffect" "bd0e152c-aff7-47b0-b2e7-6d4576216765"
+// data "CastEffect" "8609a43f-41ae-4937-8b85-3945a72c0b25"
+
+// ==================================== Arcane Shot: Grasping Arrow ====================================
+
+new entry "Projectile_ArcaneShot_GraspingArrow"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_ArcaneShot_Parent"
+using "Projectile_ArcaneShot_GraspingArrow"
+// data "TargetRadius" "RangedMainWeaponRange"
+// data "SpellRoll" "Attack(AttackType.RangedWeaponAttack)"
+// data "SpellSuccess" "TARGET:DealDamage(MainRangedWeapon, MainRangedWeaponDamageType);TARGET:ExecuteWeaponFunctors(MainHand);IF(not SavingThrow(Ability.Strength,SourceSpellDC(10,context.Source,Ability.Intelligence))):ApplyStatus(GRASPINGARROW,100,10);ApplyStatus(SELF,ARCANESHOT_USED,100,1)"
+// data "SpellFail" "IF(HasStatus('YSRSLIDFWWADNIWHWIHLY')):SpawnExtraProjectiles(Projectile_ArcaneShot_GraspingArrow);ApplyStatus(YSRSLIDFWWADNIWHWIHLY_YWNK,100,1);"
+// data "TargetConditions" "not Self() and not Dead() and Character()"
+// data "ExtraProjectileTargetConditions" "Character() and not Ally();"
+// data "Trajectories" "2c6b5e16-37a1-4f47-87de-4db65a779f55"
+// data "Icon" "Action_ArcaneArcher_GraspingArrow"
+// Arcane Shot: Grasping Arrow
+// data "DisplayName" "hd09a6124g3393g4a85gae8dg197743d2ab74;2"
+// Deal an additional [1]. Affected entity's <LSTag Tooltip="MovementSpeed">Movement Speed</LSTag> is reduced by [3] and it will take [2] when it moves.
+// data "Description" "hd405bdcag901dg4d23ga492ga3473a4ab1a5;5"
+// data "DescriptionParams" "DealDamage(2d6,Poison);DealDamage(2d6,Slashing);Distance(3)"
+// Your &lt;LSTag Tooltip="Intelligence"&gt;Intelligence&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt; increases the &lt;LSTag Tooltip="SpellDifficultyClass"&gt;Spell Save DC&lt;/LSTag&gt; of Arcane Shots.
+data "TooltipPermanentWarnings" "46edbd50-74b9-4e37-9f05-28505b94cf8f"
+// data "TooltipDamageList" "DealDamage(MainRangedWeapon, MainRangedWeaponDamageType);DealDamage(2d6,Poison)"
+// data "TooltipAttackSave" "RangedWeaponAttack;Strength"
+// data "TooltipStatusApply" "ApplyStatus(GRASPINGARROW,100,10)"
+// data "SpellFlags" "IsAttack;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful"
+// data "HitAnimationType" "PhysicalDamage"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "PrepareEffect" "2ba5d164-9480-49ed-920b-2e6c0d9f898b"
+// data "CastEffect" "658df566-faab-42be-ad55-acedab5bcb91"
+
+// ==================================== Arcane Shot: Piercing Arrow ====================================
+// Bug Fix: Tooltip now states that the target still takes half damage on a successful save.
+
+new entry "Zone_ArcaneShot_PiercingArrow"
+type "SpellData"
+data "SpellType" "Zone"
+using "Zone_ArcaneShot_PiercingArrow"
+// data "SurfaceType" "Sentinel"
+// data "SurfaceLifetime" "0"
+// data "SurfaceGrowStep" "5"
+// data "SurfaceGrowInterval" "10"
+// data "SpellRoll" "not SavingThrow(Ability.Dexterity,SourceSpellDC(10,context.Source,Ability.Intelligence))"
+// data "SpellSuccess" "DealDamage(MainRangedWeapon+1d6, MainRangedWeaponDamageType);ExecuteWeaponFunctors(MainHand)"
+// data "SpellFail" "DealDamage(MainRangedWeapon+(1d6/2), MainRangedWeaponDamageType);ExecuteWeaponFunctors(MainHand)"
+// data "TargetConditions" "not Self() and not Dead() and Character()"
+// data "Icon" "Action_ArcaneArcher_PiercingArrow"
+// Arcane Shot: Piercing Arrow
+// data "DisplayName" "h801f618egd2efg4780gae49g4224e117b35a;1"
+// Use Transmutation magic to attack all those within the line of your shot. Each target must succeed a &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt; or be dealt an additional [1].
+// data "Description" "h70d52eeag1e71g4ca0gb307g15be6d18317b;1"
+// data "DescriptionParams" "DealDamage(1d6,Piercing)"
+// Your &lt;LSTag Tooltip="Intelligence"&gt;Intelligence&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt; increases the &lt;LSTag Tooltip="SpellDifficultyClass"&gt;Spell Save DC&lt;/LSTag&gt; of Arcane Shots.
+data "TooltipPermanentWarnings" "46edbd50-74b9-4e37-9f05-28505b94cf8f"
+// Targets still take half damage.
+data "TooltipOnSave" "f762efbb-f8f1-493e-b248-2de1567b4bd2"
+// data "TooltipDamageList" "DealDamage(MainRangedWeapon, MainRangedWeaponDamageType);DealDamage(1d6,Piercing)"
+// data "TooltipAttackSave" "Dexterity"
+// data "PreviewCursor" "Bow"
+// data "CastTextEvent" "Cast"
+// data "Shape" "Square"
+// data "FrontOffset" "-2"
+// data "Range" "10"
+// data "Base" "2"
+// data "UseCosts" "ActionPoint:1;ArcaneShot:1;"
+// data "SpellAnimation" "96760664-e1cc-42e2-a2ab-01be2a4894ed,,;,,;8b5ee54a-b63e-4e5b-8949-a427c38ccc96,,;014e7952-7088-43fa-9124-f74452f5e065,,;c9409594-8480-4ae8-886e-9c50197db5ac,,;b2e9c771-3497-444c-b360-23b4441985a1,,;f920a0a6-f257-4ce4-8d17-2dcaa7bb7bbb,,;,,;,,"
+// data "VerbalIntent" "Damage"
+// data "WeaponTypes" "Ammunition"
+// data "SpellFlags" "IsAttack;IsHarmful;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "PrepareEffect" "f3e509b9-9dbc-4174-a48c-d905e121d5ac"
+// data "CastEffect" "349bf494-7f68-4196-93aa-c7cefa010a81"
+// data "HitEffect" "54384328-a59f-4b8d-bb6d-b763f6c6d82f"
+// data "Sheathing" "Ranged"
+
+// ==================================== Arcane Shot: Seeking Arrow ====================================
+
+new entry "Projectile_ArcaneShot_SeekingArrow"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_ArcaneShot_Parent"
+using "Projectile_ArcaneShot_SeekingArrow"
+// data "TargetRadius" "RangedMainWeaponRange"
+// data "SpellRoll" "not SavingThrow(Ability.Dexterity,SourceSpellDC(10,context.Source,Ability.Intelligence))"
+// data "SpellSuccess" "TARGET:DealDamage(MainRangedWeapon, MainRangedWeaponDamageType);TARGET:ExecuteWeaponFunctors(MainHand);ApplyStatus(FAERIE_FIRE,100,2);ApplyStatus(SELF,ARCANESHOT_USED,100,1)"
+// data "SpellFail" "TARGET:DealDamage(MainRangedWeapon, MainRangedWeaponDamageType);TARGET:ExecuteWeaponFunctors(MainHand)"
+// data "TargetConditions" "not Self() and not Dead() and Character()"
+// data "Trajectories" "83cf4d39-e2f1-4118-a552-726fd1b61c1b"
+// data "Icon" "Action_ArcaneArcher_SeekingArrow"
+// Arcane Shot: Seeking Arrow
+// data "DisplayName" "ha304cd89ge55ag4f04g8819g485c54f2900c;2"
+// Use Divination magic to make your arrow seek a target. The arrow deals an additional [1] and possibly applies <LSTag Type="Status" Tooltip="FAERIE_FIRE">Faerie Fire</LSTag>.
+// data "Description" "hc9a863b5g02e2g432fg9bb0g197bdf9ccc92;3"
+// data "DescriptionParams" "DealDamage(1d6,Force)"
+// This arrow always hits its target.
+// data "ExtraDescription" "h30287666ge193g488dgbcd5g5078e1d382b4;1"
+// Your &lt;LSTag Tooltip="Intelligence"&gt;Intelligence&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt; increases the &lt;LSTag Tooltip="SpellDifficultyClass"&gt;Spell Save DC&lt;/LSTag&gt; of Arcane Shots.
+data "TooltipPermanentWarnings" "46edbd50-74b9-4e37-9f05-28505b94cf8f"
+// data "TooltipDamageList" "DealDamage(MainRangedWeapon, MainRangedWeaponDamageType);DealDamage(1d6,Force)"
+// data "TooltipAttackSave" "Dexterity"
+// data "TooltipStatusApply" "ApplyStatus(FAERIE_FIRE,100,2)"
+// data "TooltipOnMiss" ""
+// data "UseCosts" "ActionPoint:1;ArcaneShot:1;"
+// data "HitCosts" ""
+// data "SpellFlags" "IsAttack;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful"
+// data "HitAnimationType" "PhysicalDamage"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "PrepareEffect" "85abf30d-cd09-4fdf-bfe3-c4c718e15ec8"
+// data "CastEffect" "65825ed0-4404-44f1-bae1-90e825e9d099"
+
+// ==================================== Arcane Shot: Shadow Arrow ====================================
+
+new entry "Projectile_ArcaneShot_ShadowArrow"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_ArcaneShot_Parent"
+using "Projectile_ArcaneShot_ShadowArrow"
+// data "TargetRadius" "RangedMainWeaponRange"
+// data "SpellRoll" "Attack(AttackType.RangedWeaponAttack)"
+// data "SpellSuccess" "TARGET:DealDamage(MainRangedWeapon, MainRangedWeaponDamageType);TARGET:ExecuteWeaponFunctors(MainHand);IF(not SavingThrow(Ability.Wisdom,SourceSpellDC(10,context.Source,Ability.Intelligence))):ApplyStatus(BLINDED,100,2);ApplyStatus(SELF,ARCANESHOT_USED,100,1)"
+// data "SpellFail" "IF(HasStatus('YSRSLIDFWWADNIWHWIHLY')):SpawnExtraProjectiles(Projectile_ArcaneShot_ShadowArrow);ApplyStatus(YSRSLIDFWWADNIWHWIHLY_YWNK,100,1);"
+// data "TargetConditions" "not Self() and not Dead() and Character()"
+// data "ExtraProjectileTargetConditions" "Character() and not Ally();"
+// data "Trajectories" "89725bd0-5cd6-41a5-b09e-46635ed52921"
+// data "Icon" "Action_ArcaneArcher_ShadowArrow"
+// Arcane Shot: Shadow Arrow
+// data "DisplayName" "h963781b4gd2b3g460egb6fcg8c1c48cea0cc;2"
+// Use Illusion magic to deal an additional [1]. Target must succeed a <LSTag Tooltip="SavingThrow">Saving Throw</LSTag> or become <LSTag Type="Status" Tooltip="BLINDED">Blinded</LSTag>.
+// data "Description" "h2dc96564g688ag48bbg9f3bgab00c27b3c2d;1"
+// data "DescriptionParams" "DealDamage(2d6,Psychic)"
+// Your &lt;LSTag Tooltip="Intelligence"&gt;Intelligence&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt; increases the &lt;LSTag Tooltip="SpellDifficultyClass"&gt;Spell Save DC&lt;/LSTag&gt; of Arcane Shots.
+data "TooltipPermanentWarnings" "46edbd50-74b9-4e37-9f05-28505b94cf8f"
+// data "TooltipDamageList" "DealDamage(MainRangedWeapon, MainRangedWeaponDamageType);DealDamage(2d6,Psychic)"
+// data "TooltipAttackSave" "RangedWeaponAttack;Wisdom"
+// data "TooltipStatusApply" "ApplyStatus(BLINDED,100,2)"
+// data "SpellFlags" "IsAttack;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful"
+// data "HitAnimationType" "PhysicalDamage"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "PrepareEffect" "cfca93ec-07d8-4c37-af5a-b35646cbac31"
+// data "CastEffect" "70114f76-0a85-4b8d-a555-bda8a6cf2d68"
