@@ -1,5 +1,5 @@
 // ==================================== Eldritch Knight - Weapon Bond ====================================
-// Changes: Bonded weapons gain the Thrown weapon property. 
+// Changes: Bonded weapons gain the Thrown weapon property.
 // Bonus: Native support for Ninjoma's Returning Weapon QoL mod. (Hard requirement)
 
 new entry "WEAPON_BOND"

@@ -1,5 +1,5 @@
 // ==================================== Arcane Shot ====================================
-// Changes: Tooltips now specify that the Spell Save DC of Arcane Shots increase with Intelligence your Intelligence Modifier.
+// Changes: Tooltips now specify that the Spell Save DC of Arcane Shots increase with your Intelligence Modifier.
 
 // new entry "ArcaneShot"
 // type "PassiveData"
