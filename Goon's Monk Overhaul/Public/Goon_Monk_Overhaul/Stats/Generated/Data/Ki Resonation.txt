@@ -1,5 +1,5 @@
 // ==================================== Ki Resonation ====================================
-// Bug Fix: Now uses Wisdom for the Spell Save DC instead of the default.
+// Bug Fix: Now uses Wisdom as the spellcasting modifier instead of the default.
 
 new entry "Projectile_KiResonation_Blast_Target"
 type "SpellData"
