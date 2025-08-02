@@ -1,5 +1,6 @@
 // ==================================== Curving Shot ====================================
 // Bug Fix: The once per turn cooldown is now visible in the tooltip.
+// TODO: Actually gonna remove the cooldown and the bloated KHN check, just check if the attack itself has the appropriate string for functionality.
 
 new entry "Interrupt_CurvingShot"
 type "InterruptData"
