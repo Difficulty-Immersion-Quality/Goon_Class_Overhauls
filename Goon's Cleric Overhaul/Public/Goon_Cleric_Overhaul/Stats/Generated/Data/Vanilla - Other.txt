@@ -8,9 +8,9 @@ using "BlessedHealer"
 // data "DisplayName" "h48637ed4g58fbg4a91g8ec3g44da4c4fca2c;2"
 // Healing others heals you as well.&lt;br&gt;&lt;br&gt;When you cast a healing spell of Level 1 or higher on another creature, you regain hit points equal to 2 + the spell's level.
 // data "Description" "h770f3c68g776eg4dcagb86eg68c2f89e422b;15"
-// Healing others heals you as well.&lt;br&gt;&lt;br&gt;When you cast a healing spell of Level 1 or higher on another creature, you regain [1] (2 + the spell's level).
+// Healing others heals you as well.&lt;br&gt;&lt;br&gt;When you cast a healing spell of Level 1 or higher on another creature you regain [1], and additional[2] equal to the spell's level.
 data "Description" "h51303c3fgb200g4872gbe87g039cf483604b;1"
-data "DescriptionParams" "RegainHitPoints(2+SpellPowerLevel)"
+data "DescriptionParams" "RegainHitPoints(2);RegainHitPoints()"
 // data "Icon" "GenericIcon_Intent_Healing"
 // data "Properties" "Highlighted"
 // data "StatsFunctorContext" "OnHeal"
