@@ -1,0 +1,16 @@
+// ==================================== Divine Smite - Spells ====================================
+
+new entry "Target_Smite_Divine"
+type "SpellData"
+data "SpellType" "Target"
+// using "Target_MainHandAttack"
+using "Target_Smite_Divine"
+data "RequirementConditions" "Goon_HasUnbrokenOath()"
+
+// ==================================== Divine Smite - Interrupts ====================================
+
+new entry "Interrupt_Smite_Divine"
+type "InterruptData"
+using "Interrupt_Smite_Divine"
+// data "EnableCondition" "not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
+data "EnableCondition" "Goon_HasUnbrokenOath() and (not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus())"
