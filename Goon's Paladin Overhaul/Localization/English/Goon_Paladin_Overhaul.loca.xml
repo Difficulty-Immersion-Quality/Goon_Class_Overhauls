@@ -8,7 +8,7 @@
 	<!-- "ImprovedDivineSmite" --> <content contentuid="h81f9760cg8453g48c4gbed3g13853747deb8" version="1">Suffuse your melee weapon with divine might.&lt;br&gt;&lt;br&gt;Melee and thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; using melee weapons deal an additional [1].</content>
 	<!-- "ImprovedUnholySmite" --> <content contentuid="h0b02bb5dg7b6bg4c19g9e57gec3ade165694" version="1">Suffuse your melee weapon with unholy might.&lt;br&gt;&lt;br&gt;Melee and thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; using melee weapons deal an additional [1].</content>
 	
-	<!-- "4639a885-0f45-4bc9-93c7-1e0c39eb39ec" --> <content contentuid="h516a0fc7g341bg4e06gbbc9ga710ddda3852" version="1">Does not consume a &lt;LSTag Tooltip="SpellSlot"&gt;Spell Slot&lt;/LSTag&gt;.</content>
+	<!-- "4639a885-0f45-4bc9-93c7-1e0c39eb39ec" --> <content contentuid="h4ceab349gc6a4g48abgb3cage671d82472c3" version="1">Does not consume a &lt;LSTag Tooltip="SpellSlot"&gt;Spell Slot&lt;/LSTag&gt;.</content>
 
 	<!-- "Target_Smite_Divine" --> <content contentuid="h292322a1g75e0g4cd7ga56dg469ddf832871" version="1">Deals an additional [1] to Fiends and Undead.</content>
 

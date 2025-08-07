@@ -8,7 +8,7 @@
                     <!-- Does not spend a &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt;. -->
                     <!-- <attribute id="Text" type="TranslatedString" handle="hea463d7fg404cg4825g8dedgdeebc97b9914" version="1"/> -->
                     <!-- Does not consume a &lt;LSTag Tooltip="SpellSlot"&gt;Spell Slot&lt;/LSTag&gt;. -->
-                    <attribute id="Text" type="TranslatedString" handle="h516a0fc7g341bg4e06gbbc9ga710ddda3852" version="1"/>
+                    <attribute id="Text" type="TranslatedString" handle="h4ceab349gc6a4g48abgb3cage671d82472c3" version="1"/>
                     <attribute id="UUID" type="guid" value="4639a885-0f45-4bc9-93c7-1e0c39eb39ec"/>
                 </node>
             </children>
