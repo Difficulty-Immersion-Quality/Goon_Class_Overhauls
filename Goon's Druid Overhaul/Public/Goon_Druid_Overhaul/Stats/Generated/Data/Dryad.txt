@@ -1,0 +1,47 @@
+// ==================================== Nature's Step ====================================
+// Changes: Entering the aura no longer applies generic buff VFX.
+
+new entry "NaturesStep_Dryad"
+type "PassiveData"
+using "NaturesStep_Dryad"
+// Nature's Step
+// data "DisplayName" "hb8dd807bg0a31g495eg831cg0f9e3f6aef91;2"
+// Alter the terrain around you, allowing nearby allies in the area to travel with ease. &lt;br&gt;&lt;br&gt;You and your allies aren't affected by &lt;LSTag Type="Status" Tooltip="DIFFICULT_TERRAIN"&gt;Difficult Terrain&lt;/LSTag&gt;, can't be &lt;LSTag Type="Status" Tooltip=""&gt;Restrained&lt;/LSTag&gt; or &lt;LSTag Type="Status" Tooltip=""&gt;Paralysed&lt;/LSTag&gt;, and gain &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to Poison damage.
+// data "Description" "h3ae49e6fg10a2g468eg99bdg1442ff2cf8b4;3"
+// Alter the terrain around you, allowing nearby allies in the area to travel with ease. &lt;br&gt;&lt;br&gt;You and your allies aren't affected by &lt;LSTag Type="Status" Tooltip="DIFFICULT_TERRAIN"&gt;Difficult Terrain&lt;/LSTag&gt;, can't be &lt;LSTag Type="Status" Tooltip=""&gt;Restrained&lt;/LSTag&gt; or &lt;LSTag Type="Status" Tooltip=""&gt;Paralysed&lt;/LSTag&gt;, and gain &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to[1].
+data "Description" "h20769342g7e45g4cd5gb862g3b08f2b7a1f2;1"
+data "DescriptionParams" "DealDamage(,Poison)"
+// data "Icon" "PassiveFeature_Generic_Nature"
+// data "Properties" "IsToggled;ToggledDefaultAddToHotbar;Highlighted;ToggledDefaultOn"
+// data "ToggleOnFunctors" "ApplyStatus(NATURES_STEP_AURA_DRYAD,100,-1)"
+// data "ToggleOffFunctors" "RemoveStatus(NATURES_STEP_AURA_DRYAD)"
+
+// new entry "NATURES_STEP_AURA_DRYAD"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// Nature's Step
+// data "DisplayName" "h33c20c38gca97g489dga8b2g124541424fc2;2"
+// Nearby allies have &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; against Poison damage and can move freely in the nearby area.
+// data "Description" "hb81c6bcfg5c2bg4564g832ag03200789290e;2"
+// data "Icon" "PassiveFeature_Generic_Nature"
+// data "StackId" "NATURES_STEP_AURA_DRYAD"
+// data "AuraRadius" "4"
+// data "AuraStatuses" "TARGET:IF(Ally() or Self()):ApplyStatus(NATURES_STEP_RESISTANCE_DRYAD,100,-1)"
+// data "Boosts" "StatusImmunity(SG_Paralyzed);StatusImmunity(SG_Restrained);StatusImmunity(SG_DifficultTerrain)"
+// data "StatusPropertyFlags" "DisableCombatlog"
+// data "StatusEffect" "daf2c510-3837-4596-a94e-0c28466d18f2"
+
+new entry "NATURES_STEP_RESISTANCE_DRYAD"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "RESISTANCE_POISON"
+using "NATURES_STEP_RESISTANCE_DRYAD"
+// data "StackId" "NATURES_STEP_RESISTANCE_DRYAD"
+// data "Boosts" "Resistance(Poison, Resistant);StatusImmunity(SG_Paralyzed);StatusImmunity(SG_Restrained);StatusImmunity(SG_DifficultTerrain)"
+// data "StatusPropertyFlags" "DisableCombatlog;DisableOverhead"
+// data "ApplyEffect" "6c411017-21be-4af3-8615-ed0db2cf947a"
+data "ApplyEffect" ""
+// data "ManagedStatusEffectType" "Positive"
+data "ManagedStatusEffectType" ""
+// data "ManagedStatusEffectGroup" "6435c10a-c67d-4f79-8813-b84b0762f92b"
+data "ManagedStatusEffectGroup" ""

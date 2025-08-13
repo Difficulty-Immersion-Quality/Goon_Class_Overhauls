@@ -1,0 +1,69 @@
+// ==================================== Prowl ====================================
+// Changes: No longer has a hidden once per short rest cooldown.
+// Changes: Added a once per combat cooldown.
+
+new entry "Shout_Prowl_Panther"
+type "SpellData"
+data "SpellType" "Shout"
+// using "Shout_Invisibility_Myrmidon_Air"
+using "Shout_Prowl_Panther"
+// data "Cooldown" ""
+data "Cooldown" "OncePerCombat"
+// data "SpellProperties" "AI_IGNORE:ApplyStatus(INVISIBILITY_PANTHER,100,-1);AI_ONLY:ApplyStatus(INVISIBILITY_PANTHER,100,2); ApplyStatus(PROWL,100,-1);ApplyStatus(PROWL_USED,100,-1)"
+data "SpellProperties" "AI_IGNORE:ApplyStatus(INVISIBILITY_PANTHER,100,-1);AI_ONLY:ApplyStatus(INVISIBILITY_PANTHER,100,2); ApplyStatus(PROWL,100,-1)"
+// Prowl
+// data "DisplayName" "h047a0c6fg043eg4f79gb497g7b5b25899f8a;2"
+// Turn &lt;LSTag Type="Status" Tooltip="INVISIBLE"&gt;Invisible&lt;/LSTag&gt; while stalking your prey. While Invisible, your first attack deals an additional [1] damage.
+// data "Description" "h277a5323g8a85g4329g8482g50f1a50bb124;3"
+// data "DescriptionParams" "1d8"
+// data "ExtraDescription" ""
+// data "TooltipStatusApply" "ApplyStatus(INVISIBILITY,100,-1);ApplyStatus(PROWL,100,-1)"
+// data "PrepareSound" "CrSpell_Prepare_Panther"
+// data "CastSound" "CrSpell_Cast_Prowl"
+// data "TargetSound" "CrSpell_Impact_Prowl"
+// data "SpellAnimation" "5e57443f-284e-47b2-915e-5b6417db269c,,;d8b7f668-db2b-43b0-9707-5da2ed2cf27e,,;7521e279-1bb3-4105-b32d-8206234836a3,,;d172e037-7041-4352-9a20-5f4b185f9ef1,,;5bcdefbb-2194-46c2-ac77-0b2d8472a5f7,,;,,;5fdb66be-7506-411a-a7ea-c4783288aac8,,;,,;,,"
+// data "SpellFlags" "UnavailableInDialogs;IsMelee;Wildshape"
+// data "RequirementConditions" "not HasStatus('PROWL_USED')  "
+// data "PrepareEffect" "33257c27-914e-412f-9926-00bc3c39b055"
+// data "CastEffect" "7a3c8d6f-0ea3-40ca-8f0e-0e17fcc7ebf7"
+// data "Sheathing" "DontChange"
+
+// new entry "INVISIBILITY_PANTHER"
+// type "StatusData"
+// data "StatusType" "INVISIBLE"
+// using "INVISIBILITY"
+// data "Boosts" "IgnoreLeaveAttackRange; Invisibility(); Advantage(AttackRoll); DetectDisturbancesBlock(true); Advantage(Skill, Stealth)"
+// data "StatusPropertyFlags" "UnavailableInActiveRoll;ExcludeFromPortraitRendering"
+// data "RemoveConditions" "(IsStatusEvent(StatusEvent.OnSpellCast) and not HasSpellFlag(SpellFlags.Invisible)) or (IsStatusEvent(StatusEvent.OnDamage) and TotalDamageDoneGreaterThan(0)) or (not IsStatusEvent(StatusEvent.OnSpellCast) and not IsStatusEvent(StatusEvent.OnDamage)) or not HasStatus('WILDSHAPE_PANTHER_PLAYER')"
+// TODO: This field is overwritten in Goon's Condition and Surface Overhaul, what to do...
+// data "RemoveConditions" "(IsStatusEvent(StatusEvent.OnSpellCast) and not HasSpellFlag(SpellFlags.Invisible)) or (IsStatusEvent(StatusEvent.OnDamage) and TotalDamageDoneGreaterThan(0)) or (not IsStatusEvent(StatusEvent.OnSpellCast) and not IsStatusEvent(StatusEvent.OnDamage)) or (not Tagged('PANTHER'))"
+
+new entry "PROWL"
+type "StatusData"
+data "StatusType" "BOOST"
+using "PROWL"
+// Prowling
+// data "DisplayName" "h807e8fe1gbfc6g4850g92fdg5ae7ed646f1a;2"
+// Stalking its prey.&lt;br&gt;&lt;br&gt;While &lt;LSTag Type="Status" Tooltip="INVISIBLE"&gt;Invisible&lt;/LSTag&gt;, the affected entity's next attack deals an additional [1] damage.
+// data "Description" "h161a56cegf744g4b38ga5fcg18cab3bb5fde;4"
+// data "DescriptionParams" "1d8"
+// data "Icon" "GenericIcon_Intent_Utility"
+// data "StackId" "PROWL"
+// data "Boosts" "DamageBonus(1d8)"
+// data "RemoveConditions" "SpellId('Target_Bite_Panther') or SpellId('Target_JugularStrike_Panther') or SpellId('Projectile_Pounce_Panther_Summon') or not HasStatus('WILDSHAPE_PANTHER_PLAYER')"
+data "RemoveConditions" "SpellId('Target_Bite_Panther') or SpellId('Target_JugularStrike_Panther') or SpellId('Projectile_Pounce_Panther_Summon') or not Tagged('PANTHER')"
+// data "RemoveEvents" "OnAttack;OnStatusRemoved"
+// data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog"
+
+new entry "PROWL_USED"
+type "StatusData"
+data "StatusType" "BOOST"
+using "PROWL_USED"
+// %%% EMPTY
+// data "DisplayName" "h47f761b2g0ecdg4f6egbcfeg092e930e8123;3"
+// data "StackId" "PROWL_USED"
+// data "Passives" "Prowl_ShortRest_Panther"
+// data "RemoveConditions" "not HasStatus('WILDSHAPE_PANTHER_PLAYER') "
+data "RemoveConditions" "not Tagged('PANTHER')"
+// data "RemoveEvents" "OnStatusApplied;OnStatusRemoved"
+// data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"

@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentList>
+	<!-- "NaturesStep_Dryad" --> <content contentuid="h20769342g7e45g4cd5gb862g3b08f2b7a1f2" version="1">Alter the terrain around you, allowing nearby allies in the area to travel with ease. &lt;br&gt;&lt;br&gt;You and your allies aren't affected by &lt;LSTag Type="Status" Tooltip="DIFFICULT_TERRAIN"&gt;Difficult Terrain&lt;/LSTag&gt;, can't be &lt;LSTag Type="Status" Tooltip=""&gt;Restrained&lt;/LSTag&gt; or &lt;LSTag Type="Status" Tooltip=""&gt;Paralysed&lt;/LSTag&gt;, and gain &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to[1].</content>
+
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
