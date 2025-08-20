@@ -1,0 +1,16 @@
+{
+  "FileVersion": 1,
+  "Progressions": [
+    {
+      "Comment": "Give Bladesinger War Magic at level 6, alongside Extra Attack",
+      "UUID": "ed500d02-ae15-434a-944e-65b845b62d74",
+      "Strings": [
+        {
+          "Action": "Insert",
+          "Type": "PassivesAdded",
+          "Strings": ["WarMagic"]
+        }
+      ]
+    }
+  ]
+}
