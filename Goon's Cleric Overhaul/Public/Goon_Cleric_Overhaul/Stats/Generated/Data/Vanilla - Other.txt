@@ -1,5 +1,6 @@
 // ==================================== Life Domain - Blessed Healer ====================================
 // Bug Fix: Blessed Healer now only heals the caster as is specified in the tooltip, when you target others with healing spells, instead of all the Cleric's healing sources.
+// TODO: These descriptions are fucked
 
 new entry "BlessedHealer"
 type "PassiveData"
@@ -8,9 +9,9 @@ using "BlessedHealer"
 // data "DisplayName" "h48637ed4g58fbg4a91g8ec3g44da4c4fca2c;2"
 // Healing others heals you as well.&lt;br&gt;&lt;br&gt;When you cast a healing spell of Level 1 or higher on another creature, you regain hit points equal to 2 + the spell's level.
 // data "Description" "h770f3c68g776eg4dcagb86eg68c2f89e422b;15"
-// Healing others heals you as well.&lt;br&gt;&lt;br&gt;When you cast a healing spell of Level 1 or higher on another creature you regain [1], and additional[2] equal to the spell's level.
+// Healing others heals you as well.&lt;br&gt;&lt;br&gt;When casting a healing spell on another creature, you regain[1] equal to 2 + the spell's level.
 data "Description" "h51303c3fgb200g4872gbe87g039cf483604b;1"
-data "DescriptionParams" "RegainHitPoints(2);RegainHitPoints()"
+data "DescriptionParams" "RegainHitPoints(,)"
 // data "Icon" "GenericIcon_Intent_Healing"
 // data "Properties" "Highlighted"
 // data "StatsFunctorContext" "OnHeal"
@@ -29,9 +30,9 @@ using "DiscipleOfLife"
 // data "DisplayName" "h67fe33fdg46c1g415bg95c6g20291e2c1ea8;1"
 // Your devotion empowers your healing spells. When casting a healing spell, the target regains additional &lt;LSTag Tooltip="HitPoints"&gt;hit points&lt;/LSTag&gt; equal to 2 + the spell's level.
 // data "Description" "hb803dc22g3235g468fgb4c5g4746de773573;1"
-// Your devotion empowers your healing spells. When successfully healing a creature with a healing spell or &lt;LSTag Type="Spell" Tooltip="Shout_AuraOfVitality"&gt;Restore Vitality&lt;/LSTag&gt;, the target regains an additional [1] (2 + the spell's level).
+// Your devotion empowers your healing spells. When successfully healing a creature with a healing spell or &lt;LSTag Type="Spell" Tooltip="Shout_AuraOfVitality"&gt;Restore Vitality&lt;/LSTag&gt;, it regains additional[1] equal to 2 + the spell's level.
 data "Description" "h0451c245ga622g4458g8053g5c3b1017b7f6;1"
-data "DescriptionParams" "RegainHitPoints(2+SpellPowerLevel)"
+data "DescriptionParams" "RegainHitPoints(,)"
 // data "Icon" "PassiveFeature_DiscipleOfLife"
 // data "Properties" "Highlighted"
 // data "StatsFunctorContext" "OnHeal"

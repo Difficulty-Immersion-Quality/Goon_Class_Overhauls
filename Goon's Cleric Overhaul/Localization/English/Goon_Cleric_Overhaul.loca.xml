@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentList>
-	<!-- "DiscipleOfLife" --> <content contentuid="h0451c245ga622g4458g8053g5c3b1017b7f6" version="1">Your devotion empowers your healing spells. When successfully healing a creature with a healing spell or &lt;LSTag Type="Spell" Tooltip="Shout_AuraOfVitality"&gt;Restore Vitality&lt;/LSTag&gt;, the target regains an additional [1] (2 + the spell's level).</content>
-	<!-- "BlessedHealer" --> <content contentuid="h51303c3fgb200g4872gbe87g039cf483604b" version="1">Healing others heals you as well.&lt;br&gt;&lt;br&gt;When you cast a healing spell of Level 1 or higher on another creature you regain [1], and additional[2] equal to the spell's level.</content>
+	<!-- "DiscipleOfLife" --> <content contentuid="h0451c245ga622g4458g8053g5c3b1017b7f6" version="1">Your devotion empowers your healing spells. When successfully healing a creature with a healing spell or &lt;LSTag Type="Spell" Tooltip="Shout_AuraOfVitality"&gt;Restore Vitality&lt;/LSTag&gt;, it regains additional[1] equal to 2 + the spell's level.</content>
+	<!-- "BlessedHealer" --> <content contentuid="h51303c3fgb200g4872gbe87g039cf483604b" version="1">Healing others heals you as well.&lt;br&gt;&lt;br&gt;When casting a healing spell on another creature, you regain[1] equal to 2 + the spell's level.</content>
 
 	<!-- "DestructiveWrath", "Interrupt_DestructiveWrath" --> <content contentuid="hb5a537abg6772g464agb790gef50cf252632" version="1">When you roll[1] or[2], you can use your &lt;LSTag Type="ActionResource" Tooltip="ChannelDivinity"&gt;Channel Divinity&lt;/LSTag&gt; to deal maximum damage instead.</content>
 
