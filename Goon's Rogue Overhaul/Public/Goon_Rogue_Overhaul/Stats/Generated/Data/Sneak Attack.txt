@@ -10,7 +10,6 @@
 // Changes: Interrupts can be used by Wildshape melee and ranged attacks that deal Piercing, Slashing or Bludgeoning damage. Magical damage is appropriately dealt when the character has Primal Strike, or another source of the "UnarmedMagicalProperty" boost.
 // TODO: Offhand & throw spell variants, put them in a container.
 // TODO: Make it work for Dex based Wildshape stuff and not like, big brawny bears.
-// TODO: Exclude Myrmidons?
 
 // ==================================== Sneak Attack - Spells
 
