@@ -13,6 +13,7 @@ function IsSmiteSpells()
          | Goon_IsStaggeringSmite()
          | Goon_IsBlackguardSmite_Xarara_Unrestricted()
          | Goon_IsVeenabSmite()
+         | SpellId('Target_Smite_Pitiless')
 end
 
 function IsDivineSmite()
@@ -22,6 +23,8 @@ function IsDivineSmite()
          | Goon_IsUnholySmite_Fade()
          | Goon_IsBeyondDivineSmite_Fade()
          | Goon_IsBlackguardSmite_Xarara_Restricted()
+         | Goon_IsMizorasRewardsSmite_Malonkey()
+         | Goon_IsOathbreakerRebornSmite_Constantine
 end
 
 -- ==================================== Lunar Smite - Vanilla and Xarara's Lunar Smite mod
@@ -675,4 +678,40 @@ function Goon_IsVeenabSmite()
          | SpellId('VBT_Projectile_LifeDrain_4') 
          | SpellId('VBT_Projectile_LifeDrain_5') 
          | SpellId('VBT_Projectile_LifeDrain_6') 
+end
+
+-- ==================================== Mizora's Rewards ====================================
+
+function Goon_IsMizorasRewardsSmite_Malonkey()
+	return Goon_IsEldritchSmite()
+end
+
+function Goon_IsEldritchSmite()
+	return SpellId('Target_Smite_Eldritch')
+         | SpellId('Target_Smite_Eldritch_2')
+         | SpellId('Target_Smite_Eldritch_3')
+         | SpellId('Target_Smite_Eldritch_4')
+         | SpellId('Target_Smite_Eldritch_5')
+         | SpellId('Target_Smite_Eldritch_6')
+         | SpellId('Target_Smite_Eldritch_7')
+         | SpellId('Target_Smite_Eldritch_8')
+         | SpellId('Target_Smite_Eldritch_9')
+end
+
+-- ==================================== Oathbreaker Reborn by K_Constantine and faceplug ====================================
+
+function Goon_IsOathbreakerRebornSmite_Constantine()
+	return Goon_IsMaliciousSmite()
+end
+
+function Goon_IsMaliciousSmite()
+    return SpellId('Target_Smite_Malicious') 
+         | SpellId('Target_Smite_Malicious_2') 
+         | SpellId('Target_Smite_Malicious_3')
+         | SpellId('Target_Smite_Malicious_4') 
+         | SpellId('Target_Smite_Malicious_5') 
+         | SpellId('Target_Smite_Malicious_6')
+         | SpellId('Target_Smite_Malicious_7')
+         | SpellId('Target_Smite_Malicious_8')
+         | SpellId('Target_Smite_Malicious_9')
 end
