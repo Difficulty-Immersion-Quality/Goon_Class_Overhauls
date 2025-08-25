@@ -6,6 +6,7 @@
 
 new entry "Interrupt_BardicInspiration_Attack"
 type "InterruptData"
+using "Interrupt_BardicInspiration_Attack"
 // Bardic Attack
 // data "DisplayName" "hc9735187g68cag427ag8680g4ec1859432dc;1"
 // Add a +[1] bonus to your &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;.
