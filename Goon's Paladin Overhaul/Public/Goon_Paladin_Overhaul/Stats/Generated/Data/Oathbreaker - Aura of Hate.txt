@@ -14,14 +14,14 @@ using "Shout_AuraOf_Hate"
 // data "DisplayName" "h927a9140g56d3g460fg9314g40fbd232b361;2"
 // You and any nearby fiends and undead gain an additional [1] to damage dealt with melee weapons.
 // data "Description" "h0c2bc9a2g8e6bg4550ga8b9gfba7b2e8462d;7"
-// You and any nearby Fiends and Undead deal an additional [1] with melee &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt;.
+// You and allied Fiends and Undead within [1] deal an additional [2] with melee &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; and when &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;throwing&lt;/LSTag&gt; melee weapons.
 data "Description" "h78b5693cge759g4e86g8160gd23afbcaa0f8;1"
 // data "DescriptionParams" "DealDamage(max(1,CharismaModifier), MainMeleeWeaponDamageType)"
 data "DescriptionParams" "Distance(3);DealDamage(max(1,Cause.CharismaModifier))"
 // data "ExtraDescription" ""
-// Additional[1] scales with the Paladin's &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt;.
+// Additional damage scales with the Paladin's &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt;.
 data "ExtraDescription" "h246e33fegca9bg4d1bgb44dgc9312a2da877;1"
-data "ExtraDescriptionParams" "DealDamage(,Necrotic)"
+data "ExtraDescriptionParams" ""
 // data "TooltipStatusApply" "ApplyStatus(AURA_OF_HATE,100,-1);"
 // data "CastSound" "Spell_Cast_Paladin_AuraOfHate_L1to3"
 // data "TargetSound" "Spell_Impact_Paladin_AuraOfHate_L1to3"
@@ -42,20 +42,21 @@ using "AURA_OF_HATE"
 // data "DisplayName" "h8aa4cdf9ga9e7g46d5gb7a1gb32901defe3c;2"
 // The paladin and any nearby fiends and undead deal an additional [1] to damage dealt with melee weapons.
 // data "Description" "h1b60bee0geb62g4184ga679g1e7f6de42926;3"
-// The Paladin and any nearby Fiends and Undead deal an additional [1] with melee &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt;.
+// The Paladin and allied Fiends and Undead within [1] deal an additional [2] with melee &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; and when &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;throwing&lt;/LSTag&gt; melee weapons.
 data "Description" "h8e371248gddd7g40dag8d49g785183b1f9eb;1"
 // data "DescriptionParams" "DealDamage(max(1,Cause.CharismaModifier), MainMeleeWeaponDamageType)"
 data "DescriptionParams" "Distance(3);DealDamage(max(1,Cause.CharismaModifier))"
-// Additional[1] scales with the Paladin's &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt;.
+// Additional damage scales with the Paladin's &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt;.
 data "ExtraDescription" "h246e33fegca9bg4d1bgb44dgc9312a2da877;1"
-data "ExtraDescriptionParams" "DealDamage(,Necrotic)"
+data "ExtraDescriptionParams" ""
 // data "Icon" "Action_Paladin_AuraOfHate"
 // data "StackId" "AURA_OF_HATE"
 // data "StackPriority" "10"
 // data "AuraRadius" "3"
 // data "AuraStatuses" "IF(not Self() and (Tagged('UNDEAD') or Tagged('FIEND'))):ApplyStatus(AURA_OF_HATE_BUFF)"
+data "AuraStatuses" "IF(not Self() and not Enemy() and (Tagged('UNDEAD') or Tagged('FIEND'))):ApplyStatus(AURA_OF_HATE_BUFF)"
 // data "Boosts" "IF(IsMeleeAttack()):CharacterWeaponDamage(max(1, Cause.CharismaModifier))"
-data "Boosts" "IF(IsMeleeAttack()):DamageBonus(max(1, Cause.CharismaModifier))"
+data "Boosts" "IF(IsMeleeAttack() or (IsRangedUnarmedAttack() and HasWeaponProperty(WeaponProperties.Melee, context.HitDescription.ThrownObject))):DamageBonus(max(1, Cause.CharismaModifier))"
 // data "StatusPropertyFlags" "ApplyToDead;IgnoreResting"
 // data "StatusGroups" "SG_RemoveOnRespec"
 
@@ -67,18 +68,18 @@ using "AURA_OF_HATE_BUFF"
 // data "DisplayName" "hfa4ad8dfge9efg4f7fg8bc2g664c49a83964;2"
 // Deals an additional [2] to damage dealt with melee weapons within [1] of the spellcaster.
 // data "Description" "hb90cac90gf224g4f5dg85aeg85fb08a983d9;3"
-// Deals an additional [2] with melee &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; while within [1] of the spellcaster.
+// Deals an additional [2] with melee &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; and when &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;throwing&lt;/LSTag&gt; melee weapons, while within [1] of the spellcaster.
 data "Description" "hb7b88a5bg94a0g459cga5e4gea0863985113;1"
 // data "DescriptionParams" "Distance(3);DealDamage(max(1,Cause.CharismaModifier), MainMeleeWeaponDamageType)	"
 data "DescriptionParams" "Distance(3);DealDamage(max(1,Cause.CharismaModifier))"
-// Additional[1] scales with the Paladin's &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt;.
+// Additional damage scales with the Paladin's &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt;.
 data "ExtraDescription" "h246e33fegca9bg4d1bgb44dgc9312a2da877;1"
-data "ExtraDescriptionParams" "DealDamage(,Necrotic)"
+data "ExtraDescriptionParams" ""
 // data "Icon" "Action_Paladin_AuraOfHate"
 // data "StackId" "AURA_OF_HATE"
 // data "StackPriority" "5"
 // data "Boosts" "IF(IsMeleeAttack()):CharacterWeaponDamage(max(1, Cause.CharismaModifier))"
-data "Boosts" "IF(IsMeleeAttack()):DamageBonus(max(1, Cause.CharismaModifier))"
+data "Boosts" "IF(IsMeleeAttack() or (IsRangedUnarmedAttack() and HasWeaponProperty(WeaponProperties.Melee, context.HitDescription.ThrownObject))):DamageBonus(max(1, Cause.CharismaModifier))"
 // data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog"
 // data "StatusGroups" "SG_RemoveOnRespec"
 // data "ApplyEffect" "d21494e5-5c30-4a69-85ef-75a785e71105"

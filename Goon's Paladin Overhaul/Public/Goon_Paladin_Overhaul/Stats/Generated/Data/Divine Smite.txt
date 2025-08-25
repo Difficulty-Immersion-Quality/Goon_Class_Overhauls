@@ -356,7 +356,7 @@ using "Interrupt_Smite_Divine"
 // data "DisplayName" "hec12d3b6g365eg4809g8053gbbf4ec3c0686;1"
 // Your weapon deals an additional [1], increased by [2] when attacking fiends or undead.
 // data "Description" "h905cec81g7e41g4b05gaaddg3d51678f3ecc;4"
-// Your melee or thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt; using a melee weapon deals an additional [1], increased by another [2] when attacking Fiends or Undead.
+// Your melee or &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;thrown&lt;/LSTag&gt; &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt; using a melee weapon deals an additional [1], increased by another [2] when attacking Fiends or Undead.
 data "Description" "h67d9b056g2f06g46d1g998dgb42abcbbf693;1"
 // data "DescriptionParams" "DealDamage(2d8,Radiant);DealDamage(1d8,Radiant)"
 // This reaction won't trigger on a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.

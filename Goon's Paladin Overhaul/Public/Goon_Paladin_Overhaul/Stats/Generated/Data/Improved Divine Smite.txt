@@ -11,7 +11,7 @@ using "ImprovedDivineSmite"
 // data "DisplayName" "ha4025fdeg9e73g4867g8e6dg1f5b402f7a77;2"
 // Your attacks are suffused with divine might.&lt;br&gt;&lt;br&gt;Melee weapon attacks deal an additional [1].
 // data "Description" "h9846f8c5gdfb6g43c2gbf2agbbb5e0f29b19;3"
-// Suffuse your melee weapon with divine might.&lt;br&gt;&lt;br&gt;Melee and thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; using melee weapons deal an additional [1].
+// Suffuse your melee weapon with divine might.&lt;br&gt;&lt;br&gt;Melee and &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;thrown&lt;/LSTag&gt; &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; using melee weapons deal an additional [1].
 data "Description" "h81f9760cg8453g48c4gbed3g13853747deb8;1"
 // data "DescriptionParams" "DealDamage(1d8,Radiant)"
 // You may toggle this feature on and off.
@@ -32,7 +32,7 @@ using "ImprovedUnholySmite"
 // data "DisplayName" "hb41d8759gbed8gfd14ge53bg3717c74ad1b7;1"
 // Your attacks are suffused with unholy might.&lt;br&gt;&lt;br&gt;Melee weapon attacks deal an additional [1].
 // data "Description" "h660d1613gc23fg8182gcb7dg49e8c657aeca;1"
-// Suffuse your melee weapon with unholy might.&lt;br&gt;&lt;br&gt;Melee and thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; using melee weapons deal an additional [1].
+// Suffuse your melee weapon with unholy might.&lt;br&gt;&lt;br&gt;Melee and &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;thrown&lt;/LSTag&gt; &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; using melee weapons deal an additional [1].
 data "Description" "h0b02bb5dg7b6bg4c19g9e57gec3ade165694;1"
 // data "DescriptionParams" "DealDamage(1d8,Necrotic)"
 // data "Icon" "ImprovedUnholySmitePassive"
@@ -48,7 +48,7 @@ using "IMPROVED_PROFANE_SMITE"
 // data "DisplayName" "h7c2e65c6g7398g4960g851ag7c48f3dacc20"
 // Your attacks are suffused with unholy power. &lt;br&gt;&lt;br&gt;Melee weapon attacks deal an additional [1].
 // data "Description" "h1e278ffagc998g43degb68dgdef2a28dabe2"
-// Suffuse your melee weapon with unholy might.&lt;br&gt;&lt;br&gt;Melee and thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; using melee weapons deal an additional [1].
+// Suffuse your melee weapon with unholy might.&lt;br&gt;&lt;br&gt;Melee and &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;thrown&lt;/LSTag&gt; &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; using melee weapons deal an additional [1].
 data "Description" "h0b02bb5dg7b6bg4c19g9e57gec3ade165694;1"
 // data "DescriptionParams" "DealDamage(1d8,Necrotic)"
 // data "Icon" "ICO_IMPROVED_PROFANE_SMITE"
