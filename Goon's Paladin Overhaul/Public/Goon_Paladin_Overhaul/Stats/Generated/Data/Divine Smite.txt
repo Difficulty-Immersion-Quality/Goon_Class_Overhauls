@@ -3,6 +3,7 @@
 // Bug Fix: Now works while under the effects of more non-hostile and non-spellcasting restricted Polymorphs.
 // Bug Fix: The tooltip damage appropriately displays the additional 1d8 Radiant damage dealt to Fiends and Undead as conditional damage.
 // Bug Fix: Interrupts now have "TooltipDamageList" values, including the above.
+// Changes: Interrupts are now defaulted to ask, instead of being used automatically.
 // Changes: Interrupts can trigger from throwing melee weapons.
 // Changes: Interrupts can now be used by Invisible player characters.
 // Changes: Forced Honour ruleset changes to damage riders not functioning as damage rider sources.
@@ -368,11 +369,12 @@ data "TooltipDamageList" "DealDamage(2d8,Radiant);DealDamage(1d8,Radiant,,,,ad72
 // data "InterruptContextScope" "Self"
 // data "Container" "YesNoDecision"
 // data "Conditions" "IsAbleToReact(context.Observer) and not Self() and not Item() and IsMeleeAttack() and not IsDivineSmite() and Self(context.Source,context.Observer) and HasDamageEffectFlag(DamageFlags.Hit) and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and not AnyEntityIsItem();"
-data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and IsAbleToReact(context.Observer) and not Self() and not Item() and (IsMeleeAttack() or IsRangedUnarmedAttack()) and not IsDivineSmite() and Self(context.Source,context.Observer) and HasDamageEffectFlag(DamageFlags.Hit) and (IsWeaponAttack() or Goon_IsMeleeWeapon(context.HitDescription.ThrownObject)) and not IsCritical() and not IsKillingBlow() and not AnyEntityIsItem()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and IsAbleToReact(context.Observer) and not Self() and not Item() and (IsMeleeAttack() or IsRangedUnarmedAttack()) and not IsDivineSmite() and Self(context.Source,context.Observer) and HasDamageEffectFlag(DamageFlags.Hit) and (IsWeaponAttack() or HasWeaponProperty(WeaponProperties.Melee, context.HitDescription.ThrownObject)) and not IsCritical() and not IsKillingBlow() and not AnyEntityIsItem()"
 // data "Properties" "IF(not UndeadOrFiend(context.Target)):DealDamage(2d8,Radiant,Magical);IF(UndeadOrFiend(context.Target)):DealDamage(3d8,Radiant,Magical);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0)"
 data "Properties" "IF(not UndeadOrFiend(context.Target)):DealDamage(2d8,Radiant,Magical,,0,,true,false);IF(UndeadOrFiend(context.Target)):DealDamage(3d8,Radiant,Magical,,0,,true,false);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0)"
 // data "Cost" "SpellSlotsGroup:1:1:1"
 // data "Stack" "DivineSmite"
+data "InterruptDefaultValue" "Ask;Enabled"
 // data "EnableCondition" "not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
 data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
 // data "EnableContext" "OnStatusApplied;OnStatusRemoved"
@@ -390,9 +392,10 @@ using "Interrupt_Smite_Divine_Critical"
 data "ExtraDescription" "h444ee19agd7c9g409ag8d79g9e37978d4498;1"
 // data "Icon" "Action_Paladin_DivineSmite"
 // data "Conditions" "IsAbleToReact(context.Observer) and not Self() and not Item() and IsMeleeAttack() and not IsDivineSmite() and Self(context.Source,context.Observer) and HasDamageEffectFlag(DamageFlags.Hit) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and not AnyEntityIsItem();"
-data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and IsAbleToReact(context.Observer) and not Self() and not Item() and (IsMeleeAttack() or IsRangedUnarmedAttack()) and not IsDivineSmite() and Self(context.Source,context.Observer) and HasDamageEffectFlag(DamageFlags.Hit) and (IsWeaponAttack() or Goon_IsMeleeWeapon(context.HitDescription.ThrownObject)) and IsCritical() and not IsKillingBlow() and not AnyEntityIsItem()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and IsAbleToReact(context.Observer) and not Self() and not Item() and (IsMeleeAttack() or IsRangedUnarmedAttack()) and not IsDivineSmite() and Self(context.Source,context.Observer) and HasDamageEffectFlag(DamageFlags.Hit) and (IsWeaponAttack() or HasWeaponProperty(WeaponProperties.Melee, context.HitDescription.ThrownObject)) and IsCritical() and not IsKillingBlow() and not AnyEntityIsItem()"
 // data "Cost" "SpellSlotsGroup:1:1:1"
 // data "InterruptDefaultValue" "Enabled"
+data "InterruptDefaultValue" "Ask;Enabled"
 
 new entry "Interrupt_Smite_Divine_2"
 type "InterruptData"
