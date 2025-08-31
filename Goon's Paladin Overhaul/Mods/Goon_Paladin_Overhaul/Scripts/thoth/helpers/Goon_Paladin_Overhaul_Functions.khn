@@ -24,7 +24,7 @@ function IsDivineSmite()
          | Goon_IsBeyondDivineSmite_Fade()
          | Goon_IsBlackguardSmite_Xarara_Restricted()
          | Goon_IsMizorasRewardsSmite_Malonkey()
-         | Goon_IsOathbreakerRebornSmite_Constantine
+         | Goon_IsOathbreakerRebornSmite_Constantine()
 end
 
 -- ==================================== Lunar Smite - Vanilla and Xarara's Lunar Smite mod
