@@ -8,9 +8,9 @@
 			<!-- Sneak Attack Charge -->
 			<!-- <attribute id="DisplayName" type="TranslatedString" handle="hae559bcdg709eg44abg848dg0673b4428547" version="3" /> -->
 			<!-- Sneak Attack -->
-			<attribute id="DisplayName" type="TranslatedString" handle="hc999d4c5ga839g45afgb385g5f648e0bb34b" version="1" />
+			<attribute id="DisplayName" type="TranslatedString" handle="h085facc7g12e0g4ec3gbb21gd7b0b4c58d51" version="1" />
 			<!-- Once per turn, you can deal extra damage when you hit with an &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt; made with &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; or against an enemy standing near your allies. The attack must use a &lt;LSTag Tooltip="Finesse"&gt;Finesse&lt;/LSTag&gt; or ranged weapon. -->
-			<attribute id="Description" type="TranslatedString" handle="h9fd153ddgc064g4663gba4dg86012ea13a64" version="1" />
+			<attribute id="Description" type="TranslatedString" handle="he69d9d1dg8ba2g44f7g88bfg9dec2e144acd" version="1" />
             <!-- <attribute id="IsHidden" type="bool" value="true"/> -->
 			<attribute id="IsHidden" type="bool" value="false" />
 			<attribute id="Name" type="FixedString" value="SneakAttack_Charge" />
