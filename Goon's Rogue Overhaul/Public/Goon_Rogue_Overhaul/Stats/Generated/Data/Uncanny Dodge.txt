@@ -40,6 +40,7 @@ data "DisplayName" "h488725bbg091fg45d3g861eg92471d21a857;2"
 // Use your lightning-quick reflexes to protect yourself.&lt;br&gt;&lt;br&gt;You can use a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; to halve incoming damage.
 data "Description" "hd3deb635gc741g45dcg8deagc90fe7b5a480;1"
 data "Icon" "PassiveFeature_UncannyDodge"
+// TODO: test this - data "InterruptContext" "OnPostRoll;OnPreDamage"
 data "InterruptContext" "OnPreDamage"
 data "InterruptContextScope" "Self"
 data "Container" "YesNoDecision"
