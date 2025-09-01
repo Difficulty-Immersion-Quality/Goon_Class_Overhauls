@@ -3,8 +3,9 @@
 	<!-- "RakishAudacity" --> <content contentuid="hba8f1eeeg12c1g43dag9a43g15d42b380150" version="1">You gain a +[1] bonus to Initiative rolls. This scales with your Rogue level.&lt;br&gt;&lt;br&gt;You no longer need &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; to trigger &lt;LSTag Type="Spell" Tooltip="Target_SneakAttack"&gt;Sneak Attack&lt;/LSTag&gt; if there are no other combatants within [2] of the target or if you have an ally within that range. All the other rules for Sneak Attack still apply to you.</content>
 	<!-- "UncannyDodge", "Goon_Interrupt_UncannyDodge", "GOON_UNCANNYDODGE", "Goon_UncannyDodge_Technical_Passive" --> <content contentuid="hd3deb635gc741g45dcg8deagc90fe7b5a480" version="1">Use your lightning-quick reflexes to protect yourself.&lt;br&gt;&lt;br&gt;You can use a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; to halve incoming damage.</content>
 
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
+	<!-- "ActionResourceDefinition" --> <content contentuid="h085facc7g12e0g4ec3gbb21gd7b0b4c58d51" version="1">Sneak Attack</content>
+	<!-- "ActionResourceDefinition" --> <content contentuid="he69d9d1dg8ba2g44f7g88bfg9dec2e144acd" version="1">Once per turn, you can deal extra damage when you hit with an &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt; made with &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; or against an enemy standing near your allies. The attack must use a &lt;LSTag Tooltip="Finesse"&gt;Finesse&lt;/LSTag&gt; or ranged weapon.</content>
+
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 </contentList>
