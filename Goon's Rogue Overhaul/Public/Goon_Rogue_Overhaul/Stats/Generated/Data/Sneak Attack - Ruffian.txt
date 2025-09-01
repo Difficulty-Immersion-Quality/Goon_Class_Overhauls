@@ -1,0 +1,114 @@
+// ==================================== Sneak Attack (Ruffian) ====================================
+
+// new entry "SneakAttack_LLRuffian"
+// type "PassiveData"
+// data "Properties" "IsHidden"
+// data "Boosts" "UnlockInterrupt(Interrupt_SneakAttack_Ruffian);UnlockInterrupt(Interrupt_SneakAttack_Ruffian_Critical);UnlockSpell(Projectile_SneakAttack);"
+
+// ==================================== Sneak Attack (Ruffian) - Spells
+// TODO: Pretty sure "UnarmedDamage" means "Goon_HasMagicalUnarmed" doesn't need to be used.
+
+// new entry "Target_LLRuffian_SneakAttack"
+// type "SpellData"
+// data "SpellType" "Target"
+// using "Target_SneakAttack"
+// data "RequirementConditions" "(WieldingFinesseWeaponInSpecificHand(context.Source,false) or (not WieldingWeapon('Twohanded',false,true,context.Source) and IsProficientWithEquippedWeapon())) and HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source);"
+// Sneak Attack (Ruffian)
+// data "DisplayName" "hd26c7e19g1303ga076gd390g701081fef5a5;1"
+// Deal extra damage to a foe you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against. This can use any weapon that isn't &lt;LSTag Tooltip="TwoHanded"&gt;Two-Handed&lt;/LSTag&gt;, so long as you are proficient with the weapon.
+// data "Description" "h6d4aace2ga7b1g7718ge380gf633a643b8e5;3"
+// data "SpellAnimation" "8b8bb757-21ce-4e02-a2f3-97d55cf2f90b,,;6606c30b-be1c-4f17-ae6b-1a591c80b18c,366693ee-d97f-4294-a4dd-a2145ddc4e6a,9f2d32b9-529a-4b75-b3df-6e1ae1395280;f4ac302b-1569-404f-bd52-1fe443e265df,479ee5da-2967-41e1-b7d1-a94e864a5f25,79323098-edb3-4993-ba50-9b5f705e9878;e8a5c57f-855b-4227-acaa-11e8ce8d7d64,b5cb923d-0c08-4c20-89a9-44b9bf98c6cb,6282d127-0c06-4365-9d53-6f32ef350127;7bb52cd4-0b1c-4926-9165-fa92b75876a3,,;2b81c18b-9698-4262-a623-932c2bb1296d,ecbf9949-3b33-432c-b735-e47aaed0924a,e71a7c08-fdc1-4a0b-9a90-1c793c58553c;0b07883a-08b8-43b6-ac18-84dc9e84ff50,,;,,;,,"
+
+new entry "Target_LLRuffian_SneakAttack_Unarmed"
+type "SpellData"
+data "SpellType" "Target"
+// using "Target_UnarmedAttack"
+using "Target_LLRuffian_SneakAttack_Unarmed"
+// data "Cooldown" "OncePerTurn"
+data "Cooldown" ""
+// data "RequirementConditions" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source);"
+// data "SpellSuccess" "DealDamage(UnarmedDamage+LevelMapValue(SneakAttack),Bludgeoning);"
+// data "TargetConditions" "Character() and not Self() and not Dead() and ((HasAdvantage(AttackType.MeleeUnarmedAttack) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDisadvantage(AttackType.MeleeUnarmedAttack)) and not Tagged('INANIMATE');"
+// Sneak Attack (Unarmed)
+// data "DisplayName" "heee5cfebgb554g003cgef6eg828fdcc48d1a;1"
+// Deal extra damage to a foe you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against.
+// data "Description" "h1048deadg1913g37d7gec18g1d9e7e6139e2;1"
+// Also works if you have an ally within [1] of the target and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
+data "ExtraDescription" "ha6523313gf209g4f1ag89cagc3d13e5f3316;6"
+// data "TooltipDamageList" "DealDamage(UnarmedDamage+LevelMapValue(SneakAttack),Bludgeoning)"
+// data "CastSound" "Action_Cast_SneakAttack"
+// data "TargetSound" "Action_Impact_SneakAttack"
+// data "UseCosts" "ActionPoint:1;SneakAttack_Charge:1"
+// data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsMelee;IsHarmful;DisableBlood"
+// data "PrepareEffect" "62fa9d2f-ec0b-4900-a455-ec9b5e6e3eb4"
+// data "CastEffect" "6ebc0b77-460f-4be0-90ce-355cfa5b67c1"
+// data "TargetEffect" "b51922cf-e412-4462-8274-144781bac7f3"
+// data "Sheathing" "Sheathed"
+
+// ==================================== Sneak Attack (Ruffian) - Interrupts
+
+new entry "Interrupt_SneakAttack_Ruffian"
+type "InterruptData"
+// using "Interrupt_SneakAttack"
+using "Interrupt_SneakAttack_Ruffian"
+// data "Conditions" "Self(context.Source,context.Observer) and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or IsMonkWeaponAttack() or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack())) and not IsCritical() and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not (SpellId('Projectile_SneakAttack') or SpellId('Target_SneakAttack') or SpellId('Target_LLRuffian_SneakAttack') or SpellId('Target_LLRuffian_SneakAttack_Unarmed')) and not AnyEntityIsItem();"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or IsMonkWeaponAttack() or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack()) or (Goon_IsDruidWildshape(context.Observer) and (IsMeleeAttack() or IsRangedAttack()) and (IsDamageTypePiercing() or IsDamageTypeSlashing() or IsDamageTypeBludgeoning()))) and not IsCritical() and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not AnyEntityIsItem() and not Goon_IsSneakAttackSpell()"
+// data "Properties" "IF(IsMeleeAttack() and not IsUnarmedAttack()):DealDamage(LevelMapValue(SneakAttack),MainMeleeWeaponDamageType);IF(IsUnarmedAttack()):DealDamage(LevelMapValue(SneakAttack),Bludgeoning);IF(IsRangedAttack()):DealDamage(LevelMapValue(SneakAttack),MainRangedWeaponDamageType);IF(HasPassive('MAG_ForcefulSneakAttack_Passive', context.Source)):DealDamage(1d4,Force,Magical);"
+data "Properties" "IF(IsAttackType(AttackType.MeleeWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainMeleeWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), OffhandMeleeWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), OffhandRangedWeaponDamageType,,,0,,true,true);IF(IsThrowAttackRoll()):DealDamage(LevelMapValue(SneakAttack), ThrownWeaponDamageType,,,0,,true,true);IF(IsMeleeUnarmedAttack() and not Goon_HasMagicalUnarmed()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,,,0,,true,true);IF(IsMeleeUnarmedAttack() and Goon_HasMagicalUnarmed()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,Magical,,0,,true,true);IF(Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph() and IsMeleeUnarmedAttack() and IsDamageTypePiercing() and not Goon_HasMagicalUnarmed()):DealDamage(LevelMapValue(SneakAttack), Piercing,,,0,,true,true);IF(Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph() and IsMeleeUnarmedAttack() and IsDamageTypePiercing() and Goon_HasMagicalUnarmed()):DealDamage(LevelMapValue(SneakAttack), Piercing,Magical,,0,,true,true);IF(Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph() and IsMeleeUnarmedAttack() and IsDamageTypeSlashing() and not IsDamageTypePiercing() and not Goon_HasMagicalUnarmed()):DealDamage(LevelMapValue(SneakAttack), Slashing,,,0,,true,true);IF(Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph() and IsMeleeUnarmedAttack() and IsDamageTypeSlashing() and not IsDamageTypePiercing() and Goon_HasMagicalUnarmed()):DealDamage(LevelMapValue(SneakAttack), Slashing,Magical,,0,,true,true);IF(Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph() and IsMeleeUnarmedAttack() and IsDamageTypeBludgeoning() and not IsDamageTypePiercing() and not IsDamageTypeSlashing() and not Goon_HasMagicalUnarmed()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,,,0,,true,true);IF(Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph() and IsMeleeUnarmedAttack() and IsDamageTypeBludgeoning() and not IsDamageTypePiercing() and not IsDamageTypeSlashing() and Goon_HasMagicalUnarmed()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,Magical,,0,,true,true);IF(HasPassive('MAG_ForcefulSneakAttack_Passive', context.Source)):DealDamage(1d4, Force,Magical,,0,,true,true)"
+// data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
+data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (((WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or SpellTypeIs(SpellType.Throw) or not WieldingWeapon('Twohanded',false,false)) and (not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus())) or Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph())"
+// data "EnableContext" "OnActionResourcesChanged;OnEquip"
+data "EnableContext" "OnActionResourcesChanged;OnEquip;OnStatusApplied;OnStatusRemoved"
+
+new entry "Interrupt_SneakAttack_Ruffian_Critical"
+type "InterruptData"
+// using "Interrupt_SneakAttack_Critical"
+using "Interrupt_SneakAttack_Ruffian_Critical"
+// data "Conditions" "Self(context.Source,context.Observer) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or IsMonkWeaponAttack() or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack())) and HasDamageEffectFlag(DamageFlags.Hit) and IsCritical() and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not (SpellId('Projectile_SneakAttack') or SpellId('Target_SneakAttack') or SpellId('Target_SneakAttack_Ruffian')) and not AnyEntityIsItem()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or IsMonkWeaponAttack() or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack()) or (Goon_IsDruidWildshape(context.Observer) and (IsMeleeAttack() or IsRangedAttack()) and (IsDamageTypePiercing() or IsDamageTypeSlashing() or IsDamageTypeBludgeoning()))) and IsCritical() and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not AnyEntityIsItem() and not Goon_IsSneakAttackSpell()"
+// data "Properties" "IF(IsMeleeAttack() and not IsUnarmedAttack()):DealDamage(LevelMapValue(SneakAttack), MainMeleeWeaponDamageType);IF(IsUnarmedAttack()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning);IF(IsRangedAttack()):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType);IF(HasPassive('MAG_ForcefulSneakAttack_Passive', context.Source)):DealDamage(1d4, Force,Magical)"
+data "Properties" "IF(IsAttackType(AttackType.MeleeWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainMeleeWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), OffhandMeleeWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), OffhandRangedWeaponDamageType,,,0,,true,true);IF(IsThrowAttackRoll()):DealDamage(LevelMapValue(SneakAttack), ThrownWeaponDamageType,,,0,,true,true);IF(IsMeleeUnarmedAttack() and not Goon_HasMagicalUnarmed()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,,,0,,true,true);IF(IsMeleeUnarmedAttack() and Goon_HasMagicalUnarmed()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,Magical,,0,,true,true);IF(Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph() and IsMeleeUnarmedAttack() and IsDamageTypePiercing() and not Goon_HasMagicalUnarmed()):DealDamage(LevelMapValue(SneakAttack), Piercing,,,0,,true,true);IF(Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph() and IsMeleeUnarmedAttack() and IsDamageTypePiercing() and Goon_HasMagicalUnarmed()):DealDamage(LevelMapValue(SneakAttack), Piercing,Magical,,0,,true,true);IF(Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph() and IsMeleeUnarmedAttack() and IsDamageTypeSlashing() and not IsDamageTypePiercing() and not Goon_HasMagicalUnarmed()):DealDamage(LevelMapValue(SneakAttack), Slashing,,,0,,true,true);IF(Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph() and IsMeleeUnarmedAttack() and IsDamageTypeSlashing() and not IsDamageTypePiercing() and Goon_HasMagicalUnarmed()):DealDamage(LevelMapValue(SneakAttack), Slashing,Magical,,0,,true,true);IF(Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph() and IsMeleeUnarmedAttack() and IsDamageTypeBludgeoning() and not IsDamageTypePiercing() and not IsDamageTypeSlashing() and not Goon_HasMagicalUnarmed()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,,,0,,true,true);IF(Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph() and IsMeleeUnarmedAttack() and IsDamageTypeBludgeoning() and not IsDamageTypePiercing() and not IsDamageTypeSlashing() and Goon_HasMagicalUnarmed()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,Magical,,0,,true,true);IF(HasPassive('MAG_ForcefulSneakAttack_Passive', context.Source)):DealDamage(1d4, Force,Magical,,0,,true,true)"
+// data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or SpellTypeIs(SpellType.Throw) or not WieldingWeapon('Twohanded',false,false)) and (not HasStatus('SG_Polymorph') or Tagged('MINDFLAYER') or HasStatus('SG_Disguise'))"
+data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (((WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or SpellTypeIs(SpellType.Throw) or not WieldingWeapon('Twohanded',false,false)) and (not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus())) or Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph())"
+
+// ==================================== Ruffian - Other ====================================
+// TODO: Custom Riposte thingy for wildshapes and shit, animation gotta be different.
+
+new entry "Interrupt_LLRuffian_DodgeAndCounter"
+type "InterruptData"
+// using "Interrupt_Riposte"
+using "Interrupt_LLRuffian_DodgeAndCounter"
+// Dodge and Counter
+// data "DisplayName" "hfddf0cfbg93c9g8944g2f5dgd9d972529adf;1"
+// Use your Reaction to redirect the force of the enemy's blow. They must succeed a Dexterity &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt; or fall &lt;LSTag Type="Status" Tooltip="PRONE"&gt;Prone&lt;/LSTag&gt;.
+// data "Description" "ha40ce631gfd51g7224g3e1ag195e463f4a60;2"
+// data "Conditions" "IsAbleToReact(context.Observer) and Enemy(context.Source,context.Observer) and IsMeleeAttack() and IsMiss() and not HasStatus('INVISIBILITY') and not AnyEntityIsItem() and not DistanceToEntityGreaterThan(2, context.ObserverPosition, context.Source) and HasLastAttackTriggered()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and IsAbleToReact(context.Observer) and Enemy(context.Source,context.Observer) and IsMeleeAttack() and IsMiss() and and not AnyEntityIsItem() and not DistanceToEntityGreaterThan(2, context.ObserverPosition, context.Source) and HasLastAttackTriggered()"
+// data "Properties" "UseSpell(SWAP,Target_LLRuffian_DodgeAndCounter,true,true,true);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_RIPOSTE,100,0)"
+// data "Cost" "ReactionActionPoint:1"
+// data "InterruptDefaultValue" "Enabled;Ask"
+// data "EnableCondition" "not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
+data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
+// data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"
+
+new entry "Interrupt_LLRuffian_RuthlessStrike"
+type "InterruptData"
+// using "Interrupt_SneakAttack_Ruffian"
+using "Interrupt_LLRuffian_RuthlessStrike"
+// Ruthless Strike
+// data "DisplayName" "h53a6b683g6454ge3c4gc238g932de985e065;1"
+// Turn your attack into a Critical Hit.
+// data "Description" "h5d572b39g4cf5gef0cg88d1g95ea9450f7c1;1"
+// data "InterruptContext" "OnPostRoll"
+// data "Conditions" "HasStatus('SG_Frightened',context.Target,context.Source) and HasInterruptedAttack() and LuckOfTheFarRealmCheck() and Self(context.Source,context.Observer) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or IsMonkWeaponAttack() or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack())) and not IsCritical() and not AnyEntityIsItem() and (((HasAdvantage(AttackType.MeleeWeaponAttack) or HasAdvantage(AttackType.MeleeUnarmedAttack)) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not (HasDisadvantage(AttackType.MeleeWeaponAttack) or HasDisadvantage(AttackType.MeleeUnarmedAttack)))"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and HasStatus('SG_Frightened',context.Target,context.Source) and HasInterruptedAttack() and LuckOfTheFarRealmCheck() and Self(context.Source,context.Observer) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or IsMonkWeaponAttack() or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack())) and not IsCritical() and not AnyEntityIsItem() and (((HasAdvantage(AttackType.MeleeWeaponAttack) or HasAdvantage(AttackType.MeleeUnarmedAttack)) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not (HasDisadvantage(AttackType.MeleeWeaponAttack) or HasDisadvantage(AttackType.MeleeUnarmedAttack)))"
+// data "Properties" "SetRoll(20)"
+// data "Cost" "LLRuffian_RuthlessStrike:1"
+// data "Stack" "LLRuffian_RuthlessStrike"
+// data "InterruptDefaultValue" "Enabled;Ask"
+// data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and HasActionResource('LLRuffian_RuthlessStrike',1,0,false,false,context.Source) and (not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
+// data "EnableContext" "OnActionResourcesChanged;OnEquip"
+data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and HasActionResource('LLRuffian_RuthlessStrike',1,0,false,false,context.Source) and (not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus())"
+data "InterruptFlags" "InterruptWhileInvisible"
