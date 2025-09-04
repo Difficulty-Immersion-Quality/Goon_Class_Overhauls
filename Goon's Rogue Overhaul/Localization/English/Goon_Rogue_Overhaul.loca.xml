@@ -6,6 +6,12 @@
 	<!-- "ActionResourceDefinition" --> <content contentuid="h085facc7g12e0g4ec3gbb21gd7b0b4c58d51" version="1">Sneak Attack</content>
 	<!-- "ActionResourceDefinition" --> <content contentuid="he69d9d1dg8ba2g44f7g88bfg9dec2e144acd" version="1">Once per turn, you can deal extra damage when you hit with an &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt; made with &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; or against an enemy standing near your allies. The attack must use a &lt;LSTag Tooltip="Finesse"&gt;Finesse&lt;/LSTag&gt; or ranged weapon.</content>
 
+	<!-- "" --> <content contentuid="" version="1">Sneak Attack</content>
+	<!-- "" --> <content contentuid="" version="1">Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to the target.</content>
+	<!-- "" --> <content contentuid="" version="1"></content>
+	<!-- "" --> <content contentuid="" version="1"></content>
+	<!-- "" --> <content contentuid="" version="1"></content>
+	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 </contentList>

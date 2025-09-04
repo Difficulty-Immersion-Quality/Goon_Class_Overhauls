@@ -1,0 +1,48 @@
+-- ==================================== Rogueish functions ====================================
+
+function Goon_ForcefulSnek(entity)
+    entity = entity or context.Source
+    return HasPassive('MAG_ForcefulSneakAttack_Passive', entity)
+end
+
+-- ==================================== Melee unarmed ====================================
+
+function Goon_UnarmedSnek()
+    return IsMeleeUnarmedAttack() & ~Goon_IsRestrictedPolymorphStatus() & ~Goon_IsMyrmidonDruidPolymorph() & ~Goon_HasMagicalUnarmed()
+end
+
+function Goon_UnarmedSnek_Magic()
+    return IsMeleeUnarmedAttack() & ~Goon_IsRestrictedPolymorphStatus() & ~Goon_IsMyrmidonDruidPolymorph() & Goon_HasMagicalUnarmed()
+end
+
+-- ==================================== Wildshape checks ====================================
+
+function Goon_WSSnek_Pierce()
+    return IsMeleeUnarmedAttack() & Goon_IsRestrictedPolymorphStatus() & ~Goon_IsMyrmidonDruidPolymorph()
+         & ~Goon_HasMagicalUnarmed() & IsDamageTypePiercing()
+end
+
+function Goon_WSSnek_Pierce_Magic()
+    return IsMeleeUnarmedAttack() & Goon_IsRestrictedPolymorphStatus() & ~Goon_IsMyrmidonDruidPolymorph()
+         & Goon_HasMagicalUnarmed() & IsDamageTypePiercing()
+end
+
+function Goon_WSSnek_Slash()
+    return IsMeleeUnarmedAttack() & Goon_IsRestrictedPolymorphStatus() & ~Goon_IsMyrmidonDruidPolymorph()
+         & ~Goon_HasMagicalUnarmed() & IsDamageTypeSlashing() & ~IsDamageTypePiercing()
+end
+
+function Goon_WSSnek_Slash_Magic()
+    return IsMeleeUnarmedAttack() & Goon_IsRestrictedPolymorphStatus() & ~Goon_IsMyrmidonDruidPolymorph()
+         & Goon_HasMagicalUnarmed() & IsDamageTypeSlashing() & ~IsDamageTypePiercing()
+end
+
+function Goon_WSSnek_Bludge()
+    return IsMeleeUnarmedAttack() & Goon_IsRestrictedPolymorphStatus() & ~Goon_IsMyrmidonDruidPolymorph()
+         & ~Goon_HasMagicalUnarmed() & IsDamageTypeBludgeoning() & ~IsDamageTypePiercing() & ~IsDamageTypeSlashing()
+end
+
+function Goon_WSSnek_Bludge_Magic()
+    return IsMeleeUnarmedAttack() & Goon_IsRestrictedPolymorphStatus() & ~Goon_IsMyrmidonDruidPolymorph()
+         & Goon_HasMagicalUnarmed() & IsDamageTypeBludgeoning() & ~IsDamageTypePiercing() & ~IsDamageTypeSlashing()
+end
