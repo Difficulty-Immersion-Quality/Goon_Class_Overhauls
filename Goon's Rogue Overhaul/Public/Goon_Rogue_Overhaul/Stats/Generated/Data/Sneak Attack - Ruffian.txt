@@ -1,9 +1,11 @@
 // ==================================== Sneak Attack (Ruffian) ====================================
 
-// new entry "SneakAttack_LLRuffian"
-// type "PassiveData"
+new entry "SneakAttack_LLRuffian"
+type "PassiveData"
+using "SneakAttack_LLRuffian"
 // data "Properties" "IsHidden"
 // data "Boosts" "UnlockInterrupt(Interrupt_SneakAttack_Ruffian);UnlockInterrupt(Interrupt_SneakAttack_Ruffian_Critical);UnlockSpell(Projectile_SneakAttack);"
+data "Boosts" ""
 
 // ==================================== Sneak Attack (Ruffian) - Spells
 // TODO: Pretty sure "UnarmedDamage" means "Goon_HasMagicalUnarmed" doesn't need to be used.
@@ -57,7 +59,7 @@ data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',con
 // data "Properties" "IF(IsMeleeAttack() and not IsUnarmedAttack()):DealDamage(LevelMapValue(SneakAttack),MainMeleeWeaponDamageType);IF(IsUnarmedAttack()):DealDamage(LevelMapValue(SneakAttack),Bludgeoning);IF(IsRangedAttack()):DealDamage(LevelMapValue(SneakAttack),MainRangedWeaponDamageType);IF(HasPassive('MAG_ForcefulSneakAttack_Passive', context.Source)):DealDamage(1d4,Force,Magical);"
 data "Properties" "IF(IsAttackType(AttackType.MeleeWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainMeleeWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), OffhandMeleeWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), OffhandRangedWeaponDamageType,,,0,,true,true);IF(IsThrowAttackRoll()):DealDamage(LevelMapValue(SneakAttack), ThrownWeaponDamageType,,,0,,true,true);IF(Goon_UnarmedSnek()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,,,0,,true,true);IF(Goon_UnarmedSnek_Magic()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,Magical,,0,,true,true);IF(Goon_WSSnek_Pierce()):DealDamage(LevelMapValue(SneakAttack), Piercing,,,0,,true,true);IF(Goon_WSSnek_Pierce_Magic()):DealDamage(LevelMapValue(SneakAttack), Piercing,Magical,,0,,true,true);IF(Goon_WSSnek_Slash()):DealDamage(LevelMapValue(SneakAttack), Slashing,,,0,,true,true);IF(Goon_WSSnek_Slash_Magic()):DealDamage(LevelMapValue(SneakAttack), Slashing,Magical,,0,,true,true);IF(Goon_WSSnek_Bludge()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,,,0,,true,true);IF(Goon_WSSnek_Bludge_Magic()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,Magical,,0,,true,true);IF(Goon_ForcefulSnek()):DealDamage(1d4, Force,Magical,,0,,true,true)"
 // data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
-data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (((WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or SpellTypeIs(SpellType.Throw) or not WieldingWeapon('Twohanded',false,false)) and (not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus())) or Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph())"
+data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (((WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or (HasPassive('SneakAttack_LLRuffian',context.Source) and not WieldingWeapon('Twohanded',false,false)) or SpellTypeIs(SpellType.Throw)) and (not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus())) or Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph())"
 // data "EnableContext" "OnActionResourcesChanged;OnEquip"
 data "EnableContext" "OnActionResourcesChanged;OnEquip;OnStatusApplied;OnStatusRemoved"
 
