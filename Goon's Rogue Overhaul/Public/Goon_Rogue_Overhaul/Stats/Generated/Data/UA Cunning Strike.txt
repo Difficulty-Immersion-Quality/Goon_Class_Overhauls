@@ -23,7 +23,7 @@ data "Properties" "IF(IsAttackType(AttackType.MeleeWeaponAttack)):DealDamage(Lev
 data "InterruptDefaultValue" "Ask;Enabled"
 // data "EnableContext" "OnActionResourcesChanged;OnEquip;OnStatusApplied;OnStatusRemoved"
 // data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or SpellTypeIs(SpellType.Throw)) and not HasStatus('SG_Polymorph_BeastShape')"
-data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (((WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or (HasPassive('SneakAttack_LLRuffian',context.Source) and not WieldingWeapon('Twohanded',false,false)) or SpellTypeIs(SpellType.Throw)) and (not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus())) or Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph())"
+data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (((WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or (HasPassive('SneakAttack_LLRuffian',context.Source)) or SpellTypeIs(SpellType.Throw)) and (not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus())) or Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph())"
 // data "InterruptFlags" "InterruptWhileInvisible"
 
 // ==================================== UA Sneak Attack - Substracted variants
@@ -62,6 +62,24 @@ using "Interrupt_DWE_CunningStrike_Less6"
 
 // ==================================== UA Cunning Strikes ====================================
 
+new entry "DWE_CunningStrike"
+type "PassiveData"
+using "DWE_CunningStrike"
+// data "DisplayName" "hdea0da43g04d4g44a9g944egc2d42d51017d;1"
+// data "Description" "h407256d0gba44g44c9gad33g8d2ac2bbde88;1"
+// data "Icon" "DWE_UACunningStrike_Poison"
+// data "Properties" "Highlighted"
+// data "Boosts" "ActionResource(DWE_SneakAttack,1,0,d6); UnlockInterrupt(Interrupt_DWE_CunningStrike_Disarm); UnlockInterrupt(Interrupt_DWE_CunningStrike_Poison); UnlockInterrupt(Interrupt_DWE_CunningStrike_Trip); UnlockInterrupt(Interrupt_DWE_CunningStrike_Withdraw)"
+data "Boosts" "ActionResource(DWE_SneakAttack,1,0,d6); UnlockInterrupt(Interrupt_DWE_CunningStrike_Disarm); UnlockInterrupt(Goon_Interrupt_DWE_CunningStrike_Poison); UnlockInterrupt(Interrupt_DWE_CunningStrike_Trip); UnlockInterrupt(Interrupt_DWE_CunningStrike_Withdraw)"
+
+// new entry "DWE_DeviousStrikes"
+// type "PassiveData"
+// data "DisplayName" "h7ddd5cddg973cg42a1ga2degf95d86464be1;1"
+// data "Description" "h3f7241f6gfb96g45edgba83gbe0e6c9384c3;1"
+// data "Icon" "DWE_UACunningStrike_KnockOut"
+// data "Properties" "Highlighted"
+// data "Boosts" "ActionResource(DWE_SneakAttack,1,0,d6); UnlockInterrupt(Interrupt_DWE_CunningStrike_Daze); UnlockInterrupt(Interrupt_DWE_CunningStrike_KnockOut); UnlockInterrupt(Interrupt_DWE_CunningStrike_Trip); UnlockInterrupt(Interrupt_DWE_CunningStrike_Obscure)"
+
 new entry "Interrupt_DWE_CunningStrike_Disarm"
 type "InterruptData"
 // using "Interrupt_DWE_CunningStrike_Less1"
@@ -72,24 +90,35 @@ using "Interrupt_DWE_CunningStrike_Disarm"
 // data "Description" "hd3569f73g41a8g4ff1g9411g5497f807d096;1"
 // data "Icon" "DWE_UACunningStrike_Disarm"
 // data "Conditions" "DWE_SneakAttackInterruptCondition() and not IsKillingBlow() and DWE_HasWeaponInAnyHand()"
-data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or (HasPassive('SneakAttack_LLRuffian',context.Source) and IsMonkWeaponAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack()) or (Goon_IsDruidWildshape(context.Observer) and (IsMeleeAttack() or IsRangedAttack()) and (IsDamageTypePiercing() or IsDamageTypeSlashing() or IsDamageTypeBludgeoning()))) and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not AnyEntityIsItem() and not Goon_IsSneakAttackSpell() and DWE_HasWeaponInAnyHand() or (DWE_SneakAttackInterruptCondition() and not IsKillingBlow() and DWE_HasWeaponInAnyHand()) and not IsMeleeUnarmedAttack()"
+data "Conditions" "((Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or (HasPassive('SneakAttack_LLRuffian',context.Source) and IsMonkWeaponAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack()) or (Goon_IsDruidWildshape(context.Observer) and (IsMeleeAttack() or IsRangedAttack()) and (IsDamageTypePiercing() or IsDamageTypeSlashing() or IsDamageTypeBludgeoning()))) and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not AnyEntityIsItem() and not Goon_IsSneakAttackSpell() and DWE_HasWeaponInAnyHand() or (DWE_SneakAttackInterruptCondition() and not IsKillingBlow() and DWE_HasWeaponInAnyHand())) and not IsAttackType(AttackType.MeleeUnarmedAttack)"
 // data "Success" "ApplyStatus(OBSERVER_TARGET,DWE_CUNNING_STRIKE_APPLY_DISARM,100,0)"
 // data "TooltipAttackSave" "Dexterity"
 // data "InterruptDefaultValue" "Ask"
 data "InterruptDefaultValue" "Enabled;Ask"
 
-new entry "Interrupt_DWE_CunningStrike_Poison"
-type "InterruptData"
+// TODO: I cannot fathom why this won't accept my conditions, gotta be something overwriting even in a minimal environment?!
+// new entry "Interrupt_DWE_CunningStrike_Poison"
+// type "InterruptData"
 // using "Interrupt_DWE_CunningStrike_Less1"
-using "Interrupt_DWE_CunningStrike_Poison"
 // Poison
 // data "DisplayName" "h05c6f6e1g8880g47e0g8528g7f386b4d98b0;1"
 // Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; and attempt to &lt;LSTag Type="Status" Tooltip="DWE_CUNNING_STRIKE_POISON"&gt;Poison&lt;/LSTag&gt; the target for up to 10 turns.
 // data "Description" "ha6733035g894bg49e4g9517g9d46404ddefc;1"
 // data "Icon" "DWE_UACunningStrike_Poison"
-data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or (HasPassive('SneakAttack_LLRuffian',context.Source) and IsMonkWeaponAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack()) or (Goon_IsDruidWildshape(context.Observer) and (IsMeleeAttack() or IsRangedAttack()) and (IsDamageTypePiercing() or IsDamageTypeSlashing() or IsDamageTypeBludgeoning()))) and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not AnyEntityIsItem() and not Goon_IsSneakAttackSpell() and DWE_HasWeaponInAnyHand() or (DWE_SneakAttackInterruptCondition() and not IsKillingBlow() and DWE_HasWeaponInAnyHand()) and not IsMeleeUnarmedAttack()"
 // data "Success" "ApplyStatus(OBSERVER_TARGET,DWE_CUNNING_STRIKE_APPLY_POISON,100,1)"
 // data "TooltipAttackSave" "Constitution"
+
+new entry "Goon_Interrupt_DWE_CunningStrike_Poison"
+type "InterruptData"
+using "Interrupt_DWE_CunningStrike_Less1"
+// Poison
+data "DisplayName" "h05c6f6e1g8880g47e0g8528g7f386b4d98b0;1"
+// Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; and attempt to &lt;LSTag Type="Status" Tooltip="DWE_CUNNING_STRIKE_POISON"&gt;Poison&lt;/LSTag&gt; the target for up to 10 turns.
+data "Description" "ha6733035g894bg49e4g9517g9d46404ddefc;1"
+data "Icon" "DWE_UACunningStrike_Poison"
+data "Success" "ApplyStatus(OBSERVER_TARGET,DWE_CUNNING_STRIKE_APPLY_POISON,100,1)"
+data "Conditions" "((Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or (HasPassive('SneakAttack_LLRuffian',context.Source) and IsMonkWeaponAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack()) or (Goon_IsDruidWildshape(context.Observer) and (IsMeleeAttack() or IsRangedAttack()) and (IsDamageTypePiercing() or IsDamageTypeSlashing() or IsDamageTypeBludgeoning()))) and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not AnyEntityIsItem() and not Goon_IsSneakAttackSpell() or (DWE_SneakAttackInterruptCondition() and not IsKillingBlow())) and not IsAttackType(AttackType.MeleeUnarmedAttack)"
+data "TooltipAttackSave" "Constitution"
 
 new entry "Interrupt_DWE_CunningStrike_Trip"
 type "InterruptData"
@@ -101,7 +130,7 @@ using "Interrupt_DWE_CunningStrike_Trip"
 // data "Description" "hd3d27832g9819g45eagb2cfg5d95ab1ad57a;1"
 // data "Icon" "DWE_UACunningStrike_Trip"
 // data "Conditions" "DWE_SneakAttackInterruptCondition() and not IsKillingBlow() and TargetSizeEqualOrSmaller(Size.Large) and not HasStatus('SG_Prone')"
-data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or (HasPassive('SneakAttack_LLRuffian',context.Source) and IsMonkWeaponAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack()) or (Goon_IsDruidWildshape(context.Observer) and (IsMeleeAttack() or IsRangedAttack()) and (IsDamageTypePiercing() or IsDamageTypeSlashing() or IsDamageTypeBludgeoning()))) and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not AnyEntityIsItem() and not Goon_IsSneakAttackSpell() and TargetSizeEqualOrSmaller(Size.Large) and not HasStatus('SG_Prone') or (DWE_SneakAttackInterruptCondition() and not IsKillingBlow() and TargetSizeEqualOrSmaller(Size.Large) and not HasStatus('SG_Prone')) and not IsMeleeUnarmedAttack()" 
+data "Conditions" "((Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or (HasPassive('SneakAttack_LLRuffian',context.Source) and IsMonkWeaponAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack()) or (Goon_IsDruidWildshape(context.Observer) and (IsMeleeAttack() or IsRangedAttack()) and (IsDamageTypePiercing() or IsDamageTypeSlashing() or IsDamageTypeBludgeoning()))) and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not AnyEntityIsItem() and not Goon_IsSneakAttackSpell() and TargetSizeEqualOrSmaller(Size.Large) and not HasStatus('SG_Prone') or (DWE_SneakAttackInterruptCondition() and not IsKillingBlow() and TargetSizeEqualOrSmaller(Size.Large) and not HasStatus('SG_Prone')) and not IsAttackType(AttackType.MeleeUnarmedAttack))" 
 // data "Success" "ApplyStatus(OBSERVER_TARGET,DWE_CUNNING_STRIKE_APPLY_TRIP,100,0)"
 // data "TooltipAttackSave" "Dexterity"
 
@@ -115,7 +144,7 @@ using "Interrupt_DWE_CunningStrike_Withdraw"
 // data "Description" "h66c557adgdaf0g429fg9515gc13c98462643;1"
 // data "Icon" "DWE_UACunningStrike_Withdraw"
 // data "Conditions" "DWE_SneakAttackInterruptCondition() and HasStatus('DWE_SNEAK_ATTACK_OWN_TURN',context.Source)"
-data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or (HasPassive('SneakAttack_LLRuffian',context.Source) and IsMonkWeaponAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack()) or (Goon_IsDruidWildshape(context.Observer) and (IsMeleeAttack() or IsRangedAttack()) and (IsDamageTypePiercing() or IsDamageTypeSlashing() or IsDamageTypeBludgeoning()))) and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not AnyEntityIsItem() and not Goon_IsSneakAttackSpell() and HasStatus('DWE_SNEAK_ATTACK_OWN_TURN',context.Source) or (DWE_SneakAttackInterruptCondition() and not IsKillingBlow() and HasStatus('DWE_SNEAK_ATTACK_OWN_TURN',context.Source)) and not IsMeleeUnarmedAttack()" 
+data "Conditions" "((Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or (HasPassive('SneakAttack_LLRuffian',context.Source) and IsMonkWeaponAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack()) or (Goon_IsDruidWildshape(context.Observer) and (IsMeleeAttack() or IsRangedAttack()) and (IsDamageTypePiercing() or IsDamageTypeSlashing() or IsDamageTypeBludgeoning()))) and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not AnyEntityIsItem() and not Goon_IsSneakAttackSpell() and HasStatus('DWE_SNEAK_ATTACK_OWN_TURN',context.Source) or (DWE_SneakAttackInterruptCondition() and not IsKillingBlow() and HasStatus('DWE_SNEAK_ATTACK_OWN_TURN',context.Source)) and not IsAttackType(AttackType.MeleeUnarmedAttack))" 
 // data "Success" "ApplyStatus(OBSERVER_OBSERVER,DWE_CUNNING_STRIKE_WITHDRAW,100,1)"
 
 // new entry "Interrupt_DWE_CunningStrike_Daze"

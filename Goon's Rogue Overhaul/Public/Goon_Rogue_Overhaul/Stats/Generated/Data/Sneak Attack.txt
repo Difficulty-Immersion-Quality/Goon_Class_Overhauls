@@ -3,13 +3,17 @@
 // Bug Fix: Spell variants no longer expend a Sneak Attack Charge unless you hit your target, for cohesion with Interrupt functionality.
 // Bug Fix: Damage now always matches the weapon's damage type.
 // Bug Fix: Interrupts can be used while under the effects of more non-hostile and non-spellcasting restricted Polymorphs.
+// Changes: The resource is now visible on the hotbar.
+// (It will just be a pink star without a mod adding an icon, such as Cunning Strike and UA6 Swashbuckler's Cunning Strike by wesslen or Sneak Attack Charge on Hotbar (Patch 8 Ready) by MaxStrengthWizard.)
 // Changes: Interrupts can be used by Invisible players.
 // Changes: Interrupts are now defaulted to ask, instead of being used automatically.
 // Changes: Forced Honour ruleset changes to damage riders not functioning as damage rider sources.
 // Changes: Removed once per turn cooldowns. (This doesn't change existing functionality, but would allow for more than one use in a theoretical situation where a character has more than one Sneak Attack charge.)
 // Changes: Interrupts can be used by Wildshape melee and ranged attacks that deal Piercing, Slashing or Bludgeoning damage. Magical damage is appropriately dealt when the character has Primal Strike, or another source of the "UnarmedMagicalProperty" boost.
+// Bonus: Native support for Cunning Strike and UA6 Swashbuckler's Cunning Strike by wesslen.
+// Bonus: Native support for Druid Wild Shape Overhaul by ShadyDax.
+// Bonus: Native support for The Ruffian - A Strength Rogue by TheWailingBard.
 // TODO: Offhand & throw spell variants, put them in a container.
-// TODO: Make it work for Dex based Wildshape stuff and not like, big brawny bears.
 
 // ==================================== Sneak Attack - Spells
 
@@ -116,7 +120,7 @@ data "Cooldown" "None"
 // data "InterruptDefaultValue" "Enabled"
 data "InterruptDefaultValue" "Ask;Enabled"
 // data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or SpellTypeIs(SpellType.Throw)) and (not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
-data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (((WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or (HasPassive('SneakAttack_LLRuffian',context.Source) and not WieldingWeapon('Twohanded',false,false)) or SpellTypeIs(SpellType.Throw)) and (not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus())) or Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph())"
+data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (((WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or (HasPassive('SneakAttack_LLRuffian',context.Source)) or SpellTypeIs(SpellType.Throw)) and (not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus())) or Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph())"
 // data "EnableContext" "OnActionResourcesChanged;OnEquip"
 data "EnableContext" "OnActionResourcesChanged;OnEquip;OnStatusApplied;OnStatusRemoved"
 data "InterruptFlags" "InterruptWhileInvisible"
