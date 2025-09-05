@@ -1,0 +1,102 @@
+// ==================================== Wild Magic - Tides of Chaos ====================================
+// Bug Fix: The passive toggle has been removed, as it's unreliable and seemingly bugged. It won't really be missed as this feature works better as an interrupt anyway, providing the player finer control.
+// Bug Fix: Can be used while under the effects of non-hostile Polymorphs.
+// Changes: Can now be used by Invisible player characters.
+// Changes: The interrupt which previously only functioned for failed Ability Checks, Attack Rolls and Saving Throws has been renamed and split into 2 Interrupts, "Tides of Chaos (Failure)" and "Tides of Chaos (Success)"; with these changes the player has complete control on when it triggers.
+
+new entry "TidesOfChaos"
+type "PassiveData"
+using "TidesOfChaos"
+// Tides of Chaos
+// data "DisplayName" "h1fbdf74dge1fdg4835g86d7gac64fc3a18b3;1"
+// Activate to gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Increased chance of &lt;LSTag Tooltip="WildMagic"&gt;Wild Magic&lt;/LSTag&gt; surge afterwards.
+// data "Description" "he80e83d4gcc47g4638gb2adgd5dc12f24761;6"
+// data "TooltipUseCosts" "TidesOfChaos:1"
+// data "Icon" "Skill_Sorcerer_Passive_TidesOfChaos"
+// data "EnabledConditions" "(not context.HasContextFlag(StatsFunctorContext.OnStatusApplied) and HasActionResource('TidesOfChaos', 1, 0, false, false, context.Source)) or (context.HasContextFlag(StatsFunctorContext.OnStatusApplied) and HasActionResource('TidesOfChaos', 1, 0, false))"
+data "EnabledConditions" ""
+// data "EnabledContext" "OnAbilityCheck;OnStatusApplied;OnShortRest;OnLongRest"
+data "EnabledContext" ""
+// data "Properties" "IsToggled;ToggledDefaultAddToHotbar;Highlighted"
+data "Properties" "IsHidden"
+// data "Boosts" "Advantage(AllAbilities)"
+data "Boosts" ""
+// data "StatsFunctorContext" "OnAbilityCheck"
+data "StatsFunctorContext" ""
+// data "StatsFunctors" "IF(context.HasContextFlag(StatsFunctorContext.OnAbilityCheck)):UseActionResource(SELF,TidesOfChaos,1,0);IF(context.HasContextFlag(StatsFunctorContext.OnAbilityCheck)):ApplyStatus(SELF,TIDES_OF_CHAOS_TECHNICAL,100,0)"
+data "StatsFunctors" ""
+// data "ToggleOnEffect" "VFX_Spells_Cast_Sorcerer_TidesOfChaos_BodyFX_01:Dummy_BodyFX:;VFX_Spells_Cast_Sorcerer_Shout_EyeFX_01:Dummy_EyeFX_01:;VFX_Spells_Cast_Sorcerer_Shout_EyeFX_02:Dummy_EyeFX_02:;"
+data "ToggleOnEffect" ""
+
+new entry "TidesOfChaos_Unlock"
+type "PassiveData"
+using "TidesOfChaos_Unlock"
+// %%% Empty
+// data "DisplayName" "ha4ba1987gcc64g41a7g85a2g81df97d7bbcb;1"
+// Tides of Chaos
+data "DisplayName" "h1fbdf74dge1fdg4835g86d7gac64fc3a18b3;1"
+// Activate to gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Increased chance of &lt;LSTag Tooltip="WildMagic"&gt;Wild Magic&lt;/LSTag&gt; surge afterwards.
+data "Description" "he80e83d4gcc47g4638gb2adgd5dc12f24761;6"
+// data "Icon" "Skill_Sorcerer_Passive_TidesOfChaos"
+// data "Properties" "IsHidden"
+data "Properties" "ForceShowInCC"
+// data "Boosts" "UnlockInterrupt(Interrupt_TidesOfChaos)"
+data "Boosts" "UnlockInterrupt(Interrupt_TidesOfChaos);UnlockInterrupt(Goon_Interrupt_TidesOfChaos_Success)"
+
+// new entry "TIDES_OF_CHAOS_TECHNICAL"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "TIDES_OF_CHAOS"
+// data "StackId" ""
+// data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
+// data "OnApplyFunctors" "ApplyStatus(TIDES_OF_CHAOS,100,-1)"
+
+// new entry "TIDES_OF_CHAOS"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// Tides of Chaos
+// data "DisplayName" "he34f26e9g95a3g4babg97ebg8751a6249b16;4"
+// Increased chance of &lt;LSTag Tooltip="WildMagic"&gt;Wild Magic&lt;/LSTag&gt; surge.
+// data "Description" "h62b271f9g503eg4418ga3ccg18828562c2ab;5"
+// data "Icon" "Skill_Sorcerer_Passive_TidesOfChaos"
+// data "StackId" "TIDES_OF_CHAOS_TECHNICAL"
+// data "StatusGroups" "SG_RemoveOnRespec"
+
+new entry "Interrupt_TidesOfChaos"
+type "InterruptData"
+using "Interrupt_TidesOfChaos"
+// Tides of Chaos
+// data "DisplayName" "h3d5cb14egfdceg4f20g8ae3g8058799bf222;1"
+// Tides of Chaos (Failure)
+data "DisplayName" "h704fcdeag3a05g4f0dg80f4g1ef722f9e6e6;1"
+// Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;, &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;, or &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Increased chance of &lt;LSTag Tooltip="WildMagic"&gt;Wild Magic&lt;/LSTag&gt; surge afterwards.
+// data "Description" "h8cefbec7g0aefg43c7ga0a7gb4cfd15f8385;2"
+// Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on an &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt; that would miss, or an &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;, or &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt; that would be failed.&lt;br&gt;&lt;br&gt;Increased chance of &lt;LSTag Tooltip="WildMagic"&gt;Wild Magic&lt;/LSTag&gt; surge afterwards.
+data "Description" "hc6bca500gbb23g4fcfg8d22g56c6e2627d0c;1"
+// data "Icon" "Skill_Sorcerer_Passive_TidesOfChaos"
+// data "InterruptContext" "OnPostRoll"
+// data "InterruptContextScope" "Self"
+// data "Container" "YesNoDecision"
+// data "Conditions" "not Dead(context.Observer) and ((Self(context.Source,context.Observer) and HasInterruptedAttack() and IsRerollInterruptInteresting(context.Source)) or (Self(context.Target,context.Observer) and HasInterruptedSavingThrow() and IsRerollInterruptInteresting())) and not AnyEntityIsItem() and not InterruptHasAdvantage()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and ((Self(context.Source,context.Observer) and HasInterruptedAttack() and IsRerollInterruptInteresting(context.Source)) or (Self(context.Target,context.Observer) and HasInterruptedSavingThrow() and IsRerollInterruptInteresting())) and not AnyEntityIsItem() and not InterruptHasAdvantage()"
+// data "Properties" "SetAdvantage();ApplyStatus(OBSERVER_OBSERVER,TIDES_OF_CHAOS,100,-1)"
+// data "Cost" "TidesOfChaos:1"
+// data "InterruptDefaultValue" "Ask;Enabled"
+// data "EnableCondition" "not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
+data "EnableCondition" "not Tagged('POLYMORPHED_UNWILLING')"
+// data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"
+
+new entry "Goon_Interrupt_TidesOfChaos_Success"
+type "InterruptData"
+using "Interrupt_TidesOfChaos"
+// Tides of Chaos (Failure)
+// data "DisplayName" "h704fcdeag3a05g4f0dg80f4g1ef722f9e6e6;1"
+// Tides of Chaos (Success)
+data "DisplayName" "h55a26020g5be8g44f6g9a3ag0386a1926180;1"
+// Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next failed &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;, &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;, or &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Increased chance of &lt;LSTag Tooltip="WildMagic"&gt;Wild Magic&lt;/LSTag&gt; surge afterwards.
+// data "Description" "hc6bca500gbb23g4fcfg8d22g56c6e2627d0c;1"
+// Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on an &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt; that would land, or an &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;, or &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt; that would be successful&lt;br&gt;&lt;br&gt;Increased chance of &lt;LSTag Tooltip="WildMagic"&gt;Wild Magic&lt;/LSTag&gt; surge afterwards.
+data "Description" "h8142c950gac76g4c7eg949bge9145bfc5329;1"
+// data "Conditions" "not Dead(context.Observer) and ((Self(context.Source,context.Observer) and HasInterruptedAttack() and IsRerollInterruptInteresting(context.Source)) or (Self(context.Target,context.Observer) and HasInterruptedSavingThrow() and IsRerollInterruptInteresting())) and not AnyEntityIsItem() and not InterruptHasAdvantage()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and ((Self(context.Source,context.Observer) and HasInterruptedAttack() and not IsRerollInterruptInteresting(context.Source)) or (Self(context.Target,context.Observer) and HasInterruptedSavingThrow() and not IsRerollInterruptInteresting())) and not AnyEntityIsItem() and not InterruptHasAdvantage()"

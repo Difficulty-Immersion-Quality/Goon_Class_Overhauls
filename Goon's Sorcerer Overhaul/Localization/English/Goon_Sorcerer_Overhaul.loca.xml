@@ -1,7 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentList>
+	<!-- "Interrupt_TidesOfChaos" --> 
+	<content contentuid="h704fcdeag3a05g4f0dg80f4g1ef722f9e6e6" version="1">Tides of Chaos (Failure)</content>
+	<content contentuid="hc6bca500gbb23g4fcfg8d22g56c6e2627d0c" version="1">Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on an &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt; that would miss, or an &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;, or &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt; that would be failed.&lt;br&gt;&lt;br&gt;Increased chance of &lt;LSTag Tooltip="WildMagic"&gt;Wild Magic&lt;/LSTag&gt; surge afterwards.</content>
+	<!-- "Goon_Interrupt_TidesOfChaos_Success" --> 
+	<content contentuid="h55a26020g5be8g44f6g9a3ag0386a1926180" version="1">Tides of Chaos (Success)</content>
+	<content contentuid="h8142c950gac76g4c7eg949bge9145bfc5329" version="1">Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on an &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt; that would land, or an &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;, or &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt; that would be successful&lt;br&gt;&lt;br&gt;Increased chance of &lt;LSTag Tooltip="WildMagic"&gt;Wild Magic&lt;/LSTag&gt; surge afterwards.</content>	
+
 	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
+	<!-- "" --> <content contentuid="" version="1"></content>	
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 </contentList>
