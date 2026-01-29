@@ -1,0 +1,38 @@
+// ==================================== Boot of the Giants ====================================
+// Bug Fix: Removed the "CombatLogSetSingleLineRoll" flag that breaks the DC displayed in the combat log.
+// Changes: Can now slightly control the trajectory of the push based on cursor position on the target entity.
+// Changes: Takes priority over the regular Shove keybind.
+
+new entry "Target_BootOfTheGiants"
+type "SpellData"
+data "SpellType" "Target"
+// using "Target_Shove"
+using "Target_BootOfTheGiants"
+// data "SpellSuccess" "IF(not Ally()):Force(ShoveDistance,OriginToEntity,Aggressive);IF(Ally()):Force(ShoveDistance,OriginToEntity,Friendly);DealDamage(UnarmedDamage , Bludgeoning)"
+data "SpellSuccess" "IF(not Ally()):Force(ShoveDistance,OriginToTarget,Aggressive);IF(Ally()):Force(ShoveDistance,OriginToTarget,Friendly);DealDamage(UnarmedDamage , Bludgeoning)"
+// data "TargetConditions" "not Self() and CanBarbarianGiantShoveWeight() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not (not Player(context.Source) and Combat(context.Source) and Character() and not (Enemy() or HasStatus('SG_Unconscious'))) and not Tagged('CANT_SHOVE_THROW')"
+// data "Icon" "Action_BootOfTheGiants"
+// Boot of the Giants
+// data "DisplayName" "he1ac2e58g4beeg4263g949ag4ed91b4d2f17;1"
+// Try to kick a target away. Your chances depend on your Athletics, and are higher if you're hidden or invisible.
+// data "Description" "hb5750938g3692g480cga219g669d9062943b;2"
+// Try to kick a target away. Your chances depend on your Athletics, and are higher if you're &lt;LSTag Type="Status" Tooltip="HIDDEN"&gt;Hidden&lt;/LSTag&gt; or &lt;LSTag Type="Status" Tooltip="INVISIBLE"&gt;Invisible&lt;/LSTag&gt;.
+data "Description" "h949cb5e3gab44g4263g8828gfbe2d1befe04;1"
+// You can kick targets up to twice the weight that &lt;LSTag Type="Spell" Tooltip="Target_Shove"&gt;Shoving&lt;/LSTag&gt; them would allow.
+// data "ExtraDescription" "h718d283fg0fbag4005gbb5dge8a1269fd0d1;1"
+// data "TooltipDamageList" "DealDamage(UnarmedDamage , Bludgeoning)"
+// data "PrepareSound" "Action_Prepare_Barbarian_BootoftheGiant"
+// data "PrepareLoopSound" "Action_Loop_Barbarian_BootoftheGiant"
+// data "CastSound" "Action_Cast_Barbarian_BootoftheGiant"
+// data "TargetSound" "Action_Impact_Barbarian__BootoftheGiant"
+// data "SpellAnimation" "0319ca29-4024-4649-9278-3c1f20c5f023,,;d596d25b-39ea-45d4-8e76-1472370a9795,,;630e6a58-db97-4891-8d66-59a5d84976cc,,;eba905b9-3f5c-4bdf-9134-a04715d22307,,;b24b3f23-6d3a-43ce-ae3a-abfb44d26082,,;fc44649c-c5d5-43fd-86d8-e82bfc409012,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,,"
+// data "SpellFlags" "AddFallDamageOnLand;IsHarmful;CombatLogSetSingleLineRoll;IsMelee"
+data "SpellFlags" "IsMelee;AddFallDamageOnLand;IsHarmful"
+// data "SpellActionType" ""
+data "SpellActionType" "Shove"
+data "SpellActionTypePriority" "2"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "PrepareEffect" "3d42c249-4367-487e-8065-d1b366e5e776"
+// data "CastEffect" "841e1745-638d-4d59-a099-ca732a7440d1"
+// data "TargetEffect" "8cc6b039-af40-4716-b900-b9e5689b3071"
+// data "DamageType" "Bludgeoning"

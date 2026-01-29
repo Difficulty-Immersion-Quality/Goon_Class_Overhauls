@@ -74,6 +74,10 @@
 	<!-- "Shout_PackHowl_Barbarian" --> 
 	<content contentuid="hccc0c469g4897g4aacg93b5gf39930539474" version="1">Each ally within earshot can &lt;LSTag Tooltip="MovementSpeed"&gt;move&lt;/LSTag&gt; an additional [1] during their next turn.</content>
 
+	<!-- ==================================== Giant stuff ==================================== -->
+	<!-- "Target_BootOfTheGiants" --> 
+	<content contentuid="h949cb5e3gab44g4263g8828gfbe2d1befe04" version="1">Try to kick a target away. Your chances depend on your Athletics, and are higher if you're &lt;LSTag Type="Status" Tooltip="HIDDEN"&gt;Hidden&lt;/LSTag&gt; or &lt;LSTag Type="Status" Tooltip="INVISIBLE"&gt;Invisible&lt;/LSTag&gt;.</content>
+
 	<!-- "" --> 
 	<content contentuid="" version="1"></content>
 	<!-- "" --> 
