@@ -114,7 +114,7 @@ data "RemoveConditions" "not HasAnyStatus({'RAGE','RAGE_2','RAGE_3'},{},{})"
 // data "StatsFunctors" "DealDamage(SWAP,1d6, Force,Magical);ApplyStatus(SELF,PASSIVE_WILDMAGIC_MAGICRETRIBUTION_DEFENDER,100,0);ApplyStatus(PASSIVE_WILDMAGIC_MAGICRETRIBUTION_ATTACKER,100,0)"
 
 // ==================================== Wild Magic: Protective Lights
-// Bug Fix: Wild Magic: Protective Lights is no longer removed when a Wild Magic Barbarian of level 9 or above has a Rage condition.
+// Bug Fix: The Wild Magic: Protective Lights condition is no longer removed when a Wild Magic Barbarian of level 9 or above has a Rage condition.
 
 new entry "Shout_WildMagicBarbarian_ProtectiveLights"
 type "SpellData"

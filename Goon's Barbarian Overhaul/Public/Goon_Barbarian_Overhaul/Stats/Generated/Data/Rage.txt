@@ -1,7 +1,7 @@
 // ==================================== Rage ====================================
 // Expansion: Added support for throw damage being increased to +4 at level 16.
 // Bug Fix: Fall damage is no longer quartered from Bludgeoning Resistance stacking with the halved fall damage.
-// Bug Fix: Removed the redundant condition that prevented taking damage from maintaining Rage when other passives ran functors on the OnDamage event.
+// Bug Fix: Removed the redundant condition that prevented taking damage from maintaining Rage when other passives ran functors on the "OnDamage" event.
 // Bug Fix: The same Rage can no longer be used while a Barbarian of level 9 or above already has the Rage condition.
 // Bug Fix: Sustaining your Rage can no longer be done by targeting hostile creatures with actions that are not Attacks or flagged as harmful.
 // Bug Fix: Descriptions overhauled with appropriate hyperlinks.
@@ -9,7 +9,9 @@
 // Changes: End Rage no longer costs a Bonus Action, it's a free cast.
 // TODO: Damage bonuses and other stuff working with Wildshape/Slayer etc.
 // TODO: Add support for custom Rages as needed, especially 5e Barbarian Subclasses Combined.
-// Known Issue: Fall damage will no longer show as being halved on the target tooltip prior to making a jump. (But if it was actually quartered then it was still innacurate to begin with, can't win 'em all.)
+// Known Issue: Fall damage will no longer show as being halved on the target tooltip prior to making a jump. (But if it was actually quartered then it was still inaccurate to begin with, can't win 'em all.)
+// Bonus: All Rages check for if Expansion's level 15 Barbarian feature Persistent Rage exists before removing the condition, so it won't be removed immediately when exiting combat.
+// Bonus: Support for The Rage Mage - A Barbarian Spellcaster Subclass.
 // Note: the EntityThrowDamage() boost seemingly does not function with LevelMapValue, which sucks.
 
 new entry "RageUnlock"

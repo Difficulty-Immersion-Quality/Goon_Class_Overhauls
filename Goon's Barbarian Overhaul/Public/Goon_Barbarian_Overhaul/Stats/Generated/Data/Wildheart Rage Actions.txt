@@ -1,4 +1,4 @@
-// ==================================== Wildheart actions ====================================
+// ==================================== Bestial Heart Rage Actions ====================================
 // Changes: All conditional actions requiring the Barbarian to be raging have been turned into temporary spells that are unlocked by the Rage conditions.
 // Note: Larian really didn't care about RAW for this stuff it seems.
 

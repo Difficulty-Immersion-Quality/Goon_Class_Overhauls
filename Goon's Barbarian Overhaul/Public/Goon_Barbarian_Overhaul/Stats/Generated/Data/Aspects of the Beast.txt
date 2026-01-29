@@ -102,7 +102,7 @@
 // data "PrepareEffect" "83c458da-6afa-47af-8fdb-825c98963719"
 // data "CastEffect" "95cfcd2b-fccb-4415-9b6a-c24208bd0f06"
 
-// ==================================== Aspects of the Beast: Honey Badger
+// ==================================== Aspect of the Beast: Honey Badger
 // Bug Fix: Conditions expanded to cover status groups for Poisoned, Frightened and Charmed conditions, instead of just Poisoned, Frightened and Charmed specifically.
 
 new entry "AspectOfTheBeast_HoneyBadger"

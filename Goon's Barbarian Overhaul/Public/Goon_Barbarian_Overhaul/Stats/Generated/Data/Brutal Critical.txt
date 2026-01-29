@@ -1,5 +1,6 @@
 // ==================================== Brutal Critical ====================================
-// Changes: Now rolls extra dice for Critical Hits with thrown and offhand weapon attacks. (Includes Expansion's Brutal Critical 2 and 3.)
+// Bug Fix: Now rolls extra dice for Critical Hits with offhand weapon attacks.
+// Changes: Now rolls extra dice for Critical Hits with thrown attacks.
 
 new entry "BrutalCritical"
 type "PassiveData"
@@ -11,7 +12,7 @@ data "Description" "h59de2df6g8084g4da3gae09g45f1434dce93;1"
 // data "Boosts" "CriticalHitExtraDice(1, MeleeWeaponAttack);CriticalHitExtraDice(1, MeleeUnarmedAttack);"
 data "Boosts" "CriticalHitExtraDice(1,MeleeWeaponAttack);CriticalHitExtraDice(1,MeleeOffHandWeaponAttack);CriticalHitExtraDice(1,MeleeUnarmedAttack);CriticalHitExtraDice(1,RangedUnarmedAttack)"
 
-// ==================================== Brutal Critical 2 & 3 (Expansion) ====================================
+// ==================================== Brutal Critical - 2 & 3 (Expansion)
 
 new entry "BrutalCritical_2"
 type "PassiveData"
