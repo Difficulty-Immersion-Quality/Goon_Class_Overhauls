@@ -78,6 +78,12 @@
 	<!-- "Target_BootOfTheGiants" --> 
 	<content contentuid="h949cb5e3gab44g4263g8828gfbe2d1befe04" version="1">Try to kick a target away. Your chances depend on your Athletics, and are higher if you're &lt;LSTag Type="Status" Tooltip="HIDDEN"&gt;Hidden&lt;/LSTag&gt; or &lt;LSTag Type="Status" Tooltip="INVISIBLE"&gt;Invisible&lt;/LSTag&gt;.</content>
 
+	<!-- ==================================== Magic Awareness ==================================== -->
+	<!-- "Shout_MagicAwareness" --> 
+	<content contentuid="hc24ec1e3g1aa5g4528g892dg7de6bc3c9a14" version="1">Allied creatures within range add their &lt;LSTag Tooltip="ProficiencyBonus"&gt;Proficiency Bonus&lt;/LSTag&gt; to &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; against spells.</content>
+	<!-- "MAGIC_AWARENESS" --> 
+	<content contentuid="h0f058e5bga07fg4533g998cge466248d25fd" version="1">Tapping into their innate magic to visualise the Weave.&lt;br&gt;&lt;br&gt;The barbarian and all allied creatures within [1] add their &lt;LSTag Tooltip="ProficiencyBonus"&gt;Proficiency Bonus&lt;/LSTag&gt; to &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; against spells.</content>
+
 	<!-- "" --> 
 	<content contentuid="" version="1"></content>
 	<!-- "" --> 
