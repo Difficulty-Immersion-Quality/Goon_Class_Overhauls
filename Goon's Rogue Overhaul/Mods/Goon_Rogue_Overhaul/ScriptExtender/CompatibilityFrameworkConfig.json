@@ -1,0 +1,21 @@
+{
+	"FileVersion": 1,
+	"Progressions": [
+		{
+      "Comment":"Bug Fix: Arcane Trickster is no longer given 2 level 1 spell slots at level 10, and is instead given 1 level 2 spell slot.",
+			"UUID": "53ecef19-2f1c-4d4b-81e9-11a72ad3e0ac",
+      "Strings": [
+        {
+          "Action": "Remove",
+          "Type": "Boosts",
+          "Strings": ["ActionResource(SpellSlot,2,1)"]
+        },
+        {
+          "Action": "Insert",
+          "Type": "Boosts",
+          "Strings": ["ActionResource(SpellSlot,1,2)"]
+				}
+			]
+		}
+	]
+}
