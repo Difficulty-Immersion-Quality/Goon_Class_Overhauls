@@ -1,0 +1,27 @@
+{
+  "FileVersion": 1,
+  "Progressions": [
+    {
+      "Comment":"Bug Fix: Missing 'UnlockedSpellSlotLevel1' technical passive added to Druid and Druid multiclass at level 1.",
+			"UUID": "b499258c-2823-42f1-b8ca-0a5ee8455e11",
+      "Strings": [
+        {
+          "Action": "Insert",
+          "Type": "PassivesAdded",
+          "Strings": ["UnlockedSpellSlotLevel1"]
+        }
+      ]
+    },
+    {
+      "Comment":"Bug Fix: Missing 'UnlockedSpellSlotLevel1' technical passive added to Druid and Druid multiclass at level 1.",
+			"UUID": "a13110fc-3555-4b33-9b8a-47f70586f567",
+      "Strings": [
+        {
+          "Action": "Insert",
+          "Type": "PassivesAdded",
+          "Strings": ["UnlockedSpellSlotLevel1"]
+        }
+      ]
+    }
+	]
+}
