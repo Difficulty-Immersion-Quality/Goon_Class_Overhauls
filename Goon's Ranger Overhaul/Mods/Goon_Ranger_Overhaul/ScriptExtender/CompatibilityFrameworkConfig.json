@@ -1,0 +1,16 @@
+{
+  "FileVersion": 1,
+  "Progressions": [
+    {
+      "Comment":"Bug Fix: Missing Land's Stride: Advantage passive added to Ranger level 8.",
+			"UUID": "12b9a506-33c9-4dcf-81a1-ab8df2023e8e",
+      "Strings": [
+        {
+          "Action": "Insert",
+          "Type": "PassivesAdded",
+          "Strings": ["LandsStride_Advantage"]
+        }
+      ]
+    }
+	]
+}
