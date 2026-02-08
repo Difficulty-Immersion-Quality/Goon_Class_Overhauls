@@ -1,0 +1,16 @@
+{
+  "FileVersion": 1,
+  "Progressions": [
+    {
+        "Comment":"Bug Fix: Cleric multiclass no longer gets extra skills. Probably caused from the Patch #7 progressions merging changes, where the otherwise unused entry was previously just overwritten.",
+        "UUID": "2b249feb-bba5-4922-8385-c2dd9baaa049",
+        "Selectors": [
+        {
+          "Action": "Remove",
+          "Function": "SelectSkills",
+          "UUID": "6cb9d731-a518-46f0-b20e-9e2bf18e6acd"
+        }
+      ]
+    }
+	]
+}

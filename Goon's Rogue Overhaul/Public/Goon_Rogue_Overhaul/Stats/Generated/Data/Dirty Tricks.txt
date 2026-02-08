@@ -1,14 +1,48 @@
+// ==================================== Dirty Advantage ====================================
+// Bug Fix: The Dirty Advantage condition is no longer inappropriately removed from taking actions that are not attacks.
+// Bug Fix: Correct Dirty Advantage duration of 2 turns is now displayed in the Dirty Tricks tooltips, instead of 1 turn.
+
+new entry "SWASHBUCKLER_ADV"
+type "StatusData"
+data "StatusType" "BOOST"
+using "SWASHBUCKLER_ADV"
+// Dirty Advantage
+// data "DisplayName" "ha6a45fa4ga331g45acga782g5c896fb14563;1"
+// Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next attack.
+// data "Description" "h7fcdbebbgbae9g4fb1g96c8g26a5d8801de5;1"
+// Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;.
+data "Description" "h18667283g2a98g46abg8009gf6b65088b7c4;1"
+// data "Icon" "GenericIcon_Intent_Buff"
+// data "StackId" "SWASHBUCKLER_ADV"
+// data "TickType" "EndTurn"
+// data "Boosts" "Advantage(AttackRoll);"
+// data "Passives" "SwashbucklerAdvantage;"
+
+new entry "SwashbucklerAdvantage"
+type "PassiveData"
+using "SwashbucklerAdvantage"
+// %%% Empty
+// data "DisplayName" "h6749c4c0gfef0g4ecag9f90g74ea14f8594c;1"
+// data "Properties" "IsHidden"
+// data "StatsFunctorContext" "OnAttack;OnDamage"
+// data "Conditions" "(HasDamageEffectFlag(DamageFlags.Hit) or HasDamageEffectFlag(DamageFlags.Critical)) and not (IsCriticalMiss() or IsMiss());"
+data "Conditions" "IsAttack() and IsHit()"
+// data "StatsFunctors" "RemoveStatus(SELF,SWASHBUCKLER_ADV)"
+
 // ==================================== Dirty Trick: Sand Toss ====================================
-// Bug Fix: Now uses Maneuver Save DC instead of Spell Save DC.
+// Bug Fix: No longer uses Spell Save DC for the Blind, instead using Maneuver Save DC but restricted to Dexterity.
+// Bug Fix: Now an unarmed attack instead of a weapon attack.
+// Note: "CalculateSpellDC" did not work in this content unlike with Barbarian's Wild Magic. Perhaps it's a matter of "SpellType", Shout vs Target, I dunno.
 
 new entry "Target_DirtyTrick_Blind"
 type "SpellData"
 data "SpellType" "Target"
 using "Target_DirtyTrick_Blind"
-// data "TargetRadius" "1.5"
+data "TargetRadius" "1.5"
 // data "SpellRoll" "Attack(AttackType.MeleeWeaponAttack)"
+data "SpellRoll" "Attack(AttackType.MeleeUnarmedAttack)"
 // data "SpellSuccess" "IF(not SavingThrow(Ability.Constitution, SourceSpellDC())):ApplyStatus(BLINDED,100,2);DealDamage(1d6,Bludgeoning);ApplyStatus(SELF,SWASHBUCKLER_ADV,100,2);"
-data "SpellSuccess" "IF(not SavingThrow(Ability.Constitution, ManeuverSaveDC())):ApplyStatus(BLINDED,100,2);DealDamage(1d6,Bludgeoning);ApplyStatus(SELF,SWASHBUCKLER_ADV,100,2);"
+data "SpellSuccess" "IF(not SavingThrow(Ability.Constitution, SourceSpellDC(10,context.Source,Ability.Dexterity))):ApplyStatus(BLINDED,100,2);DealDamage(1d6,Bludgeoning);ApplyStatus(SELF,SWASHBUCKLER_ADV,100,2)"
 // data "TargetConditions" "Character() and not Self() and not Dead()"
 // data "Icon" "Action_DirtyTrick_Blind"
 // Dirty Trick: Sand Toss
@@ -20,6 +54,7 @@ data "SpellSuccess" "IF(not SavingThrow(Ability.Constitution, ManeuverSaveDC()))
 // data "TooltipDamageList" "DealDamage(1d6,Bludgeoning)"
 // data "TooltipAttackSave" "Constitution"
 // data "TooltipStatusApply" "ApplyStatus(BLINDED,100,2);ApplyStatus(SWASHBUCKLER_ADV,100,1)"
+data "TooltipStatusApply" "ApplyStatus(BLINDED,100,2);ApplyStatus(SWASHBUCKLER_ADV,100,2)"
 // data "PrepareSound" "Spell_Prepare_Rogue_Blind"
 // data "CastSound" "Spell_Cast_Rogue_Blind"
 // data "TargetSound" "Impact_Rogue_Blind"
@@ -38,12 +73,12 @@ data "SpellSuccess" "IF(not SavingThrow(Ability.Constitution, ManeuverSaveDC()))
 
 // ==================================== Dirty Trick: Vicious Mockery ====================================
 // TODO: "When target fails the save, battle log states erroneously that the caster failed the save."
-// It's gotta just me from having a SELF status, so could do a technical applier and put the swap in there.
 
-// new entry "Target_DirtyTrick_Vicious"
-// type "SpellData"
-// data "SpellType" "Target"
+new entry "Target_DirtyTrick_Vicious"
+type "SpellData"
+data "SpellType" "Target"
 // using "Target_ViciousMockery"
+using "Target_DirtyTrick_Vicious"
 // data "SpellSuccess" "ApplyStatus(VICIOUSMOCKERY,100,1);DealDamage(LevelMapValue(D4Cantrip),Psychic,Magical);ApplyStatus(SELF,SWASHBUCKLER_ADV,100,2);"
 // data "Icon" "Action_DirtyTrick_ViciousMockery"
 // Dirty Trick: Vicious Mockery
@@ -51,6 +86,7 @@ data "SpellSuccess" "IF(not SavingThrow(Ability.Constitution, ManeuverSaveDC()))
 // Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next attack.
 // data "ExtraDescription" "h8d81a3c6ge530g47f8ga9f9g53d6f89ce4e0;1"
 // data "TooltipStatusApply" "ApplyStatus(VICIOUSMOCKERY,100,1);ApplyStatus(SWASHBUCKLER_ADV,100,1);"
+data "TooltipStatusApply" "ApplyStatus(VICIOUSMOCKERY,100,1);ApplyStatus(SWASHBUCKLER_ADV,100,2)"
 // data "PrepareSound" "Spell_Prepare_Rogue_ViciousMockery"
 // data "CastSound" "Spell_Cast_Rogue_ViciousMockery"
 // data "TargetSound" "Impact_Rogue_ViciousMockery"
@@ -61,3 +97,46 @@ data "SpellSuccess" "IF(not SavingThrow(Ability.Constitution, ManeuverSaveDC()))
 // data "CastEffect" "6f7d94a8-e808-49ec-b7be-3a1f02a51df7"
 // data "TargetEffect" "57593949-e63b-4b31-8b3b-5039ed5ed1cf"
 // data "BeamEffect" "0da84949-2469-439b-b28e-06e7b33a52b1"
+
+// ==================================== Dirty Trick: Flick o' the Wrist ====================================
+// Bug Fix: Now executes weapon functors, allowing appropriate damage riders to apply.
+// Bug Fix: No longer uses Spell Save DC for the Disarm, instead using Maneuver Save DC but restricted to Dexterity.
+// Changes: Range is now matches melee weapon's range instead of being fixed to 1.5m.
+
+new entry "Target_DirtyTrick_Disarm"
+type "SpellData"
+data "SpellType" "Target"
+using "Target_DirtyTrick_Disarm"
+// data "TargetRadius" "1.5"
+data "TargetRadius" "MeleeMainWeaponRange"
+// data "RequirementConditions" "WieldingFinesseWeaponInSpecificHand(context.Source,false)"
+// data "SpellRoll" "Attack(AttackType.MeleeWeaponAttack)"
+// data "SpellSuccess" "IF(not SavingThrow(Ability.Dexterity, SourceSpellDC())):ApplyStatus(DISARM,100,1);DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);ApplyStatus(SELF,SWASHBUCKLER_ADV,100,2);"
+data "SpellSuccess" "IF(not SavingThrow(Ability.Dexterity, SourceSpellDC(10,context.Source,Ability.Dexterity))):ApplyStatus(DISARM,100,1);DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand);ApplyStatus(SELF,SWASHBUCKLER_ADV,100,2);"
+// data "TargetConditions" "Character() and not Self() and not Dead() and HasWeaponInMainHand()"
+// data "Icon" "Action_DirtyTrick_Disarm"
+// Dirty Trick: Flick o' the Wrist
+// data "DisplayName" "hb7affffagb3d7g4dc3gb8fcg83c469efc359;2"
+// Flick your weapon at a target and possibly &lt;LSTag Type="Status" Tooltip="DISARMED"&gt;Disarm&lt;/LSTag&gt; them.
+// data "Description" "h4b071afdgb810g40e6gb8dag103200f79702;1"
+// Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next attack.
+// data "ExtraDescription" "he5e284efg0519g4331gb13egc6f7815c8d3e;1"
+// data "TooltipDamageList" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);"
+// data "TooltipAttackSave" "Dexterity"
+// data "TooltipStatusApply" "ApplyStatus(DISARMED,100,1);ApplyStatus(SWASHBUCKLER_ADV,100,1);"
+data "TooltipStatusApply" "ApplyStatus(DISARMED,100,1);ApplyStatus(SWASHBUCKLER_ADV,100,2)"
+// data "PrepareSound" "Spell_Prepare_Rogue_Disarm"
+// data "CastSound" "Spell_Cast_Rogue_Disarm"
+// data "TargetSound" "Impact_Rogue_Disarm"
+// data "CastTextEvent" "Cast"
+// data "UseCosts" "BonusActionPoint:1"
+// data "SpellAnimation" "d3bac79c-8e5e-4df3-a783-2c604f87e305,,;d2767ed9-078a-4fec-8ff5-c95425d27b83,d2767ed9-078a-4fec-8ff5-c95425d27b83,d2767ed9-078a-4fec-8ff5-c95425d27b83;213ea337-26a9-4863-a21b-36e578d9f714,213ea337-26a9-4863-a21b-36e578d9f714,213ea337-26a9-4863-a21b-36e578d9f714;5f16706e-337f-40c3-a681-c7488ff2b447,5f16706e-337f-40c3-a681-c7488ff2b447,5f16706e-337f-40c3-a681-c7488ff2b447;228aec3c-e40b-4cde-9f81-f24d9d3c3276,,;,,;92db969f-5cfa-4a4c-80c6-d40f8e8bf131,,;,,;,,"
+// data "DualWieldingSpellAnimation" "8b8bb757-21ce-4e02-a2f3-97d55cf2f90b,,;6606c30b-be1c-4f17-ae6b-1a591c80b18c,,;f4ac302b-1569-404f-bd52-1fe443e265df,,:722df2d7-7898-4b0b-b930-5a850b55ccf0,,;a693a7c3-e7e7-4edb-98dd-db5fd700663f,,;7bb52cd4-0b1c-4926-9165-fa92b75876a3,,;2b81c18b-9698-4262-a623-932c2bb1296d,,;0b07883a-08b8-43b6-ac18-84dc9e84ff50,,;,,;,,"
+// data "VerbalIntent" "Debuff"
+// data "SpellStyleGroup" "Class"
+// data "WeaponTypes" "Melee"
+// data "SpellFlags" "IsHarmful;IsMelee"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "PrepareEffect" "2f3cf899-3a58-4471-8804-5df322318918"
+// data "CastEffect" "09da17b5-7435-41e9-9728-05d4729bafa9"
+// data "Sheathing" "Melee"

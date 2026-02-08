@@ -19,6 +19,7 @@ data "Description" "hba8f1eeeg12c1g43dag9a43g15d42b380150;1"
 // ==================================== Rakish Sneak Attack ====================================
 // Bug Fix: Range check mechanics now function as intended, and as described in the tooltips.
 // Bug Fix: Tooltips now state the correct distance.
+// TODO: The error message of "Must have Advantage against the target" is not accurate to mechanics.
 
 new entry "Target_SneakAttack_Rakish"
 type "SpellData"

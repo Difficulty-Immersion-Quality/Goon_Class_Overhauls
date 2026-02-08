@@ -1,0 +1,184 @@
+// ==================================== Bestial Heart Rage Actions ====================================
+// Changes: All conditional actions requiring the Barbarian to be raging have been turned into temporary spells that are unlocked by the Rage conditions.
+// Note: Larian really didn't care about RAW for this stuff it seems.
+
+// ==================================== Rage: Bear Heart - Unrelenting Ferocity
+
+new entry "Shout_FerociousAppetite"
+type "SpellData"
+data "SpellType" "Shout"
+using "Shout_FerociousAppetite"
+// data "SpellProperties" "RegainHitPoints(1d8+ConstitutionModifier);RemoveStatus(RAGE_TOTEM_BEAR_HEAL_TOGGLE)"
+// data "TargetConditions" "Self()"
+// data "Icon" "Action_Barbarian_UnrelentingFerocity"
+// Unrelenting Ferocity
+// data "DisplayName" "h01d138feg40abg44b9gad59ga6b51de42e07;3"
+// Muster up your stamina to heal yourself.
+// data "Description" "h79785427gff5ag40b9g9ecfg562e364b1d55;6"
+// Can only be used once per Rage.
+// data "ExtraDescription" "hb4299f86gb138g42e7g8d96g2d71f596dca9;2"
+// data "TooltipDamageList" "RegainHitPoints(1d8+ConstitutionModifier)"
+// data "CastSound" "Action_Cast_UnrelentingFerocity"
+// data "CastTextEvent" "Cast"
+// data "UseCosts" "ActionPoint:1"
+// data "SpellAnimation" "03496c4a-49e0-4132-b585-3e5ecd1ad8e5,,;,,;f5044c37-da3a-4551-8f2c-2ad525b11929,,;c70ab5be-8718-44e2-95a1-525465c2b2d1,,;a9682ef9-5d9e-4ac0-8144-2c7fe6eb868c,,;,,;32fb4d91-7fde-4b05-9144-ea87b9a4284a,,;,,;,,"
+// data "VerbalIntent" "Healing"
+data "SpellFlags" "Temporary"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "RequirementConditions" "HasStatus('SG_Rage') and HasStatus('RAGE_TOTEM_BEAR_HEAL_TOGGLE')"
+// data "PrepareEffect" "50723b45-0942-4cf5-b39b-9b486e971c17"
+// data "CastEffect" "423e2b62-1926-4918-a087-1400838524f6"
+
+// ==================================== Rage: Eagle Heart - Diving Strike
+
+new entry "Projectile_DivingStrike"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_Jump"
+using "Projectile_DivingStrike"
+// data "TargetRadius" "4.5"
+// data "SpellRoll" "Attack(AttackType.MeleeWeaponAttack)"
+// data "SpellSuccess" "DealDamage(max(1,MainMeleeWeapon), MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand);ApplyStatus(PRONE,100,2)"
+// data "TargetConditions" "not Self() and not Dead() and YDistanceToTargetGreaterOrEqual(1.5) and Character()"
+// data "ProjectileCount" "1"
+// data "Trajectories" "3d0607a1-5f4c-4a1c-8875-6a5d4d90a305,75702c2d-2d6d-c4a9-8fbf-3a21e09b9779,a2ce28a2-bbd6-9660-b130-eb9c0a314be1"
+// data "Icon" "Action_Barbarian_DivingStrike"
+// Diving Strike
+// data "DisplayName" "hed204421g426ag4f4cg8e46ga8ac87f787d5;2"
+// Leap down unto a foe, knocking them <LSTag Type="Status" Tooltip="PRONE">Prone</LSTag>. You won't take falling damage. You must be above your target. Requires Rage.
+// data "Description" "h29299bc7gac9fg48c0g8ef5gf7b2b0723358;12"
+// data "TooltipDamageList" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType)"
+// data "TooltipStatusApply" "ApplyStatus(PRONE,100,2)"
+// data "CastSound" "Action_Cast_DivingStrike"
+// data "CastTextEvent" "Cast"
+// data "ProjectileTerrainOffset" "Yes"
+// data "UseCosts" "ActionPoint:1"
+// data "SpellAnimation" "8b8bb757-21ce-4e02-a2f3-97d55cf2f90b,,;,,;d7741bd3-2ec9-41aa-803b-39d2be52aac5,,;78da379c-5535-4a07-b650-b695831bab9a,,;7bb52cd4-0b1c-4926-9165-fa92b75876a3,,;,,;0b07883a-08b8-43b6-ac18-84dc9e84ff50,,;,,;,,"
+// data "VerbalIntent" "Damage"
+// data "SpellFlags" "IsJump;IsHarmful;HasHighGroundRangeExtension;CombatLogSetSingleLineRoll"
+data "SpellFlags" "IsJump;IsHarmful;HasHighGroundRangeExtension;CombatLogSetSingleLineRoll;Temporary"
+// data "SpellActionType" "None"
+// data "SpellJumpType" "Pounce"
+// data "RequirementConditions" "HasStatus('SG_Rage')"
+// data "PrepareEffect" "83c458da-6afa-47af-8fdb-825c98963719"
+// data "CastEffect" "c6096e49-8aa5-409e-9361-3984bb9865d4"
+// data "SpellSoundMagnitude" "Normal"
+
+// ==================================== Rage: Elk Heart - Primal Stampede
+// Bug Fix: Now deals unarmed damage instead of a flat 1d4, this fixes lots of interactions.
+// Bug Fix: No longer has an inappropriate "CanAreaDamageEvade" "SpellFlags" allowing Evasion, Shield Master: Block and similar effects from reducing the damage.
+
+new entry "Rush_Primal_Stampede"
+type "SpellData"
+data "SpellType" "Rush"
+using "Rush_Primal_Stampede"
+// data "TargetRadius" "9"
+// data "HitRadius" "2"
+// data "MovementSpeed" "12000"
+// data "SpellRoll" "Attack(AttackType.MeleeUnarmedAttack)"
+// data "SpellSuccess" "DealDamage(1d4+StrengthModifier,Bludgeoning);TARGET:IF(not SavingThrow(Ability.Strength,10+GetModifier(context.Source.Strength))):ApplyStatus(PRONE,100,2)"
+data "SpellSuccess" "DealDamage(UnarmedDamage,Bludgeoning);TARGET:IF(not SavingThrow(Ability.Strength,CalculateSpellDC(Ability.Strength,context.Source))):ApplyStatus(PRONE,100,2)"
+// data "TargetConditions" "not Ally() and not Dead()"
+// data "Icon" "Action_Barbarian_PrimalStampede"
+// Primal Stampede
+// data "DisplayName" "had50331fgd685g4ba4gb312gd8295875c3f1;2"
+// Charge forward, attacking all enemies in the way and possibly knocking them &lt;LSTag Type="Status" Tooltip="PRONE"&gt;Prone&lt;/LSTag&gt;.
+// data "Description" "haa7a3481g8fdcg4ba6gad69gbce2e991389a;4"
+// Available only when Raging.
+// data "ExtraDescription" "hcb74ea6eg4a48g4668g9436g24e53a98b02b;1"
+// data "TooltipDamageList" "DealDamage(1d4+StrengthModifier, Bludgeoning)"
+data "TooltipDamageList" "DealDamage(UnarmedDamage,Bludgeoning)"
+// data "TooltipAttackSave" "MeleeUnarmedAttack;Strength"
+// data "TooltipStatusApply" "ApplyStatus(PRONE,100,2)"
+// data "TooltipPermanentWarnings" "aa8beb3b-9199-4b22-9f73-26e2ae0ab6af"
+// data "CastSound" "Action_Cast_PrimalStampede"
+// data "CastTextEvent" "Cast"
+// data "Requirements" "!Immobile"
+// data "CycleConditions" "Enemy() and not Dead()"
+// data "UseCosts" "ActionPoint:1;Movement:Distance"
+// data "SpellAnimation" "8b8bb757-21ce-4e02-a2f3-97d55cf2f90b,,;b282bbfb-76a9-40d0-8282-c3bc67e8f13e,,;f22d3078-3975-4f4d-be7f-f2e9cd604840,,;8e621489-71f7-4b47-9b11-c3d3c987dcfe,,;7bb52cd4-0b1c-4926-9165-fa92b75876a3,,;,,;,,;,,;,,"
+// data "SpellFlags" "IsHarmful;AddFallDamageOnLand;CanAreaDamageEvade"
+data "SpellFlags" "IsHarmful;AddFallDamageOnLand;Temporary"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "VerbalIntent" "Damage"
+// data "RequirementConditions" "CanUseWeaponActions() and HasStatus('SG_Rage')"
+// data "PrepareEffect" "83c458da-6afa-47af-8fdb-825c98963719"
+// data "CastEffect" "1f83fd69-26e9-424b-b4f1-bf9aa5717ac2"
+// data "PreviewEffect" "1615a7f7-21d9-4dd0-849b-d3c79a57c5ff"
+// data "StopAtFirstContact" "0"
+// data "HitExtension" "1"
+// data "OnlyHit1Target" "0"
+// data "DamageType" "Bludgeoning"
+// data "Sheathing" "Sheathed"
+
+// ==================================== Rage: Tiger Heart - Tiger's Bloodlust
+// Bug Fix: Tooltip no longer displays as dealing damage with your ranged main hand weapon while it is active.
+// Bug Fix: Now executes weapon functors, allowing appropriate damage riders to apply.
+// TODO: Maybe make it a target like my Slashing Flourish?
+// TODO: This might be OP given there's no cooldown, but like... consistency of mechanics is more my focus for right now.
+
+new entry "Zone_TigersBloodlust"
+type "SpellData"
+data "SpellType" "Zone"
+// using "Zone_Cleave"
+using "Zone_TigersBloodlust"
+// data "Cooldown" ""
+// data "SpellSuccess" "DealDamage(MainMeleeWeapon/2, MainWeaponDamageType);IF(Character()):ApplyStatus(BLEEDING,100,2)"
+data "SpellSuccess" "DealDamage(MainMeleeWeapon/2, MainMeleeWeaponDamageType);GROUND:ExecuteWeaponFunctors(MainHand);IF(Character()):ApplyStatus(BLEEDING,100,2)"
+// data "TargetConditions" "Character() and not Self() and not Dead() and not Ally();"
+// data "Icon" "Action_Barbarian_TigersBloodlust"
+// Tiger's Bloodlust
+// data "DisplayName" "h1064dcf2g1e22g47acg9f9eg178dcd945f57;2"
+// Lash out to attack up to [1] enemies at once and make them &lt;LSTag Type="Status" Tooltip="BLEEDING"&gt;Bleed&lt;/LSTag&gt;.
+// data "Description" "h15ab8bffgfdd8g4845gbf8bgc9986a15d369;7"
+// data "DescriptionParams" "3"
+// data "TooltipDamageList" "DealDamage(MainMeleeWeapon/2, MainWeaponDamageType)"
+data "TooltipDamageList" "DealDamage(MainMeleeWeapon/2, MainMeleeWeaponDamageType)"
+// data "TooltipStatusApply" "ApplyStatus(BLEEDING,100,2)"
+// data "CastSound" "Action_Cast_TigersBloodlust"
+// data "TargetSound" "Action_Impact_TigersBloodlust"
+// data "SpellFlags" "IsHarmful"
+data "SpellFlags" "IsHarmful;Temporary"
+// data "RequirementConditions" "HasStatus('SG_Rage')"
+// data "PrepareEffect" "83c458da-6afa-47af-8fdb-825c98963719"
+// data "CastEffect" "456c19a5-ca43-4f93-b5a7-bb01fa8d1240"
+
+// ==================================== Rage: Wolf Heart - Inciting Howl
+// Bug Fix: Inciting Howl can no longer stack with itself.
+
+new entry "Shout_PackHowl_Barbarian"
+type "SpellData"
+data "SpellType" "Shout"
+// using "Shout_PackHowl_Wolf_Dire"
+using "Shout_PackHowl_Barbarian"
+// data "Cooldown" ""
+// data "SpellProperties" "ApplyStatus(PACK_HOWL_WOLF_DIRE,100,1);"
+// data "Icon" "Action_Barbarian_PackHowl"
+// Inciting Howl
+// data "DisplayName" "hcb2b874eg1a16g43e5g943dg7f3ff7a61129;1"
+// Each ally within earshot can move an additional [1] during their next turn.
+// data "Description" "hdc0ca278g7840g4ae7gb8fag9b792f46cc43;2"
+// Each ally within earshot can &lt;LSTag Tooltip="MovementSpeed"&gt;move&lt;/LSTag&gt; an additional [1] during their next turn.
+data "Description" "hccc0c469g4897g4aacg93b5gf39930539474;1"
+// data "TooltipStatusApply" "ApplyStatus(PACK_HOWL_WOLF_DIRE,100,1);"
+// data "CastSound" "Action_Cast_PackHowl"
+// data "SpellAnimation" "50e7cd15-5b95-47e9-b6f8-ed7900d23d9d,,;,,;0cacbec6-f85b-42bf-bf23-6a6b60775254,,;d1fe6827-69a5-4e99-ba2a-e5a89adf848b,,;03239618-40c7-47ab-a7b4-d2e0b111e5f7,,;,,;bc09e561-370b-4307-88d7-6462b6fbabec,,;,,;,,"
+data "SpellFlags" "Temporary"
+// data "RequirementConditions" "HasStatus('SG_Rage')"
+// data "PrepareEffect" "83c458da-6afa-47af-8fdb-825c98963719"
+// data "CastEffect" "f41341dd-ba51-43fe-9847-814925cb2982"
+// data "Sheathing" "Sheathed"
+
+new entry "PACK_HOWL_WOLF_DIRE"
+type "StatusData"
+data "StatusType" "BOOST"
+using "PACK_HOWL_WOLF_DIRE"
+// Inciting Howl
+// data "DisplayName" "h2bc70a04g9bb0g4ac3g9df7gf00a26cdd35d;2"
+// &lt;LSTag Tooltip="MovementSpeed"&gt;Movement speed&lt;/LSTag&gt; increased by [1].
+// data "Description" "h56cdffe6g9623g4647g839ag8cd406319fc5;3"
+// data "DescriptionParams" "Distance(3)"
+// data "Icon" "Action_DireWolfPack_Howl"
+data "StackId" "PACK_HOWL_WOLF_DIRE"
+// data "TickType" "EndTurn"
+// data "Boosts" "ActionResource(Movement,3,0)"

@@ -1,26 +1,18 @@
 // ==================================== Rage now functions out of combat ====================================
-// Changes: All Rages check for if Expansion's level 15 Barbarian feature Persistant Rage exists before removing the condition, so it won't be removed immediately when exiting combat.
-// Bonus: Sparing the details a bit, but beyond that it's just compatibility patching for Expansion and Barbarian Quality of Life's implementations when it comes to loosening the reigns on Rage restrictions.
-// TODO: Add support for custom Rages as needed, especially 5e Barbarian Subclasses Combined﻿.
 
-new entry "RAGE"
-type "StatusData"
-data "StatusType" "BOOST"
-using "RAGE"
-// data "RemoveConditions" "not HasStatus('RAGE_STOP_REMOVE') or not Combat()"
-data "RemoveConditions" "not HasPassive('PersistentRage') and not HasStatus('RAGE_STOP_REMOVE') and not Combat()"
-// data "TickFunctors" "IF(not Combat(context.Source)):RemoveStatus(SG_Rage)"
-data "TickFunctors" "IF(not HasPassive('PersistentRage') and not HasStatus('RAGE_STOP_REMOVE') and not Combat(context.Source)):RemoveStatus(SG_Rage)"
-
-// Inheriting and changing Barbarian QoL edits
 new entry "RAGE_STOP_REMOVE"
 type "StatusData"
 data "StatusType" "BOOST"
 using "RAGE_STOP_REMOVE"
 // %%% Rage Remove
 // data "DisplayName" "h9916a12cgc279g4277g8d42gdb87260a55d8;2"
+// Rage Sustained
+data "DisplayName" "ha25eb620g8154g47d1g98ccge7a3d82fc327;1"
 // %%% Used to stop the removal of Rage - tecnical status, don't destub.
 // data "Description" "h7b3a7603g5815g4415gab83g07dc2bfc890a;5"
+// Your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt; will not end this turn.
+data "Description" "hd10cc4b0g12d6g4aa3gac31ge1c121123e1f;1"
+data "Icon" "GenericIcon_Intent_Damage"
 // data "StackType" "Ignore"
 data "StackType" "Overwrite"
 // data "StackId" "RAGE_STOP_REMOVE"
@@ -29,8 +21,9 @@ data "StackType" "Overwrite"
 // data "StatusPropertyFlags" "DisableCombatlog"
 data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
 data "OnApplyFunctors" "IF(not HasPassive('PersistentRage')):ApplyStatus(GOON_RAGE_STOP_REMOVE_DISPLAY,100,1)"
+data "RemoveConditions" "not HasStatus('SG_Rage')"
+data "RemoveEvents" "OnStatusRemoved"
 
-// New status
 new entry "GOON_RAGE_STOP_REMOVE_DISPLAY"
 type "StatusData"
 data "StatusType" "BOOST"
@@ -42,6 +35,7 @@ data "Icon" "GenericIcon_Intent_Damage"
 data "StackType" "Overwrite"
 data "StackId" "GOON_RAGE_STOP_REMOVE_DISPLAY"
 data "TickType" "EndTurn"
+data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog"
 data "RemoveConditions" "not HasStatus('SG_Rage') and not HasStatus('RAGE_STOP_REMOVE')"
 data "RemoveEvents" "OnStatusRemoved"
 

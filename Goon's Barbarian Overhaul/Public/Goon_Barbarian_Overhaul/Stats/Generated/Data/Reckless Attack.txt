@@ -3,7 +3,7 @@
 // Changes: Can now be used by Invisible player characters.
 // Changes: Can now be used while under the effects of all non-hostile Polymorphs.
 // Changes: The spells are removed, and only the Interrupts remain as I find the spells to be pointless and plain detrimental to use.
-// Bonus: Natively compatible with 5e Reckless Attack by sumradagnoth8 (load this mod after/below).
+// Bonus: Natively compatible with 5e Reckless Attack by sumradagnoth8.
 
 new entry "RecklessAttack"
 type "PassiveData"

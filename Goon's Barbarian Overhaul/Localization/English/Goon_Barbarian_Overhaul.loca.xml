@@ -1,21 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentList>
-	<!-- Barbarian - Reckless Attack -->
-	<!-- "RECKLESS_ATTACK" --> <content contentuid="haf358f05g511eg45d6gbe12ga887810e74b2" version="1">Attacking Recklessly</content>
-	<!-- "RecklessAttack", "Interrupt_RecklessAttack" --> <content contentuid="hfc92c4e0g549fg4e2cgbe0ega95a16d7e7d7" version="1">Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Melee and Throwing &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; until the end of your turn, but enemies also have Advantage against you.</content>
-	<!-- "5eRecklessAttack_Toggle" --> <content contentuid="h165683bdgb77cg4e2bgb66dgfaf56a86f9e9" version="1">When you make your first &lt;LSTag Tooltip="AttackRoll"&gt;attack&lt;/LSTag&gt; on your turn, you can decide to attack recklessly. Doing so gives you &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Melee and Throwing Attack Rolls during this turn, but Attack Rolls against you have Advantage until your next turn.</content>
-	<!-- "5E_RECKLESS_ATTACKED", "5E_RECKLESS_ATTACK_VISUALS" --> <content contentuid="hff0cda90gb8f0g426eg805bgc23a08bd440b" version="1">Affected entity has &lt;LSTag Tooltip="Advantage"&gt;advantage&lt;/LSTag&gt; on Melee and Throwing &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; on their turn, and any Attack Roll against them has Advantage.</content>
+	<!-- ==================================== Reckless Attack ==================================== -->
+	<!-- "RECKLESS_ATTACK" --> 
+	<content contentuid="haf358f05g511eg45d6gbe12ga887810e74b2" version="1">Attacking Recklessly</content>
+	<!-- "RecklessAttack", "Interrupt_RecklessAttack" --> 
+	<content contentuid="hfc92c4e0g549fg4e2cgbe0ega95a16d7e7d7" version="1">Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Melee and Throwing &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; until the end of your turn, but enemies also have Advantage against you.</content>
+	<!-- "5eRecklessAttack_Toggle" --> 
+	<content contentuid="h165683bdgb77cg4e2bgb66dgfaf56a86f9e9" version="1">When you make your first &lt;LSTag Tooltip="AttackRoll"&gt;attack&lt;/LSTag&gt; on your turn, you can decide to attack recklessly. Doing so gives you &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Melee and Throwing Attack Rolls during this turn, but Attack Rolls against you have Advantage until your next turn.</content>
+	<!-- "5E_RECKLESS_ATTACKED", "5E_RECKLESS_ATTACK_VISUALS" --> 
+	<content contentuid="hff0cda90gb8f0g426eg805bgc23a08bd440b" version="1">Affected entity has &lt;LSTag Tooltip="Advantage"&gt;advantage&lt;/LSTag&gt; on Melee and Throwing &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; on their turn, and any Attack Roll against them has Advantage.</content>
 
-	<!-- Brutal Critical -->
-	<!-- "BrutalCritical" --> <content contentuid="h59de2df6g8084g4da3gae09g45f1434dce93" version="1">You've trained to strike swift and true.&lt;br&gt;&lt;br&gt;When you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt; with your melee or thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt;, you roll an extra damage die as well as the normal additional critical dice.</content>
-	<!-- "BrutalCritical_2" --> <content contentuid="he262b6f3g1cd5g4f60g8644g22656a49c0e1" version="1">You've trained to strike swift and true.&lt;br&gt;&lt;br&gt;When you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt; with your melee or thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt;, you roll two extra damage die as well as the normal additional critical dice.</content>
-	<!-- "BrutalCritical_3" --> <content contentuid="h0b25804dg22f5g4d23gbd9agf11bbf168f29" version="1">You've trained to strike swift and true.&lt;br&gt;&lt;br&gt;When you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt; with your melee or thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt;, you roll three extra damage die as well as the normal additional critical dice.</content>
+	<!-- ==================================== Brutal Critical ==================================== -->
+	<!-- "BrutalCritical" --> 
+	<content contentuid="h59de2df6g8084g4da3gae09g45f1434dce93" version="1">You've trained to strike swift and true.&lt;br&gt;&lt;br&gt;When you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt; with your melee or thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt;, you roll an extra damage die as well as the normal additional critical dice.</content>
+	<!-- "BrutalCritical_2" --> 
+	<content contentuid="he262b6f3g1cd5g4f60g8644g22656a49c0e1" version="1">You've trained to strike swift and true.&lt;br&gt;&lt;br&gt;When you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt; with your melee or thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt;, you roll two extra damage die as well as the normal additional critical dice.</content>
+	<!-- "BrutalCritical_3" --> 
+	<content contentuid="h0b25804dg22f5g4d23gbd9agf11bbf168f29" version="1">You've trained to strike swift and true.&lt;br&gt;&lt;br&gt;When you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt; with your melee or thrown &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt;, you roll three extra damage die as well as the normal additional critical dice.</content>
 
-	<!-- "GOON_RAGE_STOP_REMOVE_DISPLAY" --> <content contentuid="ha25eb620g8154g47d1g98ccge7a3d82fc327" version="1">Rage Sustained</content>
-	<!-- "GOON_RAGE_STOP_REMOVE_DISPLAY" --> <content contentuid="hd10cc4b0g12d6g4aa3gac31ge1c121123e1f" version="1">Your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt; will not end this turn.</content>
+	<!-- ==================================== Danger Sense ==================================== -->
+	<!-- "DangerSense" --> 
+	<content contentuid="h4a49b28bg3663g40d7g9bbaga07d215387c7" version="1">You sense when things aren't as they should be.&lt;br&gt;&lt;br&gt;You have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Dexterity &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;. &lt;br&gt;&lt;br&gt;To gain this benefit, you can't be &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinded&lt;/LSTag&gt; or Incapacitated.</content>
+
+	<!-- ==================================== Rage Misc ==================================== -->
+	<!-- "Shout_EndRage" --> 
+	<content contentuid="h2fbf423agb067g4219ga854g6266a2a95813" version="1">End your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;.</content>
+
+	<!-- "GOON_RAGE_STOP_REMOVE_DISPLAY" --> 
+	<content contentuid="ha25eb620g8154g47d1g98ccge7a3d82fc327" version="1">Rage Sustained</content>
+	<content contentuid="hd10cc4b0g12d6g4aa3gac31ge1c121123e1f" version="1">Your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt; will not end this turn.</content>
 	
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
+	<!-- ==================================== Rage ==================================== -->
+	<!-- "RageUnlock" --> 
+	<content contentuid="h41b29457g17a4g4cdeg9962g5dce19ed07c8" version="1">You can use the &lt;LSTag Type="Spell" Tooltip="Shout_Rage"&gt;Rage&lt;/LSTag&gt; feature.</content>
+	<!-- "RAGE", "Rage_Rage_Boosts" --> 
+	<content contentuid="h4b91358eg7656g462ag8c45g64bd4080a7bb" version="1">Deals an additional [1] damage with melee and improvised weapons, and while throwing objects.&lt;br&gt;&lt;br&gt;Has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.</content>
+
+	<!-- "Shout_Rage_Frenzy" --> 
+	<content contentuid="ha4ee19b9g7cb6g4b13g8927gbdd5949c3050" version="1">Your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt; turns into a &lt;LSTag Type="Status" Tooltip="RAGE_FRENZY"&gt;Frenzy&lt;/LSTag&gt;! You gain &lt;LSTag Type="Spell" Tooltip="Target_FrenziedStrike"&gt;Frenzied Strike&lt;/LSTag&gt; and &lt;LSTag Type="Spell" Tooltip="Throw_FrenziedThrow"&gt;Enraged Throw&lt;/LSTag&gt;. You can also make an &lt;LSTag Type="Spell" Tooltip="Throw_ImprovisedWeaponBerserker"&gt;Improvised Weapon Attack&lt;/LSTag&gt; as a &lt;LSTag Tooltip="BonusAction"&gt;Bonus Action&lt;/LSTag&gt;.</content>
+	<!-- "RAGE_FRENZY" --> 
+	<content contentuid="he4353cd0g6803g4f7dgbf58g4e2176f2118a" version="1">Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.</content>
+
+	<!-- "TotemSpirit_Bear" --> <content contentuid="h9469f4d0g8693g4e76g87a8gf03895911436" version="1">While &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt;, you can use &lt;LSTag Type="Spell" Tooltip="Shout_FerociousAppetite"&gt;Unrelenting Ferocity&lt;/LSTag&gt;, and have &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to all damage except[1].</content>
+	<!-- "Shout_Rage_Totem_Bear" --> 
+	<content contentuid="h0cd8b5d6g89c4g477cg86bfg5920fd90a812" version="1">You can use &lt;LSTag Type="Spell" Tooltip="Shout_FerociousAppetite"&gt;Unrelenting Ferocity&lt;/LSTag&gt;, and have &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to all damage except[1].</content>
+	<!-- "RAGE_TOTEM_BEAR", "TotemSpirit_Bear_Rage_Boosts" --> 
+	<content contentuid="h87d74fe7ga2cbg4a53gb823g66c3fa46f64b" version="1">Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;Has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to all damage except[2], and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.</content>
+
+	<!-- "TotemSpirit_Eagle" --> 
+	<content contentuid="h3ec35ccag56d9g4ffbg9a1cg57ae17bebdef" version="1">While &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt;, you can use &lt;LSTag Type="Spell" Tooltip="Projectile_DivingStrike"&gt;Diving Strike&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Foes also have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt; against you, and you can use &lt;LSTag Type="Spell" Tooltip="Shout_Dash"&gt;Dash&lt;/LSTag&gt; as a &lt;LSTag Tooltip="BonusAction"&gt;Bonus Action&lt;/LSTag&gt;.</content>
+	<!-- "Shout_Rage_Totem_Eagle" --> 
+	<content contentuid="h860da28bg0510g4688gaba9g7e83f5bf4813" version="1">You can use &lt;LSTag Type="Spell" Tooltip="Projectile_DivingStrike"&gt;Diving Strike&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Foes also have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt; against you, and you can use &lt;LSTag Type="Spell" Tooltip="Shout_Dash"&gt;Dash&lt;/LSTag&gt; as a &lt;LSTag Tooltip="BonusAction"&gt;Bonus Action&lt;/LSTag&gt;.</content>
+	<!-- "RAGE_TOTEM_EAGLE", "TotemSpirit_Eagle_Rage_Boosts" --> 
+	<content contentuid="h3f64b83dgff73g4370gb539g95d372d514cd" version="1">Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;Can use &lt;LSTag Type="Spell" Tooltip="Shout_Dash"&gt;Dash&lt;/LSTag&gt; as a &lt;LSTag Tooltip="BonusAction"&gt;Bonus Action&lt;/LSTag&gt;, and foes have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.</content>
+
+	<!-- "RAGE_TOTEM_ELK", "TotemSpirit_Elk_Rage_Boosts" --> 
+	<content contentuid="h96a1eaaagc388g49d2gbcedg19d5626c4abb" version="1">Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;&lt;LSTag Tooltip="MovementSpeed"&gt;Movement speed&lt;/LSTag&gt; increased by [2].&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.</content>
+
+	<!-- "RAGE_TOTEM_TIGER", "TotemSpirit_Tiger_Rage_Boosts" --> 
+	<content contentuid="h005ea201g7c4fg453dgb3adg81ee3584970c" version="1">Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;Jump distance increased by [2].&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.</content>
+
+	<!-- "RAGE_TOTEM_WOLF", "TotemSpirit_Wolf_Rage_Boosts" --> 
+	<content contentuid="ha0776098g6642g4975gb7beg3cf849bb1329" version="1">Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;Allies have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on melee &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against enemies within [2].&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.</content>
+
+	<!-- "RAGE_GIANT", "Rage_Rage_Boosts" --> 
+	<content contentuid="h9ab9eea6g8249g4801g90adg95589360d4c8" version="1">&lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt; and increased in size. Deals an additional [1] damage with melee and improvised weapons, and [2] damage when throwing objects.&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.</content>
+
+	<!-- ==================================== Aspect of the Beast ==================================== -->
+	<!-- "Shout_AspectOfTheWolf" --> 
+	<content contentuid="h66474a3fg081eg44bbg9df6ga2614c38cb7e" version="1">You and nearby allies add your &lt;LSTag Tooltip="Dexterity"&gt;Dexterity&lt;/LSTag&gt; modifier as a bonus to Stealth &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.</content>
+
+	<!-- ==================================== Wildheart stuff ==================================== -->
+	<!-- "Shout_PackHowl_Barbarian" --> 
+	<content contentuid="hccc0c469g4897g4aacg93b5gf39930539474" version="1">Each ally within earshot can &lt;LSTag Tooltip="MovementSpeed"&gt;move&lt;/LSTag&gt; an additional [1] during their next turn.</content>
+
+	<!-- ==================================== Giant stuff ==================================== -->
+	<!-- "Target_BootOfTheGiants" --> 
+	<content contentuid="h949cb5e3gab44g4263g8828gfbe2d1befe04" version="1">Try to kick a target away. Your chances depend on your Athletics, and are higher if you're &lt;LSTag Type="Status" Tooltip="HIDDEN"&gt;Hidden&lt;/LSTag&gt; or &lt;LSTag Type="Status" Tooltip="INVISIBLE"&gt;Invisible&lt;/LSTag&gt;.</content>
+
+	<!-- ==================================== Magic Awareness ==================================== -->
+	<!-- "Shout_MagicAwareness" --> 
+	<content contentuid="hc24ec1e3g1aa5g4528g892dg7de6bc3c9a14" version="1">Allied creatures within range add their &lt;LSTag Tooltip="ProficiencyBonus"&gt;Proficiency Bonus&lt;/LSTag&gt; to &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; against spells.</content>
+	<!-- "MAGIC_AWARENESS" --> 
+	<content contentuid="h0f058e5bga07fg4533g998cge466248d25fd" version="1">Tapping into their innate magic to visualise the Weave.&lt;br&gt;&lt;br&gt;The barbarian and all allied creatures within [1] add their &lt;LSTag Tooltip="ProficiencyBonus"&gt;Proficiency Bonus&lt;/LSTag&gt; to &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; against spells.</content>
+
+	<!-- "" --> 
+	<content contentuid="" version="1"></content>
+	<!-- "" --> 
+	<content contentuid="" version="1"></content>
+	<!-- "" --> 
+	<content contentuid="" version="1"></content>
 </contentList>

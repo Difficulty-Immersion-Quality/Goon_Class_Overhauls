@@ -1,0 +1,409 @@
+// ==================================== Unstable Backlash ==================================== 
+// Changes: Can now be used while under the effects of all non-hostile Polymorphs.
+
+new entry "Interrupt_Unstable_Backlash"
+type "InterruptData"
+using "Interrupt_Unstable_Backlash"
+// Unstable Backlash
+// data "DisplayName" "h2ee7b9b0g7ff0g4f50g8887g9a94ee77863a;1"
+// While &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt;, when you take damage or fail a &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt;, you trigger another Wild Magic effect. This replaces your current Wild Magic effect.
+// data "Description" "h851e49beg9dd7g4b09g88c2g3149c6d0b826;2"
+// data "Icon" "PassiveFeature_Generic_Magical"
+// data "InterruptContext" "OnCastHit"
+// data "InterruptContextScope" "Self"
+// data "Container" "YesNoDecision"
+// data "Conditions" "HasStatus('SG_Rage') and IsAbleToReact(context.Observer) and Self(context.Target,context.Observer) and Enemy(context.Source,context.Observer) and not AnyEntityIsItem() and not IsKillingBlow() and (TotalDamageDoneGreaterThan(0) or not (HasSavingThrowWithAbility(Ability.None) or HasDamageEffectFlag(DamageFlags.SavingThrow))) and HasLastAttackTriggered()"
+// data "Properties" "RemoveStatus(OBSERVER_OBSERVER,WILD_MAGIC_BARBARIAN_TELEPORT);RemoveStatus(OBSERVER_OBSERVER,WILD_MAGIC_BARBARIAN__EXPLODING_FLUMPH);RemoveStatus(OBSERVER_OBSERVER,WILD_MAGIC_BARBARIAN_WEAPON_INFUSION);RemoveStatus(OBSERVER_OBSERVER,WILD_MAGIC_BARBARIAN_MAGIC_RETRIBUTION);RemoveStatus(OBSERVER_OBSERVER,WILD_MAGIC_BARBARIAN_PROTECTIVE_LIGHTS);RemoveStatus(OBSERVER_OBSERVER,WILD_MAGIC_BARBARIAN_VINE_GROWTH);RemoveStatus(OBSERVER_OBSERVER,WILD_MAGIC_BARBARIAN_LIGHT_BOLT);RemoveStatus(OBSERVER_OBSERVER,WILD_MAGIC_BARBARIAN__EXPLODING_FLUMPH);RemoveStatus(OBSERVER_OBSERVER,WILD_MAGIC_BARBARIAN__EXPLODING_FLUMPH);TriggerRandomCast(1,0,WildMagicBarbarian)"
+// data "Cost" "ReactionActionPoint:1"
+// data "InterruptDefaultValue" "Ask;Enabled"
+// data "EnableCondition" "not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
+data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus()"
+// data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+
+// ==================================== Wild Magic ==================================== 
+// Bug Fix: Removed redundant "RAGE_MUTE" condition applications.
+
+// ==================================== Wild Magic: Weapon Infusion
+
+new entry "Shout_WildMagicBarbarian_WeaponInfusion"
+type "SpellData"
+data "SpellType" "Shout"
+using "Shout_WildMagicBarbarian_WeaponInfusion"
+// data "SpellProperties" "ApplyEquipmentStatus(MainHand, WILD_MAGIC_BARBARIAN_WEAPON_INFUSION,100,10);ApplyStatus(SELF,RAGE_MUTE,100,10)"
+data "SpellProperties" "ApplyEquipmentStatus(MainHand, WILD_MAGIC_BARBARIAN_WEAPON_INFUSION,100,10)"
+// data "Icon" "Action_WildMagic_Barbarian_WeaponInfusion"
+// Wild Magic: Weapon Infusion
+// data "DisplayName" "ha435e8f8g8a82g45fegb178g0bae5729bec0;1"
+// Magic infuses your weapon. Until the end of your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;, it deals an additional [1] and gains the &lt;LSTag Tooltip="Light"&gt;Light&lt;/LSTag&gt; and &lt;LSTag Tooltip="Thrown"&gt;Thrown&lt;/LSTag&gt; properties.
+// data "Description" "h3cea4c46gbdd3g4aabga40fg7def94962e10;4"
+// data "DescriptionParams" "DealDamage(1d6,Force)"
+// If you throw your weapon, it immediately reappears in your hand.
+// data "ExtraDescription" "h47b23dedgb759g4628gb45fgad52bdd1d2f8;1"
+// data "TooltipStatusApply" "ApplyStatus(WILD_MAGIC_BARBARIAN_WEAPON_INFUSION,100,10)"
+// data "CastSound" "Spell_Impact_Barbarian_Wildmagic_WeaponInfusion"
+// data "CastTextEvent" "Cast"
+// data "SpellAnimation" ",,;,,;9e115c35-a1af-4a80-ae49-0df502ef2adc,,;5de9893f-8e91-4a13-949e-f2748ce0001f,,;,,;,,;,,;,,;,,"
+// data "VerbalIntent" "Buff"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "CastEffect" "7953c8c8-3317-464c-8faf-6d7486997dad"
+
+new entry "WILD_MAGIC_BARBARIAN_WEAPON_INFUSION"
+type "StatusData"
+data "StatusType" "BOOST"
+using "WILD_MAGIC_BARBARIAN_WEAPON_INFUSION"
+// Wild Magic: Weapon Infusion
+// data "DisplayName" "h5a46a47fgfe44g415cga493g3ade76e6ee78;1"
+// Magic infuses this weapon. &lt;br&gt;&lt;br&gt;Until the end of the barbarian's &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;, it deals an additional [1] and gains the &lt;LSTag Tooltip="Light"&gt;Light&lt;/LSTag&gt; and &lt;LSTag Tooltip="Thrown"&gt;Thrown&lt;/LSTag&gt; properties. &lt;br&gt;&lt;br&gt;If thrown, it immediately reappears in the barbarian's hand.
+// data "Description" "h97303850g72e7g4513g9d6ag0b0982c830b2;2"
+// data "DescriptionParams" "DealDamage(1d6,Force)"
+// data "Icon" "statIcons_WildMagic_Barbarian_WeaponInfusion"
+// data "StatusEffectOverride" "083181ba-1276-438b-876f-e3e75593990f"
+// data "Boosts" "ItemReturnToOwner();WeaponProperty(Thrown);WeaponProperty(Light);WeaponDamage(1d6,Force)"
+// data "RemoveConditions" "not HasStatus('RAGE', GetOwner(context.Source)) and not HasStatus('RAGE_2', GetOwner(context.Source))"
+data "RemoveConditions" "not HasAnyStatus({'RAGE','RAGE_2','RAGE_3'},{},{},GetOwner(context.Source))"
+// data "RemoveEvents" "OnTurn;OnStatusRemoved"
+
+// ==================================== Wild Magic: Magic Retribution
+
+new entry "Shout_WildMagicBarbarian_MagicRetribution"
+type "SpellData"
+data "SpellType" "Shout"
+using "Shout_WildMagicBarbarian_MagicRetribution"
+// data "SpellProperties" "ApplyStatus(WILD_MAGIC_BARBARIAN_MAGIC_RETRIBUTION,100,10);ApplyStatus(SELF,RAGE_MUTE,100,10)"
+data "SpellProperties" "ApplyStatus(WILD_MAGIC_BARBARIAN_MAGIC_RETRIBUTION,100,10)"
+// data "Icon" "Action_WildMagic_Barbarian_MagicRetribution"
+// Wild Magic: Magic Retribution
+// data "DisplayName" "h82013198g5aa2g4ce1gb282g242cf4944f6b;1"
+// Until the end of your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;, your magic lashes out whenever you take damage, hitting your attackers in retaliation.
+// data "Description" "hb892f12bg0847g49edgb652gb3751972f796;4"
+// data "TooltipDamageList" "DealDamage(1d6, Force,,,,ad727a13-c6f0-4b5b-aefd-aac79c6ed46e)"
+// data "TooltipStatusApply" "ApplyStatus(WILD_MAGIC_BARBARIAN_MAGIC_RETRIBUTION,100,10)"
+// data "TargetSound" "Spell_Impact_Barbarian_Wildmagic_MagicRetribution"
+// data "CastTextEvent" "Cast"
+// data "SpellAnimation" ",,;,,;b507cd8a-8bc6-46fa-86d0-ea0b8664fb19,,;,,;,,;,,;,,;,,;,,"
+// data "VerbalIntent" "Buff"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "CastEffect" "a7e453ce-6538-48ef-8469-7525aa4a9911"
+
+new entry "WILD_MAGIC_BARBARIAN_MAGIC_RETRIBUTION"
+type "StatusData"
+data "StatusType" "BOOST"
+using "WILD_MAGIC_BARBARIAN_MAGIC_RETRIBUTION"
+// Wild Magic: Magic Retribution
+// data "DisplayName" "h06f6f701g9b99g43bbgbd24gabe060b10bf0;1"
+// Protected by a wild, vengeful magic. &lt;br&gt;&lt;br&gt;Until the end of the barbarian's &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;, enemies that hit them take [1] in retaliation.
+// data "Description" "hfd910ed8geb58g4995g9757g8a44b8240845;2"
+// data "DescriptionParams" "DealDamage(1d6, Force)"
+// data "Icon" "statIcons_WildMagic_Barbarian_MagicRetribution"
+// data "Passives" "WildMagicBarbarian_MagicRetribution_Passive"
+data "RemoveConditions" "not HasAnyStatus({'RAGE','RAGE_2','RAGE_3'},{},{})"
+// data "RemoveEvents" "OnTurn;OnStatusRemoved"
+// data "StatusEffect" "bb5e4f14-4258-419a-8c64-ea534f44b6a0"
+
+// new entry "WildMagicBarbarian_MagicRetribution_Passive"
+// type "PassiveData"
+// Wild Magic: Magic Retribution
+// data "DisplayName" "h203a7d97gf838g46f1ga6f1ga6324ba2915c;1"
+// Your magic lashes out whenever you take damage. &lt;br&gt;&lt;br&gt;Until the end of your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;, enemies that hit you take [1] in retaliation.
+// data "Description" "h2bd49dffge4b1g412agaf5fg5e8323ce8c50;2"
+// data "DescriptionParams" "DealDamage(1d6, Force)"
+// data "Icon" "statIcons_WildMagic_Barbarian_MagicRetribution"
+// data "Properties" "Highlighted"
+// data "StatsFunctorContext" "OnAttacked"
+// data "Conditions" "IsAttack() and HasDamageEffectFlag(DamageFlags.Hit)"
+// data "StatsFunctors" "DealDamage(SWAP,1d6, Force,Magical);ApplyStatus(SELF,PASSIVE_WILDMAGIC_MAGICRETRIBUTION_DEFENDER,100,0);ApplyStatus(PASSIVE_WILDMAGIC_MAGICRETRIBUTION_ATTACKER,100,0)"
+
+// ==================================== Wild Magic: Protective Lights
+// Bug Fix: The Wild Magic: Protective Lights condition is no longer removed when a Wild Magic Barbarian of level 9 or above has a Rage condition.
+
+new entry "Shout_WildMagicBarbarian_ProtectiveLights"
+type "SpellData"
+data "SpellType" "Shout"
+using "Shout_WildMagicBarbarian_ProtectiveLights"
+// data "SpellProperties" "ApplyStatus(WILD_MAGIC_BARBARIAN_PROTECTIVE_LIGHTS,100,10);ApplyStatus(SELF,RAGE_MUTE,100,10)"
+data "SpellProperties" "ApplyStatus(WILD_MAGIC_BARBARIAN_PROTECTIVE_LIGHTS,100,10)"
+// data "Icon" "Action_WildMagic_Barbarian_ProtectiveLights"
+// Wild Magic: Protective Lights
+// data "DisplayName" "hf2c1e3ceg294bg4db3gbfadg544c154ad3aa;1"
+// Until the end of your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;, protective multicoloured lights surround you and nearby allies, increasing your &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt; by 1.
+// data "Description" "h0907b032g5ea0g4056g98bbg018a8d25b099;3"
+// data "TooltipStatusApply" "ApplyStatus(WILD_MAGIC_BARBARIAN_PROTECTIVE_LIGHTS,100,10)"
+// data "TargetSound" "Spell_Impact_Barbarian_Wildmagic_ProtectiveLights"
+// data "CastTextEvent" "Cast"
+// data "SpellAnimation" ",,;,,;2c306731-1c68-4625-9191-1ae30271efe5,,;,,;,,;,,;,,;,,;,,"
+// data "VerbalIntent" "Buff"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "CastEffect" "a04cf6f0-8461-4e38-86ac-0e7ae0e42212"
+
+new entry "WILD_MAGIC_BARBARIAN_PROTECTIVE_LIGHTS"
+type "StatusData"
+data "StatusType" "BOOST"
+using "WILD_MAGIC_BARBARIAN_PROTECTIVE_LIGHTS"
+// Wild Magic: Protective Lights
+// data "DisplayName" "hf17a99cfg595dg4107ga483g89aaa24fe0bf;1"
+// Protected by multicoloured lights. &lt;br&gt;&lt;br&gt;Until the end of the barbarian's &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;, the barbarian and any allies within [1] have a +1 bonus to &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt;.
+// data "Description" "h42720ef8gca56g4997g8d58g8462f3c305d3;2"
+// data "DescriptionParams" "Distance(3)"
+// data "Icon" "statIcons_WildMagic_Barbarian_ProtectiveLights"
+// data "SoundLoop" "Spell_Status_ProtectiveLights_MO"
+// data "AuraRadius" "3"
+// data "AuraStatuses" "TARGET:IF(Ally()):ApplyStatus(WILD_MAGIC_BARBARIAN_PROTECTIVE_LIGHTS_AURA)"
+// data "Boosts" "AC(1)"
+// data "RemoveConditions" "not HasStatus('RAGE')"
+data "RemoveConditions" "not HasAnyStatus({'RAGE','RAGE_2','RAGE_3'},{},{})"
+// data "RemoveEvents" "OnTurn;OnStatusRemoved"
+// data "StatusGroups" "SG_RemoveOnRespec"
+// data "StatusEffect" "b613a7f4-1182-4e39-b63c-4fe77b96e9c2"
+
+// new entry "WILD_MAGIC_BARBARIAN_PROTECTIVE_LIGHTS_AURA"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// Wild Magic: Protective Lights
+// data "DisplayName" "h4b3588fag0ee1g4cf8gb2e8g9f340ed2beaf;1"
+// Surrounded by a barbarian's wild magic. Has a +1 bonus to &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt; until the end of the barbarian's &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;.
+// data "Description" "hcef8b74agabedg4091ga4a3g8e74f0839310;3"
+// data "Icon" "statIcons_WildMagic_Barbarian_ProtectiveLights"
+// data "SoundLoop" "Spell_Status_ProtectiveLights_MO"
+// data "Boosts" "AC(1)"
+// data "StatusEffect" "b613a7f4-1182-4e39-b63c-4fe77b96e9c2"
+
+// ==================================== Wild Magic: Intangible Spirit
+
+new entry "Shout_WildMagicBarbarian_ExplodingFlumph_Activate"
+type "SpellData"
+data "SpellType" "Shout"
+using "Shout_WildMagicBarbarian_ExplodingFlumph_Activate"
+// data "SpellProperties" "ApplyStatus(WILD_MAGIC_BARBARIAN__EXPLODING_FLUMPH,100,10);ApplyStatus(SELF,RAGE_MUTE,100,10)"
+data "SpellProperties" "ApplyStatus(WILD_MAGIC_BARBARIAN__EXPLODING_FLUMPH,100,10)"
+// data "Icon" "Action_WildMagic_Barbarian_ExplodingFlumph_Activate"
+// Wild Magic: Intangible Spirit
+// data "DisplayName" "h32335771g33f1g45e7g93c2g3a52ca74fc16;1"
+// Until the end of your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;, you can summon an &lt;LSTag Type="Spell" Tooltip="Target_WildMagicBarbarian_ExplodingFlumph"&gt;Intangible Spirit&lt;/LSTag&gt; each turn.
+// data "Description" "h244e0a17g09c7g4fd3gb1acga751270add77;4"
+// data "CastSound" "Spell_Impact_Barbarian_Wildmagic_ExplodingFlumphActivate"
+// data "CastTextEvent" "Cast"
+// data "SpellAnimation" ",,;,,;6092124b-9d9a-47e2-8ede-e7b339e858e0,,;,,;,,;,,;,,;,,;,,"
+// data "VerbalIntent" "Buff"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "CastEffect" "5e011e78-ddf0-4647-8468-70b01e8160c9"
+
+new entry "WILD_MAGIC_BARBARIAN__EXPLODING_FLUMPH"
+type "StatusData"
+data "StatusType" "BOOST"
+using "WILD_MAGIC_BARBARIAN__EXPLODING_FLUMPH"
+// Wild Magic: Intangible Spirit
+// data "DisplayName" "hc889a629g9001g4f9cg9147ga1f7224a39b0;1"
+// Can summon an &lt;LSTag Type="Spell" Tooltip="Target_WildMagicBarbarian_ExplodingFlumph"&gt;Intangible Spirit&lt;/LSTag&gt; each turn, until the end of their &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;.
+// data "Description" "hc9598c9dg9347g4329ga63cg7f4c419ae660;2"
+// data "Icon" "statIcons_WildMagic_Barbarian_ExplodingFlumph"
+// data "Boosts" "UnlockSpell(Target_WildMagicBarbarian_ExplodingFlumph)"
+// data "RemoveConditions" "not HasStatus('RAGE') and not HasStatus('RAGE_2')"
+data "RemoveConditions" "not HasAnyStatus({'RAGE','RAGE_2','RAGE_3'},{},{})"
+// data "RemoveEvents" "OnTurn;OnStatusRemoved"
+
+// ==================================== Wild Magic: Bolt of Light
+// Bug Fix: The spell's Save DC scales properly using the Barbarian's Constitution as the ability, instead of a static DC of 12.
+
+new entry "Shout_WildMagicBarbarian_LightBolt_Activate"
+type "SpellData"
+data "SpellType" "Shout"
+using "Shout_WildMagicBarbarian_LightBolt_Activate"
+// data "SpellProperties" "ApplyStatus(WILD_MAGIC_BARBARIAN_LIGHT_BOLT,100,10);ApplyStatus(SELF,RAGE_MUTE,100,10)"
+data "SpellProperties" "ApplyStatus(SELF,WILD_MAGIC_BARBARIAN_LIGHT_BOLT,100,10)"
+// data "Icon" "statIcons_WildMagic_Barbarian_LightBolt_Activate"
+// Wild Magic: Bolt of Light
+// data "DisplayName" "hd26c24a0g76e8g4f02gb71agf0141da8be07;2"
+// Until the end of your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;, you can shoot a &lt;LSTag Type="Spell" Tooltip="Projectile_WildMagicBarbarian_LightBolt"&gt;Bolt of Light&lt;/LSTag&gt; from your chest each turn.
+// data "Description" "h0ce40ac5g5a47g4ed8g9973g6eaf74072609;3"
+// data "CastSound" "Spell_Impact_Barbarian_Wildmagic_LightBoltActivate"
+// data "CastTextEvent" "Cast"
+// data "SpellAnimation" ",,;,,;2f9a9f1b-f400-45c1-aafa-38a047d49920,,;,,;,,;,,;,,;,,;,,"
+// data "VerbalIntent" "Buff"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "CastEffect" "afd08877-3dd7-4acc-86b0-7411bd24b314"
+
+new entry "WILD_MAGIC_BARBARIAN_LIGHT_BOLT"
+type "StatusData"
+data "StatusType" "BOOST"
+using "WILD_MAGIC_BARBARIAN_LIGHT_BOLT"
+// Wild Magic: Light Bolt
+// data "DisplayName" "hff6ae1c4gf89dg42b5gaf48g879f0076480e;1"
+// Can shoot a &lt;LSTag Type="Spell" Tooltip="Projectile_WildMagicBarbarian_LightBolt"&gt;Bolt of Light&lt;/LSTag&gt; from their chest each turn, until the end of their &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;.
+// data "Description" "h243fd4dfg0c4fg48f5gaa8fgd8bcc548ba66;2"
+// data "Icon" "statIcons_WildMagic_Barbarian_LightBolt"
+// data "Boosts" "UnlockSpell(Projectile_WildMagicBarbarian_LightBolt)"
+// data "RemoveConditions" "not HasStatus('RAGE') and not HasStatus('RAGE_2')"
+data "RemoveConditions" "not HasAnyStatus({'RAGE','RAGE_2','RAGE_3'},{},{})"
+// data "RemoveEvents" "OnTurn;OnStatusRemoved"
+// data "StatusEffect" "4b36da49-5e25-4d05-ae10-88cc211a47eb"
+
+new entry "Projectile_WildMagicBarbarian_LightBolt"
+type "SpellData"
+data "SpellType" "Projectile"
+using "Projectile_WildMagicBarbarian_LightBolt"
+// data "Cooldown" "OncePerTurn"
+// data "TargetFloor" "-1"
+// data "TargetRadius" "9"
+// data "SpellRoll" "not SavingThrow(Ability.Constitution,12)"
+data "SpellRoll" "not SavingThrow(Ability.Constitution, CalculateSpellDC(Ability.Constitution, context.Source))"
+// data "SpellSuccess" "DealDamage(1d6, Radiant,Magical);ApplyStatus(WILD_MAGIC_BARBARIAN_LIGHT_BOLT_BLINDED,100,1)"
+// data "SpellFail" "ApplyStatus(SAVED_AGAINST_HOSTILE_SPELL, 100, 0)"
+// data "TargetConditions" "not Self() and not Dead()"
+// data "ProjectileCount" "1"
+// data "Trajectories" "e1d4f276-3dff-4545-90e1-2703cd128983"
+// data "Icon" "Spell_WildMagic_LightBolt"
+// Wild Magic: Bolt of Light
+// data "DisplayName" "ha880dba5g7d8cg4fb4gbc0bgdad880970a8e;2"
+// Shoot a bolt of light from your chest that &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinds&lt;/LSTag&gt; the target.
+// data "Description" "h54940df1gc92eg45dbg9d1cgcb4257919ffa;3"
+// data "TooltipDamageList" "DealDamage(1d6, Radiant)"
+// data "TooltipAttackSave" "Constitution"
+// data "TooltipStatusApply" "ApplyStatus(WILD_MAGIC_BARBARIAN_LIGHT_BOLT_BLINDED,100,1)"
+// data "PrepareSound" "Spell_Prepare_Barbarian_Wildmagic_LightBolt_L1to3"
+// data "PrepareLoopSound" "Spell_Loop_Barbarian_Wildmagic_LightBolt_L1to3"
+// data "CastSound" "Spell_Cast_Barbarian_Wildmagic_LightBolt_L1to3"
+// data "CastTextEvent" "Cast"
+// data "CycleConditions" "Enemy() and not Dead()"
+// data "UseCosts" "BonusActionPoint:1"
+// data "SpellAnimation" "03496c4a-49e0-4132-b585-3e5ecd1ad8e5,,;,,;7e28f5e2-a4b4-4a24-9a13-9f1e8241bb3f,,;854e9e2d-6361-4a33-bc67-9cca3badba3b,,;a9682ef9-5d9e-4ac0-8144-2c7fe6eb868c,,;,,;32fb4d91-7fde-4b05-9144-ea87b9a4284a,,;,,;,,"
+// data "VerbalIntent" "Damage"
+// data "SpellFlags" "HasHighGroundRangeExtension;IsHarmful;RangeIgnoreVerticalThreshold;Temporary"
+// data "PrepareEffect" "437567fc-3a55-47e8-acc3-5697298caeef"
+// data "CastEffect" "6e1a8d52-1e47-4e1f-b585-586974dbe466"
+// data "DamageType" "Radiant"
+
+// TODO: Y no just apply blind
+// new entry "WILD_MAGIC_BARBARIAN_LIGHT_BOLT_BLINDED"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "BLINDED"
+// data "TickType" "EndTurn"
+
+// ==================================== Wild Magic: Vine Growth
+
+new entry "Shout_WildMagicBarbarian_VineGrowth"
+type "SpellData"
+data "SpellType" "Shout"
+using "Shout_WildMagicBarbarian_VineGrowth"
+// data "SpellProperties" "ApplyStatus(WILD_MAGIC_BARBARIAN_VINE_GROWTH,100,10);ApplyStatus(SELF,RAGE_MUTE,100,10)"
+data "SpellProperties" "ApplyStatus(WILD_MAGIC_BARBARIAN_VINE_GROWTH,100,10)"
+// data "Icon" "Action_WildMagic_Barbarian_VineGrowth"
+// Wild Magic: Vine Growth
+// data "DisplayName" "hd5986cc8g739ag41c1g8eb1gd00eacc9c7e7;1"
+// Until the end of your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;, flowers and vines sprout around you, making the ground &lt;LSTag Type="Status" Tooltip="DIFFICULT_TERRAIN"&gt;Difficult Terrain&lt;/LSTag&gt; for anyone but you.
+// data "Description" "hc105bd90g32f2g4986gaeeegbad28fab888b;5"
+// data "TargetSound" "Spell_Impact_Barbarian_Wildmagic_VineGrowth"
+// data "CastTextEvent" "Cast"
+// data "SpellAnimation" ",,;,,;9186a6ca-4b03-4334-8be4-f5d9d6bc4549,,;,,;,,;,,;,,;,,;,,"
+// data "VerbalIntent" "Control"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "CastEffect" "e430b526-6319-4074-84f6-70601205e8c3"
+
+new entry "WILD_MAGIC_BARBARIAN_VINE_GROWTH"
+type "StatusData"
+data "StatusType" "BOOST"
+using "WILD_MAGIC_BARBARIAN_VINE_GROWTH"
+// Wild Magic: Vine Growth
+// data "DisplayName" "h66562f31g1ef9g4ea6gb7fbg147aaea8a211;1"
+// Surrounded by flowers and vines. &lt;br&gt;&lt;br&gt;Until the end of the barbarian's &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;, the ground within [1] of them is Difficult Terrain for everyone other than the barbarian, halving &lt;LSTag Tooltip="MovementSpeed"&gt;movement speed&lt;/LSTag&gt;.
+// data "Description" "h1a1575ecgc144g4498ga4d3g6f14317ddf06;2"
+// data "DescriptionParams" "Distance(5)"
+// data "Icon" "statIcons_WildMagic_Barbarian_VineGrowth"
+// data "SoundStart" "Spell_Status_VineGrowth"
+// data "SoundStop" "Spell_Status_VineGrowth"
+// data "AuraRadius" "5"
+// data "AuraStatuses" "TARGET:IF(Character() and not Self()):ApplyStatus(DIFFICULT_TERRAIN)"
+// data "RemoveConditions" "not HasStatus('RAGE') and not HasStatus('RAGE_2')"
+data "RemoveConditions" "not HasAnyStatus({'RAGE','RAGE_2','RAGE_3'},{},{})"
+// data "RemoveEvents" "OnTurn;OnStatusRemoved"
+// data "StatusEffect" "f101e4eb-7b86-4bb4-bf10-d6a110f93b21"
+
+// ==================================== Wild Magic: Teleport
+// Bug Fix: No longer applies to all entities within 18m.
+
+new entry "Shout_WildMagicBarbarian_Teleport_Activate"
+type "SpellData"
+data "SpellType" "Shout"
+using "Shout_WildMagicBarbarian_Teleport_Activate"
+// data "Cooldown" "OncePerTurn"
+// data "SpellProperties" "ApplyStatus(WILD_MAGIC_BARBARIAN_TELEPORT,100,10);ApplyStatus(SELF,RAGE_MUTE,100,10)"
+data "SpellProperties" "ApplyStatus(WILD_MAGIC_BARBARIAN_TELEPORT,100,10)"
+// data "AreaRadius" "18"
+data "AreaRadius" ""
+// data "Icon" "Action_WildMagic_Barbarian_Teleport"
+// Wild Magic: Teleport
+// data "DisplayName" "h03fbd456g6409g4aa3g8738g33e3ef05a7b9;1"
+// Until the end of your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;, you can &lt;LSTag Type="Spell" Tooltip="Target_WildMagicBarbarian_Teleport"&gt;Teleport&lt;/LSTag&gt; each turn.
+// data "Description" "h9ab25d15gc8adg48ccgbc87g9172d7157cfd;2"
+// data "TargetSound" "Spell_Cast_Sorcerer_Wildmagic_Teleport"
+// data "CastTextEvent" "Cast"
+// data "UseCosts" "BonusActionPoint:1"
+// data "SpellAnimation" ",,;,,;7de44f5f-0f79-4c0e-8d98-30618fbfede1,,;,,;,,;,,;,,;,,;,,"
+// data "VerbalIntent" "Buff"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "CastEffect" "a58ce1d0-0fdc-40d0-a4a4-db901bd75efc"
+
+new entry "WILD_MAGIC_BARBARIAN_TELEPORT"
+type "StatusData"
+data "StatusType" "BOOST"
+using "WILD_MAGIC_BARBARIAN_TELEPORT"
+// Wild Magic: Teleport
+// data "DisplayName" "h50f06f15g9edeg465dg9dc5gb3de23fb4f05;1"
+// Can &lt;LSTag Type="Spell" Tooltip="Target_WildMagicBarbarian_Teleport"&gt;Teleport&lt;/LSTag&gt; each turn, until the end of their &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;.
+// data "Description" "h4312806dg7249g4c5cga4e6g5f4efa637fa0;2"
+// data "DescriptionParams" "Distance(9)"
+// data "Icon" "statIcons_WildMagic_Barbarian_Teleport"
+// data "Boosts" "UnlockSpell(Target_WildMagicBarbarian_Teleport)"
+// data "RemoveConditions" "not HasStatus('RAGE') and not HasStatus('RAGE_2')"
+data "RemoveConditions" "not HasAnyStatus({'RAGE','RAGE_2','RAGE_3'},{},{})"
+
+// ==================================== Wild Magic: Dark Tendrils
+// Bug Fix: The spell's Save DC scales properly using the Barbarian's Constitution as the ability, instead of a static DC of 12.
+// TODO: "Despite the tooltip warning, the condition which grants the temporary hit points does not use the "TEMPORARY_HP" StackId and thus may be active on a character in addition to other sources of temporary hit points. In this case, the character will receive the temporary hit points from the highest source, while any lower sources will be used to replenish any lost temporary hit points from the highest source."
+// How do a mfer handle Temp HP appropriately with a binary ass system fr. "any lower sources will be used to replenish any lost temporary hit points from the highest source" is this even really enough of a problem to warrant the shitty StackId system? I HATE IT!
+
+new entry "Shout_WildMagicBarbarian_ShadowyTendrils"
+type "SpellData"
+data "SpellType" "Shout"
+using "Shout_WildMagicBarbarian_ShadowyTendrils"
+// data "SpellProperties" "IF(Self()):ApplyStatus(SELF,RAGE_MUTE,100,10);IF(Self()):ApplyStatus(SELF,WILD_MAGIC_BARBARIAN_SHADOWY_TENDRILS,100,-1)"
+data "SpellProperties" "IF(Self()):ApplyStatus(SELF,WILD_MAGIC_BARBARIAN_SHADOWY_TENDRILS,100,-1)"
+// data "AreaRadius" "9"
+// data "SpellRoll" "SpellAutoResolveOnSelf(Ability.Constitution,12, false)"
+data "SpellRoll" "SpellAutoResolveOnSelf(Ability.Constitution, CalculateSpellDC(Ability.Constitution, context.Source), false)"
+// data "SpellSuccess" "DealDamage(1d12, Necrotic,Magical)"
+// data "SpellFail" "ApplyStatus(SAVED_AGAINST_HOSTILE_SPELL, 100, 0)"
+// data "TargetConditions" "Character()"
+// data "Icon" "Action_WildMagic_Barbarian_ShadowyTendrils"
+// Wild Magic: Dark Tendrils
+// data "DisplayName" "ha39ace83g417ag426bgad8dgc804212ec430;2"
+// Shadowy tendrils lash around you, sucking the life from all nearby creatures and granting you &lt;LSTag Tooltip="TemporaryHitPoints"&gt;temporary hit points&lt;/LSTag&gt;.
+// data "Description" "h8f96bc40gcfd6g4e0agb6fdg87d74a211d4e;3"
+// data "TooltipDamageList" "DealDamage(1d12, Necrotic);GainTemporaryHitPoints(1d12)"
+// data "TooltipAttackSave" "Constitution"
+// data "TooltipStatusApply" "ApplyStatus(WILD_MAGIC_BARBARIAN_SHADOWY_TENDRILS,100,10)"
+// data "TooltipPermanentWarnings" "8892b93b-721f-4b99-b9b4-05ac25aadb33"
+// data "CastSound" "Spell_Impact_Barbarian_WildMagic_ShadowyTendrils"
+// data "CastTextEvent" "Cast"
+// data "SpellAnimation" ",,;,,;cf2ac4d8-979e-46f4-b9ea-7b93930ab92e,,;,,;,,;,,;,,;,,;,,"
+// data "VerbalIntent" "Damage"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "CastEffect" "7af589ef-191c-447d-966a-6c5f5d795ebe"
+// data "TargetEffect" "0e4d2c6f-6b14-4d7b-9127-eeb5738a123c"
+
+// new entry "WILD_MAGIC_BARBARIAN_SHADOWY_TENDRILS"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// Wild Magic: Dark Tendrils
+// data "DisplayName" "hca6d7d5ag17fcg42c4g8352gdb807f22c401;2"
+// Surrounded by tendrils of wild, shadowy magic. Gained [1].
+// data "Description" "he117a5efgaff7g4967g9b3fgebf7ecdf9a6b;2"
+// data "DescriptionParams" "GainTemporaryHitPoints(1d12)"
+// data "Icon" "statIcons_WildMagic_Barbarian_ShadowyTendrils"
+// data "SoundLoop" "Spell_Status_ShadowyTendrils_MO"
+// data "SoundStop" "Spell_Status_ShadowyTendrils_MO_Stop"
+// data "StackId" "WILD_MAGIC_BARBARIAN_SHADOWY_TENDRILS"
+// data "Boosts" "TemporaryHP(1d12)"
+// data "RemoveConditions" "not HasTemporaryHP()"
+// data "RemoveEvents" "OnDamage"
+// data "StatusEffect" "b65e9b5b-9a95-49c4-a29e-478c331671a0"

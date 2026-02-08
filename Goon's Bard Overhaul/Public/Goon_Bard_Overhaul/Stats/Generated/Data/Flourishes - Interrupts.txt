@@ -4,6 +4,7 @@
 // Bonus: All changes natively compatible with Master's Flourish from Expansion.
 // Known Issue: When using the Master's Flourish toggle from Expansion, the interrupts will have their damage and resource cost changed, but it will not be reflected in the tooltip in real time like it is with the spells, instead it will just update on a reload. I doubt I can do anything about this.
 // TODO: InterruptPrototype, and spells in the list instead of passive unlock
+// TODO: Throwing spell.
 
 new entry "Goon_BladeFlourishInterrupts_Unlock"
 type "PassiveData"

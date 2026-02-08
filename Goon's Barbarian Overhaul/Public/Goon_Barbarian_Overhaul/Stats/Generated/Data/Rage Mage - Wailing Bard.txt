@@ -1,0 +1,52 @@
+// ==================================== Wailing Bard cheeky compatibility and consistency patching innit ====================================
+
+new entry "Shout_RageMageRage"
+type "SpellData"
+data "SpellType" "Shout"
+// using "Shout_Rage"
+using "Shout_RageMageRage"
+// data "SpellProperties" "IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(MHRAGE_RAGE,100,10);IF(ClassLevelHigherOrEqualThan(9,'Barbarian') and not ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(MHRAGE_RAGE_2,100,10);IF(ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(MHRAGE_RAGE_3,100,10);"
+data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(MHRAGE_RAGE,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian') and not ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(MHRAGE_RAGE_2,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(MHRAGE_RAGE_3,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1)"
+// &lt;LSTag Type="Image" Info="SoftWarning"/&gt; Rage ends early if you don't attack an enemy, take damage, or cast a spell on each turn.
+// data "TooltipPermanentWarnings" "2f6f2400-a2ee-445d-801e-6a7229a02172"
+// data "RequirementConditions" "not HasStatus('SG_Rage') and not HasStatus('CALM_EMOTIONS')"
+data "RequirementConditions" "not HasAnyStatus({'MHRAGE_RAGE','MHRAGE_RAGE_2','MHRAGE_RAGE_3','CALM_EMOTIONS'},{},{})"
+
+new entry "MHRAGE_RAGE"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "RAGE"
+using "MHRAGE_RAGE"
+// Deals an additional [1] damage with melee and improvised weapons, and while throwing objects.&lt;br&gt;&lt;br&gt;Has Resistance to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+// data "Description" "h36823d3fg0797gcd4ag4505g10ce6933447d;1"
+// Deals an additional [1] damage with melee and improvised weapons, and while throwing objects.&lt;br&gt;&lt;br&gt;Has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+data "Description" "h4b91358eg7656g462ag8c45g64bd4080a7bb;1"
+// data "Boosts" "Tag(VFX_RAGE);BlockSpellCast();UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones)"
+data "Boosts" "Tag(VFX_RAGE);UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones)"
+// data "OnApplyFunctors" "IF(not HasHeavyArmor(context.Source)):ApplyStatus(RAGE_NO_HEAVY_ARMOUR_VFX,100,10);ApplyStatus(RAGE_STOP_REMOVE,100,1);BreakConcentration()"
+data "OnApplyFunctors" "IF(not HasHeavyArmor(context.Source)):ApplyStatus(RAGE_NO_HEAVY_ARMOUR_VFX,100,10);ApplyStatus(RAGE_STOP_REMOVE,100,1)"
+
+new entry "MHRAGE_RAGE_2"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "RAGE_2"
+using "MHRAGE_RAGE_2"
+// Deals an additional [1] damage with melee and improvised weapons, and while throwing objects.&lt;br&gt;&lt;br&gt;Has Resistance to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+// data "Description" "h2003db81g9d32gbc40g032bg1a78c7d90254;1"
+// Deals an additional [1] damage with melee and improvised weapons, and while throwing objects.&lt;br&gt;&lt;br&gt;Has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+data "Description" "h4b91358eg7656g462ag8c45g64bd4080a7bb;1"
+
+new entry "MHRAGE_RAGE_3"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "MHRAGE_RAGE"
+using "MHRAGE_RAGE_3"
+// data "Passives" "MHRage_Rage_Boosts_3;Rage_Attack;Rage_Damaged;Rage_NoHeavyArmour_VFX;"
+data "Passives" "Rage_Rage_Boosts_3;Rage_Attack;Rage_Damaged;Rage_NoHeavyArmour_VFX"
+
+new entry "MHRage_Rage_Boosts_3"
+type "PassiveData"
+// using "Rage_Rage_Boosts_2"
+using "MHRage_Rage_Boosts_3"
+// data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsAttackType(AttackType.MeleeWeaponAttack)):CharacterWeaponDamage(LevelMapValue(RageDamage));EntityThrowDamage(4);IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));FallDamageMultiplier(0.5);"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(4)"

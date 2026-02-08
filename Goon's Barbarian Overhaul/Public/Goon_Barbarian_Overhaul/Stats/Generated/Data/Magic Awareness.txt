@@ -1,0 +1,73 @@
+// ==================================== Magic Awareness ====================================
+// Bug Fix: Now adds Proficiency Bonus to Saving Throws against spells, instead of 1d4 to all Saving Throws.
+// Changes: Magic Awareness Aura no longer applies to hostile creatures.
+// Changes: The condition lasts until the end of the barbarian's next turn, instead of ending upon the start of their next turn.
+// Changes: Magic Awareness Aura being applied and removed will no longer spam overhead and combat log.
+// TODO: Rework closer to RAW? (5e Spells Detect Magic stuff or some such I dunno)
+// TODO: Max's resource/icon.
+
+new entry "Shout_MagicAwareness"
+type "SpellData"
+data "SpellType" "Shout"
+using "Shout_MagicAwareness"
+// data "Cooldown" "OncePerShortRest"
+// data "SpellProperties" "ApplyStatus(MAGIC_AWARENESS,100,1)"
+data "SpellProperties" "ApplyStatus(MAGIC_AWARENESS,100,2)"
+// data "AreaRadius" "3"
+// data "TargetConditions" "Self()"
+// data "Icon" "Action_Barbarian_MagicAwareness"
+// Magic Awareness
+// data "DisplayName" "hd971f0d3g006ag46a2g8d13gf42b13a7537a;1"
+// Anyone within range adds their &lt;LSTag Tooltip="ProficiencyBonus"&gt;Proficiency Bonus&lt;/LSTag&gt; to &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; against spells.
+// data "Description" "h3350d646g2443g4a19g8be7g55dbe4538a3b;5"
+// Allied creatures within range add their &lt;LSTag Tooltip="ProficiencyBonus"&gt;Proficiency Bonus&lt;/LSTag&gt; to &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; against spells.
+data "Description" "hc24ec1e3g1aa5g4528g892dg7de6bc3c9a14;1"
+// data "TooltipStatusApply" "ApplyStatus(MAGIC_AWARENESS,100,1)"
+data "TooltipStatusApply" "ApplyStatus(MAGIC_AWARENESS,100,2)"
+// data "CastSound" "Action_Cast_MagicAwareness"
+// data "UseCosts" "BonusActionPoint:1"
+// data "SpellAnimation" "e4788658-0d0d-4ca5-8229-536c14b80367,,;,,;11d58cf1-7848-4f8d-ac88-6c68825bcd55,,;639c9022-afbd-437c-9396-1711e243c568,,;219a58cc-5bdf-4f63-9c5f-7a7aa35a7cfe,,;,,;21ebeeea-1d48-4d06-8005-c5c32c6e05a6,,;,,;,,"
+// data "VerbalIntent" "Buff"
+// data "SpellAnimationIntentType" "None"
+// data "PrepareEffect" "4b021b1e-c140-4598-a9cd-a8528be22eb0"
+// data "CastEffect" "7d1dd92d-e68d-4c27-9a03-cff3324479c1"
+
+new entry "MAGIC_AWARENESS"
+type "StatusData"
+data "StatusType" "BOOST"
+using "MAGIC_AWARENESS"
+// Magic Awareness
+// data "DisplayName" "ha1fabaa6g04d9g47e3g81c9g7057e48eadf5;1"
+// Tapping into their innate magic to visualise the Weave.&lt;br&gt;&lt;br&gt;The barbarian and all creatures within [1] add their &lt;LSTag Tooltip="ProficiencyBonus"&gt;Proficiency Bonus&lt;/LSTag&gt; to &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; against spells.
+// data "Description" "h9e3e9f60g17c7g4cecga7dcg350af50ea61c;2"
+// Tapping into their innate magic to visualise the Weave.&lt;br&gt;&lt;br&gt;The barbarian and all allied creatures within [1] add their &lt;LSTag Tooltip="ProficiencyBonus"&gt;Proficiency Bonus&lt;/LSTag&gt; to &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; against spells.
+data "Description" "h0f058e5bga07fg4533g998cge466248d25fd;1"
+// data "DescriptionParams" "Distance(3)"
+// data "Icon" "Action_Barbarian_MagicAwareness"
+// data "StackId" "MAGIC_AWARENESS"
+// data "StackPriority" "0"
+// data "AuraRadius" "3"
+// data "AuraStatuses" "TARGET:IF(Character() and not SummonOwner()):ApplyStatus(MAGIC_AWARENESS_AURA)"
+data "AuraStatuses" "TARGET:IF(Character() and Ally() and not SummonOwner()):ApplyStatus(MAGIC_AWARENESS_AURA)"
+// data "TickType" "StartTurn"
+data "TickType" "EndTurn"
+// data "Boosts" "RollBonus(SavingThrow,1d4)"
+data "Boosts" "IF(HasSpellFlag(SpellFlags.Spell)):RollBonus(SavingThrow,ProficiencyBonus)"
+// data "StatusEffect" "9548e78e-bf9d-45c4-80b8-8062e5739d56"
+
+new entry "MAGIC_AWARENESS_AURA"
+type "StatusData"
+data "StatusType" "BOOST"
+using "MAGIC_AWARENESS_AURA"
+// Magic Awareness Aura
+// data "DisplayName" "h581cc755gade8g4251gaacdg14bb15503c85;2"
+// A nearby barbarian is visualising the Weave. &lt;br&gt;&lt;br&gt;Adds their &lt;LSTag Tooltip="ProficiencyBonus"&gt;Proficiency Bonus&lt;/LSTag&gt; to &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; against spells, as long as they stay within [1] of the barbarian.
+// data "Description" "hdc764779gf229g4503g97a3g88ced327ab6c;3"
+// data "DescriptionParams" "Distance(3)"
+// data "Icon" "Action_Barbarian_MagicAwareness"
+data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog"
+// data "StackId" "MAGIC_AWARENESS"
+// data "StackPriority" "1"
+// data "Boosts" "RollBonus(SavingThrow,1d4)"
+data "Boosts" "IF(HasSpellFlag(SpellFlags.Spell)):RollBonus(SavingThrow,ProficiencyBonus)"
+// data "StatusEffect" "9548e78e-bf9d-45c4-80b8-8062e5739d56"

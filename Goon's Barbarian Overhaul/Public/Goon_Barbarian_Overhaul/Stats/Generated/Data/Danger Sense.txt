@@ -1,0 +1,19 @@
+// ==================================== Danger Sense ====================================
+// Bug Fix: Conditions expanded to cover status groups for Blinded and Incapacitated conditions, instead of just Blinded and Knocked Out specifically.
+// Bug Fix: The description now matches the functionality; it was never limited to Saving Throws against traps, spells and surfaces, it just gives plain no frills attached Advantage on Dexterity Saving Throws. 
+// TODO: I may look at changing it to be RAW in the future, but it's easier to just edit the description for now.
+
+new entry "DangerSense"
+type "PassiveData"
+using "DangerSense"
+// Danger Sense
+// data "DisplayName" "h7fb337adg6d9dg4ad2ga701g665d55fa3f62;2"
+// You sense when things aren't as they should be.&lt;br&gt;&lt;br&gt;You have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Dexterity &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; against traps, spells, and surfaces. &lt;br&gt;&lt;br&gt;To gain this benefit, you can't be Blinded or Incapacitated.
+// data "Description" "hc167b08dg77bbg4333gb178gf92c00fba368;3"
+// You sense when things aren't as they should be.&lt;br&gt;&lt;br&gt;You have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Dexterity &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;. &lt;br&gt;&lt;br&gt;To gain this benefit, you can't be &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinded&lt;/LSTag&gt; or Incapacitated.
+data "Description" "h4a49b28bg3663g40d7g9bbaga07d215387c7;1"
+// data "Icon" "PassiveFeature_DangerSense"
+// data "Properties" "Highlighted"
+// data "BoostConditions" "not HasStatus('BLINDED') and not HasStatus('KNOCKED_OUT')"
+data "BoostConditions" "not HasStatus('SG_Blinded') and not HasStatus('SG_Incapacitated') and not HasStatus('SG_Unconscious')"
+// data "Boosts" "Advantage(SavingThrow,Dexterity) "

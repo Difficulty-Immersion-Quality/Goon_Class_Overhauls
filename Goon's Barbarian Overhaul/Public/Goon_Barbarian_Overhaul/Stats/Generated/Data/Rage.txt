@@ -1,0 +1,1108 @@
+// ==================================== Rage ====================================
+// Expansion: Added support for throw damage being increased to +4 at level 16.
+// Bug Fix: Fall damage is no longer quartered from Bludgeoning Resistance stacking with the halved fall damage.
+// Bug Fix: Removed the redundant condition that prevented taking damage from maintaining Rage when other passives ran functors on the "OnDamage" event.
+// Bug Fix: The same Rage can no longer be used while a Barbarian of level 9 or above already has the Rage condition.
+// Bug Fix: Sustaining your Rage can no longer be done by targeting hostile creatures with actions that are not Attacks or flagged as harmful.
+// Bug Fix: Descriptions overhauled with appropriate hyperlinks.
+// Changes: You can Rage while outside of combat.
+// Changes: End Rage no longer costs a Bonus Action, it's a free cast.
+// TODO: Damage bonuses and other stuff working with Wildshape/Slayer etc.
+// TODO: Add support for custom Rages as needed, especially 5e Barbarian Subclasses Combined.
+// Known Issue: Fall damage will no longer show as being halved on the target tooltip prior to making a jump. (But if it was actually quartered then it was still inaccurate to begin with, can't win 'em all.)
+// Bonus: All Rages check for if Expansion's level 15 Barbarian feature Persistent Rage exists before removing the condition, so it won't be removed immediately when exiting combat.
+// Bonus: Support for The Rage Mage - A Barbarian Spellcaster Subclass.
+// Note: the EntityThrowDamage() boost seemingly does not function with LevelMapValue, which sucks.
+
+new entry "RageUnlock"
+type "PassiveData"
+using "RageUnlock"
+// Rage
+// data "DisplayName" "h509b8e00gacb9g4eafgb41dgc56656969a2b;1"
+// You can use the Rage feature.
+// data "Description" "h8781b505g2d51g491dg9239g033068b588b8;1"
+// You can use the &lt;LSTag Type="Spell" Tooltip="Shout_Rage"&gt;Rage&lt;/LSTag&gt; feature.
+data "Description" "h41b29457g17a4g4cdeg9962g5dce19ed07c8;1"
+// data "Icon" "Action_Barbarian_Rage"
+// data "Boosts" "UnlockSpell(Shout_Rage)"
+
+new entry "Shout_Rage"
+type "SpellData"
+data "SpellType" "Shout"
+using "Shout_Rage"
+// data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_2,100,10);ApplyStatus(RAGE_MUTE,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1);"
+data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian') and not ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_2,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_3,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1)"
+// data "TargetConditions" "Self()"
+// data "Icon" "Action_Barbarian_Rage"
+// Rage
+// data "DisplayName" "hd0473bcfg9145g41d2gad13g8bc78ce6d718;2"
+// Deal [1] extra damage with melee and improvised weapons, and throwing.
+// data "Description" "h0758d09cgc5abg4ea7g8e0bg3ecc90844352;21"
+// data "DescriptionParams" "LevelMapValue(RageDamage)"
+// Gain &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+// data "ExtraDescription" "h9c492aaag4d3cg4dc8g8bd5g12c7dd5dbdef;3"
+// data "TooltipStatusApply" "ApplyStatus(RAGE,100,10)"
+// data "TooltipPermanentWarnings" "11324c04-12f0-4c78-904b-fe50fa5ff314;f667e95d-4144-4c5f-8cb1-8a5995b33a43"
+// data "CastSound" "Action_Cast_Rage"
+// data "TargetSound" "Action_Impact_Rage"
+// data "CastTextEvent" "Cast"
+// data "UseCosts" "BonusActionPoint:1;Rage:1"
+// data "SpellAnimation" "50e7cd15-5b95-47e9-b6f8-ed7900d23d9d,,;,,;289b4f53-3ca5-4dff-a1d4-e84a84a283f0,,;772a34bf-06c1-43ee-ae7b-1a1ffd3fef9e,,;03239618-40c7-47ab-a7b4-d2e0b111e5f7,,;,,;bc09e561-370b-4307-88d7-6462b6fbabec,,;,,;,,"
+// data "VerbalIntent" "Buff"
+// data "SpellStyleGroup" "Class"
+// data "HitAnimationType" "None"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "Requirements" "Combat"
+data "Requirements" ""
+// data "RequirementConditions" "not HasStatus('RAGE') and not HasStatus('CALM_EMOTIONS')"
+data "RequirementConditions" "not HasAnyStatus({'RAGE','RAGE_2','RAGE_3','CALM_EMOTIONS'},{},{})"
+// data "PrepareEffect" "f5269188-8099-49b1-8515-b549bd8b61b9"
+// data "CastEffect" "3b4c35ad-4d0a-4889-8408-46181439be42"
+// data "SpellSoundMagnitude" "Big"
+// data "Sheathing" "DontChange"
+
+// ==================================== Rage - 1
+
+new entry "RAGE"
+type "StatusData"
+data "StatusType" "BOOST"
+using "RAGE"
+// Rage
+// data "DisplayName" "hb5a027a4g2934g40bfga5e1g7cb821264ea9;2"
+// Deals an additional [1] damage with melee and improvised weapons, and while throwing objects.&lt;br&gt;&lt;br&gt;Has Resistance to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;. &lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+// data "Description" "h87a4cfdbg2ba1g4a61gbbe7g540a2571f03b;14"
+// Deals an additional [1] damage with melee and improvised weapons, and while throwing objects.&lt;br&gt;&lt;br&gt;Has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+data "Description" "h4b91358eg7656g462ag8c45g64bd4080a7bb;1"
+// data "DescriptionParams" "LevelMapValue(RageDamage)"
+// data "Icon" "Action_Barbarian_Rage"
+// data "SoundLoop" "Spell_Status_Rage"
+// data "SoundStop" "Spell_Status_Rage_Stop"
+// data "StatusSoundState" "7adcc1d1-6d19-4480-bc2e-0913164285ca"
+// data "StackId" "RAGE"
+// data "StackPriority" "0"
+// data "TickType" "EndTurn"
+// data "Boosts" "Tag(VFX_RAGE);UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones);"
+data "Boosts" "Tag(VFX_RAGE);BlockSpellCast();UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones)"
+// data "Passives" "Rage_Rage_Boosts;Rage_Attack;Rage_Damaged;Rage_NoHeavyArmour_VFX"
+// data "RemoveConditions" "not HasStatus('RAGE_STOP_REMOVE') or not Combat()"
+data "RemoveConditions" "not HasPassive('PersistentRage') and not HasStatus('RAGE_STOP_REMOVE') and not Combat()"
+// data "RemoveEvents" "OnTurn;OnCombatEnded"
+// data "TickFunctors" "IF(not Combat(context.Source)):RemoveStatus(SG_Rage)"
+data "TickFunctors" "IF(not HasPassive('PersistentRage') and not HasStatus('RAGE_STOP_REMOVE') and not Combat(context.Source)):RemoveStatus(SG_Rage)"
+// data "StatusPropertyFlags" "UnavailableInActiveRoll"
+// data "OnApplyFunctors" "IF(not HasHeavyArmor(context.Source)):ApplyStatus(RAGE_NO_HEAVY_ARMOUR_VFX,100,10);ApplyStatus(RAGE_STOP_REMOVE,100,1)"
+data "OnApplyFunctors" "IF(not HasHeavyArmor(context.Source)):ApplyStatus(RAGE_NO_HEAVY_ARMOUR_VFX,100,10);ApplyStatus(RAGE_STOP_REMOVE,100,1);BreakConcentration()"
+// data "OnRemoveFunctors" "RemoveStatus(RAGE_MUTE);RemoveStatus(RAGE_STOP_REMOVE);RemoveStatus(RAGE_NO_HEAVY_ARMOUR_VFX);IF(RemoveCause(StatusRemoveCause.TimeOut) or RemoveCause(StatusRemoveCause.Condition)):ApplyStatus(RAGE_ENDED,100,1);IF(RemoveCause(StatusRemoveCause.TimeOut) or RemoveCause(StatusRemoveCause.Condition)):UseSpell(Shout_EndRage,true,true,true)"
+// data "StatusGroups" "SG_Rage;SG_RemoveOnRespec"
+// data "StatusEffect" "30fd26c7-1a1e-4328-9a9a-38c0f55be597"
+// &lt;LSTag Type="Image" Info="SoftWarning"/&gt; Rage ends early if the barbarian hasn't attacked an enemy or taken damage since their last turn.
+// data "TooltipPermanentWarnings" "5b0c1209-0e18-49a0-bec6-df484d977300"
+// data "DynamicAnimationTag" "b6aa23c3-c96d-42d5-8ffa-8d441d18faa7"
+
+new entry "Rage_Rage_Boosts"
+type "PassiveData"
+using "Rage_Rage_Boosts"
+// Rage
+// data "DisplayName" "ha6c1e84fg721ag4821g8817g3aa24d9ff7d6;1"
+// Your fury makes you strong. &lt;br&gt;&lt;br&gt;You have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+// data "Description" "h6a43d803gd893g4a20ga1ebg1a86d7a80d93;2"
+// Deals an additional [1] damage with melee and improvised weapons, and while throwing objects.&lt;br&gt;&lt;br&gt;Has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+data "Description" "h4b91358eg7656g462ag8c45g64bd4080a7bb;1"
+// data "Properties" "IsHidden"
+// data "BoostContext" "OnEquip;OnCreate"
+// data "BoostConditions" "not HasHeavyArmor(context.Source)"
+// data "Boosts" "Advantage(Ability, Strength); Advantage(SavingThrow, Strength); Resistance(Slashing, Resistant); Resistance(Piercing, Resistant); Resistance(Bludgeoning, Resistant); IF(IsAttackType(AttackType.MeleeWeaponAttack)): CharacterWeaponDamage(LevelMapValue(RageDamage));EntityThrowDamage(2);IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));FallDamageMultiplier(0.5)"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(2)"
+
+// ==================================== Rage - 2
+
+// new entry "RAGE_2"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "RAGE"
+// data "Passives" "Rage_Rage_Boosts_2;Rage_Attack;Rage_Damaged;Rage_NoHeavyArmour_VFX;"
+
+new entry "Rage_Rage_Boosts_2"
+type "PassiveData"
+// using "Rage_Rage_Boosts"
+using "Rage_Rage_Boosts_2"
+// data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsAttackType(AttackType.MeleeWeaponAttack)): CharacterWeaponDamage(LevelMapValue(RageDamage));EntityThrowDamage(3);IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));FallDamageMultiplier(0.5);"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(3)"
+
+// ==================================== Rage - 3 (Expansion)
+
+new entry "RAGE_3"
+type "StatusData"
+data "StatusType" "BOOST"
+using "RAGE_2"
+data "Passives" "Rage_Rage_Boosts_3;Rage_Attack;Rage_Damaged;Rage_NoHeavyArmour_VFX"
+
+new entry "Rage_Rage_Boosts_3"
+type "PassiveData"
+using "Rage_Rage_Boosts_2"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(4)"
+
+// ==================================== Rage - Misc
+
+new entry "Shout_EndRage"
+type "SpellData"
+data "SpellType" "Shout"
+using "Shout_EndRage"
+// data "AIFlags" "CanNotUse"
+// data "SpellProperties" "RemoveStatus(SG_Rage);"
+// data "Icon" "Action_Barbarian_EndRage"
+// End Rage
+// data "DisplayName" "h29b9a0cfgfd5fg4b12g8841g46699268f191;2"
+// Use a bonus action to end your Rage.
+// data "Description" "hf316da37g19bdg4e20gb23cgb3e985d13765;3"
+// End your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;.
+data "Description" "h2fbf423agb067g4219ga854g6266a2a95813;1"
+// data "CastSound" "Action_Cast_Rage_End"
+// data "CastTextEvent" "Cast"
+// data "UseCosts" "BonusActionPoint:1"
+data "UseCosts" ""
+// data "SpellAnimation" "22ddf59a-5e0a-41c1-840c-ae9ba5704e63,,;,,;60b207c9-6751-4144-a766-5173ddee5ec7,,;fced40ee-7eaa-4054-9354-8c1ea7fbb0eb,,;93317549-2754-4931-98ce-1d67f899318f,,;,,;9406f0da-ac4e-4d4a-b98f-798102dd300e,,;,,;,,"
+// data "VerbalIntent" "Utility"
+// data "SpellStyleGroup" "Class"
+// data "SpellFlags" "Temporary"
+// data "SpellAnimationIntentType" "Peaceful"
+// data "PrepareEffect" "310e3db7-e1df-4741-b1f6-cf1cf13ce5b3"
+// data "CastEffect" "d997104a-8f85-431d-a089-bc0a452bd4b9"
+// data "SpellSoundMagnitude" "Big"
+// data "Sheathing" "Somatic"
+
+new entry "Rage_Attack"
+type "PassiveData"
+using "Rage_Attack"
+// %%% Empty
+// data "DisplayName" "h6f57f0aag5815g41f4ga4f3gadf52adc3f9c;1"
+// data "Properties" "IsHidden"
+// data "StatsFunctorContext" "OnAttack"
+data "StatsFunctorContext" "OnAttack;OnDamage"
+// data "Conditions" "(not Ally() and Character()) or Enemy()"
+data "Conditions" "((not Ally() and Character()) or Enemy()) and (IsAttack() or HasSpellFlag(SpellFlags.Harmful))"
+// data "StatsFunctors" "ApplyStatus(SELF,RAGE_STOP_REMOVE,100,1)"
+
+new entry "Rage_Damaged"
+type "PassiveData"
+using "Rage_Damaged"
+// %%% Empty
+// data "DisplayName" "h501b55efg5783g4216gaa21g70231de4d95d;1"
+// data "Properties" "IsHidden"
+// data "StatsFunctorContext" "OnDamaged"
+// data "Conditions" "TotalDamageDoneGreaterThan(0)"
+data "Conditions" ""
+// data "StatsFunctors" "ApplyStatus(RAGE_STOP_REMOVE,100,1)"
+
+// new entry "RAGE_MUTE"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// %%% Rage Mute
+// data "DisplayName" "h8ce81d8bgf5dcg4722g87f7gd7b1601a3293;2"
+// %%% Technical status; doesn't need to be destubbed.
+// data "Description" "h0f48bc4fg55d1g4e5fg94ffge99d3a003db8;3"
+// data "Boosts" "BlockSpellCast()"
+// data "RemoveConditions" "not HasStatus('SG_Rage')"
+// data "RemoveEvents" "OnTurn;OnStatusRemoved"
+// data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
+// data "OnApplyFunctors" "BreakConcentration()"
+
+// new entry "Rage_NoHeavyArmour_VFX"
+// type "PassiveData"
+// %%% Empty
+// data "DisplayName" "h6c1b2a33gbe3eg4fdbga309g32794c06ac4c;1"
+// %%% Technical used for applying a status for VFX to use
+// data "Description" "h44f8e5bbgf5ccg4a0fg8f39g770ef6a3d8d4;1"
+// data "Properties" "IsHidden"
+// data "StatsFunctorContext" "OnEquip"
+// data "Conditions" "not HasHeavyArmor(context.Source) and HasStatus('SG_Rage', context.Source)"
+// data "StatsFunctors" "ApplyStatus(SELF,RAGE_NO_HEAVY_ARMOUR_VFX,100,-1)"
+
+// new entry "RAGE_NO_HEAVY_ARMOUR_VFX"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// %%% Rage no heavy amrour VFX
+// data "DisplayName" "hd48d5e15ge87cg4cc9g90afg1ff9ef983000;2"
+// %%% Technical status used for addtional VFX for rage when there is no heavy amrour
+// data "Description" "h84ac08b0gae65g49b6g85b5g82a7671591a4;2"
+// data "StackId" "RAGE_NO_HEAVY_ARMOUR_VFX"
+// data "StackPriority" "1"
+// data "RemoveConditions" "HasHeavyArmor(context.Source) or not HasStatus('SG_Rage')"
+// data "RemoveEvents" "OnEquip;OnUnequip;OnStatusRemoved"
+// data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
+// data "StatusEffect" "d92d4581-5842-476d-aeec-2364bf39702d"
+
+// ==================================== Rage: Wild Magic ====================================
+
+// new entry "WildMagicRage"
+// type "PassiveData"
+// Wild Magic Surge
+// data "DisplayName" "h98bdd3bag3777g4870ga094g8362c31c855b;2"
+// A magical energy roils inside of you, ready to erupt. When you enter a &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;, you trigger a random magical effect.
+// data "Description" "hc52dfbcfgb62ag4e72g9ea9gc1234b3518eb;2"
+// data "Icon" "PassiveFeature_WildMagicRage"
+// data "Properties" "Highlighted"
+// data "Boosts" "UnlockSpell(Shout_Rage_WildMagic)"
+
+new entry "Shout_Rage_WildMagic"
+type "SpellData"
+data "SpellType" "Shout"
+// using "Shout_Rage"
+using "Shout_Rage_WildMagic"
+// data "SpellProperties" "AI_IGNORE:TriggerRandomCast(1,0,WildMagicBarbarian);IF(ClassLevelHigherOrEqualThan(1,'Barbarian') and not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE,100,10);IF(ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_2,100,10);AI_ONLY:ApplyStatus(AI_HELPER_RAGE,100,10);"
+data "SpellProperties" "AI_IGNORE:TriggerRandomCast(1,0,WildMagicBarbarian);AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian') and not ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_2,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_3,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1)"
+// data "Icon" "Action_Barbarian_Rage_WildMagic"
+// Rage: Wild Magic
+// data "DisplayName" "h9b135270gcd01g4ba7gbae3g750c5771c236;1"
+// Enter a &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt; that releases all the magic roiling inside of you, causing a random magical effect.
+// data "Description" "h995ccd55gf9b2g4325gb9a8g6d80d7b8830e;2"
+// data "TooltipStatusApply" "ApplyStatus(RAGE,100,10)"
+// data "SpellAnimation" "50e7cd15-5b95-47e9-b6f8-ed7900d23d9d,,;,,;289b4f53-3ca5-4dff-a1d4-e84a84a283f0,,;772a34bf-06c1-43ee-ae7b-1a1ffd3fef9e,,;03239618-40c7-47ab-a7b4-d2e0b111e5f7,,;,,;bc09e561-370b-4307-88d7-6462b6fbabec,,;,,;,,"
+// data "SpellAnimationIntentType" "Aggressive"
+// data "RequirementConditions" "not HasStatus('RAGE') and not HasStatus('CALM_EMOTIONS')"
+data "RequirementConditions" "not HasAnyStatus({'RAGE','RAGE_2','RAGE_3','CALM_EMOTIONS'},{},{})"
+
+// ==================================== Rage: Frenzy ====================================
+
+new entry "RageFrenzyUnlock"
+type "PassiveData"
+using "RageFrenzyUnlock"
+// Rage Becomes Frenzy
+// data "DisplayName" "hd88d6092gc0a7g4187gbc74gbc5a97aa1b20;2"
+// Your bloodthirst transforms your rage, making it stronger.
+// data "Description" "h8f35b5a9g1006g4d3bga731g890b72af65b9;3"
+// Your bloodthirst transforms your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;, turning it into a &lt;LSTag Type="Status" Tooltip="RAGE_FRENZY"&gt;Frenzy&lt;/LSTag&gt;!
+data "Description" "h5169ddbfga020g4c1eg967cg59c7302e5d2e;1"
+// data "Icon" "Action_Barbarian_Frenzy"
+// data "Properties" "Highlighted"
+// data "Boosts" "UnlockSpell(Shout_Rage_Frenzy)"
+
+new entry "Shout_Rage_Frenzy"
+type "SpellData"
+data "SpellType" "Shout"
+// using "Shout_Rage"
+using "Shout_Rage_Frenzy"
+// data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_FRENZY,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_FRENZY_2,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1);"
+data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_FRENZY,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian') and not ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_FRENZY_2,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_FRENZY_3,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1)"
+// data "Icon" "Action_Barbarian_Frenzy"
+// Frenzy
+// data "DisplayName" "hb3a638fagbfdcg466dg93dcg3003db2a946a;2"
+// Your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt; turns into a frenzy! You gain &lt;LSTag Type="Spell" Tooltip="Target_FrenziedStrike"&gt;Frenzied Strike&lt;/LSTag&gt; and &lt;LSTag Type="Spell" Tooltip="Throw_FrenziedThrow"&gt;Enraged Throw&lt;/LSTag&gt;. You can also make an &lt;LSTag Type="Spell" Tooltip="Throw_ImprovisedWeaponBerserker"&gt;Improvised Weapon Attack&lt;/LSTag&gt; as a bonus action.
+// data "Description" "h59751bb9g943dg4a84gb7d0g87071d1a2932;18"
+// Your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt; turns into a &lt;LSTag Type="Status" Tooltip="RAGE_FRENZY"&gt;Frenzy&lt;/LSTag&gt;! You gain &lt;LSTag Type="Spell" Tooltip="Target_FrenziedStrike"&gt;Frenzied Strike&lt;/LSTag&gt; and &lt;LSTag Type="Spell" Tooltip="Throw_FrenziedThrow"&gt;Enraged Throw&lt;/LSTag&gt;. You can also make an &lt;LSTag Type="Spell" Tooltip="Throw_ImprovisedWeaponBerserker"&gt;Improvised Weapon Attack&lt;/LSTag&gt; as a &lt;LSTag Tooltip="BonusAction"&gt;Bonus Action&lt;/LSTag&gt;.
+data "Description" "ha4ee19b9g7cb6g4b13g8927gbdd5949c3050;1"
+// data "TooltipStatusApply" "ApplyStatus(RAGE_FRENZY,100,10)"
+// data "CastSound" "Action_Cast_Rage"
+// data "TargetSound" "Action_Impact_Rage"
+// data "RequirementConditions" "not HasStatus('RAGE_FRENZY') and not HasStatus('CALM_EMOTIONS')"
+data "RequirementConditions" "not HasAnyStatus({'RAGE_FRENZY','RAGE_FRENZY_2','RAGE_FRENZY_3','CALM_EMOTIONS'},{},{})"
+// data "PrepareEffect" "63816502-951b-4242-a9a2-fa8b5228f18a"
+// data "CastEffect" "d314aed0-4fb5-44dc-98c4-614297017694"
+
+// ==================================== Rage: Frenzy - 1
+
+new entry "RAGE_FRENZY"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "RAGE"
+using "RAGE_FRENZY"
+// Frenzied
+// data "DisplayName" "h9e5a3266g88ecg4f3ag973fgba803220b7de;2"
+// Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;Also has Resistance to physical damage, and Advantage on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+// data "Description" "h705ff96dgd1d9g46d7ga025g8394fb4e7de5;15"
+// Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+data "Description" "he4353cd0g6803g4f7dgbf58g4e2176f2118a;1"
+// data "DescriptionParams" "LevelMapValue(RageDamage)"
+// data "Icon" "Action_Barbarian_Frenzy"
+// data "SoundLoop" "Spell_Status_Rage"
+// data "StackId" "RAGE"
+// data "StackPriority" "1"
+// data "Boosts" "Tag(VFX_RAGE);BlockSpellCast();UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones);UnlockSpell(Throw_ImprovisedWeaponBerserker);IF(HasPassive('MindlessRage',context.Source)):StatusImmunity(SG_Frightened);IF(HasPassive('MindlessRage',context.Source)):StatusImmunity(SG_Charmed)"
+// data "Passives" "Rage_Rage_Boosts;Rage_Attack;Rage_Damaged;Rage_Frenzy_NoHeavyArmour_VFX"
+// data "OnApplyFunctors" "IF(not HasHeavyArmor(context.Source)):ApplyStatus(RAGE_FRENZY_NO_HEAVY_ARMOUR_VFX,100,10);ApplyStatus(RAGE_STOP_REMOVE,100,1);BreakConcentration()"
+// data "OnRemoveFunctors" "RemoveStatus(RAGE_MUTE);RemoveStatus(RAGE_STOP_REMOVE);RemoveStatus(RAGE_FRENZY_NO_HEAVY_ARMOUR_VFX);RemoveStatus(RAGE_FRENZY_BURNOUT);IF(RemoveCause(StatusRemoveCause.TimeOut) or RemoveCause(StatusRemoveCause.Condition)):ApplyStatus(RAGE_ENDED,100,1);IF(RemoveCause(StatusRemoveCause.TimeOut) or RemoveCause(StatusRemoveCause.Condition)):UseSpell(Shout_EndRage,true,true,true)"
+// data "StatusEffect" "f4a46a83-330f-4725-afdb-da710283d888"
+
+// ==================================== Rage: Frenzy - 2
+
+// new entry "RAGE_FRENZY_2"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "RAGE_FRENZY"
+// data "Passives" "Rage_Rage_Boosts_2;Rage_Attack;Rage_Damaged;Rage_Frenzy_NoHeavyArmour_VFX;"
+
+// ==================================== Rage: Frenzy - 3
+
+new entry "RAGE_FRENZY_3"
+type "StatusData"
+data "StatusType" "BOOST"
+using "RAGE_FRENZY_2"
+data "Passives" "Rage_Rage_Boosts_3;Rage_Attack;Rage_Damaged;Rage_Frenzy_NoHeavyArmour_VFX"
+
+// ==================================== Rage: Frenzy - Misc
+
+// new entry "Rage_Frenzy_NoHeavyArmour_VFX"
+// type "PassiveData"
+// %%% Empty
+// data "DisplayName" "h1ecbca08g3b59g4779g8baeg6de94cc500dc;1"
+// %%% Empty
+// data "Description" "h8d044205g6bddg4ff1gbe10gcfa028dd3fe5;1"
+// data "Properties" "IsHidden"
+// data "StatsFunctorContext" "OnEquip"
+// data "Conditions" "not HasHeavyArmor(context.Source) and HasStatus('SG_Rage', context.Source)"
+// data "StatsFunctors" "ApplyStatus(SELF,RAGE_FRENZY_NO_HEAVY_ARMOUR_VFX,100,-1)"
+
+// new entry "RAGE_FRENZY_NO_HEAVY_ARMOUR_VFX"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "RAGE_NO_HEAVY_ARMOUR_VFX"
+// %%% Frenzy no heavy amrour VFX
+// data "DisplayName" "h8e90262ega7dag4970g99adgd607df9ee5ef;2"
+// data "StatusEffect" "67d02139-811f-47a6-84af-6f2e502e7ac9"
+
+// ==================================== Rage: Bear Heart ====================================
+// Changes: Physical damage Resistance is no longer granted while wearing Heavy Armour. I opted for consistency with the Rage Impeded condition over RAW.
+
+new entry "TotemSpirit_Bear"
+type "PassiveData"
+using "TotemSpirit_Bear"
+// Bear Heart
+// data "DisplayName" "hd0b27adfgaa71g4825ga7efg6e3383010023;2"
+// While &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt;, you can use &lt;LSTag Type="Spell" Tooltip="Shout_FerociousAppetite"&gt;Unrelenting Ferocity&lt;/LSTag&gt;, and have Resistance to all damage except Psychic damage.
+// data "Description" "h5ec27404gaae0g48adgaf6egec96c58981e0;5"
+// While &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt;, you can use &lt;LSTag Type="Spell" Tooltip="Shout_FerociousAppetite"&gt;Unrelenting Ferocity&lt;/LSTag&gt;, and have &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to all damage except[1].
+data "Description" "h9469f4d0g8693g4e76g87a8gf03895911436;5"
+data "DescriptionParams" "DealDamage(,Psychic)"
+// data "Icon" "Action_Barbarian_Rage_BearTotem"
+// data "Properties" "Highlighted"
+// data "Boosts" "UnlockSpell(Shout_Rage_Totem_Bear);UnlockSpell(Shout_FerociousAppetite)"
+data "Boosts" "UnlockSpell(Shout_Rage_Totem_Bear)"
+
+new entry "Shout_Rage_Totem_Bear"
+type "SpellData"
+data "SpellType" "Shout"
+// using "Shout_Rage"
+using "Shout_Rage_Totem_Bear"
+// data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_TOTEM_BEAR,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_TOTEM_BEAR_2,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1);"
+data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_TOTEM_BEAR,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian') and not ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_TOTEM_BEAR_2,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_TOTEM_BEAR_3,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1)"
+// data "Icon" "Action_Barbarian_Rage_BearTotem"
+// Rage: Bear Heart
+// data "DisplayName" "h7056f3edg3197g40b0g9a17g6f3dd5109a13;3"
+// Enter a &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt; that makes you tough enough to stand up to any punishment.
+// data "Description" "hed70a984gb439g4400g8d1fg17604a5389dc;16"
+// You can use &lt;LSTag Type="Spell" Tooltip="Shout_FerociousAppetite"&gt;Unrelenting Ferocity&lt;/LSTag&gt;, and have Resistance to all damage except Psychic damage.
+// data "ExtraDescription" "hbc916ff8g60bcg43acgb721g9465d9c6c434;1"
+// You can use &lt;LSTag Type="Spell" Tooltip="Shout_FerociousAppetite"&gt;Unrelenting Ferocity&lt;/LSTag&gt;, and have &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to all damage except[1].
+data "ExtraDescription" "h0cd8b5d6g89c4g477cg86bfg5920fd90a812;1"
+// data "ExtraDescriptionParams" ""
+data "ExtraDescriptionParams" "DealDamage(,Psychic)"
+// data "TooltipStatusApply" "ApplyStatus(RAGE_TOTEM_BEAR,100,10)"
+// data "CastSound" "Action_Cast_Rage"
+// data "TargetSound" "Action_Impact_Rage_Bear"
+// data "RequirementConditions" "not HasStatus('RAGE_TOTEM_BEAR') and not HasStatus('CALM_EMOTIONS')"
+data "RequirementConditions" "not HasAnyStatus({'RAGE_TOTEM_BEAR','RAGE_TOTEM_BEAR_2','RAGE_TOTEM_BEAR_3','CALM_EMOTIONS'},{},{})"
+// data "PrepareEffect" "80d427cc-ed22-47b8-9c06-5fdfdd62e671"
+// data "CastEffect" "10460a87-cafb-4cf3-bce7-43bf7eba309f"
+
+// ==================================== Rage: Bear Heart - 1
+
+new entry "RAGE_TOTEM_BEAR"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "RAGE"
+using "RAGE_TOTEM_BEAR"
+// Rage: Bear Heart
+// data "DisplayName" "h8f232c87g1686g41a8g86bagae5e02bd5a49;3"
+// Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;Has Resistance to all damage except Psychic damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;. &lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+// data "Description" "h500090e3gc513g496cg88d4gc3ea56f7ee7f;14"
+// Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;Has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to all damage except[2], and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+data "Description" "h87d74fe7ga2cbg4a53gb823g66c3fa46f64b;1"
+// data "DescriptionParams" "LevelMapValue(RageDamage)"
+data "DescriptionParams" "LevelMapValue(RageDamage);DealDamage(,Psychic)"
+// data "Icon" "Action_Barbarian_Rage_BearTotem"
+// data "SoundLoop" "Spell_Status_Rage"
+// data "StackId" "RAGE"
+// data "StackPriority" "2"
+// data "Boosts" "Tag(VFX_RAGE);BlockSpellCast();UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones);Resistance(Slashing, Resistant); Resistance(Piercing, Resistant); Resistance(Bludgeoning, Resistant); Resistance(Acid, Resistant); Resistance(Thunder, Resistant); Resistance(Necrotic, Resistant); Resistance(Fire, Resistant); Resistance(Lightning, Resistant); Resistance(Cold, Resistant); Resistance(Poison, Resistant); Resistance(Radiant, Resistant); Resistance(Force, Resistant);"
+data "Boosts" "Tag(VFX_RAGE);BlockSpellCast();UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones);Resistance(Acid, Resistant);Resistance(Thunder, Resistant);Resistance(Necrotic, Resistant);Resistance(Fire, Resistant);Resistance(Lightning, Resistant);Resistance(Cold, Resistant);Resistance(Poison, Resistant);Resistance(Radiant, Resistant);Resistance(Force, Resistant);UnlockSpell(Shout_FerociousAppetite)"
+// data "Passives" "TotemSpirit_Bear_Rage_Boosts;Rage_Attack;Rage_Damaged;Rage_Bear_NoHeavyArmour_VFX"
+// data "OnApplyFunctors" "IF(not HasHeavyArmor(context.Source)):ApplyStatus(RAGE_BEAR_NO_HEAVY_ARMOUR_VFX,100,10);ApplyStatus(RAGE_STOP_REMOVE,100,1);BreakConcentration();ApplyStatus(RAGE_TOTEM_BEAR_HEAL_TOGGLE,100,10)"
+// data "OnRemoveFunctors" "RemoveStatus(RAGE_TOTEM_BEAR_HEAL_TOGGLE);RemoveStatus(RAGE_MUTE);RemoveStatus(RAGE_STOP_REMOVE);RemoveStatus(RAGE_BEAR_NO_HEAVY_ARMOUR_VFX);IF(RemoveCause(StatusRemoveCause.TimeOut) or RemoveCause(StatusRemoveCause.Condition)):ApplyStatus(RAGE_ENDED,100,1);IF(RemoveCause(StatusRemoveCause.TimeOut) or RemoveCause(StatusRemoveCause.Condition)):UseSpell(Shout_EndRage,true,true,true)"
+// data "StatusEffect" "f1162d63-e269-47f7-94ad-abda93b2e08a"
+
+new entry "TotemSpirit_Bear_Rage_Boosts"
+type "PassiveData"
+using "TotemSpirit_Bear_Rage_Boosts"
+// Bestial Heart: Bear Rage Bonuses
+// data "DisplayName" "ha944ea38gf571g4c04ga6a0g6fa68c45daa3;1"
+// %%% Used to apply rage status boosts when not wearing armour
+// data "Description" "h3742a180g28bcg41f8gaaabgdf0f7a40aaef;1"
+// Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;Has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to all damage except[2], and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+data "Description" "h87d74fe7ga2cbg4a53gb823g66c3fa46f64b;1"
+// data "Properties" "IsHidden"
+// data "BoostContext" "OnEquip;OnCreate"
+// data "BoostConditions" "not HasHeavyArmor(context.Source)"
+// data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);IF(IsAttackType(AttackType.MeleeWeaponAttack)): CharacterWeaponDamage(LevelMapValue(RageDamage));IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):CharacterWeaponDamage(LevelMapValue(RageDamage));EntityThrowDamage(2);CharacterUnarmedDamage(LevelMapValue(RageDamage));FallDamageMultiplier(0.5);"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(2)"
+
+// ==================================== Rage: Bear Heart - 2
+
+// new entry "RAGE_TOTEM_BEAR_2"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "RAGE_TOTEM_BEAR"
+// data "Passives" "TotemSpirit_Bear_Rage_Boosts_2;Rage_Attack;Rage_Damaged;Rage_Bear_NoHeavyArmour_VFX;"
+
+new entry "TotemSpirit_Bear_Rage_Boosts_2"
+type "PassiveData"
+// using "TotemSpirit_Bear_Rage_Boosts"
+using "TotemSpirit_Bear_Rage_Boosts_2"
+// data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);IF(IsAttackType(AttackType.MeleeWeaponAttack)): CharacterWeaponDamage(LevelMapValue(RageDamage));IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):CharacterWeaponDamage(LevelMapValue(RageDamage));EntityThrowDamage(3);CharacterUnarmedDamage(LevelMapValue(RageDamage));FallDamageMultiplier(0.5);"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(3)"
+
+// ==================================== Rage: Bear Heart - 3 (Expansion)
+
+new entry "RAGE_TOTEM_BEAR_3"
+type "StatusData"
+data "StatusType" "BOOST"
+using "RAGE_TOTEM_BEAR_2"
+data "Passives" "TotemSpirit_Bear_Rage_Boosts_3;Rage_Attack;Rage_Damaged;Rage_Bear_NoHeavyArmour_VFX"
+
+new entry "TotemSpirit_Bear_Rage_Boosts_3"
+type "PassiveData"
+using "TotemSpirit_Bear_Rage_Boosts_2"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(4)"
+
+// ==================================== Rage: Bear Heart - Misc
+
+// new entry "Rage_Bear_NoHeavyArmour_VFX"
+// type "PassiveData"
+// %%% Empty
+// data "DisplayName" "hac7d66d6gb0d7g4ce9g93d9g9edd249224ea;1"
+// %%% Technical used for applying a status for VFX to use
+// data "Description" "h151a4cfegede1g44abgaccdg994d76bf49e1;1"
+// data "Properties" "IsHidden"
+// data "StatsFunctorContext" "OnEquip"
+// data "Conditions" "not HasHeavyArmor(context.Source) and HasStatus('SG_Rage', context.Source)"
+// data "StatsFunctors" "ApplyStatus(SELF,RAGE_BEAR_NO_HEAVY_ARMOUR_VFX,100,-1)"
+
+// new entry "RAGE_BEAR_NO_HEAVY_ARMOUR_VFX"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "RAGE_NO_HEAVY_ARMOUR_VFX"
+// %%% Bear Totem Rage no heavy amrour VFX
+// data "DisplayName" "h642a7f35g86d7g4362ga362g2b19d7b77bb3;2"
+// data "StatusEffect" "170725e8-26ca-4d7d-86e8-40f887150ebd"
+
+// ==================================== Rage: Eagle Heart ====================================
+
+new entry "TotemSpirit_Eagle"
+type "PassiveData"
+using "TotemSpirit_Eagle"
+// Eagle Heart
+// data "DisplayName" "h58a40738g192bg4fb1gb176g481b6124307b;2"
+// While &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt;, you can use &lt;LSTag Type="Spell" Tooltip="Projectile_DivingStrike"&gt;Diving Strike&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Foes also have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt; against you, and you can use &lt;LSTag Type="Spell" Tooltip="Shout_Dash"&gt;Dash&lt;/LSTag&gt; as a bonus action.
+// data "Description" "h00ad4110g05c2g4670ga040gfc83664b069d;5"
+// While &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt;, you can use &lt;LSTag Type="Spell" Tooltip="Projectile_DivingStrike"&gt;Diving Strike&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Foes also have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt; against you, and you can use &lt;LSTag Type="Spell" Tooltip="Shout_Dash"&gt;Dash&lt;/LSTag&gt; as a &lt;LSTag Tooltip="BonusAction"&gt;Bonus Action&lt;/LSTag&gt;.
+data "Description" "h3ec35ccag56d9g4ffbg9a1cg57ae17bebdef;1"
+// data "Icon" "Action_Barbarian_Rage_EagleTotem"
+// data "Properties" "Highlighted"
+// data "Boosts" "UnlockSpell(Shout_Rage_Totem_Eagle);UnlockSpell(Projectile_DivingStrike)"
+data "Boosts" "UnlockSpell(Shout_Rage_Totem_Eagle)"
+
+new entry "Shout_Rage_Totem_Eagle"
+type "SpellData"
+data "SpellType" "Shout"
+// using "Shout_Rage_Totem_Bear"
+using "Shout_Rage_Totem_Eagle"
+// data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_TOTEM_EAGLE,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_TOTEM_EAGLE_2,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1);"
+data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_TOTEM_EAGLE,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian') and not ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_TOTEM_EAGLE_2,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_TOTEM_EAGLE_3,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1)"
+// data "Icon" "Action_Barbarian_Rage_EagleTotem"
+// Rage: Eagle Heart
+// data "DisplayName" "hfdbcceb4g9eb7g4a79g9bf3g0b2fda24b93e;3"
+// Enter a &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt; that makes you near untouchable.
+// data "Description" "h5b81a1a8g5789g49adga767g7e26eed7031c;15"
+// You can use &lt;LSTag Type="Spell" Tooltip="Projectile_DivingStrike"&gt;Diving Strike&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Foes also have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt; against you, and you can use &lt;LSTag Type="Spell" Tooltip="Shout_Dash"&gt;Dash&lt;/LSTag&gt; as a bonus action.
+// data "ExtraDescription" "he6ba26edg0c6bg45d8g9ebdg20b313eb6a8a;1"
+// You can use &lt;LSTag Type="Spell" Tooltip="Projectile_DivingStrike"&gt;Diving Strike&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Foes also have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt; against you, and you can use &lt;LSTag Type="Spell" Tooltip="Shout_Dash"&gt;Dash&lt;/LSTag&gt; as a &lt;LSTag Tooltip="BonusAction"&gt;Bonus Action&lt;/LSTag&gt;.
+data "ExtraDescription" "h860da28bg0510g4688gaba9g7e83f5bf4813;1"
+// data "TooltipStatusApply" "ApplyStatus(RAGE_TOTEM_EAGLE,100,10)"
+// data "CastSound" "Action_Cast_Rage"
+// data "TargetSound" "Action_Impact_Rage_Eagle"
+// data "RequirementConditions" "not HasStatus('RAGE_TOTEM_EAGLE') and not HasStatus('CALM_EMOTIONS')"
+data "RequirementConditions" "not HasAnyStatus({'RAGE_TOTEM_EAGLE','RAGE_TOTEM_EAGLE_2','RAGE_TOTEM_EAGLE_3','CALM_EMOTIONS'},{},{})"
+// data "PrepareEffect" "62300b3d-4242-4aa7-9d43-d2b3b30bff6d"
+// data "CastEffect" "6b88e664-d58a-41d7-89e8-3b29013b2930"
+
+// ==================================== Rage: Eagle Heart - 1
+
+new entry "RAGE_TOTEM_EAGLE"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "RAGE_TOTEM_BEAR"
+using "RAGE_TOTEM_EAGLE"
+// Rage: Eagle Heart
+// data "DisplayName" "he2e3bff5g7966g47b1ga7eegd732d2a0bde9;3"
+// Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;Can use &lt;LSTag Type="Spell" Tooltip="Shout_Dash"&gt;Dash&lt;/LSTag&gt; as a bonus action, and foes have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Also has Resistance to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+// data "Description" "h7d4af9c7g70aag4b42g8e2dg87b4ae199b00;15"
+// Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;Can use &lt;LSTag Type="Spell" Tooltip="Shout_Dash"&gt;Dash&lt;/LSTag&gt; as a &lt;LSTag Tooltip="BonusAction"&gt;Bonus Action&lt;/LSTag&gt;, and foes have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+data "Description" "h3f64b83dgff73g4370gb539g95d372d514cd;1"
+// data "DescriptionParams" "LevelMapValue(RageDamage)"
+// data "Icon" "Action_Barbarian_Rage_EagleTotem"
+// data "SoundLoop" "Spell_Status_Rage"
+// data "StackId" "RAGE"
+// data "StackPriority" "3"
+// data "Boosts" "Tag(VFX_RAGE);BlockSpellCast();UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones);IF(IsReactionAttack(context.Source)):Disadvantage(AttackTarget);UnlockSpell(Shout_Dash_BonusAction);"
+data "Boosts" "Tag(VFX_RAGE);BlockSpellCast();UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones);IF(IsReactionAttack(context.Source)):Disadvantage(AttackTarget);UnlockSpell(Shout_Dash_BonusAction);UnlockSpell(Projectile_DivingStrike)"
+// data "Passives" "TotemSpirit_Eagle_Rage_Boosts;Rage_Attack;Rage_Damaged;Rage_Eagle_NoHeavyArmour_VFX"
+// data "OnApplyFunctors" "IF(not HasHeavyArmor(context.Source)):ApplyStatus(RAGE_EAGLE_NO_HEAVY_ARMOUR_VFX,100,10);ApplyStatus(RAGE_STOP_REMOVE,100,1);BreakConcentration()"
+// data "OnRemoveFunctors" "RemoveStatus(RAGE_MUTE);RemoveStatus(RAGE_STOP_REMOVE);RemoveStatus(RAGE_EAGLE_NO_HEAVY_ARMOUR_VFX);IF(RemoveCause(StatusRemoveCause.TimeOut) or RemoveCause(StatusRemoveCause.Condition)):ApplyStatus(RAGE_ENDED,100,1);IF(RemoveCause(StatusRemoveCause.TimeOut) or RemoveCause(StatusRemoveCause.Condition)):UseSpell(Shout_EndRage,true,true,true)"
+// data "StatusEffect" "6c124b07-4d8f-4d51-a945-4ce871d749fc"
+
+new entry "TotemSpirit_Eagle_Rage_Boosts"
+type "PassiveData"
+using "TotemSpirit_Eagle_Rage_Boosts"
+// Bestial Heart: Eagle Rage Bonuses
+// data "DisplayName" "h908aa582ge98eg4d26gb984g0c7e609d3e9d;1"
+// %%% Used to apply rage status boosts when not wearing armour
+// data "Description" "h83ae465cg2a4fg4797gb670g5bbc8f7b5974;1"
+// Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;Can use &lt;LSTag Type="Spell" Tooltip="Shout_Dash"&gt;Dash&lt;/LSTag&gt; as a &lt;LSTag Tooltip="BonusAction"&gt;Bonus Action&lt;/LSTag&gt;, and foes have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+data "Description" "h3f64b83dgff73g4370gb539g95d372d514cd;1"
+// data "Properties" "IsHidden"
+// data "BoostContext" "OnEquip;OnCreate"
+// data "BoostConditions" "not HasHeavyArmor(context.Source)"
+// data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsAttackType(AttackType.MeleeWeaponAttack)): CharacterWeaponDamage(LevelMapValue(RageDamage));IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):CharacterWeaponDamage(LevelMapValue(RageDamage));EntityThrowDamage(2);CharacterUnarmedDamage(LevelMapValue(RageDamage));FallDamageMultiplier(0.5);"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(2)"
+
+// ==================================== Rage: Eagle Heart - 2
+
+// new entry "RAGE_TOTEM_EAGLE_2"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "RAGE_TOTEM_EAGLE"
+// data "Passives" "TotemSpirit_Eagle_Rage_Boosts_2;Rage_Attack;Rage_Damaged;Rage_Eagle_NoHeavyArmour_VFX;"
+
+new entry "TotemSpirit_Eagle_Rage_Boosts_2"
+type "PassiveData"
+// using "TotemSpirit_Eagle_Rage_Boosts"
+using "TotemSpirit_Eagle_Rage_Boosts_2"
+// data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsAttackType(AttackType.MeleeWeaponAttack)): CharacterWeaponDamage(LevelMapValue(RageDamage));IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):CharacterWeaponDamage(LevelMapValue(RageDamage));EntityThrowDamage(3);CharacterUnarmedDamage(LevelMapValue(RageDamage));FallDamageMultiplier(0.5);"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(3)"
+
+// ==================================== Rage: Eagle Heart - 3 (Expansion)
+
+new entry "RAGE_TOTEM_EAGLE_3"
+type "StatusData"
+data "StatusType" "BOOST"
+using "RAGE_TOTEM_EAGLE_2"
+data "Passives" "TotemSpirit_Eagle_Rage_Boosts_3;Rage_Attack;Rage_Damaged;Rage_Eagle_NoHeavyArmour_VFX"
+
+new entry "TotemSpirit_Eagle_Rage_Boosts_3"
+type "PassiveData"
+using "TotemSpirit_Eagle_Rage_Boosts_2"
+// data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsAttackType(AttackType.MeleeWeaponAttack)): CharacterWeaponDamage(LevelMapValue(RageDamage));IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):CharacterWeaponDamage(LevelMapValue(RageDamage));EntityThrowDamage(3);CharacterUnarmedDamage(LevelMapValue(RageDamage));FallDamageMultiplier(0.5);"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(4)"
+
+// ==================================== Rage: Eagle Heart - Misc
+
+// new entry "Rage_Eagle_NoHeavyArmour_VFX"
+// type "PassiveData"
+// %%% Rage Eagle Totem no heavy armour vfx
+// data "DisplayName" "h270ce124gc4dag4b89g98b9g6d426856e4df;1"
+// %%% Technical used for applying a status for VFX to use
+// data "Description" "h77feccbbge242g4a70gad12g8ce3a173d97b;1"
+// data "Properties" "IsHidden"
+// data "StatsFunctorContext" "OnEquip"
+// data "Conditions" "not HasHeavyArmor(context.Source) and HasStatus('SG_Rage', context.Source)"
+// data "StatsFunctors" "ApplyStatus(SELF,RAGE_EAGLE_NO_HEAVY_ARMOUR_VFX,100,-1)"
+
+// new entry "RAGE_EAGLE_NO_HEAVY_ARMOUR_VFX"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "RAGE_NO_HEAVY_ARMOUR_VFX"
+// %%% Eagle Totem Rage no heavy amrour VFX
+// data "DisplayName" "h80fb8c14gedaeg414bgabf2gfaabcc9ac29e;2"
+// data "StatusEffect" "170725e8-26ca-4d7d-86e8-40f887150ebd"
+
+// ==================================== Rage: Elk Heart ====================================
+
+new entry "TotemSpirit_Elk"
+type "PassiveData"
+using "TotemSpirit_Elk"
+// Elk Heart
+// data "DisplayName" "h0e4c4086g8840g4b5fgafc2gcd76f7f041ed;2"
+// While &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt;, you can use &lt;LSTag Type="Spell" Tooltip="Rush_Primal_Stampede"&gt;Primal Stampede&lt;/LSTag&gt;, and your &lt;LSTag Tooltip="MovementSpeed"&gt;movement speed&lt;/LSTag&gt; increases by [1].
+// data "Description" "h88b61799gb44fg4e40g8ea4ge8c7b57e04b5;6"
+// data "DescriptionParams" "Distance(4.5)"
+// data "Icon" "Action_Barbarian_Rage_ElkTotem"
+// data "Properties" "Highlighted"
+// data "Boosts" "UnlockSpell(Shout_Rage_Totem_Elk);UnlockSpell(Rush_Primal_Stampede)"
+data "Boosts" "UnlockSpell(Shout_Rage_Totem_Elk)"
+
+new entry "Shout_Rage_Totem_Elk"
+type "SpellData"
+data "SpellType" "Shout"
+// using "Shout_Rage_Totem_Bear"
+using "Shout_Rage_Totem_Elk"
+// data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_TOTEM_ELK,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_TOTEM_ELK_2,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1);"
+data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_TOTEM_ELK,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian') and not ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_TOTEM_ELK_2,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_TOTEM_ELK_3,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1)"
+// data "Icon" "Action_Barbarian_Rage_ElkTotem"
+// Rage: Elk Heart
+// data "DisplayName" "h374b9a42g0806g40edg8c5dg672f002728c0;3"
+// Enter a &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt; that grants you extraordinary swiftness.
+// data "Description" "h97411cd8ged99g4440gae67gcbdc3462edf6;14"
+// You can use &lt;LSTag Type="Spell" Tooltip="Rush_Primal_Stampede"&gt;Primal Stampede&lt;/LSTag&gt;, and your &lt;LSTag Tooltip="MovementSpeed"&gt;movement speed&lt;/LSTag&gt; increases by [1].
+// data "ExtraDescription" "h1c72e63eg92ebg4789ga0ccgf288873259f0;1"
+// data "ExtraDescriptionParams" "Distance(4.5)"
+// data "TooltipStatusApply" "ApplyStatus(RAGE_TOTEM_ELK,100,10)"
+// data "CastSound" "Action_Cast_Rage"
+// data "TargetSound" "Action_Impact_Rage_Elk"
+// data "RequirementConditions" "not HasStatus('RAGE_TOTEM_ELK') and not HasStatus('CALM_EMOTIONS')"
+data "RequirementConditions" "not HasAnyStatus({'RAGE_TOTEM_ELK','RAGE_TOTEM_ELK_2','RAGE_TOTEM_ELK_3','CALM_EMOTIONS'},{},{})"
+// data "PrepareEffect" "f645b495-d93a-4f94-8f19-7ec27911da37"
+// data "CastEffect" "f427cc60-749e-473b-8832-c7751398ca57"
+
+// ==================================== Rage: Elk Heart - 1
+
+new entry "RAGE_TOTEM_ELK"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "RAGE_TOTEM_BEAR"
+using "RAGE_TOTEM_ELK"
+// Rage: Elk Heart
+// data "DisplayName" "h3961d60cg6f7ag4035g83a4g508b322b9fa1;3"
+// Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;&lt;LSTag Tooltip="MovementSpeed"&gt;Movement speed&lt;/LSTag&gt; increased by [2].&lt;br&gt;&lt;br&gt;Also has Resistance to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+// data "Description" "h7fac563cg4f0bg412dga5a5g0a659df75850;14"
+// Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;&lt;LSTag Tooltip="MovementSpeed"&gt;Movement speed&lt;/LSTag&gt; increased by [2].&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+data "Description" "h96a1eaaagc388g49d2gbcedg19d5626c4abb;1"
+// data "DescriptionParams" "LevelMapValue(RageDamage); Distance(4.5)"
+// data "Icon" "Action_Barbarian_Rage_ElkTotem"
+// data "SoundLoop" "Spell_Status_Rage"
+// data "StackId" "RAGE"
+// data "StackPriority" "4"
+// data "Boosts" "Tag(VFX_RAGE);BlockSpellCast();UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones);ActionResource(Movement,4.5,0);"
+data "Boosts" "Tag(VFX_RAGE);BlockSpellCast();UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones);ActionResource(Movement,4.5,0);UnlockSpell(Rush_Primal_Stampede)"
+// data "Passives" "TotemSpirit_Elk_Rage_Boosts;Rage_Attack;Rage_Damaged;Rage_Elk_NoHeavyArmour_VFX"
+// data "OnApplyFunctors" "IF(not HasHeavyArmor(context.Source)):ApplyStatus(RAGE_ELK_NO_HEAVY_ARMOUR_VFX,100,10);ApplyStatus(RAGE_STOP_REMOVE,100,1);BreakConcentration()"
+// data "OnRemoveFunctors" "RemoveStatus(RAGE_MUTE);RemoveStatus(RAGE_STOP_REMOVE);RemoveStatus(RAGE_ELK_NO_HEAVY_ARMOUR_VFX);IF(RemoveCause(StatusRemoveCause.TimeOut) or RemoveCause(StatusRemoveCause.Condition)):ApplyStatus(RAGE_ENDED,100,1);IF(RemoveCause(StatusRemoveCause.TimeOut) or RemoveCause(StatusRemoveCause.Condition)):UseSpell(Shout_EndRage,true,true,true)"
+// data "StatusEffect" "271e0796-b7b2-4a81-b6e3-9c6b08dea544"
+
+new entry "TotemSpirit_Elk_Rage_Boosts"
+type "PassiveData"
+using "TotemSpirit_Elk_Rage_Boosts"
+// Bestial Heart: Elk Rage Bonuses
+// data "DisplayName" "h4bd64c8cgdacbg4094g9d0fg780cd0fe3c90;1"
+// %%% Used to apply rage status boosts when not wearing armour
+// data "Description" "hb88e26b7g4e56g4b36g8515g93280f0340c9;1"
+// Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;&lt;LSTag Tooltip="MovementSpeed"&gt;Movement speed&lt;/LSTag&gt; increased by [2].&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+data "Description" "h96a1eaaagc388g49d2gbcedg19d5626c4abb;1"
+// data "Properties" "IsHidden"
+// data "BoostContext" "OnEquip;OnCreate"
+// data "BoostConditions" "not HasHeavyArmor(context.Source)"
+// data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsAttackType(AttackType.MeleeWeaponAttack)): CharacterWeaponDamage(LevelMapValue(RageDamage));IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):CharacterWeaponDamage(LevelMapValue(RageDamage));EntityThrowDamage(2);CharacterUnarmedDamage(LevelMapValue(RageDamage));FallDamageMultiplier(0.5);"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(2)"
+
+// ==================================== Rage: Elk Heart - 2
+
+// new entry "RAGE_TOTEM_ELK_2"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "RAGE_TOTEM_ELK"
+// data "Passives" "TotemSpirit_Elk_Rage_Boosts_2;Rage_Attack;Rage_Damaged;Rage_Elk_NoHeavyArmour_VFX;"
+
+new entry "TotemSpirit_Elk_Rage_Boosts_2"
+type "PassiveData"
+// using "TotemSpirit_Elk_Rage_Boosts"
+using "TotemSpirit_Elk_Rage_Boosts_2"
+// data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsAttackType(AttackType.MeleeWeaponAttack)): CharacterWeaponDamage(LevelMapValue(RageDamage));IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):CharacterWeaponDamage(LevelMapValue(RageDamage));EntityThrowDamage(3);CharacterUnarmedDamage(LevelMapValue(RageDamage));FallDamageMultiplier(0.5);"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(3)"
+
+// ==================================== Rage: Elk Heart - 3 (Expansion)
+
+new entry "RAGE_TOTEM_ELK_3"
+type "StatusData"
+data "StatusType" "BOOST"
+using "RAGE_TOTEM_ELK_2"
+data "Passives" "TotemSpirit_Elk_Rage_Boosts_3;Rage_Attack;Rage_Damaged;Rage_Elk_NoHeavyArmour_VFX"
+
+new entry "TotemSpirit_Elk_Rage_Boosts_3"
+type "PassiveData"
+using "TotemSpirit_Elk_Rage_Boosts_2"
+// data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsAttackType(AttackType.MeleeWeaponAttack)): CharacterWeaponDamage(LevelMapValue(RageDamage));IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):CharacterWeaponDamage(LevelMapValue(RageDamage));EntityThrowDamage(3);CharacterUnarmedDamage(LevelMapValue(RageDamage));FallDamageMultiplier(0.5);"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(4)"
+
+// ==================================== Rage: Elk Heart - Misc
+
+// new entry "Rage_Elk_NoHeavyArmour_VFX"
+// type "PassiveData"
+// %%% Empty
+// data "DisplayName" "hdde21768g327ag434cg9918gdacae736a975;1"
+// %%% Empty
+// data "Description" "hf26b7618g3c6eg4624ga282g2c4d26a7b8b1;1"
+// data "Properties" "IsHidden"
+// data "StatsFunctorContext" "OnEquip"
+// data "Conditions" "not HasHeavyArmor(context.Source) and HasStatus('SG_Rage', context.Source)"
+// data "StatsFunctors" "ApplyStatus(SELF,RAGE_ELK_NO_HEAVY_ARMOUR_VFX,100,-1)"
+
+// new entry "RAGE_ELK_NO_HEAVY_ARMOUR_VFX"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "RAGE_NO_HEAVY_ARMOUR_VFX"
+// %%% Elk Totem Rage no heavy amrour VFX
+// data "DisplayName" "hc6a5df55gf755g47aegb2a9gb00e01556067;2"
+// data "StatusEffect" "170725e8-26ca-4d7d-86e8-40f887150ebd"
+
+// ==================================== Rage: Tiger Heart ====================================
+
+new entry "TotemSpirit_Tiger"
+type "PassiveData"
+using "TotemSpirit_Tiger"
+// Tiger Heart
+// data "DisplayName" "hdaee651bgf061g450dg8467g21ad059d385e;2"
+// While &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt;, you can use &lt;LSTag Type="Spell" Tooltip="Zone_TigersBloodlust"&gt;Tiger's Bloodlust&lt;/LSTag&gt;, and your jump distance increases by [1].
+// data "Description" "hafd0b00eg8b49g426fgb68eg540f3d7964ed;5"
+// data "DescriptionParams" "Distance(4.5)"
+// data "Icon" "Action_Barbarian_Rage_TigerTotem"
+// data "Properties" "Highlighted"
+// data "Boosts" "UnlockSpell(Shout_Rage_Totem_Tiger);UnlockSpell(Zone_TigersBloodlust)"
+data "Boosts" "UnlockSpell(Shout_Rage_Totem_Tiger)"
+
+new entry "Shout_Rage_Totem_Tiger"
+type "SpellData"
+data "SpellType" "Shout"
+// using "Shout_Rage_Totem_Bear"
+using "Shout_Rage_Totem_Tiger"
+// data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_TOTEM_TIGER,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_TOTEM_TIGER_2,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1);"
+data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_TOTEM_TIGER,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian') and not ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_TOTEM_TIGER_2,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_TOTEM_TIGER_3,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1)"
+// data "Icon" "Action_Barbarian_Rage_TigerTotem"
+// Rage: Tiger Heart
+// data "DisplayName" "h3c7be02eg8a51g4495gbff4g1acb39894bbc;3"
+// Enter a &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt; that empowers your leaps.
+// data "Description" "haeaf203eg09ecg4019g9de8g6ba103bccaa8;13"
+// You can use &lt;LSTag Type="Spell" Tooltip="Zone_TigersBloodlust"&gt;Tiger's Bloodlust&lt;/LSTag&gt;, and your jump distance increases by [1].
+// data "ExtraDescription" "hce0b5de8g0490g46c6gbe98gd4b2c81abd8c;1"
+// data "ExtraDescriptionParams" "Distance(4.5)"
+// data "TooltipStatusApply" "ApplyStatus(RAGE_TOTEM_TIGER,100,10)"
+// data "CastSound" "Action_Cast_Rage"
+// data "TargetSound" "Action_Impact_Rage_Tiger"
+// data "RequirementConditions" "not HasStatus('RAGE_TOTEM_TIGER') and not HasStatus('CALM_EMOTIONS')"
+data "RequirementConditions" "not HasAnyStatus({'RAGE_TOTEM_TIGER','RAGE_TOTEM_TIGER_2','RAGE_TOTEM_TIGER_3','CALM_EMOTIONS'},{},{})"
+// data "PrepareEffect" "f0ca7595-10b1-4914-bdf0-ad6d0d570d88"
+// data "CastEffect" "b9f53b62-4715-4803-bb6e-0c39d8a53d07"
+
+// ==================================== Rage: Tiger Heart - 1
+
+new entry "RAGE_TOTEM_TIGER"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "RAGE_TOTEM_BEAR"
+using "RAGE_TOTEM_TIGER"
+// Rage: Tiger Heart
+// data "DisplayName" "hc217b804g890eg431dg9a3dg6bd909f86c56;3"
+// Deals an additional [1] damage with melee and improvised weapons, and when throwing objects. &lt;br&gt;&lt;br&gt;Jump distance increased by [2].&lt;br&gt;&lt;br&gt;Also has Resistance to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+// data "Description" "h51209bfdg45a1g403agac60g1c271125f92a;15"
+// Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;Jump distance increased by [2].&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+data "Description" "h005ea201g7c4fg453dgb3adg81ee3584970c;1"
+// data "DescriptionParams" "LevelMapValue(RageDamage); Distance(4.5)"
+// data "Icon" "Action_Barbarian_Rage_TigerTotem"
+// data "SoundLoop" "Spell_Status_Rage"
+// data "StackId" "RAGE"
+// data "StackPriority" "5"
+// data "Boosts" "Tag(VFX_RAGE);BlockSpellCast();UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones);JumpMaxDistanceMultiplier(1.5)"
+data "Boosts" "Tag(VFX_RAGE);BlockSpellCast();UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones);JumpMaxDistanceMultiplier(1.5);UnlockSpell(Zone_TigersBloodlust)"
+// data "Passives" "TotemSpirit_Tiger_Rage_Boosts;Rage_Attack;Rage_Damaged;Rage_Tiger_NoHeavyArmour_VFX"
+// data "OnApplyFunctors" "IF(not HasHeavyArmor(context.Source)):ApplyStatus(RAGE_TIGER_NO_HEAVY_ARMOUR_VFX,100,10);ApplyStatus(RAGE_STOP_REMOVE,100,1);BreakConcentration()"
+// data "OnRemoveFunctors" "RemoveStatus(RAGE_MUTE);RemoveStatus(RAGE_STOP_REMOVE);RemoveStatus(RAGE_TIGER_NO_HEAVY_ARMOUR_VFX);IF(RemoveCause(StatusRemoveCause.TimeOut) or RemoveCause(StatusRemoveCause.Condition)):ApplyStatus(RAGE_ENDED,100,1);IF(RemoveCause(StatusRemoveCause.TimeOut) or RemoveCause(StatusRemoveCause.Condition)):UseSpell(Shout_EndRage,true,true,true)"
+// data "StatusEffect" "2ed585b4-6edf-4d31-bcfb-9732f63fd175"
+
+new entry "TotemSpirit_Tiger_Rage_Boosts"
+type "PassiveData"
+using "TotemSpirit_Tiger_Rage_Boosts"
+// Bestial Heart: Tiger Rage Bonuses
+// data "DisplayName" "h0e251e0dge87fg4ceag9de5g25b19de77df3;1"
+// %%% Used to apply rage status boosts when not wearing armour
+// data "Description" "h80661c0cg8b4cg45bcg863cg366b16eccb94;1"
+// Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;Jump distance increased by [2].&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+data "Description" "h005ea201g7c4fg453dgb3adg81ee3584970c;1"
+// data "Properties" "IsHidden"
+// data "BoostContext" "OnEquip;OnCreate"
+// data "BoostConditions" "not HasHeavyArmor(context.Source)"
+// data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsAttackType(AttackType.MeleeWeaponAttack)): CharacterWeaponDamage(LevelMapValue(RageDamage));IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):CharacterWeaponDamage(LevelMapValue(RageDamage));EntityThrowDamage(2);CharacterUnarmedDamage(LevelMapValue(RageDamage));FallDamageMultiplier(0.5);"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(2)"
+
+// ==================================== Rage: Tiger Heart - 2
+
+// new entry "RAGE_TOTEM_TIGER_2"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "RAGE_TOTEM_TIGER"
+// data "Passives" "TotemSpirit_Tiger_Rage_Boosts_2;Rage_Attack;Rage_Damaged;Rage_Tiger_NoHeavyArmour_VFX;"
+
+new entry "TotemSpirit_Tiger_Rage_Boosts_2"
+type "PassiveData"
+// using "TotemSpirit_Tiger_Rage_Boosts"
+using "TotemSpirit_Tiger_Rage_Boosts_2"
+// data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsAttackType(AttackType.MeleeWeaponAttack)): CharacterWeaponDamage(LevelMapValue(RageDamage));IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):CharacterWeaponDamage(LevelMapValue(RageDamage));EntityThrowDamage(3);CharacterUnarmedDamage(LevelMapValue(RageDamage));FallDamageMultiplier(0.5);"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(3)"
+
+// ==================================== Rage: Tiger Heart - 3 (Expansion)
+
+new entry "RAGE_TOTEM_TIGER_3"
+type "StatusData"
+data "StatusType" "BOOST"
+using "RAGE_TOTEM_TIGER_2"
+data "Passives" "TotemSpirit_Tiger_Rage_Boosts_3;Rage_Attack;Rage_Damaged;Rage_Tiger_NoHeavyArmour_VFX"
+
+new entry "TotemSpirit_Tiger_Rage_Boosts_3"
+type "PassiveData"
+using "TotemSpirit_Tiger_Rage_Boosts_2"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(4)"
+
+// ==================================== Rage: Tiger Heart - Misc
+
+// new entry "Rage_Tiger_NoHeavyArmour_VFX"
+// type "PassiveData"
+// %%% Empty
+// data "DisplayName" "h41171fe0g201ag4738g9ab9gd2ace09806fc;1"
+// %%% Empty
+// data "Description" "h808ad7a7g906cg4846g86b3g4f97a68a04c5;1"
+// data "Properties" "IsHidden"
+// data "StatsFunctorContext" "OnEquip"
+// data "Conditions" "not HasHeavyArmor(context.Source) and HasStatus('SG_Rage', context.Source)"
+// data "StatsFunctors" "ApplyStatus(SELF,RAGE_TIGER_NO_HEAVY_ARMOUR_VFX,100,-1)"
+
+// new entry "RAGE_TIGER_NO_HEAVY_ARMOUR_VFX"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "RAGE_NO_HEAVY_ARMOUR_VFX"
+// %%% Tiger Totem Rage no heavy amrour VFX
+// data "DisplayName" "h6d874ad7g36f4g4855g8f74g85b37119508b;2"
+// data "StatusEffect" "170725e8-26ca-4d7d-86e8-40f887150ebd"
+
+// ==================================== Rage: Wolf Heart ====================================
+
+new entry "TotemSpirit_Wolf"
+type "PassiveData"
+using "TotemSpirit_Wolf"
+// Wolf Heart
+// data "DisplayName" "h3ad6d59fgc8f5g4b75gaa4fg222f4140a545;2"
+// While &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt;, you can use &lt;LSTag Type="Spell" Tooltip="Shout_PackHowl_Barbarian"&gt;Inciting Howl&lt;/LSTag&gt;, and your allies have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on melee &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against enemies within [1] of you.
+// data "Description" "h81c1b4b7g0474g41ebgb565g7342d82c0e58;5"
+// data "DescriptionParams" "Distance(2)"
+// data "Icon" "Action_Barbarian_Rage_WolfTotem"
+// data "Properties" "Highlighted"
+// data "Boosts" "UnlockSpell(Shout_Rage_Totem_Wolf);UnlockSpell(Shout_PackHowl_Barbarian)"
+data "Boosts" "UnlockSpell(Shout_Rage_Totem_Wolf)"
+
+new entry "Shout_Rage_Totem_Wolf"
+type "SpellData"
+data "SpellType" "Shout"
+// using "Shout_Rage_Totem_Bear"
+using "Shout_Rage_Totem_Wolf"
+// data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_TOTEM_WOLF,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_TOTEM_WOLF_2,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1);"
+data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_TOTEM_WOLF,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian') and not ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_TOTEM_WOLF_2,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_TOTEM_WOLF_3,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1)"
+// data "Icon" "Action_Barbarian_Rage_WolfTotem"
+// Rage: Wolf Heart
+// data "DisplayName" "h1ba96df1gc4bag48e5gb23bgb11b92cdd48a;3"
+// Enter a &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt; so inciting it spurs on your allies.
+// data "Description" "hbd5ad701gb6f2g4bfdga531gc5521e1a8088;15"
+// You can use &lt;LSTag Type="Spell" Tooltip="Shout_PackHowl_Barbarian"&gt;Inciting Howl&lt;/LSTag&gt;, and your allies have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on melee &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against enemies within [1] of you.
+// data "ExtraDescription" "hc1463b88ga7e5g4957g8a1egeab7db5ec3e7;1"
+// data "ExtraDescriptionParams" "Distance(2)"
+// data "TooltipStatusApply" "ApplyStatus(RAGE_TOTEM_WOLF,100,10)"
+// data "CastSound" "Action_Cast_Rage"
+// data "TargetSound" "Action_Impact_Rage_Wolf"
+// data "RequirementConditions" "not HasStatus('RAGE_TOTEM_WOLF') and not HasStatus('CALM_EMOTIONS')"
+data "RequirementConditions" "not HasAnyStatus({'RAGE_TOTEM_WOLF','RAGE_TOTEM_WOLF_2','RAGE_TOTEM_WOLF_3','CALM_EMOTIONS'},{},{})"
+// data "PrepareEffect" "697f12ee-1d9a-4bf1-a8e5-62e74081e72e"
+// data "CastEffect" "6a85837f-83cd-4aa7-964e-3aa9fbef5d9f"
+
+// ==================================== Rage: Wolf Heart - 1
+
+new entry "RAGE_TOTEM_WOLF"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "RAGE_TOTEM_BEAR"
+using "RAGE_TOTEM_WOLF"
+// Rage: Wolf Heart
+// data "DisplayName" "h7441fc50g71cag4523ga624geadf09e01252;3"
+// Deals an additional [1] damage with melee and improvised weapons, and when throwing objects. &lt;br&gt;&lt;br&gt;Allies have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on melee &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against enemies within [2].&lt;br&gt;&lt;br&gt;Also has Resistance to physical damage, and Advantage on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+// data "Description" "hb324081cg36c5g4aa6ga17eg208c444083d0;12"
+// Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;Allies have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on melee &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against enemies within [2].&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+data "Description" "ha0776098g6642g4975gb7beg3cf849bb1329;1"
+// data "DescriptionParams" "LevelMapValue(RageDamage); Distance(2)"
+// data "Icon" "Action_Barbarian_Rage_WolfTotem"
+// data "SoundLoop" "Spell_Status_Rage"
+// data "StackId" "RAGE"
+// data "StackPriority" "6"
+// data "AuraRadius" "2"
+// data "AuraStatuses" "TARGET:IF(Enemy()):ApplyStatus(RAGE_TOTEM_WOLF_AURA_STATUS)"
+// data "Boosts" "Tag(VFX_RAGE);BlockSpellCast();UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones);"
+data "Boosts" "Tag(VFX_RAGE);BlockSpellCast();UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones);UnlockSpell(Shout_PackHowl_Barbarian)"
+// data "Passives" "TotemSpirit_Wolf_Rage_Boosts;Rage_Attack;Rage_Damaged;Rage_Wolf_NoHeavyArmour_VFX"
+// data "OnApplyFunctors" "IF(not HasHeavyArmor(context.Source)):ApplyStatus(RAGE_WOLF_NO_HEAVY_ARMOUR_VFX,100,10);ApplyStatus(RAGE_STOP_REMOVE,100,1);BreakConcentration()"
+// data "OnRemoveFunctors" "RemoveStatus(RAGE_MUTE);RemoveStatus(RAGE_STOP_REMOVE);RemoveStatus(RAGE_WOLF_NO_HEAVY_ARMOUR_VFX);IF(RemoveCause(StatusRemoveCause.TimeOut) or RemoveCause(StatusRemoveCause.Condition)):ApplyStatus(RAGE_ENDED,100,1);IF(RemoveCause(StatusRemoveCause.TimeOut) or RemoveCause(StatusRemoveCause.Condition)):UseSpell(Shout_EndRage,true,true,true)"
+// data "StatusEffect" "b7a7a53e-5af0-452b-9f43-c60b4bd53ad6"
+
+new entry "TotemSpirit_Wolf_Rage_Boosts"
+type "PassiveData"
+using "TotemSpirit_Wolf_Rage_Boosts"
+// Bestial Heart: Wolf Rage Bonuses
+// data "DisplayName" "hb4c2c70cg2221g41c0gb063g3edc61d41a40;1"
+// %%% Used to apply rage status boosts when not wearing armour
+// data "Description" "h3937c7b1ga493g4cbbgaa61g9f6f24ecc2ef;1"
+// Deals an additional [1] damage with melee and improvised weapons, and when throwing objects.&lt;br&gt;&lt;br&gt;Allies have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on melee &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against enemies within [2].&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+data "Description" "ha0776098g6642g4975gb7beg3cf849bb1329;1"
+// data "Properties" "IsHidden"
+// data "BoostContext" "OnEquip;OnCreate"
+// data "BoostConditions" "not HasHeavyArmor(context.Source)"
+// data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsAttackType(AttackType.MeleeWeaponAttack)): CharacterWeaponDamage(LevelMapValue(RageDamage));IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):CharacterWeaponDamage(LevelMapValue(RageDamage));EntityThrowDamage(2);CharacterUnarmedDamage(LevelMapValue(RageDamage));FallDamageMultiplier(0.5);"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(2)"
+
+// ==================================== Rage: Wolf Heart - 2
+
+// new entry "RAGE_TOTEM_WOLF_2"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "RAGE_TOTEM_WOLF"
+// data "Passives" "TotemSpirit_Wolf_Rage_Boosts_2;Rage_Attack;Rage_Damaged;Rage_Wolf_NoHeavyArmour_VFX;"
+
+new entry "TotemSpirit_Wolf_Rage_Boosts_2"
+type "PassiveData"
+// using "TotemSpirit_Wolf_Rage_Boosts"
+using "TotemSpirit_Wolf_Rage_Boosts_2"
+// data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsAttackType(AttackType.MeleeWeaponAttack)): CharacterWeaponDamage(LevelMapValue(RageDamage));IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):CharacterWeaponDamage(LevelMapValue(RageDamage));EntityThrowDamage(3);CharacterUnarmedDamage(LevelMapValue(RageDamage));FallDamageMultiplier(0.5);"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(3)"
+
+// ==================================== Rage: Wolf Heart - 3 (Expansion)
+
+new entry "RAGE_TOTEM_WOLF_3"
+type "StatusData"
+data "StatusType" "BOOST"
+using "RAGE_TOTEM_WOLF_2"
+data "Passives" "TotemSpirit_Wolf_Rage_Boosts_3;Rage_Attack;Rage_Damaged;Rage_Wolf_NoHeavyArmour_VFX"
+
+new entry "TotemSpirit_Wolf_Rage_Boosts_3"
+type "PassiveData"
+using "TotemSpirit_Wolf_Rage_Boosts_2"
+data "Boosts" "Advantage(Ability, Strength);Advantage(SavingThrow, Strength);Resistance(Slashing, Resistant);Resistance(Piercing, Resistant);Resistance(Bludgeoning, Resistant);IF(IsMeleeWeaponAttack()):CharacterWeaponDamage(LevelMapValue(RageDamage));CharacterUnarmedDamage(LevelMapValue(RageDamage));EntityThrowDamage(4)"
+
+// ==================================== Rage: Wolf Heart - Misc
+
+// new entry "Rage_Wolf_NoHeavyArmour_VFX"
+// type "PassiveData"
+// %%% Empty
+// data "DisplayName" "hdff53359gde54g4818gabebgca2797bfc5f8;1"
+// %%% Empty
+// data "Description" "ha38a2bd5g2375g4634g872ag74bf0237f694;1"
+// data "Properties" "IsHidden"
+// data "StatsFunctorContext" "OnEquip"
+// data "Conditions" "not HasHeavyArmor(context.Source) and HasStatus('SG_Rage', context.Source)"
+// data "StatsFunctors" "ApplyStatus(SELF,RAGE_WOLF_NO_HEAVY_ARMOUR_VFX,100,-1)"
+
+// new entry "RAGE_WOLF_NO_HEAVY_ARMOUR_VFX"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "RAGE_NO_HEAVY_ARMOUR_VFX"
+// %%% Wolf Totem Rage no heavy amrour VFX
+// data "DisplayName" "h2f5c6e7ag379bg46f7gb71fgfe1be2a56873;2"
+// data "StatusEffect" "170725e8-26ca-4d7d-86e8-40f887150ebd"
+
+// ==================================== Giant's Rage ====================================
+
+// new entry "RageGiantUnlock"
+// type "PassiveData"
+// Giant's Rage
+// data "DisplayName" "h416cac70g5ef0g4496g9d89g598ec0c5dc13;1"
+// While &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt;, you increase in size. Your Rage damage bonus is doubled on Throw attacks.
+// data "Description" "h108ff3ccga8e3g43f1gbeb5g194e49908a62;2"
+// data "Icon" "PassiveFeature_GiantsRage"
+// data "Properties" "Highlighted"
+// data "Boosts" "UnlockSpell(Shout_Rage_Giant)"
+
+new entry "Shout_Rage_Giant"
+type "SpellData"
+data "SpellType" "Shout"
+// using "Shout_Rage"
+using "Shout_Rage_Giant"
+// data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_GIANT,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_GIANT_2,100,10);ApplyStatus(RAGE_MUTE,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1);"
+data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbarian')):ApplyStatus(RAGE_GIANT,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(9,'Barbarian') and not ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_GIANT_2,100,10);AI_IGNORE:IF(ClassLevelHigherOrEqualThan(16,'Barbarian')):ApplyStatus(RAGE_GIANT_3,100,10);AI_ONLY:IF(HasActionResource('ActionPoint', 1, 0, false)):ApplyStatus(AI_HELPER_RAGE,100,1)"
+// data "Icon" "Action_GiantsRage"
+// Giant's Rage
+// data "DisplayName" "hf0908836g8eb4g4de8gaa00g91f1813a9a4e;1"
+// Enter a &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt; and increase in size. Your Rage damage bonus is doubled on Throw attacks.
+// data "Description" "hba6e0170g05cag4395ga5c4g516c15eb4413;3"
+// data "DescriptionParams" ""
+// data "TooltipStatusApply" "ApplyStatus(RAGE_GIANT,100,10)"
+// data "RequirementConditions" "not HasStatus('SG_Rage') and not HasStatus('CALM_EMOTIONS')"
+// data "CastEffect" "fa55e5e5-39a6-4f10-8776-9db62695ded6"
+
+// ==================================== Giant's Rage - 1
+
+new entry "RAGE_GIANT"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "RAGE"
+using "RAGE_GIANT"
+// Giant's Rage
+// data "DisplayName" "h9d19297dg4dfeg48d9g84b6g8bfeac9fb332;1"
+// &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt; and increased in size. Deals an additional [1] damage with melee and improvised weapons, and [2] damage when throwing objects.&lt;br&gt;&lt;br&gt;Also has Resistance to physical damage and Advantage on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+// data "Description" "hac1e48c9g9c61g426cg8d3bgf1efd11b08ba;3"
+// &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt; and increased in size. Deals an additional [1] damage with melee and improvised weapons, and [2] damage when throwing objects.&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.
+data "Description" "h9ab9eea6g8249g4801g90adg95589360d4c8;1"
+// data "DescriptionParams" "LevelMapValue(RageDamage);LevelMapValue(RageDamageThrown)"
+// data "Icon" "Action_GiantsRage"
+// data "StackId" "SIZE"
+// data "StackPriority" "99"
+// data "Boosts" "Tag(VFX_RAGE);UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones);ObjectSize(+1);ScaleMultiplier(1.33);CarryCapacityMultiplier(1.25);EntityThrowDamage(2)"
+// data "Passives" "Rage_Rage_Boosts;Rage_Attack;Rage_Damaged;Rage_NoHeavyArmour_VFX;EnlargeWeightMedium;EnlargeWeightLarge"
+// data "StatusEffect" "afac029f-99d0-4911-bff5-467c8e203c93"
+// data "DynamicAnimationTag" "978ef74e-3f22-4719-a113-fa48ebe1444a"
+
+// ==================================== Giant's Rage - 2
+
+new entry "RAGE_GIANT_2"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "RAGE_GIANT"
+using "RAGE_GIANT_2"
+// data "DescriptionParams" "LevelMapValue(RageDamage);6"
+data "DescriptionParams" "LevelMapValue(RageDamage);LevelMapValue(RageDamageThrown)"
+// data "Boosts" "Tag(VFX_RAGE);UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones);ObjectSize(+1);ScaleMultiplier(1.33);CarryCapacityMultiplier(1.25);EntityThrowDamage(3);"
+// data "Passives" "Rage_Rage_Boosts_2;Rage_Attack;Rage_Damaged;Rage_NoHeavyArmour_VFX;EnlargeWeightMedium;EnlargeWeightLarge;"
+
+// ==================================== Giant's Rage - 3 (Expansion)
+
+new entry "RAGE_GIANT_3"
+type "StatusData"
+data "StatusType" "BOOST"
+using "RAGE_GIANT_2"
+data "Boosts" "Tag(VFX_RAGE);UnlockSpell(Shout_EndRage);Attribute(ForceMainhandAlternativeEquipBones);ObjectSize(+1);ScaleMultiplier(1.33);CarryCapacityMultiplier(1.25);EntityThrowDamage(4)"
+data "Passives" "Rage_Rage_Boosts_3;Rage_Attack;Rage_Damaged;Rage_NoHeavyArmour_VFX;EnlargeWeightMedium;EnlargeWeightLarge"
+
+// ==================================== Giant's Rage - Misc
+
+// new entry "Rage_NoHeavyArmour_VFX"
+// type "PassiveData"
+// %%% Empty
+// data "DisplayName" "h6c1b2a33gbe3eg4fdbga309g32794c06ac4c;1"
+// %%% Technical used for applying a status for VFX to use
+// data "Description" "h44f8e5bbgf5ccg4a0fg8f39g770ef6a3d8d4;1"
+// data "Properties" "IsHidden"
+// data "StatsFunctorContext" "OnEquip"
+// data "Conditions" "not HasHeavyArmor(context.Source) and HasStatus('SG_Rage', context.Source)"
+// data "StatsFunctors" "ApplyStatus(SELF,RAGE_NO_HEAVY_ARMOUR_VFX,100,-1)"
+
+// new entry "RAGE_NO_HEAVY_ARMOUR_VFX"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// %%% Rage no heavy amrour VFX
+// data "DisplayName" "hd48d5e15ge87cg4cc9g90afg1ff9ef983000;2"
+// %%% Technical status used for addtional VFX for rage when there is no heavy amrour
+// data "Description" "h84ac08b0gae65g49b6g85b5g82a7671591a4;2"
+// data "StackId" "RAGE_NO_HEAVY_ARMOUR_VFX"
+// data "StackPriority" "1"
+// data "RemoveConditions" "HasHeavyArmor(context.Source) or not HasStatus('SG_Rage')"
+// data "RemoveEvents" "OnEquip;OnUnequip;OnStatusRemoved"
+// data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
+// data "StatusEffect" "d92d4581-5842-476d-aeec-2364bf39702d"
