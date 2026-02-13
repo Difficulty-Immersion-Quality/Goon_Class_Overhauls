@@ -24,6 +24,7 @@ data "OnApplyFunctors" "IF(not HasPassive('PersistentRage')):ApplyStatus(GOON_RA
 data "RemoveConditions" "not HasStatus('SG_Rage')"
 data "RemoveEvents" "OnStatusRemoved"
 
+// TODO: ticking with source?
 new entry "GOON_RAGE_STOP_REMOVE_DISPLAY"
 type "StatusData"
 data "StatusType" "BOOST"
