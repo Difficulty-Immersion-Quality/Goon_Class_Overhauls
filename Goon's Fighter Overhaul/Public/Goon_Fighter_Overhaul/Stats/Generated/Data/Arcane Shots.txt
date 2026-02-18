@@ -1,6 +1,7 @@
 // ==================================== Arcane Shot ====================================
 // Bug Fix: Arcane Shot: Bursting Arrow no longer behaves incorrectly with Curving Shot's Arcane Shot resource restoration.
 // Changes: Tooltips now specify that the Spell Save DC of Arcane Shots increase with your Intelligence Modifier.
+// TODO: Due to an incorrectly used DamageBonus function, the bonus damage that Arcane Shots deliver on striking an enemy is not doubled on a critical hit.
 
 new entry "ArcaneShot"
 type "PassiveData"

@@ -1,6 +1,18 @@
 // ==================================== Curving Shot ====================================
 // Bug Fix: The once per turn cooldown is now visible in the tooltip.
+// Changes: Can now be used by Invisible player characters.
 // TODO: Actually gonna remove the cooldown and the bloated KHN check, just check if the attack itself has the appropriate string for functionality.
+// TODO: IsWithinSightPyramid or whatever, or the other line of sight function that's untested.
+
+// new entry "CurvingShot"
+// type "PassiveData"
+// Curving Shot
+// data "DisplayName" "h747c1f32ga3a5g46e5g8bf3g871641a0fe70;1"
+// When you miss with any magical ranged attack, use a &lt;LSTag Type="ActionResource" Tooltip="BonusActionPoint"&gt;bonus action&lt;/LSTag&gt; to attack the next closest target with the same attack.
+// data "Description" "h79477c9dgb982g4730ga6b7g5932f2d579b9;5"
+// data "Icon" "PassiveFeature_CurvingShot"
+// data "Properties" "Highlighted"
+// data "Boosts" "UnlockInterrupt(Interrupt_CurvingShot);ActionResource(CurvingShot_Charge,1,0);"
 
 new entry "Interrupt_CurvingShot"
 type "InterruptData"
@@ -14,7 +26,9 @@ using "Interrupt_CurvingShot"
 // data "InterruptContextScope" "Self"
 // data "Container" "YesNoDecision"
 // data "Conditions" "Self(context.Observer, context.Source) and IsAbleToReact(context.Observer) and IsCurvingShot() and IsCurvingShotMiss() and not AnyEntityIsItem() and IsAttackType(AttackType.RangedWeaponAttack) and HasInterruptedAttack() and HasEnemyWithinRange('SG_Incapacitated', 18, nil, 2, context.Target, context.Source)"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Observer, context.Source) and IsAbleToReact(context.Observer) and IsCurvingShot() and IsCurvingShotMiss() and not AnyEntityIsItem() and IsAttackType(AttackType.RangedWeaponAttack) and HasInterruptedAttack() and HasEnemyWithinRange('SG_Incapacitated', 18, nil, 2, context.Target, context.Source)"
 // data "Properties" "ApplyStatus(YSRSLIDFWWADNIWHWIHLY,100,1)"
 // data "Cost" "BonusActionPoint:1;CurvingShot_Charge:1;"
 data "Cooldown" "OncePerTurn"
 // data "InterruptDefaultValue" "Ask;Enabled"
+data "InterruptFlags" "InterruptWhileInvisible"
