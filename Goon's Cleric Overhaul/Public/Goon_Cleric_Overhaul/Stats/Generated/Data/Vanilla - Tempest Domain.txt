@@ -1,0 +1,96 @@
+// ==================================== Level 1: Wrath of the Storm ====================================
+// Bug Fix: Now works while under the effects of more non-hostile and non-spellcasting restricted Polymorphs.
+// Bug Fix: Being under the effects of a Polymorph no longer circumvents Blinded conditions disabling the Interrupt.
+
+// new entry "WrathOfTheStorm"
+// type "PassiveData"
+// Wrath of the Storm
+// data "DisplayName" "hdf0393dfg17abg4117gb751g53eee2b92a18;1"
+// As a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;reaction&lt;/LSTag&gt; strike back at an attacking creature, dealing [1] or [2]. The target takes half damage on a successful &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt;.
+// data "Description" "hba1f6492g7161g4143gadffg3d972cff1f2e;2"
+// data "DescriptionParams" "DealDamage(2d8,Lightning);DealDamage(2d8,Thunder)"
+// data "TooltipUseCosts" "ReactionActionPoint:1"
+// data "Icon" "GenericIcon_DamageType_Thunder"
+// data "Boosts" "UnlockInterrupt(Interrupt_WrathOfTheStorm_Lightning);UnlockInterrupt(Interrupt_WrathOfTheStorm_Thunder)"
+
+// ==================================== Level 1: Wrath of the Storm: Lightning
+
+new entry "Interrupt_WrathOfTheStorm_Lightning"
+type "InterruptData"
+using "Interrupt_WrathOfTheStorm_Lightning"
+// Wrath of the Storm: Lightning
+// data "DisplayName" "h32bdfb5egcdecg4a57g98d2gb14eec4a13e2;2"
+// If a nearby enemy attacks you, you can retaliate with a strike of lightning that deals [1].
+// data "Description" "h1f3cd2fagdff9g4438gb5c2gf1d58f39dd8b;2"
+// data "DescriptionParams" "DealDamage(2d8,Lightning)"
+// On Save: Target still takes half damage.
+// data "ExtraDescription" "hafc31b7egd182g4aa4g90d0ga4b16e14dae9;2"
+// data "Icon" "PassiveFeature_WrathOfTheStorm_Lightning"
+// data "InterruptContext" "OnCastHit"
+// data "InterruptContextScope" "Self"
+// data "Container" "YesNoDecision"
+// data "Conditions" "Self(context.Target,context.Observer) and not Self(context.Source,context.Observer) and Enemy(context.Source,context.Observer) and IsAbleToReact(context.Observer) and IsAttack() and IsHit() and not DistanceToGreaterThan(context.SourcePosition, context.TargetPosition, 2) and not AnyEntityIsItem() and HasLastAttackTriggered()"
+// data "Properties" "UseSpell(OBSERVER_SOURCE,Target_WrathOfTheStorm_Lightning,true,true,true)"
+// data "Cost" "ReactionActionPoint:1"
+// data "InterruptDefaultValue" "Ask;Enabled"
+// data "EnableCondition" "not HasAnyStatus({'SG_Polymorph','SG_Blinded'}) or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
+data "EnableCondition" "(not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()) and not HasStatus('SG_Blinded')"
+// data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+
+// new entry "Target_WrathOfTheStorm_Lightning"
+// type "SpellData"
+// data "SpellType" "Target"
+// data "TargetRadius" "9"
+// data "SpellRoll" "not SavingThrow(Ability.Dexterity, SourceSpellDC())"
+// data "SpellSuccess" "DealDamage(2d8,Lightning,Magical)"
+// data "SpellFail" "DealDamage((2d8)/2,Lightning,Magical)"
+// data "TargetConditions" "Character()"
+// data "Icon" "PassiveFeature_WrathOfTheStorm_Lightning"
+// Wrath of the Storm: Lightning
+// data "DisplayName" "h0b03daebgf8fcg402bg9aa4ga63652792b0c;2"
+// Conflagrate a foe with electric bolts.
+// data "Description" "h5d952b0cg807cg4f42g8a7eg0629940e9123;2"
+// data "DescriptionParams" "DealDamage(2d8, Lightning)"
+// data "TooltipDamageList" "DealDamage(2d8, Lightning)"
+// data "TooltipAttackSave" "Dexterity"
+// data "TooltipOnSave" "961753f4-c345-4bc4-b408-1d5b87a5ab0c"
+// data "CastSound" "Spell_Passive_Cast_WrathOfTheStorm_Lightning"
+// data "TargetSound" "Spell_Passive_Impact_WrathOfTheStorm_Lightning"
+// data "CastTextEvent" "Cast"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;39daf365-ec06-49a8-81f3-9032640699d7,,;5c400e93-0266-499c-a2e1-75d53358460f,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,,"
+// data "VerbalIntent" "Damage"
+// data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsHarmful"
+// data "HitAnimationType" "MagicalDamage_External"
+// data "CastEffect" "73847931-e8eb-47eb-99c0-0e2d66ccff6e"
+// data "TargetEffect" "b36662fc-f694-447d-bedf-f600b8dd277f"
+// data "DamageType" "Lightning"
+
+// ==================================== Level 1: Wrath of the Storm: Lightning
+
+// new entry "Interrupt_WrathOfTheStorm_Thunder"
+// type "InterruptData"
+// using "Interrupt_WrathOfTheStorm_Lightning"
+// Wrath of the Storm: Thunder
+// data "DisplayName" "h256d3cd4g3e8ag4cf0gb826g1cb831abe1ce;2"
+// If a nearby enemy attacks you, you can retaliate with a burst of thunder that deals [1].
+// data "Description" "hc74dcac4g87bfg4800g8ae4geacc03a5f0e6;1"
+// data "DescriptionParams" "DealDamage(2d8,Thunder)"
+// data "Icon" "PassiveFeature_WrathOfTheStorm_Thunder"
+// data "Properties" "UseSpell(OBSERVER_SOURCE,Target_WrathOfTheStorm_Thunder,true,true,true)"
+
+// new entry "Target_WrathOfTheStorm_Thunder"
+// type "SpellData"
+// data "SpellType" "Target"
+// using "Target_WrathOfTheStorm_Lightning"
+// data "SpellSuccess" "DealDamage(2d8,Thunder,Magical)"
+// data "SpellFail" "DealDamage((2d8)/2,Thunder,Magical)"
+// data "Icon" "PassiveFeature_WrathOfTheStorm_Thunder"
+// Wrath of the Storm: Thunder
+// data "DisplayName" "h37e31c20g5d11g4882gbd09g9b580383cb6c;1"
+// data "DescriptionParams" "DealDamage(2d8, Thunder)"
+// data "TooltipDamageList" "DealDamage(2d8, Thunder)"
+// data "CastSound" "Spell_Passive_Cast_WrathOfTheStorm_Thunder"
+// data "TargetSound" "Spell_Passive_Impact_WrathOfTheStorm_Thunder"
+// data "CastEffect" "14b37124-6550-4671-8602-7f1349dba9f8"
+// data "TargetEffect" "e04b2226-50e5-47ec-888e-4008193fb9ea"
