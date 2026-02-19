@@ -1,0 +1,25 @@
+// ==================================== Level 2: Guided Strike ====================================
+// Bug Fix: Now works while under the effects of more non-hostile and non-spellcasting restricted Polymorphs.
+// Changes: Can now be used by Invisible player characters.
+
+new entry "Interrupt_GuidedStrike"
+type "InterruptData"
+using "Interrupt_GuidedStrike"
+// Guided Strike
+// data "DisplayName" "hd43e6530gca4dg47f5g9d17ge69427798c50;2"
+// Gain a +[1] bonus to your <LSTag Tooltip="AttackRoll">Attack Roll</LSTag>.
+// data "Description" "hb4e74b3agdc01g41dag9b6fg72299d7e39a7;3"
+// data "DescriptionParams" "10"
+// data "Icon" "PassiveFeature_GuidedStrike"
+// data "InterruptContext" "OnPostRoll"
+// data "InterruptContextScope" "Self"
+// data "Container" "YesNoDecision"
+// data "Conditions" "Self(context.Source,context.Observer) and HasInterruptedAttack() and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(10, context.Source)"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and HasInterruptedAttack() and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(10, context.Source)"
+// data "Properties" "AdjustRoll(10);ApplyStatus(OBSERVER_SOURCE,GUIDED_STRIKE,100,1)"
+// data "Cost" "ChannelDivinity:1"
+// data "InterruptDefaultValue" "Ask;Enabled"
+// data "EnableCondition" "not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
+data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
+// data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"
