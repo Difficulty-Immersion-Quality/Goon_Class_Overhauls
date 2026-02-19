@@ -30,17 +30,18 @@ new entry "MHRAGE_RAGE_2"
 type "StatusData"
 data "StatusType" "BOOST"
 // using "RAGE_2"
-using "MHRAGE_RAGE_2"
+using "MHRAGE_RAGE"
 // Deals an additional [1] damage with melee and improvised weapons, and while throwing objects.&lt;br&gt;&lt;br&gt;Has Resistance to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
 // data "Description" "h2003db81g9d32gbc40g032bg1a78c7d90254;1"
 // Deals an additional [1] damage with melee and improvised weapons, and while throwing objects.&lt;br&gt;&lt;br&gt;Has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
 data "Description" "h4b91358eg7656g462ag8c45g64bd4080a7bb;1"
+data "Passives" "Rage_Rage_Boosts_2;Rage_Attack;Rage_Damaged;Rage_NoHeavyArmour_VFX"
 
 new entry "MHRAGE_RAGE_3"
 type "StatusData"
 data "StatusType" "BOOST"
 // using "MHRAGE_RAGE"
-using "MHRAGE_RAGE_3"
+using "MHRAGE_RAGE_2"
 // data "Passives" "MHRage_Rage_Boosts_3;Rage_Attack;Rage_Damaged;Rage_NoHeavyArmour_VFX;"
 data "Passives" "Rage_Rage_Boosts_3;Rage_Attack;Rage_Damaged;Rage_NoHeavyArmour_VFX"
 

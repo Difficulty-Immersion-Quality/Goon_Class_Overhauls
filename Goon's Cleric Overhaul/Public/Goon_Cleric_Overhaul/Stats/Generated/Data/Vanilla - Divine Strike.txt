@@ -625,7 +625,7 @@ data "TooltipDamageList" "DealDamage(LevelMapValue(Goon_DivineStrikes),Necrotic)
 data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and IsHit() and not IsDivineStrike() and Character() and not AnyEntityIsItem()"
 // data "Properties" "DealDamage(1d8,Necrotic,Magical);ApplyStatus(DIVINESTRIKE_MELEE_CRITICAL_VFX,100,1)"
 // data "Properties" "DealDamage(1d8,Necrotic,Magical,,0,,true,true);ApplyStatus(DIVINESTRIKE_MELEE_CRITICAL_VFX,100,1);"
-data "Properties" "DealDamage(1d8,Necrotic,Magical,,0,,true,false);ApplyStatus(DIVINESTRIKE_MELEE_CRITICAL_VFX,100,1);"
+data "Properties" "DealDamage(LevelMapValue(Goon_DivineStrikes),Necrotic,Magical,,0,,true,false);ApplyStatus(DIVINESTRIKE_MELEE_CRITICAL_VFX,100,1);"
 
 // ==================================== Death Domain - Divine Strike (Expansion)
 
