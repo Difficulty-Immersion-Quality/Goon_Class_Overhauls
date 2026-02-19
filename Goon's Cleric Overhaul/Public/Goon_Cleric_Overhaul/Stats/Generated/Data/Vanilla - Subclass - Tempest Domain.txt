@@ -94,3 +94,50 @@ data "EnableCondition" "(not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPol
 // data "TargetSound" "Spell_Passive_Impact_WrathOfTheStorm_Thunder"
 // data "CastEffect" "14b37124-6550-4671-8602-7f1349dba9f8"
 // data "TargetEffect" "e04b2226-50e5-47ec-888e-4008193fb9ea"
+
+// ==================================== Level 2: Destructive Wrath ====================================
+// Bug Fix: No longer triggers for spells that do not deal damage.
+// Bug Fix: Now works while under the effects of more non-hostile and non-spellcasting restricted Polymorphs.
+// Changes: Destructive Wrath will now trigger when damage is dealt instead of when an eligable spell is cast, as to not waste it.
+// Changes: Can now be used by Invisible player characters.
+
+new entry "DestructiveWrath"
+type "PassiveData"
+using "DestructiveWrath"
+// Destructive Wrath
+// data "DisplayName" "h1b39a27dg9af5g49eega545g56c1105a8f92;1"
+// When you roll Thunder or Lightning damage, you can use your &lt;LSTag Type="ActionResource" Tooltip="ChannelDivinity"&gt;Channel Divinity&lt;/LSTag&gt; to deal maximum damage instead.
+// data "Description" "h5eb4eeebg7db0g4469gb357gd135c8cb92c6;1"
+// When you roll[1] or[2], you can use your &lt;LSTag Type="ActionResource" Tooltip="ChannelDivinity"&gt;Channel Divinity&lt;/LSTag&gt; to deal maximum damage instead.
+data "Description" "hb5a537abg6772g464agb790gef50cf252632;1"
+data "DescriptionParams" "DealDamage(,Thunder);DealDamage(,Lightning)"
+// data "TooltipUseCosts" "ChannelDivinity:1"
+// data "Icon" "PassiveFeature_DestructiveWrath"
+// data "Boosts" "UnlockInterrupt(Interrupt_DestructiveWrath)"
+// data "StatsFunctorContext" "OnCastResolved"
+// data "StatsFunctors" "RemoveStatus(DESTRUCTIVE_WRATH)"
+
+new entry "Interrupt_DestructiveWrath"
+type "InterruptData"
+using "Interrupt_DestructiveWrath"
+// Destructive Wrath
+// data "DisplayName" "h05758e77gf31dg441egbf2ageb5524d521d9;1"
+// When you roll Thunder or Lightning damage, you can use your &lt;LSTag Type="ActionResource" Tooltip="ChannelDivinity"&gt;Channel Divinity&lt;/LSTag&gt; to deal maximum damage instead.
+// data "Description" "he1b97ba6g70adg4212g8293g283d7cec8e51;1"
+// When you roll[1] or[2], you can use your &lt;LSTag Type="ActionResource" Tooltip="ChannelDivinity"&gt;Channel Divinity&lt;/LSTag&gt; to deal maximum damage instead.
+data "Description" "hb5a537abg6772g464agb790gef50cf252632;1"
+data "DescriptionParams" "DealDamage(,Thunder);DealDamage(,Lightning)"
+// data "Icon" "PassiveFeature_DestructiveWrath"
+// data "InterruptContext" "OnSpellCast"
+data "InterruptContext" "OnPreDamage"
+// data "InterruptContextScope" "Self"
+// data "Container" "YesNoDecision"
+// data "Conditions" "Self(context.Source,context.Observer) and (SpellDamageTypeIs(DamageType.Lightning) or SpellDamageTypeIs(DamageType.Thunder)) and not AnyEntityIsItem()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and (SpellDamageTypeIs(DamageType.Lightning) or SpellDamageTypeIs(DamageType.Thunder)) and not AnyEntityIsItem()"
+// data "Properties" "ApplyStatus(OBSERVER_OBSERVER,DESTRUCTIVE_WRATH,100,1)"
+// data "Cost" "ChannelDivinity:1"
+// data "InterruptDefaultValue" "Ask;Enabled"
+// data "EnableCondition" "not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
+data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
+// data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"
