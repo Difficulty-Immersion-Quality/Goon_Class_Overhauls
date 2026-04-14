@@ -2,8 +2,8 @@
 // Changes: Now works with all melee and thrown attacks.
 // Changes: Can now be used by Invisible player characters.
 // Changes: Can now be used while under the effects of all non-hostile Polymorphs.
-// Changes: The spells are removed, and only the Interrupts remain as I find the spells to be pointless and plain detrimental to use.
 // Bonus: Natively compatible with 5e Reckless Attack by sumradagnoth8.
+// TODO: Offhand and throwing variants for the spell.
 
 new entry "RecklessAttack"
 type "PassiveData"
@@ -16,7 +16,6 @@ using "RecklessAttack"
 data "Description" "hfc92c4e0g549fg4e2cgbe0ega95a16d7e7d7;1"
 // data "Icon" "Action_Barbarian_RecklessAttack"
 // data "Boosts" "UnlockInterrupt(Interrupt_RecklessAttack);UnlockSpell(Target_RecklessAttack)"
-data "Boosts" "UnlockInterrupt(Interrupt_RecklessAttack)"
 // data "StatsFunctorContext" "OnAttack"
 // data "Conditions" "IsWeaponAttack()"
 data "Conditions" "IsAttack()"
@@ -44,6 +43,33 @@ data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',con
 data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus()"
 // data "EnableContext" "OnStatusApplied;OnStatusRemoved"
 data "InterruptFlags" "InterruptWhileInvisible"
+
+// new entry "Target_RecklessAttack"
+// type "SpellData"
+// data "SpellType" "Target"
+// using "Target_MainHandAttack"
+// data "Cooldown" "OncePerTurn"
+// data "AIFlags" "IgnoreDebuff"
+// data "SpellProperties" "ApplyStatus(SELF,RECKLESS_ATTACK, 100, 1);GROUND:DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);GROUND:ExecuteWeaponFunctors(MainHand)"
+// data "SpellRoll" "Attack(AttackType.MeleeWeaponAttack,true);CastOffhand[Attack(AttackType.MeleeOffHandWeaponAttack,true)]"
+// data "Icon" "Action_Barbarian_RecklessAttack"
+// Reckless Attack
+// data "DisplayName" "ha9971f12g75afg44a8g8c42gc79f95eac727;2"
+// Until your next turn, you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;, but enemies also have Advantage against you.
+// data "Description" "hf12dfcdfg3774g4f31g849cg8c09c21f33da;9"
+// data "TooltipDamageList" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType)"
+// data "CastSound" "Action_Cast_RecklessAttack"
+// data "TargetSound" "Action_Impact_RecklessAttack"
+// data "CastTextEvent" "Cast"
+// data "UseCosts" "ActionPoint:1"
+// data "SpellAnimation" "8b8bb757-21ce-4e02-a2f3-97d55cf2f90b,,;6606c30b-be1c-4f17-ae6b-1a591c80b18c,,;f4ac302b-1569-404f-bd52-1fe443e265df,,;e8a5c57f-855b-4227-acaa-11e8ce8d7d64,,;7bb52cd4-0b1c-4926-9165-fa92b75876a3,,;2b81c18b-9698-4262-a623-932c2bb1296d,,;0b07883a-08b8-43b6-ac18-84dc9e84ff50,,;,,;,,"
+// data "DualWieldingSpellAnimation" "8b8bb757-21ce-4e02-a2f3-97d55cf2f90b,,;6606c30b-be1c-4f17-ae6b-1a591c80b18c,,;f4ac302b-1569-404f-bd52-1fe443e265df,,;e8a5c57f-855b-4227-acaa-11e8ce8d7d64,,;7bb52cd4-0b1c-4926-9165-fa92b75876a3,,;2b81c18b-9698-4262-a623-932c2bb1296d,,;0b07883a-08b8-43b6-ac18-84dc9e84ff50,,;,,;,,"
+// data "VerbalIntent" "Damage"
+// data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsMelee;IsHarmful"
+// data "PrepareEffect" "13fd2ef9-25e3-4e61-91bb-62b62fc481df"
+// data "CastEffect" "01105230-e44d-42ee-90ed-5c6df38ada2b"
+// data "TargetEffect" "37f17e67-ede8-4447-9df3-03406c4ce257"
 
 new entry "RECKLESS_ATTACK"
 type "StatusData"
