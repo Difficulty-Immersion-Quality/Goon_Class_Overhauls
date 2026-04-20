@@ -1,6 +1,7 @@
 // ==================================== Level 1: Disciple of Life ====================================
-// Bug Fix: Description updated to specify that the creature must be healed, not just targeted with a healing spell, and that it function's with Warden of Vitality's Restore Vitality ability.
 // Bug Fix: Restore Vitality now has to provide healing greater than 0 for additional healing to be applied, same as spells.
+// RAW changes: Description replaced.
+// Goon changes: Added an "ExtraDescription", specifying that Aura of Vitality (Warden of Vitality) works with the feature.
 
 new entry "DiscipleOfLife"
 type "PassiveData"
@@ -9,9 +10,12 @@ using "DiscipleOfLife"
 // data "DisplayName" "h67fe33fdg46c1g415bg95c6g20291e2c1ea8;1"
 // Your devotion empowers your healing spells. When casting a healing spell, the target regains additional &lt;LSTag Tooltip="HitPoints"&gt;hit points&lt;/LSTag&gt; equal to 2 + the spell's level.
 // data "Description" "hb803dc22g3235g468fgb4c5g4746de773573;1"
-// Your devotion empowers your healing spells. When successfully healing a creature with a healing spell or &lt;LSTag Type="Spell" Tooltip="Shout_AuraOfVitality"&gt;Restore Vitality&lt;/LSTag&gt;, it regains additional[1] equal to 2 + the spell's level.
+// Your healing spells are more effective.&lt;br&gt;&lt;br&gt;Whenever you use a spell of 1st level or higher to restore &lt;LSTag Tooltip="HitPoints"&gt;hit points&lt;/LSTag&gt; to a creature, the creature regains additional[1] equal to 2 + the spell's level.
 data "Description" "h0451c245ga622g4458g8053g5c3b1017b7f6;1"
 data "DescriptionParams" "RegainHitPoints(,)"
+// &lt;LSTag Type="Spell" Tooltip="Shout_AuraOfVitality"&gt;Aura of Vitality&lt;/LSTag&gt;'s &lt;LSTag Type="Spell" Tooltip="Target_AuraOfVitality_Activate"&gt;Restore Vitality&lt;/LSTag&gt; benefits from the additional[1].
+data "ExtraDescription" "he2716c5fg78e0g4373ga5efg3c082b49263a;1"
+data "ExtraDescriptionParams" "RegainHitPoints(,)"
 // data "Icon" "PassiveFeature_DiscipleOfLife"
 // data "Properties" "Highlighted"
 // data "StatsFunctorContext" "OnHeal"
@@ -19,8 +23,17 @@ data "DescriptionParams" "RegainHitPoints(,)"
 data "Conditions" "HealDoneGreaterThan(0) and (IsSpell() or SpellId('Target_AuraOfVitality_Activate')) and not IsCantrip()"
 // data "StatsFunctors" "RegainHitPoints(2+SpellPowerLevel); ApplyStatus(PASSIVE_DISCIPLE_OF_LIFE,100,0)"
 
+// new entry "PASSIVE_DISCIPLE_OF_LIFE"
+// type "StatusData"
+// data "StatusType" "EFFECT"
+// using "_PASSIVES"
+// Disciple of Life
+// data "DisplayName" "he1d9ad3dgd63bg460dg8f78g52812230929f;1"
+// data "StatusEffect" "8b2264af-fec8-42cf-873e-9262dd73ff01"
+
 // ==================================== Level 6: Blessed Healer ====================================
-// Bug Fix: Blessed Healer now only heals the caster as is specified in the tooltip, when you target others with healing spells, instead of all the Cleric's healing sources.
+// Bug Fix: Blessed Healer now only heals the caster as is specified in the tooltip, when you target others with healing spells, instead of all the Cleric's healing sources both on themselves and others.
+// RAW changes: Description replaced.
 
 new entry "BlessedHealer"
 type "PassiveData"
@@ -29,12 +42,12 @@ using "BlessedHealer"
 // data "DisplayName" "h48637ed4g58fbg4a91g8ec3g44da4c4fca2c;2"
 // Healing others heals you as well.&lt;br&gt;&lt;br&gt;When you cast a healing spell of Level 1 or higher on another creature, you regain hit points equal to 2 + the spell's level.
 // data "Description" "h770f3c68g776eg4dcagb86eg68c2f89e422b;15"
-// Healing others heals you as well.&lt;br&gt;&lt;br&gt;When casting a healing spell on another creature, you regain[1] equal to 2 + the spell's level.
+// The healing spells you cast on others heal you as well.&lt;br&gt;&lt;br&gt;When you cast a spell of 1st level or higher that restores &lt;LSTag Tooltip="HitPoints"&gt;hit points&lt;/LSTag&gt; to a creature other than you, you regain[1] equal to 2 + the spell's level.
 data "Description" "h51303c3fgb200g4872gbe87g039cf483604b;1"
 data "DescriptionParams" "RegainHitPoints(,)"
 // data "Icon" "GenericIcon_Intent_Healing"
 // data "Properties" "Highlighted"
 // data "StatsFunctorContext" "OnHeal"
-data "Conditions" "IsSpell() and not IsCantrip()"
+data "Conditions" "HealDoneGreaterThan(0) and IsSpell() and not IsCantrip()"
 // data "StatsFunctors" "RegainHitPoints(SELF,2+SpellPowerLevel)"
 data "StatsFunctors" "IF(not Self(Target)):RegainHitPoints(SELF,2+SpellPowerLevel)"
