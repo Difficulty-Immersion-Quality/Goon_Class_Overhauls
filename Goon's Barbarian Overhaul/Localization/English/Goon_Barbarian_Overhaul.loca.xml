@@ -36,6 +36,8 @@
 	<!-- "RAGE", "Rage_Rage_Boosts" --> 
 	<content contentuid="h4b91358eg7656g462ag8c45g64bd4080a7bb" version="1">Deals an additional [1] damage with melee and improvised weapons, and while throwing objects.&lt;br&gt;&lt;br&gt;Has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage, and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.</content>
 
+	<!-- RageFrenzyUnlock -->
+	<content contentuid="h5169ddbfga020g4c1eg967cg59c7302e5d2e" version="1">Your bloodthirst transforms your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;, turning it into a &lt;LSTag Type="Status" Tooltip="RAGE_FRENZY"&gt;Frenzy&lt;/LSTag&gt;!</content>
 	<!-- "Shout_Rage_Frenzy" --> 
 	<content contentuid="ha4ee19b9g7cb6g4b13g8927gbdd5949c3050" version="1">Your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt; turns into a &lt;LSTag Type="Status" Tooltip="RAGE_FRENZY"&gt;Frenzy&lt;/LSTag&gt;! You gain &lt;LSTag Type="Spell" Tooltip="Target_FrenziedStrike"&gt;Frenzied Strike&lt;/LSTag&gt; and &lt;LSTag Type="Spell" Tooltip="Throw_FrenziedThrow"&gt;Enraged Throw&lt;/LSTag&gt;. You can also make an &lt;LSTag Type="Spell" Tooltip="Throw_ImprovisedWeaponBerserker"&gt;Improvised Weapon Attack&lt;/LSTag&gt; as a &lt;LSTag Tooltip="BonusAction"&gt;Bonus Action&lt;/LSTag&gt;.</content>
 	<!-- "RAGE_FRENZY" --> 
