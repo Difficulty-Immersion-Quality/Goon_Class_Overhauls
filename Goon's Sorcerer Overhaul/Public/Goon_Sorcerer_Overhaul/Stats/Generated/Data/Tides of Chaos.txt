@@ -3,6 +3,9 @@
 // Bug Fix: Can be used while under the effects of non-hostile Polymorphs.
 // Changes: Can now be used by Invisible player characters.
 // Changes: The interrupt which previously only functioned for failed Ability Checks, Attack Rolls and Saving Throws has been renamed and split into 2 Interrupts, "Tides of Chaos (Failure)" and "Tides of Chaos (Success)"; with these changes the player has complete control on when it triggers.
+// TODO: Ability check for interrupt is fucked, there's no IsLastConditionRollSuccess(ConditionRollType.ConditionAbilityCheck) ??? ConditionSkillCheck exists despite not being used and should be added, could also check RawAbility 
+// Try excluding the other rolls and seeing if not specifying the type of roll success while checking for if it's interesting works
+// JL: There’s also the khn for IsSkillChecked and IsAbilityChecked but I never remember what procs those
 
 new entry "TidesOfChaos"
 type "PassiveData"
