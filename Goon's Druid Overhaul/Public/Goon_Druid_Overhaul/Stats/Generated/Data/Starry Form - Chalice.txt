@@ -1,6 +1,47 @@
-// ==================================== Chalice Healing ====================================
+// ==================================== Starry Form: Chalice ====================================
+// TODO: "Wildshape" "SpellFlags" is cooked or nah? What the dawg even doing?
+
+new entry "Shout_Wildshape_Star_Chalice"
+type "SpellData"
+data "SpellType" "Shout"
+// using "Shout_Wildshape_Star_Archer"
+using "Shout_Wildshape_Star_Chalice"
+// data "SpellProperties" "ApplyStatus(WILDSHAPE_STARRY_CHALICE_PLAYER,100,-1);IF(ClassLevelHigherOrEqualThan(10,'Druid')):ApplyStatus(TWINKLINGCONSTELLATIONS_CHALICE,100,-1);IF(ClassLevelHigherOrEqualThan(10,'Druid')):ApplyStatus(TWINKLINGCONSTELLATIONS,100,1)"
+// data "Icon" "Action_StarryForm_Chalice"
+// Starry Form: Chalice
+// data "DisplayName" "hab5923eegf02dg4a20gbb01g0be6cabb8e1f;1"
+// A constellation of a life-giving chalice appears on you. Whenever you cast a healing spell that consumes a spell slot, you can cast &lt;LSTag Type="Spell" Tooltip="Target_StarryForm_Chalice_Heal"&gt;Chalice Healing&lt;/LSTag&gt;.
+// data "Description" "hf1bc9d4egca62g4739g83f8gb30cefdeefc5;1"
+// A constellation of a life-giving goblet appears on you. Whenever you cast a spell using a &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt; that restores &lt;LSTag Tooltip="HitPoints"&gt;hit points&lt;/LSTag&gt; to a creature, you can cast &lt;LSTag Type="Spell" Tooltip="Target_StarryForm_Chalice_Heal"&gt;Chalice Healing&lt;/LSTag&gt; until the end of your turn.
+data "Description" "h4a02c0cdg44b7g4e40g9945g300e3b799038;1"
+data "DescriptionParams" "Distance(9)"
+// data "TooltipStatusApply" "ApplyStatus(WILDSHAPE_STARRY_CHALICE_PLAYER,100,-1)"
+// data "CastSound" "Action_Cast_Druid_WildShapeStars_Chalice"
+// data "PrepareEffect" "41caa128-f804-4a35-a184-6332d730ec14"
+// data "CastEffect" "7eb693c5-7f95-46b4-86a2-1601a9f45aa4"
+
+new entry "WILDSHAPE_STARRY_CHALICE_PLAYER"
+type "StatusData"
+data "StatusType" "POLYMORPHED"
+// using "WILDSHAPE_STARRY_ARCHER_PLAYER"
+using "WILDSHAPE_STARRY_CHALICE_PLAYER"
+// Starry Form: Chalice
+// data "DisplayName" "haada181bg2e0eg4dfagbd27g383d0d221534;1"
+// In Starry Form. Whenever you cast a healing spell that consumes a spell slot, you can cast &lt;LSTag Type="Spell" Tooltip="Target_StarryForm_Chalice_Heal"&gt;Chalice Healing&lt;/LSTag&gt;.
+// data "Description" "had71377ag01a1g4cb4g9699g1d399c1ec100;1"
+// In Starry Form. Whenever you cast a spell using a &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt; that restores &lt;LSTag Tooltip="HitPoints"&gt;hit points&lt;/LSTag&gt; to a creature, you can cast &lt;LSTag Type="Spell" Tooltip="Target_StarryForm_Chalice_Heal"&gt;Chalice Healing&lt;/LSTag&gt; until the end of your turn.
+data "Description" "h1e951b90g1fceg43cdg85a2g6ad7139fe185;1"
+// data "Icon" "Action_StarryForm_Chalice"
+// data "SoundLoop" "Spell_Status_WildShapeStars_MO"
+// data "SoundStop" "Spell_Status_WildShapeStars_MO_Stop"
+// data "Boosts" "UnlockSpell(Shout_WildShape_Dismiss_Starry);Tag(STARRYFORM_CHALICE);UnlockSpell(Target_StarryForm_Chalice_Heal);"
+// data "Passives" "StarryForm_Chalice;StarryForm_Light;"
+// data "OnApplyFunctors" "ApplyStatus(WILDSHAPE_STARRY_CHALICE_VFX,100,-1);ApplyStatus(SELF,WILDSHAPE_ACTIVE,100,-1)"
+
+// ==================================== Chalice Healing
 // Bug Fix: Now uses Wisdom as the spellcasting modifier instead of the default.
 // Bug Fix: Now looks for if a spell costs a spellslot instead of arbitrarily looking for a couple of vanilla spells to blacklist.
+// TODO: Was this technical not getting removed on start turn? It's niche but that is a bug fix I think.
 
 new entry "StarryForm_Chalice"
 type "PassiveData"
@@ -12,6 +53,20 @@ using "StarryForm_Chalice"
 // data "Conditions" "HealDoneGreaterThan(0) and ((IsSpell() and not IsCantrip()) and not SpellId('Target_AuraOfVitality_Activate') and not SpellId('Target_MAG_HealingWord') and not SpellId('Shout_MAG_HealingWord_Mass'));"
 data "Conditions" "HealDoneGreaterThan(0) and IsSpell() and (HasUseCosts('SpellSlot') or HasUseCosts('WarlockSpellSlot'))"
 // data "StatsFunctors" "ApplyStatus(SELF,STARRYFORM_HEAL,100,1)"
+
+new entry "STARRYFORM_HEAL"
+type "StatusData"
+data "StatusType" "BOOST"
+using "STARRYFORM_HEAL"
+// %%% EMPTY
+// data "DisplayName" "hd4b6413cg3e45g429fg8f14g267ccd708bfc;1"
+// data "RemoveConditions" "SpellId('Target_StarryForm_Chalice_Heal')"
+data "RemoveConditions" "(context.HasContextFlag(StatsFunctorContext.OnSpellCast) and SpellId('Target_StarryForm_Chalice_Heal')) or context.HasContextFlag(StatsFunctorContext.OnTurn)"
+// data "RemoveEvents" "OnSpellCast;OnTurn"
+// data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
+data "TickType" "EndTurn"
+// data "StatusGroups" "SG_Polymorph"
+data "StatusGroups" ""
 
 new entry "Target_StarryForm_Chalice_Heal"
 type "SpellData"

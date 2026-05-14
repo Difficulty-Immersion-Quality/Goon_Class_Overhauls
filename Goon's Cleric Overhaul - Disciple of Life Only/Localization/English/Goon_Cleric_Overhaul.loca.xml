@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentList>
+	<!-- "DiscipleOfLife" --> <content contentuid="h0451c245ga622g4458g8053g5c3b1017b7f6" version="1">Your healing spells are more effective.&lt;br&gt;&lt;br&gt;Whenever you use a spell of 1st level or higher to restore &lt;LSTag Tooltip="HitPoints"&gt;hit points&lt;/LSTag&gt; to a creature, the creature regains additional[1] equal to 2 + the spell's level.</content>
+	<!-- "DiscipleOfLife" --> <content contentuid="he2716c5fg78e0g4373ga5efg3c082b49263a" version="1">&lt;LSTag Type="Spell" Tooltip="Shout_AuraOfVitality"&gt;Aura of Vitality&lt;/LSTag&gt;'s &lt;LSTag Type="Spell" Tooltip="Target_AuraOfVitality_Activate"&gt;Restore Vitality&lt;/LSTag&gt; benefits from the additional[1].</content>
+</contentList>

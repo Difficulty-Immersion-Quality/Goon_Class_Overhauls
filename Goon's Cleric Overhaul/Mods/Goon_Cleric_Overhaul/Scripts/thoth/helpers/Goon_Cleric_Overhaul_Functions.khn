@@ -1,4 +1,4 @@
--- Death Domain was not included by Larian. Supports Expansion by Celes, and Darkness Domain by Xarara.
+-- Death Domain was not included by Larian. Supports Expansion by Celes, Darkness Domain by Xarara, and 5e Subclasses Combined by Sumradagnoth.
 function IsDivineStrike()
     return SpellId('Target_DivineStrike_Melee_Life') 
          | SpellId('Projectile_DivineStrike_Ranged_Life') 
