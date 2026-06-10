@@ -17,7 +17,7 @@ function Goon_IsDivineSmite()
          | IsSpellChildOrVariantFromContext('Target_RWI_Smite_Divine')
          | IsSpellChildOrVariantFromContext('Target_PPHB2024_Smite_Divine_Free')
         -- No idea, pulled from Xarara
-         | ConditionResult(string.match(context.InterruptId, '^Interrupt_Smite_Unholy_Oathbreaker'))
+         | ConditionResult(string.match(context.InterruptId, '^Interrupt_Smite_Unholy_Oathbreaker') ~= nil)
         --  Unholy Smite for Oathbreakers by ChizFreak
          | IsSpellChildOrVariantFromContext('Target_CHIZ_Unholy_Smite')
          | IsSpellChildOrVariantFromContext('Target_CHIZ_Unholy_Smite_Free')
