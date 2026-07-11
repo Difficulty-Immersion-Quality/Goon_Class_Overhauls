@@ -7,11 +7,11 @@
 new entry "UncannyDodge"
 type "PassiveData"
 using "UncannyDodge"
-// Uncanny Dodge
+// // Uncanny Dodge
 // data "DisplayName" "h488725bbg091fg45d3g861eg92471d21a857;2"
-// Use your lightning-quick reflexes to protect yourself. When an attack hits you, you only take half the usual damage.
+// // Use your lightning-quick reflexes to protect yourself. When an attack hits you, you only take half the usual damage.
 // data "Description" "h834e2af0g618ag44c4gbc44gcde3210f48c0;2"
-// Use your lightning-quick reflexes to protect yourself.&lt;br&gt;&lt;br&gt;You can use a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; to halve incoming damage.
+// // Use your lightning-quick reflexes to protect yourself.&lt;br&gt;&lt;br&gt;You can use a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; to halve incoming damage.
 data "Description" "hd3deb635gc741g45dcg8deagc90fe7b5a480;1"
 // data "TooltipUseCosts" "ReactionActionPoint:1"
 // data "Icon" "PassiveFeature_UncannyDodge"
@@ -49,9 +49,9 @@ data "StatsFunctors" ""
 
 new entry "Goon_Interrupt_UncannyDodge"
 type "InterruptData"
-// Uncanny Dodge
+// // Uncanny Dodge
 data "DisplayName" "h488725bbg091fg45d3g861eg92471d21a857;2"
-// Use your lightning-quick reflexes to protect yourself.&lt;br&gt;&lt;br&gt;You can use a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; to halve incoming damage.
+// // Use your lightning-quick reflexes to protect yourself.&lt;br&gt;&lt;br&gt;You can use a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; to halve incoming damage.
 data "Description" "hd3deb635gc741g45dcg8deagc90fe7b5a480;1"
 data "Icon" "PassiveFeature_UncannyDodge"
 // TODO: test this - data "InterruptContext" "OnPostRoll;OnPreDamage"
@@ -70,9 +70,9 @@ data "InterruptFlags" "InterruptWhileInvisible"
 new entry "GOON_UNCANNYDODGE"
 type "StatusData"
 data "StatusType" "BOOST"
-// Uncanny Dodge
+// // Uncanny Dodge
 data "DisplayName" "h488725bbg091fg45d3g861eg92471d21a857;2"
-// Use your lightning-quick reflexes to protect yourself.&lt;br&gt;&lt;br&gt;You can use a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; to halve incoming damage.
+// // Use your lightning-quick reflexes to protect yourself.&lt;br&gt;&lt;br&gt;You can use a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; to halve incoming damage.
 data "Description" "hd3deb635gc741g45dcg8deagc90fe7b5a480;1"
 data "Icon" "PassiveFeature_UncannyDodge"
 data "Boosts" "DamageReduction(All, Half)"
@@ -81,9 +81,9 @@ data "Passives" "Goon_UncannyDodge_Technical_Passive"
 
 new entry "Goon_UncannyDodge_Technical_Passive"
 type "PassiveData"
-// Uncanny Dodge
+// // Uncanny Dodge
 data "DisplayName" "h488725bbg091fg45d3g861eg92471d21a857;2"
-// Use your lightning-quick reflexes to protect yourself.&lt;br&gt;&lt;br&gt;You can use a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; to halve incoming damage.
+// // Use your lightning-quick reflexes to protect yourself.&lt;br&gt;&lt;br&gt;You can use a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; to halve incoming damage.
 data "Description" "hd3deb635gc741g45dcg8deagc90fe7b5a480;1"
 data "Icon" "PassiveFeature_UncannyDodge"
 data "Properties" "IsHidden"

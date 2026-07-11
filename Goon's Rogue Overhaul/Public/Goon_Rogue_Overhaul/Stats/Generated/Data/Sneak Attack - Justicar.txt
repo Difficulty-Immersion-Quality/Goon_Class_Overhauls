@@ -12,7 +12,7 @@ using "Target_LHB_Justicar_ConsecratedStrike"
 // data "SpellSuccess" "DealDamage(MainMeleeWeapon,MainMeleeWeaponDamageType);DealDamage(LevelMapValue(SneakAttack),Radiant,Magical,,0,,true,true);ExecuteWeaponFunctors(MainHand);IF(HasPassive('MAG_ForcefulSneakAttack_Passive',context.Source)):DealDamage(1d4,Force,Magical,,0,,true,true)"
 data "SpellSuccess" "DealDamage(MainMeleeWeapon,MainMeleeWeaponDamageType);DealDamage(LevelMapValue(SneakAttack),Radiant,Magical,,0,,true,false);ExecuteWeaponFunctors(MainHand);IF(HasPassive('MAG_ForcefulSneakAttack_Passive',context.Source)):DealDamage(1d4,Force,Magical,,0,,true,false)"
 // data "Icon" "Action_DivineStrike_Radiant_Melee"
-// Consecrated Strike (Melee)
+// // Consecrated Strike (Melee)
 // data "DisplayName" "LHB_Justicar_ConsecratedStrike_Melee_Name;1"
 // data "TooltipDamageList" "DealDamage(MainMeleeWeapon,MainMeleeWeaponDamageType);DealDamage(LevelMapValue(SneakAttack),Radiant)"
 // data "UseCosts" "ActionPoint:1"
@@ -94,7 +94,7 @@ using "Projectile_LHB_Justicar_ConsecratedStrike"
 // data "SpellSuccess" "DealDamage(MainRangedWeapon,MainRangedWeaponDamageType);DealDamage(LevelMapValue(SneakAttack),Radiant,Magical,,0,,true,true);ExecuteWeaponFunctors(MainHand);IF(HasPassive('MAG_ForcefulSneakAttack_Passive',context.Source)):DealDamage(1d4,Force,Magical,,0,,true,true)"
 data "SpellSuccess" "DealDamage(MainRangedWeapon,MainRangedWeaponDamageType);DealDamage(LevelMapValue(SneakAttack),Radiant,Magical,,0,,true,false);ExecuteWeaponFunctors(MainHand);IF(HasPassive('MAG_ForcefulSneakAttack_Passive',context.Source)):DealDamage(1d4,Force,Magical,,0,,true,false)"
 // data "Icon" "Action_DivineStrike_Radiant_Ranged"
-// Consecrated Strike (Ranged)
+// // Consecrated Strike (Ranged)
 // data "DisplayName" "LHB_Justicar_ConsecratedStrike_Ranged_Name;1"
 // data "TooltipDamageList" "DealDamage(MainRangedWeapon,MainRangedWeaponDamageType);DealDamage(LevelMapValue(SneakAttack),Radiant)"
 // data "HitCosts" "SpellSlotsGroup:1:1:1"
@@ -169,14 +169,14 @@ new entry "Interrupt_LHB_Justicar_ConsecratedStrike"
 type "InterruptData"
 // using "Interrupt_SneakAttack"
 using "Interrupt_LHB_Justicar_ConsecratedStrike"
-// Consecrated Strike
+// // Consecrated Strike
 // data "DisplayName" "LHB_Justicar_ConsecratedStrike_Name;1"
 // data "Icon" "Action_DivineStrike_Radiant_Melee"
 // data "Properties" "IF(IsMeleeAttack()):DealDamage(LevelMapValue(SneakAttack),Radiant,Magical,,0,,true,true);IF(IsRangedAttack()):DealDamage(LevelMapValue(SneakAttack),Radiant,Magical,,0,,true,true);IF(HasPassive('MAG_ForcefulSneakAttack_Passive',context.Source)):DealDamage(1d4,Force,Magical,,0,,true,true)"
 // data "TooltipDamageList" "DealDamage(LevelMapValue(SneakAttack),Radiant)"
 data "Properties" "IF(IsAttackType(AttackType.MeleeWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(IsAttackType(AttackType.RangedWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(IsThrowAttackRoll()):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(Goon_UnarmedSnek()):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(Goon_UnarmedSnek_Magic()):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(Goon_WSSnek_Pierce()):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(Goon_WSSnek_Pierce_Magic()):DealDamage(LevelMapValue(SneakAttack), Piercing,Magical,,0,,true,true);IF(Goon_WSSnek_Slash()):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(Goon_WSSnek_Slash_Magic()):DealDamage(LevelMapValue(SneakAttack), Slashing,Magical,,0,,true,true);IF(Goon_WSSnek_Bludge()):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(Goon_WSSnek_Bludge_Magic()):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(Goon_ForcefulSnek()):DealDamage(1d4, Force,Magical,,0,,true,false)"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition',false,true,context.Observer) and IsRangedWeaponAttack())) and not IsCritical() and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not (SpellId('Projectile_SneakAttack') or SpellId('Target_SneakAttack') or LHB_IsConsecratedStrike()) and not AnyEntityIsItem()"
-data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or (HasPassive('SneakAttack_LLRuffian',context.Source) and IsMonkWeaponAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack()) or (Goon_IsDruidWildshape(context.Observer) and (IsMeleeAttack() or IsRangedAttack()) and (IsDamageTypePiercing() or IsDamageTypeSlashing() or IsDamageTypeBludgeoning()))) and not IsCritical() and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not AnyEntityIsItem() and not Goon_IsSneakAttackSpell()"
+data "Conditions" "Goon_SneakAttackInterruptConditions() and not IsCritical()"
 // data "Cost" "SneakAttack_Charge:1;SpellSlotsGroup:1:1:1"
 // data "Cooldown" ""
 // data "InterruptDefaultValue" "Ask;Enabled"
@@ -222,20 +222,18 @@ data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',con
 // using "Interrupt_LHB_Justicar_ConsecratedStrike"
 // data "Cost" "SneakAttack_Charge:1;SpellSlotsGroup:1:1:9"
 
-
-
 new entry "Interrupt_LHB_Justicar_ConsecratedStrike_Critical"
 type "InterruptData"
 // using "Interrupt_SneakAttack_Critical"
 using "Interrupt_LHB_Justicar_ConsecratedStrike_Critical"
-// Consecrated Strike (Critical Hit)
+// // Consecrated Strike (Critical Hit)
 // data "DisplayName" "LHB_Justicar_ConsecratedStrike_Critical_Name;1"
 // data "Icon" "Action_DivineStrike_Radiant_Critical"
 // data "Properties" "IF(IsMeleeAttack()):DealDamage(LevelMapValue(SneakAttack),Radiant,Magical,,0,,true,true);IF(IsRangedAttack()):DealDamage(LevelMapValue(SneakAttack),Radiant,Magical,,0,,true,true);IF(HasPassive('MAG_ForcefulSneakAttack_Passive',context.Source)):DealDamage(1d4,Force,Magical,,0,,true,true)"
 data "Properties" "IF(IsAttackType(AttackType.MeleeWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(IsAttackType(AttackType.RangedWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(IsThrowAttackRoll()):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(Goon_UnarmedSnek()):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(Goon_UnarmedSnek_Magic()):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(Goon_WSSnek_Pierce()):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(Goon_WSSnek_Pierce_Magic()):DealDamage(LevelMapValue(SneakAttack), Piercing,Magical,,0,,true,true);IF(Goon_WSSnek_Slash()):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(Goon_WSSnek_Slash_Magic()):DealDamage(LevelMapValue(SneakAttack), Slashing,Magical,,0,,true,true);IF(Goon_WSSnek_Bludge()):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(Goon_WSSnek_Bludge_Magic()):DealDamage(LevelMapValue(SneakAttack), Radiant,Magical,,0,,true,false);IF(Goon_ForcefulSnek()):DealDamage(1d4, Force,Magical,,0,,true,false)"
 // data "TooltipDamageList" "DealDamage(LevelMapValue(SneakAttack),Radiant)"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition',false,true,context.Observer) and IsRangedWeaponAttack())) and HasDamageEffectFlag(DamageFlags.Hit) and IsCritical() and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not (SpellId('Projectile_SneakAttack') or SpellId('Target_SneakAttack') or LHB_IsConsecratedStrike()) and not AnyEntityIsItem()"
-data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or (HasPassive('SneakAttack_LLRuffian',context.Source) and IsMonkWeaponAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack()) or (Goon_IsDruidWildshape(context.Observer) and (IsMeleeAttack() or IsRangedAttack()) and (IsDamageTypePiercing() or IsDamageTypeSlashing() or IsDamageTypeBludgeoning()))) and IsCritical() and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not AnyEntityIsItem() and not Goon_IsSneakAttackSpell()"
+data "Conditions" "Goon_SneakAttackInterruptConditions() and IsCritical()"
 // data "Cost" "SneakAttack_Charge:1;SpellSlotsGroup:1:1:1"
 // data "Cooldown" ""
 // data "InterruptDefaultValue" "Ask;Enabled"

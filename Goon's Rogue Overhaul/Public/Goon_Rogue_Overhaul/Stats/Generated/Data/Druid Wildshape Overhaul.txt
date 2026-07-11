@@ -1,5 +1,6 @@
 // ==================================== Druid Wildshape Overhaul ====================================
 
+// TODO: Doesn't this just not work, because it needs to be a spell not otherwise already known in the humanoid form?
 new entry "WSO_WILDSHAPE_MULTICLASS_ROGUE"
 type "StatusData"
 data "StatusType" "BOOST"

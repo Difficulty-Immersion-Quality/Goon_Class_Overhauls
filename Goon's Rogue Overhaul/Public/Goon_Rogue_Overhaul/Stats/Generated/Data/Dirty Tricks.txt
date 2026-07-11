@@ -6,11 +6,11 @@ new entry "SWASHBUCKLER_ADV"
 type "StatusData"
 data "StatusType" "BOOST"
 using "SWASHBUCKLER_ADV"
-// Dirty Advantage
+// // Dirty Advantage
 // data "DisplayName" "ha6a45fa4ga331g45acga782g5c896fb14563;1"
-// Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next attack.
+// // Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next attack.
 // data "Description" "h7fcdbebbgbae9g4fb1g96c8g26a5d8801de5;1"
-// Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;.
+// // Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;.
 data "Description" "h18667283g2a98g46abg8009gf6b65088b7c4;1"
 // data "Icon" "GenericIcon_Intent_Buff"
 // data "StackId" "SWASHBUCKLER_ADV"
@@ -21,7 +21,7 @@ data "Description" "h18667283g2a98g46abg8009gf6b65088b7c4;1"
 new entry "SwashbucklerAdvantage"
 type "PassiveData"
 using "SwashbucklerAdvantage"
-// %%% Empty
+// // %%% Empty
 // data "DisplayName" "h6749c4c0gfef0g4ecag9f90g74ea14f8594c;1"
 // data "Properties" "IsHidden"
 // data "StatsFunctorContext" "OnAttack;OnDamage"
@@ -30,8 +30,9 @@ data "Conditions" "IsAttack() and IsHit()"
 // data "StatsFunctors" "RemoveStatus(SELF,SWASHBUCKLER_ADV)"
 
 // ==================================== Dirty Trick: Sand Toss ====================================
-// Bug Fix: No longer uses Spell Save DC for the Blind, instead using Maneuver Save DC but restricted to Dexterity.
-// Bug Fix: Now an unarmed attack instead of a weapon attack.
+// Bug Fix: No longer uses Spell Save DC for the Blinded Constitution Saving Throw, instead using Dexterity.
+// Changes: No longer has a melee weapon Attack Roll (previously swapped to a melee unarmed attack). Instead, the Blinded Saving Throw is the roll for action fail/success.
+// Changes: Damage reduced to a static 1 Bludgeoning, down from 1d6 Bludgeoning.
 // Note: "CalculateSpellDC" did not work in this content unlike with Barbarian's Wild Magic. Perhaps it's a matter of "SpellType", Shout vs Target, I dunno.
 
 new entry "Target_DirtyTrick_Blind"
@@ -40,16 +41,16 @@ data "SpellType" "Target"
 using "Target_DirtyTrick_Blind"
 data "TargetRadius" "1.5"
 // data "SpellRoll" "Attack(AttackType.MeleeWeaponAttack)"
-data "SpellRoll" "Attack(AttackType.MeleeUnarmedAttack)"
+data "SpellRoll" "not SavingThrow(Ability.Constitution, SourceSpellDC(10,context.Source,Ability.Dexterity))"
 // data "SpellSuccess" "IF(not SavingThrow(Ability.Constitution, SourceSpellDC())):ApplyStatus(BLINDED,100,2);DealDamage(1d6,Bludgeoning);ApplyStatus(SELF,SWASHBUCKLER_ADV,100,2);"
-data "SpellSuccess" "IF(not SavingThrow(Ability.Constitution, SourceSpellDC(10,context.Source,Ability.Dexterity))):ApplyStatus(BLINDED,100,2);DealDamage(1d6,Bludgeoning);ApplyStatus(SELF,SWASHBUCKLER_ADV,100,2)"
+data "SpellSuccess" "ApplyStatus(BLINDED,100,2);DealDamage(1,Bludgeoning);ApplyStatus(SELF,SWASHBUCKLER_ADV,100,2)"
 // data "TargetConditions" "Character() and not Self() and not Dead()"
 // data "Icon" "Action_DirtyTrick_Blind"
-// Dirty Trick: Sand Toss
+// // Dirty Trick: Sand Toss
 // data "DisplayName" "ha448fc01g646dg4ed0ga550g158422f51674;2"
-// Toss a handful of sand at your enemy and possibly &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blind&lt;/LSTag&gt; them.
+// // Toss a handful of sand at your enemy and possibly &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blind&lt;/LSTag&gt; them.
 // data "Description" "h6e2b835ag8a22g4de2ga90fg92ccd012c642;2"
-// Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next attack.
+// // Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next attack.
 // data "ExtraDescription" "h6d6058c1g275ag4dd4gb148ge7394c7aea45;1"
 // data "TooltipDamageList" "DealDamage(1d6,Bludgeoning)"
 // data "TooltipAttackSave" "Constitution"
@@ -72,7 +73,7 @@ data "TooltipStatusApply" "ApplyStatus(BLINDED,100,2);ApplyStatus(SWASHBUCKLER_A
 // data "Sheathing" "Somatic"
 
 // ==================================== Dirty Trick: Vicious Mockery ====================================
-// TODO: "When target fails the save, battle log states erroneously that the caster failed the save."
+// TODO: "When target fails the save, combat log states erroneously that the caster failed the save."
 
 new entry "Target_DirtyTrick_Vicious"
 type "SpellData"
@@ -81,9 +82,9 @@ data "SpellType" "Target"
 using "Target_DirtyTrick_Vicious"
 // data "SpellSuccess" "ApplyStatus(VICIOUSMOCKERY,100,1);DealDamage(LevelMapValue(D4Cantrip),Psychic,Magical);ApplyStatus(SELF,SWASHBUCKLER_ADV,100,2);"
 // data "Icon" "Action_DirtyTrick_ViciousMockery"
-// Dirty Trick: Vicious Mockery
+// // Dirty Trick: Vicious Mockery
 // data "DisplayName" "h5d259314g1895g4578ga2efg34184a6c08e2;1"
-// Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next attack.
+// // Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next attack.
 // data "ExtraDescription" "h8d81a3c6ge530g47f8ga9f9g53d6f89ce4e0;1"
 // data "TooltipStatusApply" "ApplyStatus(VICIOUSMOCKERY,100,1);ApplyStatus(SWASHBUCKLER_ADV,100,1);"
 data "TooltipStatusApply" "ApplyStatus(VICIOUSMOCKERY,100,1);ApplyStatus(SWASHBUCKLER_ADV,100,2)"
@@ -115,11 +116,11 @@ data "TargetRadius" "MeleeMainWeaponRange"
 data "SpellSuccess" "IF(not SavingThrow(Ability.Dexterity, SourceSpellDC(10,context.Source,Ability.Dexterity))):ApplyStatus(DISARM,100,1);DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand);ApplyStatus(SELF,SWASHBUCKLER_ADV,100,2);"
 // data "TargetConditions" "Character() and not Self() and not Dead() and HasWeaponInMainHand()"
 // data "Icon" "Action_DirtyTrick_Disarm"
-// Dirty Trick: Flick o' the Wrist
+// // Dirty Trick: Flick o' the Wrist
 // data "DisplayName" "hb7affffagb3d7g4dc3gb8fcg83c469efc359;2"
-// Flick your weapon at a target and possibly &lt;LSTag Type="Status" Tooltip="DISARMED"&gt;Disarm&lt;/LSTag&gt; them.
+// // Flick your weapon at a target and possibly &lt;LSTag Type="Status" Tooltip="DISARMED"&gt;Disarm&lt;/LSTag&gt; them.
 // data "Description" "h4b071afdgb810g40e6gb8dag103200f79702;1"
-// Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next attack.
+// // Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next attack.
 // data "ExtraDescription" "he5e284efg0519g4331gb13egc6f7815c8d3e;1"
 // data "TooltipDamageList" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);"
 // data "TooltipAttackSave" "Dexterity"

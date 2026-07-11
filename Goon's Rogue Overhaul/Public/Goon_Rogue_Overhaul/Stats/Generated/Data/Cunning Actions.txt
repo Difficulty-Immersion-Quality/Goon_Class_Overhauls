@@ -6,7 +6,7 @@ type "SpellData"
 data "SpellType" "Shout"
 // using "Shout_Dash_BonusAction"
 using "Shout_Dash_CunningAction"
-// Cunning Action: Dash
+// // Cunning Action: Dash
 // data "DisplayName" "hca05588dgfa78g469agaeaag31c022d47105;1"
 // data "SpellFlags" "IgnoreSilence;Stealth;Invisible;NoCameraMove"
 data "SpellFlags" "IgnoreSilence;Stealth;Invisible;NoCameraMove;Wildshape"
@@ -17,7 +17,7 @@ data "SpellType" "Shout"
 // using "Shout_Hide"
 using "Shout_Hide_BonusAction"
 // data "Icon" "Action_Hide"
-// Cunning Action: Hide
+// // Cunning Action: Hide
 // data "DisplayName" "h9fe46a26gc140g4fbfgb3b3gf82fa9a95b94;1"
 // data "CastTextEvent" "Cast"
 // data "UseCosts" "BonusActionPoint:1"
@@ -31,9 +31,9 @@ type "SpellData"
 data "SpellType" "Shout"
 // using "Shout_Disengage_BonusAction"
 using "Shout_Disengage_CunningAction"
-// Cunning Action: Disengage
+// // Cunning Action: Disengage
 // data "DisplayName" "habbf694cg5362g4822g9948gbdb661c80b50;2"
-// Retreat safely: moving won't provoke &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt;.
+// // Retreat safely: moving won't provoke &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt;.
 // data "Description" "h0eedd156ga4ebg4bc5gb05eg667e50e3ea82;1"
 // data "SpellFlags" "NoCameraMove"
 data "SpellFlags" "NoCameraMove;Wildshape"

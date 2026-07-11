@@ -3,9 +3,9 @@
 
 // new entry "FancyFootwork"
 // type "PassiveData"
-// Fancy Footwork
+// // Fancy Footwork
 // data "DisplayName" "hf3ec394fgd4c9g4b89g99bcg7846b8d45514;1"
-// If you make a melee attack against a target, that target can't make &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt; against you for the rest of your turn.
+// // If you make a melee attack against a target, that target can't make &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt; against you for the rest of your turn.
 // data "Description" "h31c6c836gb2cbg4d74g838dga06083bf30c3;1"
 // data "Icon" "PassiveFeature_FancyFootwork"
 // data "Properties" "Highlighted"
@@ -17,7 +17,7 @@ new entry "FANCYFOOTWORK"
 type "StatusData"
 data "StatusType" "BOOST"
 using "FANCYFOOTWORK"
-// %%% EMPTY
+// // %%% EMPTY
 // data "DisplayName" "h212f0658g301eg42dagb4c7gc6a00b66ffdf;1"
 // data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
 data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator;TickingWithSource"
@@ -26,7 +26,7 @@ data "TickType" "EndTurn"
 // new entry "FANCYFOOTWORK_OWNER"
 // type "StatusData"
 // data "StatusType" "BOOST"
-// %%% EMPTY
+// // %%% EMPTY
 // data "DisplayName" "h5e6f9b91g1aa5g4a97gb2ebgcca8314eb90a;1"
 // data "StackId" "FANCYFOOTWORK_OWNER"
 // data "TickType" "EndTurn"

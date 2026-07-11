@@ -1,17 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentList>
-	<!-- "RakishAudacity" --> <content contentuid="hba8f1eeeg12c1g43dag9a43g15d42b380150" version="1">You gain a +[1] bonus to Initiative rolls. This scales with your Rogue level.&lt;br&gt;&lt;br&gt;You no longer need &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; to trigger &lt;LSTag Type="Spell" Tooltip="Target_SneakAttack"&gt;Sneak Attack&lt;/LSTag&gt; if there are no other combatants within [2] of the target or if you have an ally within that range. All the other rules for Sneak Attack still apply to you.</content>
-	<!-- "UncannyDodge", "Goon_Interrupt_UncannyDodge", "GOON_UNCANNYDODGE", "Goon_UncannyDodge_Technical_Passive" --> <content contentuid="hd3deb635gc741g45dcg8deagc90fe7b5a480" version="1">Use your lightning-quick reflexes to protect yourself.&lt;br&gt;&lt;br&gt;You can use a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; to halve incoming damage.</content>
+	<!-- "RakishAudacity" -->
+	<content contentuid="hba8f1eeeg12c1g43dag9a43g15d42b380150" version="1">You gain a +[1] bonus to Initiative rolls. This scales with your Rogue level.&lt;br&gt;&lt;br&gt;You no longer need &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; to use &lt;LSTag Type="Spell" Tooltip="Target_SneakAttack"&gt;Sneak Attack&lt;/LSTag&gt; against a creature if you are within [3] of it, no other creatures are within [2] of you, and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on the &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;. All the other rules for &lt;LSTag Type="Spell" Tooltip="Target_SneakAttack"&gt;Sneak Attack&lt;/LSTag&gt; still apply to you.</content>
+	<!-- "Target_SneakAttack", "Projectile_SneakAttack", "Interrupt_SneakAttack", "Target_LLRuffian_SneakAttack_Unarmed" -->
+	<content contentuid="h33bdc83bgfdaag4d6fga7bcg1c7a1c842aab" version="1">Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to a creature you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against, or if an ally who is not &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt; is within [2] of the target creature and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.</content>
+	<!-- "Target_SneakAttack_Rakish" -->
+	<content contentuid="h15c8745egb34ag4599g9ea7g805fc69720f4" version="1">Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to a creature you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against, or if an ally who is not &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt; is within [2] of the target creature and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;You can also use this attack without &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; if you are within [3] of it, no other creatures are within [2] of you, and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on the &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;. All the other rules for &lt;LSTag Type="Spell" Tooltip="Target_SneakAttack"&gt;Sneak Attack&lt;/LSTag&gt; still apply to you.</content>
+	<!-- "Target_LLRuffian_SneakAttack" -->
+	<content contentuid="hc3dede27gbc3fg4f2eg87f4ge9c88566ff8e" version="1">Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to a creature you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against, or if an ally who is not &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt; is within [2] of the target creature and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;You can also use this attack with any weapon that isn't &lt;LSTag Tooltip="TwoHanded"&gt;Two-Handed&lt;/LSTag&gt;, so long as you are proficient with the weapon.</content>
 
-	<!-- "ActionResourceDefinition" --> <content contentuid="h085facc7g12e0g4ec3gbb21gd7b0b4c58d51" version="1">Sneak Attack</content>
-	<!-- "ActionResourceDefinition" --> <content contentuid="he69d9d1dg8ba2g44f7g88bfg9dec2e144acd" version="1">Once per turn, you can deal extra damage when you hit with an &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt; made with &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; or against an enemy standing near your allies. The attack must use a &lt;LSTag Tooltip="Finesse"&gt;Finesse&lt;/LSTag&gt; or ranged weapon.</content>
+	<!-- "Goon_Interrupt_DWE_CunningStrike_Poison" -->
+	<content contentuid="hd0d82873g092eg40afgad0ag7996a5070eeb" version="1">Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; and attempt to &lt;LSTag Type="Status" Tooltip="DWE_CUNNING_STRIKE_POISON"&gt;Poison&lt;/LSTag&gt; the target for up to 10 rounds.</content>
 
-	<!-- "SWASHBUCKLER_ADV" --> <content contentuid="h18667283g2a98g46abg8009gf6b65088b7c4" version="1">Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;.</content>
+	<!-- "Interrupt_LLRuffian_RuthlessStrike" -->
+	<content contentuid="hab5bd6c1g4642g4184ga229gcad1e011516c" version="1">Turn your attack into a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.</content>
 
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
+	<!-- "UncannyDodge", "Goon_Interrupt_UncannyDodge", "GOON_UNCANNYDODGE", "Goon_UncannyDodge_Technical_Passive" -->
+	<content contentuid="hd3deb635gc741g45dcg8deagc90fe7b5a480" version="1">Use your lightning-quick reflexes to protect yourself.&lt;br&gt;&lt;br&gt;You can use a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; to halve incoming damage.</content>
+
+	<!-- "ActionResourceDefinition" -->
+	<content contentuid="h085facc7g12e0g4ec3gbb21gd7b0b4c58d51" version="1">Sneak Attack</content>
+	<content contentuid="he69d9d1dg8ba2g44f7g88bfg9dec2e144acd" version="1">Once per turn, you can deal extra damage when you hit with an &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt; made with &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; or against an enemy standing near your allies. The attack must use a &lt;LSTag Tooltip="Finesse"&gt;Finesse&lt;/LSTag&gt; or ranged weapon.</content>
+
+	<!-- "SWASHBUCKLER_ADV" -->
+	<content contentuid="h18667283g2a98g46abg8009gf6b65088b7c4" version="1">Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;.</content>
+
+	<!-- "" -->
+	<content contentuid="" version="1"></content>
+	<!-- "" -->
+	<content contentuid="" version="1"></content>
+	<!-- "" -->
+	<content contentuid="" version="1"></content>
 </contentList>

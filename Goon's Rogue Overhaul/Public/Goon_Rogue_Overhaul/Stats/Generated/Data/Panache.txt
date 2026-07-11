@@ -1,6 +1,7 @@
 // ==================================== Panache ====================================
 // Bug Fix: Added tooltip warnings similar to the Charm Person spell, but matching the specific functionality.
 // Bug Fix: Panache: Disadvantage removal conditions have been made more robust to catch edge cases where it may not have been removed appropriately.
+// Bug Fix: Now explicitly checks for the HUMANOID tag, instead of just having an exclusion list.
 
 new entry "Target_Panache"
 type "SpellData"
@@ -10,12 +11,13 @@ using "Target_Panache"
 // data "SpellRoll" "SkillCheck(Skill.Persuasion,context.Target.GetPassiveSkill(Skill.Insight))"
 // data "SpellSuccess" "IF(Enemy()):ApplyStatus(PANACHE,100,10);IF(not Enemy()):ApplyStatus(PANACHE_CHARMED,100,10);ApplyStatus(SELF,PANACHE_OWNER,100,10)"
 // data "TargetConditions" "not Self() and Character() and not (Tagged('BEAST',context.Target) or Tagged('MONSTROSITY') or Tagged('PLANT',context.Target) or Tagged('UNDEAD',context.Target) or Tagged('OOZE',context.Target) or Tagged('CONSTRUCT',context.Target) or Tagged('ELEMENTAL',context.Target)) and not Dead();"
+data "TargetConditions" "not Self() and Character() and Tagged('HUMANOID',context.Target) and not (Tagged('BEAST',context.Target) or Tagged('MONSTROSITY') or Tagged('PLANT',context.Target) or Tagged('UNDEAD',context.Target) or Tagged('OOZE',context.Target) or Tagged('CONSTRUCT',context.Target) or Tagged('ELEMENTAL',context.Target)) and not Dead()"
 // data "Icon" "Action_Panache"
-// Panache
+// // Panache
 // data "DisplayName" "h83f4c296g543fg49b2g9894g38f2d8696f04;1"
-// Roll a Persuasion check to beguile a humanoid, who must contest it with an Insight check. Enemies who fail gain &lt;LSTag Type="Status" Tooltip="PANACHE"&gt;Panache: Disadvantage&lt;/LSTag&gt;; others who fail become &lt;LSTag Type="Status" Tooltip="CHARMED"&gt;Charmed&lt;/LSTag&gt;.
+// // Roll a Persuasion check to beguile a humanoid, who must contest it with an Insight check. Enemies who fail gain &lt;LSTag Type="Status" Tooltip="PANACHE"&gt;Panache: Disadvantage&lt;/LSTag&gt;; others who fail become &lt;LSTag Type="Status" Tooltip="CHARMED"&gt;Charmed&lt;/LSTag&gt;.
 // data "Description" "hcb29ffd6gc229g43fcg9982g9ecc764e8cab;5"
-// Doesn't work on beasts, constructs, elementals, monstrosities, plants, or undead.
+// // Doesn't work on beasts, constructs, elementals, monstrosities, plants, or undead.
 // data "ExtraDescription" "h3bd8f5bcgc78eg4be4gab2fg82fddf9a9e01;5"
 // data "TooltipStatusApply" "ApplyStatus(PANACHE,100,10);ApplyStatus(PANACHE_CHARMED,100,10)"
 // &lt;LSTag Type="Image" Info="SoftWarning"/&gt; &lt;LSTag Type="Status" Tooltip="PANACHE"&gt;Panache: Disadvantage&lt;/LSTag&gt; ends early if an entity other than the caster harms the target.
@@ -36,9 +38,9 @@ data "TooltipPermanentWarnings" "25454c14-1083-4f60-b229-c30e3c5886b7;676ef361-c
 // new entry "PANACHE"
 // type "StatusData"
 // data "StatusType" "BOOST"
-// Panache: Disadvantage
+// // Panache: Disadvantage
 // data "DisplayName" "hd949774cg4e2dg412fga08cgb35c03573323;1"
-// You have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against all enemies except the caster of  &lt;LSTag Type="Spell" Tooltip="Target_Panache"&gt;Panache&lt;/LSTag&gt;. You are also unable to make &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt; against enemies other than the caster.
+// // You have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against all enemies except the caster of  &lt;LSTag Type="Spell" Tooltip="Target_Panache"&gt;Panache&lt;/LSTag&gt;. You are also unable to make &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt; against enemies other than the caster.
 // data "Description" "had7a8c4bg8548g41a5ga8f0g917a335f2c56;3"
 // data "Icon" "PassiveFeature_Generic_Threat"
 // data "Boosts" "IF(not HasStatus('PANACHE', context.Source, context.Target)):Disadvantage(AttackRoll)"
@@ -55,7 +57,7 @@ using "PanacheCheck"
 // data "StatsFunctorContext" "OnAttacked"
 data "StatsFunctorContext" "OnAttacked;OnDamaged"
 // data "Conditions" "HasDamageEffectFlag(DamageFlags.Hit) and HasSpellFlag(SpellFlags.Harmful) and not HasStatus('PANACHE_OWNER',context.Source);"
-data "Conditions" "(IsAttack() and IsHit()) or (HasDamageEffectFlag(DamageFlags.Hit) and HasSpellFlag(SpellFlags.Harmful)) and not HasStatus('PANACHE_OWNER',context.Source)"
+data "Conditions" "IsHit() and (IsAttack() or HasSpellFlag(SpellFlags.Harmful)) and not HasStatus('PANACHE_OWNER',context.Source)"
 // data "StatsFunctors" "RemoveStatus(PANACHE)"
 
 // new entry "PANACHE_CHARMED"
@@ -67,7 +69,7 @@ data "Conditions" "(IsAttack() and IsHit()) or (HasDamageEffectFlag(DamageFlags.
 // new entry "PANACHE_OWNER"
 // type "StatusData"
 // data "StatusType" "BOOST"
-// %%% EMPTY
+// // %%% EMPTY
 // data "DisplayName" "hcc64b34cg912ag4c91ga0b3gf2c5b0eb4134;1"
 // data "StackId" "PANACHE_OWNER"
 // data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"

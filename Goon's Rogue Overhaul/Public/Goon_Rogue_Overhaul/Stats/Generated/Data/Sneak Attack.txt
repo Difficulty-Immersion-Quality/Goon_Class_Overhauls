@@ -2,6 +2,7 @@
 // Bug Fix: Spell variants no longer expend a Sneak Attack Charge unless you hit your target, for cohesion with Interrupt functionality.
 // Bug Fix: Damage now always matches the weapon's damage type.
 // Bug Fix: Interrupts can be used while under the effects of more non-hostile and non-spellcasting restricted Polymorphs.
+// Bug Fix: Throwing finesse weapons no longer requires you to have a finesse weapon equipped, to trigger Sneak Attack interrupts.
 // Changes: The resource is now visible on the hotbar.
 // (It will just be a pink star without a mod adding an icon, such as Cunning Strike and UA6 Swashbuckler's Cunning Strike by wesslen or Sneak Attack Charge on Hotbar (Patch 8 Ready) by MaxStrengthWizard.)
 // Changes: Interrupts can be used by Invisible players.
@@ -13,6 +14,8 @@
 // Bonus: Native support for Druid Wild Shape Overhaul by ShadyDax.
 // Bonus: Native support for The Ruffian - A Strength Rogue by TheWailingBard.
 // TODO: Offhand & throw spell variants, put them in a container.
+// TODO: Why am I excluding myrmidons?
+// TODO: It would be nice to filter druid shit by the actual DamageType on the actions, but it's unreliable. E.g. "Target_Claws" doesn't even change it from Bludgeoning to Slashing. (Fixed that in UNSO.)
 
 // ==================================== Sneak Attack - Spells
 
@@ -28,13 +31,18 @@ data "Cooldown" "None"
 // data "SpellRoll" "Attack(AttackType.MeleeWeaponAttack)"
 // data "SpellSuccess" "DealDamage(MainMeleeWeapon + LevelMapValue(SneakAttack), MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand)"
 // data "TargetConditions" "Character() and not Self() and not Dead() and ((HasAdvantage(AttackType.MeleeWeaponAttack) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDisadvantage(AttackType.MeleeWeaponAttack)) and not Tagged('INANIMATE')"
+data "TargetConditions" "Goon_SneakAttackTargetConditions_Melee()"
 // data "Icon" "Action_SneakAttack_Melee"
-// Sneak Attack (Melee)
+// // Sneak Attack (Melee)
 // data "DisplayName" "h256bdc37g70bdg458bgae28g999cfab73548;1"
-// Deal extra damage to a foe you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against.
+// // Deal extra damage to a foe you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against.
 // data "Description" "he28213afga38ag4f07gbc83gfb1c8d9978f1;5"
-// Also works if you have an ally within [1] of the target and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
+// // Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to a creature you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against, or if an ally who is not &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt; is within [2] of the target creature and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
+data "Description" "h33bdc83bgfdaag4d6fga7bcg1c7a1c842aab;1"
+data "DescriptionParams" "LevelMapValue(SneakAttack);Distance(1.5);Distance(2)"
+// // Also works if you have an ally within [1] of the target and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
 // data "ExtraDescription" "ha6523313gf209g4f1ag89cagc3d13e5f3316;6"
+data "ExtraDescription" ""
 // data "ExtraDescriptionParams" "Distance(1.5)"
 // data "TooltipDamageList" "DealDamage(MainMeleeWeapon + LevelMapValue(SneakAttack), MainMeleeWeaponDamageType)"
 // data "CastSound" "Action_Cast_SneakAttack"
@@ -65,15 +73,20 @@ data "Cooldown" "None"
 // data "SpellSuccess" "DealDamage(MainRangedWeapon+ LevelMapValue(SneakAttack), MainRangedWeaponDamageType);ExecuteWeaponFunctors(MainHand)"
 // data "SpellFail" "IF(HasStatus('YSRSLIDFWWADNIWHWIHLY')):SpawnExtraProjectiles(Projectile_SneakAttack);ApplyStatus(YSRSLIDFWWADNIWHWIHLY_YWNK,100,1)"
 // data "TargetConditions" "Character() and not Self() and not Dead() and ((HasAdvantage(AttackType.RangedWeaponAttack) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDisadvantage(AttackType.RangedWeaponAttack))"
+data "TargetConditions" "Goon_SneakAttackTargetConditions_Ranged()"
 // data "ProjectileCount" "1"
 // data "Trajectories" "52f94ae8-7b9d-4410-9290-91a8a909b612,b50a1c9f-0414-6136-3910-4579d6f162f9,5d0c3de8-d2cd-0f2f-1274-821d99ad1dcf"
 // data "Icon" "Action_SneakAttack_Ranged"
-// Sneak Attack (Ranged)
+// // Sneak Attack (Ranged)
 // data "DisplayName" "h6b58bcf5g0aa9g48a7g9296g59f2899fb1e5;1"
-// Deal extra damage to a foe you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against.
+// // Deal extra damage to a foe you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against.
 // data "Description" "h09e1b1c0g0540g4737gb65dgdc58ff9bf98b;7"
-// You can also use this attack if you have an ally within [1] of the target and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
+// // Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to a creature you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against, or if an ally who is not &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt; is within [2] of the target creature and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
+data "Description" "h33bdc83bgfdaag4d6fga7bcg1c7a1c842aab;1"
+data "DescriptionParams" "LevelMapValue(SneakAttack);Distance(1.5);Distance(2)"
+// // You can also use this attack if you have an ally within [1] of the target and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
 // data "ExtraDescription" "h6a5e31efg2e94g4316ga2d0ge2a980b91b5e;5"
+data "ExtraDescription" ""
 // data "ExtraDescriptionParams" "Distance(1.5)"
 // data "TooltipDamageList" "DealDamage(MainRangedWeapon+ LevelMapValue(SneakAttack), MainRangedWeaponDamageType)"
 // data "TooltipAttackSave" "RangedWeaponAttack"
@@ -97,18 +110,22 @@ data "HitCosts" "SneakAttack_Charge:1"
 new entry "Interrupt_SneakAttack"
 type "InterruptData"
 using "Interrupt_SneakAttack"
-// Sneak Attack
+// // Sneak Attack
 // data "DisplayName" "hd8a8ad84g4f65g46fdgb04dg5b91daf7f291;1"
-// Deal extra damage to a foe you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against.
+// // Deal extra damage to a foe you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against.
 // data "Description" "h23701712ge994g40bfga729g36dc38dc7c65;2"
-// You can also Sneak Attack targets &lt;LSTag Type="Status" Tooltip="FLANKED"&gt;Threatened&lt;/LSTag&gt; by adjacent allies provided you aren't attacking with &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
+// // Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to a creature you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against, or if an ally who is not &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt; is within [2] of the target creature and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
+data "Description" "h33bdc83bgfdaag4d6fga7bcg1c7a1c842aab;1"
+data "DescriptionParams" "LevelMapValue(SneakAttack);Distance(1.5);Distance(2)"
+// // You can also Sneak Attack targets &lt;LSTag Type="Status" Tooltip="FLANKED"&gt;Threatened&lt;/LSTag&gt; by adjacent allies provided you aren't attacking with &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
 // data "ExtraDescription" "h76d95144gbf2eg4c33gae0bg9661d52519e1;1"
+data "ExtraDescription" ""
 // data "Icon" "Action_SneakAttack_Melee"
 // data "InterruptContext" "OnCastHit"
 // data "InterruptContextScope" "Self"
 // data "Container" "YesNoDecision"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack())) and not IsCritical() and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not (SpellId('Projectile_SneakAttack') or SpellId('Target_SneakAttack')) and not AnyEntityIsItem();"
-data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or (HasPassive('SneakAttack_LLRuffian',context.Source) and IsMonkWeaponAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack()) or (Goon_IsDruidWildshape(context.Observer) and (IsMeleeAttack() or IsRangedAttack()) and (IsDamageTypePiercing() or IsDamageTypeSlashing() or IsDamageTypeBludgeoning()))) and not IsCritical() and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not AnyEntityIsItem() and not Goon_IsSneakAttackSpell()"
+data "Conditions" "Goon_SneakAttackInterruptConditions() and not IsCritical()"
 // data "Properties" "IF(IsMeleeAttack()):DealDamage(LevelMapValue(SneakAttack), MainMeleeWeaponDamageType);IF(IsRangedAttack()):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType);IF(HasPassive('MAG_ForcefulSneakAttack_Passive', context.Source)):DealDamage(1d4, Force,Magical)"
 // data "Properties" "IF(IsMeleeAttack()):DealDamage(LevelMapValue(SneakAttack), MainMeleeWeaponDamageType,,,0,,true,true);IF(IsRangedAttack()):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType,,,0,,true,true);IF(HasPassive('MAG_ForcefulSneakAttack_Passive', context.Source)):DealDamage(1d4, Force,Magical,,0,,true,true)"
 data "Properties" "IF(IsAttackType(AttackType.MeleeWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainMeleeWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), OffhandMeleeWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), OffhandRangedWeaponDamageType,,,0,,true,true);IF(IsThrowAttackRoll()):DealDamage(LevelMapValue(SneakAttack), ThrownWeaponDamageType,,,0,,true,true);IF(Goon_UnarmedSnek()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,,,0,,true,true);IF(Goon_UnarmedSnek_Magic()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,Magical,,0,,true,true);IF(Goon_WSSnek_Pierce()):DealDamage(LevelMapValue(SneakAttack), Piercing,,,0,,true,true);IF(Goon_WSSnek_Pierce_Magic()):DealDamage(LevelMapValue(SneakAttack), Piercing,Magical,,0,,true,true);IF(Goon_WSSnek_Slash()):DealDamage(LevelMapValue(SneakAttack), Slashing,,,0,,true,true);IF(Goon_WSSnek_Slash_Magic()):DealDamage(LevelMapValue(SneakAttack), Slashing,Magical,,0,,true,true);IF(Goon_WSSnek_Bludge()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,,,0,,true,true);IF(Goon_WSSnek_Bludge_Magic()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,Magical,,0,,true,true);IF(Goon_ForcefulSnek()):DealDamage(1d4, Force,Magical,,0,,true,false)"
@@ -119,7 +136,7 @@ data "Cooldown" "None"
 // data "InterruptDefaultValue" "Enabled"
 data "InterruptDefaultValue" "Ask;Enabled"
 // data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or SpellTypeIs(SpellType.Throw)) and (not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
-data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (((WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or (HasPassive('SneakAttack_LLRuffian',context.Source)) or SpellTypeIs(SpellType.Throw)) and (not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus())) or Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph())"
+data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (((not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus())) or Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph())"
 // data "EnableContext" "OnActionResourcesChanged;OnEquip"
 data "EnableContext" "OnActionResourcesChanged;OnEquip;OnStatusApplied;OnStatusRemoved"
 data "InterruptFlags" "InterruptWhileInvisible"
@@ -128,10 +145,10 @@ new entry "Interrupt_SneakAttack_Critical"
 type "InterruptData"
 // using "Interrupt_SneakAttack"
 using "Interrupt_SneakAttack_Critical"
-// Sneak Attack (Critical Hit)
+// // Sneak Attack (Critical Hit)
 // data "DisplayName" "haf81f97cgee6ag46cbg8749g814ddcccccec;1"
 // data "Conditions" "Self(context.Source,context.Observer) and not Self() and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack())) and HasDamageEffectFlag(DamageFlags.Hit) and IsCritical() and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not (SpellId('Projectile_SneakAttack') or SpellId('Target_SneakAttack')) and not AnyEntityIsItem();"
-data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source,context.Observer) and not Self() and HasDamageEffectFlag(DamageFlags.Hit) and ((WieldingFinesseWeaponInSpecificHand(context.Observer,false) and IsMainHandWeaponAttack()) or (WieldingFinesseWeaponInSpecificHand(context.Observer,true) and IsOffHandAttack()) or (HasPassive('SneakAttack_LLRuffian',context.Source) and IsMonkWeaponAttack()) or IsThrowAttackRoll() or (WieldingWeapon('Ammunition', false, true, context.Observer) and IsRangedWeaponAttack()) or (Goon_IsDruidWildshape(context.Observer) and (IsMeleeAttack() or IsRangedAttack()) and (IsDamageTypePiercing() or IsDamageTypeSlashing() or IsDamageTypeBludgeoning()))) and IsCritical() and not IsKillingBlow() and (HasDamageEffectFlag(DamageFlags.AttackAdvantage) or HasAllyWithinRange('SG_Incapacitated',1.5)) and not HasDamageEffectFlag(DamageFlags.AttackDisadvantage) and not AnyEntityIsItem() and not Goon_IsSneakAttackSpell()"
+data "Conditions" "Goon_SneakAttackInterruptConditions() and IsCritical()"
 // data "Properties" "IF(IsMeleeAttack()):DealDamage(LevelMapValue(SneakAttack), MainMeleeWeaponDamageType);IF(IsRangedAttack()):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType);IF(HasPassive('MAG_ForcefulSneakAttack_Passive', context.Source)):DealDamage(1d4, Force,Magical)"
 // data "Properties" "IF(IsMeleeAttack()):DealDamage(LevelMapValue(SneakAttack), MainMeleeWeaponDamageType,,,0,,true,true);IF(IsRangedAttack()):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType,,,0,,true,true);IF(HasPassive('MAG_ForcefulSneakAttack_Passive', context.Source)):DealDamage(1d4, Force,Magical,,0,,true,true)"
 data "Properties" "IF(IsAttackType(AttackType.MeleeWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainMeleeWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), OffhandMeleeWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), OffhandRangedWeaponDamageType,,,0,,true,true);IF(IsThrowAttackRoll()):DealDamage(LevelMapValue(SneakAttack), ThrownWeaponDamageType,,,0,,true,true);IF(Goon_UnarmedSnek()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,,,0,,true,true);IF(Goon_UnarmedSnek_Magic()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,Magical,,0,,true,true);IF(Goon_WSSnek_Pierce()):DealDamage(LevelMapValue(SneakAttack), Piercing,,,0,,true,true);IF(Goon_WSSnek_Pierce_Magic()):DealDamage(LevelMapValue(SneakAttack), Piercing,Magical,,0,,true,true);IF(Goon_WSSnek_Slash()):DealDamage(LevelMapValue(SneakAttack), Slashing,,,0,,true,true);IF(Goon_WSSnek_Slash_Magic()):DealDamage(LevelMapValue(SneakAttack), Slashing,Magical,,0,,true,true);IF(Goon_WSSnek_Bludge()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,,,0,,true,true);IF(Goon_WSSnek_Bludge_Magic()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,Magical,,0,,true,true);IF(Goon_ForcefulSnek()):DealDamage(1d4, Force,Magical,,0,,true,false)"
