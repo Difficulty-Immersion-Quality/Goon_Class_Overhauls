@@ -1,4 +1,15 @@
 // ==================================== Flurry of Blows ====================================
+// Changes: Adjusted Flurry of Blows to match RAW, as Larian's version is egregiously overpowered; even more so when using mods that can increase the total number of Bonus Actions.
+// TODO: Custom passive, on attack give technical, technical is requirement and used up by FoB.
+// Same nerf for pugilist?
+
+// new entry "FlurryOfBlowsUnlock"
+// type "PassiveData"
+// Flurry of Blows
+// data "DisplayName" "h6fd86334ge5e3g47d0gb00fg7bb89fce60d3;1"
+// %%% Tech -Used for unlocking and removing Flurry of blows spell for Monk
+// data "Description" "hc46f3836gfdb1g45d3g8273g80362cfb5455;2"
+// data "Boosts" "UnlockSpell(Target_FlurryOfBlows)"
 
 // new entry "Target_FlurryOfBlows"
 // type "SpellData"
