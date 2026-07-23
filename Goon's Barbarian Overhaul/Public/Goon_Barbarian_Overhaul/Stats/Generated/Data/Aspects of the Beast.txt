@@ -142,7 +142,7 @@ data "Conditions" "HasAnyStatus({'SG_Poisoned','SG_Frightened','SG_Charmed'},{},
 
 // ==================================== Aspect of the Beast: Stallion ====================================
 // Bug Fix: Aspect of the Beast: Stallion now functions with the Dash spell instead of the status, and works for all variants of Dash with the appropriate SpellCategory.
-// Bug Fix: Aspect of the Beast: Stallion can now refresh the hit points with subsuquent uses of Dash, when the condition is already applied.
+// Bug Fix: Aspect of the Beast: Stallion can now refresh the hit points with subsequent uses of Dash, when the condition is already applied.
 // Changes: Description improved.
 // TODO: "Despite the tooltip warning, the condition which grants the temporary hit points does not use the "TEMPORARY_HP" StackId and thus may be active on a character in addition to other sources of temporary hit points. In this case, the character will receive the temporary hit points from the highest source, while any lower sources will be used to replenish any lost temporary hit points from the highest source."
 
