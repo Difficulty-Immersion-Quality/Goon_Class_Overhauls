@@ -1,25 +1,26 @@
-// ==================================== Aspect of the Beast ====================================
-// TODO: Some are mid but generally... whatever. 
+// ==================================== Aspect of the Beast: Bear ====================================
+// Changes: Description improved.
 
-// ==================================== Aspect of the Beast: Bear
-
-// new entry "AspectOfTheBeast_Bear"
-// type "PassiveData"
-// Aspect of the Beast: Bear
+new entry "AspectOfTheBeast_Bear"
+type "PassiveData"
+using "AspectOfTheBeast_Bear"
+// // Aspect of the Beast: Bear
 // data "DisplayName" "h3e6da5aege0ccg44edga3d9gd314a5539a1b;2"
-// The Aspect of the Bear infuses you with strength.&lt;br&gt;&lt;br&gt;Your &lt;LSTag Tooltip="CarryWeight"&gt;carrying capacity&lt;/LSTag&gt; is doubled, and you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
+// // The Aspect of the Bear infuses you with strength.&lt;br&gt;&lt;br&gt;Your &lt;LSTag Tooltip="CarryWeight"&gt;carrying capacity&lt;/LSTag&gt; is doubled, and you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
 // data "Description" "hd77708cbgaa25g4bd2g9c58gc23dfa719176;2"
+// // The Aspect of the Bear infuses you with strength.&lt;br&gt;&lt;br&gt;Your &lt;LSTag Tooltip="CarryWeight"&gt;carrying capacity&lt;/LSTag&gt; is doubled, and you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="Strength"&gt;Strength&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
+data "Description" "hfc1a81d1g9fe5g4659g893cg90582c8489f3;1"
 // data "Icon" "PassiveFeature_AspectOfTheBeast_Bear"
 // data "Properties" "Highlighted"
 // data "Boosts" "CarryCapacityMultiplier(2);Advantage(Ability, Strength);"
 
-// ==================================== Aspect of the Beast: Chimpanzee
+// ==================================== Aspect of the Beast: Chimpanzee ====================================
 
 // new entry "AspectOfTheBeast_Chimpanzee"
 // type "PassiveData"
-// Aspect of the Beast: Chimpanzee
+// // Aspect of the Beast: Chimpanzee
 // data "DisplayName" "h9590ee03g3f2eg4413g8c3bga056373631ca;2"
-// The Aspect of the Chimpanzee grants you a nimble mischievousness.&lt;br&gt;&lt;br&gt;You gain &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to Falling damage, and throwing camp supplies &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinds&lt;/LSTag&gt; targets.
+// // The Aspect of the Chimpanzee grants you a nimble mischievousness.&lt;br&gt;&lt;br&gt;You gain &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to Falling damage, and throwing camp supplies &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinds&lt;/LSTag&gt; targets.
 // data "Description" "hfbfd7493gb0d7g4b58gbee6g48ea685c8c9a;3"
 // data "Icon" "PassiveFeature_AspectOfTheBeast_Chimpanzee"
 // data "Properties" "Highlighted"
@@ -37,41 +38,55 @@
 //     return ConditionResult(false)
 // end
 
-// ==================================== Aspect of the Beast: Crocodile
+// ==================================== Aspect of the Beast: Crocodile ====================================
+// Bug Fix: Boosts will more reliably trigger from the inclusion of the "OnSurfaceEnter" context.
+// Bug Fix: Now functions with Electrified Blood, Electrified Water, and "Sewer"(?) surfaces.
+// Bug Fix: Advantage on slipping now functions with Frozen Grease, and any custom functionality that might check for the tag existing.
 
-// new entry "AspectOfTheBeast_Crocodile"
-// type "PassiveData"
-// Aspect of the Beast: Crocodile
+new entry "AspectOfTheBeast_Crocodile"
+type "PassiveData"
+using "AspectOfTheBeast_Crocodile"
+// // Aspect of the Beast: Crocodile
 // data "DisplayName" "h3ed6d5ceg2467g46fdg87bag8df00e314a81;2"
-// >The Aspect of the Crocodile increases your agility in the water.&lt;br&gt;&lt;br&gt;Your &lt;LSTag Tooltip="MovementSpeed"&gt;movement speed&lt;/LSTag&gt; increases by [1] while standing in water-based surfaces.&lt;br&gt;&lt;br&gt;On slippery surfaces, you also have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; against being knocked &lt;LSTag Type="Status" Tooltip="PRONE"&gt;Prone&lt;/LSTag&gt;.
+// // The Aspect of the Crocodile increases your agility in the water.&lt;br&gt;&lt;br&gt;Your &lt;LSTag Tooltip="MovementSpeed"&gt;movement speed&lt;/LSTag&gt; increases by [1] while standing in water-based surfaces.&lt;br&gt;&lt;br&gt;On slippery surfaces, you also have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; against being knocked &lt;LSTag Type="Status" Tooltip="PRONE"&gt;Prone&lt;/LSTag&gt;.
 // data "Description" "h973dd6eag77d1g41ddg9a3fg45b16106c9af;2"
+// // The Aspect of the Crocodile increases your agility while traversing wet and slippery terrain.&lt;br&gt;&lt;br&gt;Your &lt;LSTag Tooltip="MovementSpeed"&gt;movement speed&lt;/LSTag&gt; increases by [1] while standing in liquid surfaces, and you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; against falling &lt;LSTag Type="Status" Tooltip="PRONE"&gt;Prone&lt;/LSTag&gt; due to slippery surfaces.
+data "Description" "hf4ab9df3ge92cg40b0ga2cfg4658445819f7;1"
 // data "DescriptionParams" "Distance(3)"
 // data "Icon" "PassiveFeature_AspectOfTheBeast_Crocodile"
 // data "Properties" "Highlighted"
 // data "BoostContext" "OnPushed;OnMovedDistance"
+data "BoostContext" "OnPushed;OnMovedDistance;OnSurfaceEnter"
 // data "BoostConditions" "InSurface('SurfaceAlcohol') or InSurface('SurfaceBlood') or InSurface('SurfaceDeepWater') or InSurface('SurfaceDeepWaterRunning') or InSurface('SurfaceGrease') or InSurface('SurfaceOil') or InSurface('SurfaceWater') or InSurface('SurfaceWaterFrozen') or InSurface('SurfaceBloodFrozen')"
+data "BoostConditions" ""
 // data "Boosts" "ActionResource(Movement,3,0);Tag(SLIPPING_ADV)"
+data "Boosts" "IF(Goon_IsInLiquidSurface(context.Source)):ActionResource(Movement,3,0);Tag(SLIPPING_ADV)"
 
-// ==================================== Aspect of the Beast: Eagle
+// ==================================== Aspect of the Beast: Eagle ====================================
+// Changes: Description improved.
+// TODO: Could add the actual condition. https://bg3.norbyte.dev/search?q=type%3Astatus+DARKVISION
 
-// new entry "AspectOfTheBeast_Eagle"
-// type "PassiveData"
-// Aspect of the Beast: Eagle
+new entry "AspectOfTheBeast_Eagle"
+type "PassiveData"
+using "AspectOfTheBeast_Eagle"
+// // Aspect of the Beast: Eagle
 // data "DisplayName" "h50a5dcf1g5840g4a03ga5e6gb8ecab541404;2"
-// The Aspect of the Eagle enhances your eyesight.&lt;br&gt;&lt;br&gt;You can see in the dark up to [1], and gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Perception &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
+// // The Aspect of the Eagle enhances your eyesight.&lt;br&gt;&lt;br&gt;You can see in the dark up to [1], and gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Perception &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
 // data "Description" "h2d3dad0dgf019g4f64g8b08gd3e98cb6aa7a;3"
+// // The Aspect of the Eagle enhances your eyesight.&lt;br&gt;&lt;br&gt;You have &lt;LSTag Type="Status" Tooltip="DARKVISION"&gt;Darkvision&lt;/LSTag&gt;, and gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="Perception"&gt;Perception&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
+data "Description" "h4d17f2d9g435fg48b1ga95bgc7bd11c4a254;1"
 // data "DescriptionParams" "Distance(12)"
 // data "Icon" "PassiveFeature_AspectOfTheBeast_Eagle"
 // data "Properties" "Highlighted"
 // data "Boosts" "DarkvisionRangeMin(12);ActiveCharacterLight(051648e6-f05a-e41f-e398-ffd5cd148989);Advantage(Skill,Perception)"
 
-// ==================================== Aspect of the Beast: Elk
+// ==================================== Aspect of the Beast: Elk ====================================
 
 // new entry "AspectOfTheBeast_Elk"
 // type "PassiveData"
-// Aspect of the Beast: Elk
+// // Aspect of the Beast: Elk
 // data "DisplayName" "h14ae10b8g4dfbg4ad7g9f30gdf2a7c16cfaa;2"
-// The Aspect of the Elk grants you astounding swiftness.&lt;br&gt;&lt;br&gt;You can use &lt;LSTag Type="Spell" Tooltip="Shout_AspectOfTheElk"&gt;Aspect of the Elk&lt;/LSTag&gt;, giving yourself and nearby allies extra &lt;LSTag Tooltip="MovementSpeed"&gt;movement speed&lt;/LSTag&gt;.
+// // The Aspect of the Elk grants you astounding swiftness.&lt;br&gt;&lt;br&gt;You can use &lt;LSTag Type="Spell" Tooltip="Shout_AspectOfTheElk"&gt;Aspect of the Elk&lt;/LSTag&gt;, giving yourself and nearby allies extra &lt;LSTag Tooltip="MovementSpeed"&gt;movement speed&lt;/LSTag&gt;.
 // data "Description" "h52a66fd1g9928g4369ga3c3gcbefefb22b29;4"
 // data "DescriptionParams" "Distance(1.5)"
 // data "Icon" "PassiveFeature_AspectOfTheBeast_Elk"
@@ -85,9 +100,9 @@
 // data "AreaRadius" "18"
 // data "TargetConditions" "Self()"
 // data "Icon" "Action_AspectOfTheElk"
-// Aspect of the Elk
+// // Aspect of the Elk
 // data "DisplayName" "h2b0bad50g07b7g407cga527ge36ebc0d2285;2"
-// Grant yourself and nearby allies a +[1] bonus to &lt;LSTag Tooltip="MovementSpeed"&gt;movement speed&lt;/LSTag&gt;.
+// // Grant yourself and nearby allies a +[1] bonus to &lt;LSTag Tooltip="MovementSpeed"&gt;movement speed&lt;/LSTag&gt;.
 // data "Description" "h4b362266gda45g4e1ag84cfg084929d0aa8f;3"
 // data "DescriptionParams" "Distance(1.5)"
 // data "TooltipStatusApply" "ApplyStatus(ASPECT_OF_THE_ELK,100,-1);"
@@ -102,60 +117,95 @@
 // data "PrepareEffect" "83c458da-6afa-47af-8fdb-825c98963719"
 // data "CastEffect" "95cfcd2b-fccb-4415-9b6a-c24208bd0f06"
 
-// ==================================== Aspect of the Beast: Honey Badger
+// ==================================== Aspect of the Beast: Honey Badger ====================================
 // Bug Fix: Conditions expanded to cover status groups for Poisoned, Frightened and Charmed conditions, instead of just Poisoned, Frightened and Charmed specifically.
+// Bug Fix: Is now a 50% chance to Rage, per the description, instead of a 55% chance.
+// Changes: Description improved.
+// TODO: Does Dynamic Wildheart need some special treatment here?
+// TODO: Isn't this basically useless? If you're getting fucked over, you have a 50% chance to do the thing you already did at the first opportunity... Definitely needs a solid rework.
 
 new entry "AspectOfTheBeast_HoneyBadger"
 type "PassiveData"
 using "AspectOfTheBeast_HoneyBadger"
-// Aspect of the Beast: Honey Badger
+// // Aspect of the Beast: Honey Badger
 // data "DisplayName" "h9fdaba3dg6d55g4061g845ag4bcab28bc15b;2"
-// If you're &lt;LSTag Type="Status" Tooltip="POISONED"&gt;Poisoned&lt;/LSTag&gt;, &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt;, or &lt;LSTag Type="Status" Tooltip="CHARMED"&gt;Charmed&lt;/LSTag&gt; at the start of your turn, you have a 50% chance to begin &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt; without expending a &lt;LSTag Type="ActionResource" Tooltip="Rage"&gt;Rage Charge&lt;/LSTag&gt;.
+// // If you're &lt;LSTag Type="Status" Tooltip="POISONED"&gt;Poisoned&lt;/LSTag&gt;, &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt;, or &lt;LSTag Type="Status" Tooltip="CHARMED"&gt;Charmed&lt;/LSTag&gt; at the start of your turn, you have a 50% chance to begin &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt; without expending a &lt;LSTag Type="ActionResource" Tooltip="Rage"&gt;Rage Charge&lt;/LSTag&gt;.
 // data "Description" "hff0bf8fag72c7g4c44g99d7g234a5f15e53e;4"
+// // The Aspect of the Honey Badger retaliates wildly.&lt;br&gt;&lt;br&gt;If you're &lt;LSTag Type="Status" Tooltip="POISONED"&gt;Poisoned&lt;/LSTag&gt;, &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt;, or &lt;LSTag Type="Status" Tooltip="CHARMED"&gt;Charmed&lt;/LSTag&gt; at the start of your turn, you have a 50% chance to begin &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt; without expending a &lt;LSTag Type="ActionResource" Tooltip="Rage"&gt;Rage Charge&lt;/LSTag&gt;.
+data "Description" "h7f3a56e8g2280g4363g82deg81698be451cd;1"
 // data "Icon" "PassiveFeature_AspectOfTheBeast_Badger"
 // data "Properties" "IsToggled;ToggledDefaultAddToHotbar;ToggledDefaultOn;Highlighted"
 // data "StatsFunctorContext" "OnTurn"
 // data "Conditions" "(HasStatus('POISONED', context.Source) or HasStatus('FRIGHTENED', context.Source) or HasStatus('CHARMED', context.Source)) and RollDieAgainstDC(DiceType.d20,10) and not HasStatus('SG_Rage', context.Source)"
-data "Conditions" "HasAnyStatus({'SG_Poisoned','SG_Frightened','SG_Charmed'},{},{},context.Source) and not HasStatus('SG_Rage',context.Source) and RollDieAgainstDC(DiceType.d20, 10)"
+data "Conditions" "HasAnyStatus({'SG_Poisoned','SG_Frightened','SG_Charmed'},{},{},context.Source) and not HasStatus('SG_Rage',context.Source) and RollDieAgainstDC(DiceType.d20, 11)"
 // data "StatsFunctors" "IF(HasPassive('TotemSpirit_Bear', context.Source)):UseSpell(Shout_Rage_Totem_Bear,true,true,true);IF(HasPassive('TotemSpirit_Eagle', context.Source)):UseSpell(Shout_Rage_Totem_Eagle,true,true,true);IF(HasPassive('TotemSpirit_Elk', context.Source)):UseSpell(Shout_Rage_Totem_Elk,true,true,true);IF(HasPassive('TotemSpirit_Tiger', context.Source)):UseSpell(Shout_Rage_Totem_Tiger,true,true,true);IF(HasPassive('TotemSpirit_Wolf', context.Source)):UseSpell(Shout_Rage_Totem_Wolf,true,true,true)"
 
-// ==================================== Aspect of the Beast: Stallion
+// ==================================== Aspect of the Beast: Stallion ====================================
+// Bug Fix: Aspect of the Beast: Stallion now functions with the Dash spell instead of the status, and works for all variants of Dash with the appropriate SpellCategory.
+// Bug Fix: Aspect of the Beast: Stallion can now refresh the hit points with subsuquent uses of Dash, when the condition is already applied.
+// Changes: Description improved.
+// TODO: "Despite the tooltip warning, the condition which grants the temporary hit points does not use the "TEMPORARY_HP" StackId and thus may be active on a character in addition to other sources of temporary hit points. In this case, the character will receive the temporary hit points from the highest source, while any lower sources will be used to replenish any lost temporary hit points from the highest source."
 
-// new entry "AspectOfTheBeast_Stallion"
-// type "PassiveData"
-// Aspect of the Beast: Stallion
+new entry "AspectOfTheBeast_Stallion"
+type "PassiveData"
+using "AspectOfTheBeast_Stallion"
+// // Aspect of the Beast: Stallion
 // data "DisplayName" "h63b088b5g6d12g4b05g8847gcb1daad03a6a;3"
-// The Aspect of the Stallion creates safety in movement.&lt;br&gt;&lt;br&gt;&lt;LSTag Type="Spell" Tooltip="Shout_Dash"&gt;Dashing&lt;/LSTag&gt; grants you &lt;LSTag Tooltip="TemporaryHitPoints"&gt;temporary hit points&lt;/LSTag&gt; equal to twice your Barbarian level.
+// // The Aspect of the Stallion creates safety in movement.&lt;br&gt;&lt;br&gt;&lt;LSTag Type="Spell" Tooltip="Shout_Dash"&gt;Dashing&lt;/LSTag&gt; grants you &lt;LSTag Tooltip="TemporaryHitPoints"&gt;temporary hit points&lt;/LSTag&gt; equal to twice your Barbarian level.
 // data "Description" "h00ebf573g8c1ag45e5gba61g31b2447c4938;5"
+// // The Aspect of the Stallion creates safety in movement.&lt;br&gt;&lt;br&gt;&lt;LSTag Type="Spell" Tooltip="Shout_Dash"&gt;Dashing&lt;/LSTag&gt; and similar actions grant you &lt;LSTag Tooltip="TemporaryHitPoints"&gt;temporary hit points&lt;/LSTag&gt; equal to twice your Barbarian level.
+data "Description" "ha61b7ae9g1811g4799gbdb3ge9a5eb5e8cca;1"
+// // &lt;LSTag Type="Image" Info="SoftWarning"/&gt; Can only have &lt;LSTag Tooltip="TemporaryHitPoints"&gt;temporary hit points&lt;/LSTag&gt; from one source.
 // data "TooltipPermanentWarnings" "8892b93b-721f-4b99-b9b4-05ac25aadb33"
 // data "Icon" "PassiveFeature_AspectOfTheBeast_Stallion"
 // data "Properties" "Highlighted"
 // data "StatsFunctorContext" "OnStatusApplied"
+data "StatsFunctorContext" "OnCast"
 // data "Conditions" "HasStatus('DASH', context.Source) and not HasStatus('ASPECT_OF_THE_STALLION', context.Source)"
+data "Conditions" "Goon_IsDashSpellCategory()"
 // data "StatsFunctors" "ApplyStatus(SELF,ASPECT_OF_THE_STALLION,100,-1)"
 
-// ==================================== Aspect of the Beast: Tiger
+// new entry "ASPECT_OF_THE_STALLION"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// // Aspect of the Stallion
+// data "DisplayName" "h6a8572ffg9b8bg4cf9g932fg92494032030b;2"
+// // Gained [1].
+// data "Description" "h36371386ge684g456cga6ceg11ceef19390f;2"
+// data "DescriptionParams" "GainTemporaryHitPoints(ClassLevel(Barbarian)*2)"
+// data "Icon" "PassiveFeature_AspectOfTheBeast_Stallion"
+// data "StackId" "ASPECT_OF_THE_STALLION"
+// data "Boosts" "TemporaryHP(2*ClassLevel(Barbarian))"
+// data "RemoveConditions" "not HasTemporaryHP()"
+// data "RemoveEvents" "OnDamage"
+// data "StatusGroups" "SG_RemoveOnRespec"
+
+// ==================================== Aspect of the Beast: Tiger ====================================
 // Changes: Now looks for more Bleeding-like conditions, instead of just the Bleeding condition itself.
+// Changes: Description improved.
 
 new entry "AspectOfTheBeast_Tiger"
 type "PassiveData"
 using "AspectOfTheBeast_Tiger"
-// Aspect of the Beast: Tiger
+// // Aspect of the Beast: Tiger
 // data "DisplayName" "h26d856adg02bag4039gbe54g21064f16a9bc;2"
-// The Aspect of the Tiger infuses you with an unrelenting ferocity.&lt;br&gt;&lt;br&gt;You add an additional Strength &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt; to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against &lt;LSTag Type="Status" Tooltip="BLEEDING"&gt;Bleeding&lt;/LSTag&gt; or &lt;LSTag Type="Status" Tooltip="POISONED"&gt;Poisoned&lt;/LSTag&gt; targets, and gain &lt;LSTag Tooltip="Proficiency"&gt;Proficiency&lt;/LSTag&gt; in &lt;LSTag Tooltip="Survival"&gt;Survival&lt;/LSTag&gt;.
+// // The Aspect of the Tiger infuses you with an unrelenting ferocity.&lt;br&gt;&lt;br&gt;You add an additional Strength &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt; to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against &lt;LSTag Type="Status" Tooltip="BLEEDING"&gt;Bleeding&lt;/LSTag&gt; or &lt;LSTag Type="Status" Tooltip="POISONED"&gt;Poisoned&lt;/LSTag&gt; targets, and gain &lt;LSTag Tooltip="Proficiency"&gt;Proficiency&lt;/LSTag&gt; in &lt;LSTag Tooltip="Survival"&gt;Survival&lt;/LSTag&gt;.
 // data "Description" "hb0b1827fg4852g4aaeg9967g977485cc556e;8"
+// // The Aspect of the Tiger infuses you with an unrelenting ferocity.&lt;br&gt;&lt;br&gt;You add an additional &lt;LSTag Tooltip="Strength"&gt;Strength&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt; to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against &lt;LSTag Type="Status" Tooltip="BLEEDING"&gt;Bleeding&lt;/LSTag&gt; or &lt;LSTag Type="Status" Tooltip="POISONED"&gt;Poisoned&lt;/LSTag&gt; targets, and gain &lt;LSTag Tooltip="Proficiency"&gt;Proficiency&lt;/LSTag&gt; in &lt;LSTag Tooltip="Survival"&gt;Survival&lt;/LSTag&gt;.
+data "Description" "h659c9656gb1d2g4c3dgb025gb0c481a45ab6;1"
 // data "Icon" "PassiveFeature_AspectOfTheBeast_Tiger"
 // data "Properties" "Highlighted"
 // data "Boosts" "ProficiencyBonus(Skill,Survival);IF(HasStatus('BLEEDING',context.Target)):RollBonus(Attack, StrengthModifier);IF(HasStatus('SG_Poisoned',context.Target)):RollBonus(Attack, StrengthModifier)"
-data "Conditions" "not Self() and not Ally() and (HasStatus('SG_Bleeding', context.Target) or HasStatus('SG_Poisoned', context.Target))"
+data "Boosts" "ProficiencyBonus(Skill,Survival);IF(HasStatus('SG_Bleeding',context.Target)):RollBonus(Attack, StrengthModifier);IF(HasStatus('SG_Poisoned',context.Target)):RollBonus(Attack, StrengthModifier)"
 
-// ==================================== Aspect of the Beast: Wolf
+// ==================================== Aspect of the Beast: Wolf ====================================
+// Changes: Descriptions improved.
 
 // new entry "AspectOfTheBeast_Wolf"
 // type "PassiveData"
-// Aspect of the Beast: Wolf
+// // Aspect of the Beast: Wolf
 // data "DisplayName" "hd0556489g1f90g40afg9495g6cadcebfde01;2"
-// The Aspect of the Wolf boosts your stealthiness. &lt;br&gt;&lt;br&gt;You gain &lt;LSTag Tooltip="Proficiency"&gt;Proficiency&lt;/LSTag&gt; in &lt;LSTag Tooltip="Stealth"&gt;Stealth&lt;/LSTag&gt;, and can use &lt;LSTag Type="Spell" Tooltip="Shout_AspectOfTheWolf"&gt;Aspect of the Wolf&lt;/LSTag&gt;.
+// // The Aspect of the Wolf boosts your stealthiness. &lt;br&gt;&lt;br&gt;You gain &lt;LSTag Tooltip="Proficiency"&gt;Proficiency&lt;/LSTag&gt; in &lt;LSTag Tooltip="Stealth"&gt;Stealth&lt;/LSTag&gt;, and can use &lt;LSTag Type="Spell" Tooltip="Shout_AspectOfTheWolf"&gt;Aspect of the Wolf&lt;/LSTag&gt;.
 // data "Description" "h7a3a08fdg2bd3g44fagb968g10713a0175f4;5"
 // data "Icon" "PassiveFeature_AspectOfTheBeast_Wolf"
 // data "Properties" "Highlighted"
@@ -169,11 +219,11 @@ using "Shout_AspectOfTheWolf"
 // data "AreaRadius" "18"
 // data "TargetConditions" "Self()"
 // data "Icon" "Action_AspectOfTheWolf"
-// Aspect of the Wolf
+// // Aspect of the Wolf
 // data "DisplayName" "hdfc51f3egeb6fg48e7g80b4g8e7cc0b1b891;2"
-// You and nearby allies add your Dexterity modifier as a bonus to Stealth &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
+// // You and nearby allies add your Dexterity modifier as a bonus to Stealth &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
 // data "Description" "h29070c60g8fecg42b0g8e69gb90814ac4e57;4"
-// You and nearby allies add your &lt;LSTag Tooltip="Dexterity"&gt;Dexterity&lt;/LSTag&gt; modifier as a bonus to Stealth &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
+// // You and nearby allies add your &lt;LSTag Tooltip="Dexterity"&gt;Dexterity&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt; as a bonus to &lt;LSTag Tooltip="Stealth"&gt;Stealth&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
 data "Description" "h66474a3fg081eg44bbg9df6ga2614c38cb7e;1"
 // data "TooltipStatusApply" "ApplyStatus(ASPECT_OF_THE_WOLF,100,-1);"
 // data "CastSound" "Action_Cast_Barbarian_AspectOfTheWolf"
@@ -187,13 +237,16 @@ data "Description" "h66474a3fg081eg44bbg9df6ga2614c38cb7e;1"
 // data "PrepareEffect" "83c458da-6afa-47af-8fdb-825c98963719"
 // data "CastEffect" "7b9d5424-e7da-4f76-9608-1d442b845476"
 
-// new entry "ASPECT_OF_THE_WOLF"
-// type "StatusData"
-// data "StatusType" "BOOST"
-// Aspect of the Wolf Aura
+new entry "ASPECT_OF_THE_WOLF"
+type "StatusData"
+data "StatusType" "BOOST"
+using "ASPECT_OF_THE_WOLF"
+// // Aspect of the Wolf Aura
 // data "DisplayName" "hc586b85fg5f63g4450g91e4gaeb0254556f2;2"
-// Affected entity and nearby allies have a +[1] bonus to Stealth &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
+// // Affected entity and nearby allies have a +[1] bonus to Stealth &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
 // data "Description" "hdb056ecdg8f65g409bgb07cgfe48f7ccfe35;2"
+// // Affected entity and nearby allies have a +[1] bonus to &lt;LSTag Tooltip="Stealth"&gt;Stealth&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
+data "Description" "h74323719g0b38g4d3dgbe22g678fc1024bc0;1"
 // data "DescriptionParams" "DexterityModifier"
 // data "Icon" "Action_AspectOfTheWolf"
 // data "StackId" "ASPECT_OF_THE_WOLF"
@@ -204,33 +257,42 @@ data "Description" "h66474a3fg081eg44bbg9df6ga2614c38cb7e;1"
 // data "StatusPropertyFlags" "IgnoreResting"
 // data "StatusGroups" "SG_RemoveOnRespec"
 
-// new entry "ASPECT_OF_THE_WOLF_AURA"
-// type "StatusData"
-// data "StatusType" "BOOST"
-// Aspect of the Wolf
+new entry "ASPECT_OF_THE_WOLF_AURA"
+type "StatusData"
+data "StatusType" "BOOST"
+using "ASPECT_OF_THE_WOLF_AURA"
+// // Aspect of the Wolf
 // data "DisplayName" "hea9b6e71g8a3fg4947g879bg842237cf683e;2"
-// Affected entity has a +[1] bonus to Stealth &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;, as long as it stays near the barbarian.
+// // Affected entity has a +[1] bonus to Stealth &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;, as long as it stays near the barbarian.
 // data "Description" "h4e8119a6g8211g422dg8288g3a1698216737;2"
+// // Affected entity has a +[1] bonus to &lt;LSTag Tooltip="Stealth"&gt;Stealth&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;, as long as it stays near the barbarian.
+data "Description" "h753f79d5gde41g4185g8a16gd1e36b5e91b7;1"
 // data "DescriptionParams" "Cause.DexterityModifier"
 // data "Icon" "Action_AspectOfTheWolf"
 // data "StackId" "ASPECT_OF_THE_WOLF"
 // data "Boosts" "Skill(Stealth, Cause.DexterityModifier)"
 // data "StatusGroups" "SG_RemoveOnRespec"
 
-// ==================================== Aspect of the Beast: Wolverine
+// ==================================== Aspect of the Beast: Wolverine ====================================
 // Bug Fix: The Maimed condition is no longer inappropriately applied from taking actions that are not attacks.
+// Bug Fix: The Maimed condition is no longer applied for attacks that do not hit.
+// Changes: The Maimed condition can now only be applied from weapon and unarmed attacks.
 // Changes: Now looks for more Bleeding-like conditions, instead of just the Bleeding condition itself.
+// Changes: Description improved.
 
 new entry "AspectOfTheBeast_Wolverine"
 type "PassiveData"
 using "AspectOfTheBeast_Wolverine"
-// Aspect of the Beast: Wolverine
+// // Aspect of the Beast: Wolverine
 // data "DisplayName" "h8a19e235g32a3g4eb4ga608g5ba511afc03b;2"
-// The Aspect of the Wolverine grants you the tools to relentlessly pursue your prey. &lt;br&gt;&lt;br&gt;When you attack a &lt;LSTag Type="Status" Tooltip="BLEEDING"&gt;Bleeding&lt;/LSTag&gt; or &lt;LSTag Type="Status" Tooltip="POISONED"&gt;Poisoned&lt;/LSTag&gt; target, you also &lt;LSTag Type="Status" Tooltip="CRIPPLED"&gt;Maim&lt;/LSTag&gt; it for 1 turn.
+// // The Aspect of the Wolverine grants you the tools to relentlessly pursue your prey. &lt;br&gt;&lt;br&gt;When you attack a &lt;LSTag Type="Status" Tooltip="BLEEDING"&gt;Bleeding&lt;/LSTag&gt; or &lt;LSTag Type="Status" Tooltip="POISONED"&gt;Poisoned&lt;/LSTag&gt; target, you also &lt;LSTag Type="Status" Tooltip="CRIPPLED"&gt;Maim&lt;/LSTag&gt; it for 1 turn.
 // data "Description" "hf0b5abc4g361dg467dga317gf64ca5ca4977;3"
+// // The Aspect of the Wolverine grants you the tools to relentlessly pursue your prey. &lt;br&gt;&lt;br&gt;When you hit a &lt;LSTag Type="Status" Tooltip="BLEEDING"&gt;Bleeding&lt;/LSTag&gt; or &lt;LSTag Type="Status" Tooltip="POISONED"&gt;Poisoned&lt;/LSTag&gt; target with a weapon or unarmed &lt;LSTag Tooltip="AttackRoll"&gt;attack&lt;/LSTag&gt;, you also &lt;LSTag Type="Status" Tooltip="CRIPPLED"&gt;Maim&lt;/LSTag&gt; it for [1] turn.
+data "Description" "hd3be191bge3efg4563gb462g5aa6a715c974;1"
+data "DescriptionParams" "1"
 // data "Icon" "PassiveFeature_AspectOfTheBeast_Wolverine"
 // data "Properties" "Highlighted"
 // data "StatsFunctorContext" "OnAttack"
 // data "Conditions" "HasStatus('BLEEDING',context.Target) or HasStatus('SG_Poisoned',context.Target)"
-data "Conditions" "(HasStatus('SG_Bleeding',context.Target) or HasStatus('SG_Poisoned',context.Target)) and IsAttack()"
+data "Conditions" "(HasStatus('SG_Bleeding',context.Target) or HasStatus('SG_Poisoned',context.Target)) and (IsWeaponAttack() or IsUnarmedAttack()) and IsHit()"
 // data "StatsFunctors" "ApplyStatus(CRIPPLED,100,1)"

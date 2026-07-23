@@ -20,7 +20,7 @@
 
 	<!-- ==================================== Danger Sense ==================================== -->
 	<!-- "DangerSense" --> 
-	<content contentuid="h4a49b28bg3663g40d7g9bbaga07d215387c7" version="1">You sense when things aren't as they should be.&lt;br&gt;&lt;br&gt;You have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Dexterity &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;. &lt;br&gt;&lt;br&gt;To gain this benefit, you can't be &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinded&lt;/LSTag&gt; or Incapacitated.</content>
+	<content contentuid="h4a49b28bg3663g40d7g9bbaga07d215387c7" version="1">You sense when things aren't as they should be.&lt;br&gt;&lt;br&gt;You have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="Dexterity"&gt;Dexterity&lt;/LSTag&gt; &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;, so long as you aren't &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinded&lt;/LSTag&gt; or &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt;.</content>
 
 	<!-- ==================================== Rage Misc ==================================== -->
 	<!-- "Shout_EndRage" --> 
@@ -69,8 +69,37 @@
 	<content contentuid="h9ab9eea6g8249g4801g90adg95589360d4c8" version="1">&lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt; and increased in size. Deals an additional [1] damage with melee and improvised weapons, and [2] damage when throwing objects.&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.</content>
 
 	<!-- ==================================== Aspect of the Beast ==================================== -->
+
+	<!-- "AspectOfTheBeast_Bear" --> 
+	<content contentuid="hfc1a81d1g9fe5g4659g893cg90582c8489f3" version="1">The Aspect of the Bear infuses you with strength.&lt;br&gt;&lt;br&gt;Your &lt;LSTag Tooltip="CarryWeight"&gt;carrying capacity&lt;/LSTag&gt; is doubled, and you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="Strength"&gt;Strength&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.</content>
+
+	<!-- "AspectOfTheBeast_Crocodile" --> 
+	<content contentuid="hf4ab9df3ge92cg40b0ga2cfg4658445819f7" version="1">The Aspect of the Crocodile increases your agility while traversing wet and slippery terrain.&lt;br&gt;&lt;br&gt;Your &lt;LSTag Tooltip="MovementSpeed"&gt;movement speed&lt;/LSTag&gt; increases by [1] while standing in liquid surfaces, and you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; against falling &lt;LSTag Type="Status" Tooltip="PRONE"&gt;Prone&lt;/LSTag&gt; due to slippery surfaces.</content>
+
+	<!-- "AspectOfTheBeast_Eagle" --> 
+	<content contentuid="h4d17f2d9g435fg48b1ga95bgc7bd11c4a254" version="1">The Aspect of the Eagle enhances your eyesight.&lt;br&gt;&lt;br&gt;You have &lt;LSTag Type="Status" Tooltip="DARKVISION"&gt;Darkvision&lt;/LSTag&gt;, and gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="Perception"&gt;Perception&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.</content>
+
+	<!-- "" --> 
+	<content contentuid="" version="1"></content>
+
+	<!-- "AspectOfTheBeast_HoneyBadger" --> 
+	<content contentuid="h7f3a56e8g2280g4363g82deg81698be451cd" version="1">The Aspect of the Honey Badger retaliates wildly.&lt;br&gt;&lt;br&gt;If you're &lt;LSTag Type="Status" Tooltip="POISONED"&gt;Poisoned&lt;/LSTag&gt;, &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt;, or &lt;LSTag Type="Status" Tooltip="CHARMED"&gt;Charmed&lt;/LSTag&gt; at the start of your turn, you have a 50% chance to begin &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt; without expending a &lt;LSTag Type="ActionResource" Tooltip="Rage"&gt;Rage Charge&lt;/LSTag&gt;.</content>
+
+	<!-- "AspectOfTheBeast_Stallion" --> 
+	<content contentuid="ha61b7ae9g1811g4799gbdb3ge9a5eb5e8cca" version="1">The Aspect of the Stallion creates safety in movement.&lt;br&gt;&lt;br&gt;&lt;LSTag Type="Spell" Tooltip="Shout_Dash"&gt;Dashing&lt;/LSTag&gt; and similar actions grant you &lt;LSTag Tooltip="TemporaryHitPoints"&gt;temporary hit points&lt;/LSTag&gt; equal to twice your Barbarian level.</content>
+
+	<!-- "AspectOfTheBeast_Tiger" --> 
+	<content contentuid="h659c9656gb1d2g4c3dgb025gb0c481a45ab6" version="1">The Aspect of the Tiger infuses you with an unrelenting ferocity.&lt;br&gt;&lt;br&gt;You add an additional &lt;LSTag Tooltip="Strength"&gt;Strength&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt; to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against &lt;LSTag Type="Status" Tooltip="BLEEDING"&gt;Bleeding&lt;/LSTag&gt; or &lt;LSTag Type="Status" Tooltip="POISONED"&gt;Poisoned&lt;/LSTag&gt; targets, and gain &lt;LSTag Tooltip="Proficiency"&gt;Proficiency&lt;/LSTag&gt; in &lt;LSTag Tooltip="Survival"&gt;Survival&lt;/LSTag&gt;.</content>
+
 	<!-- "Shout_AspectOfTheWolf" --> 
-	<content contentuid="h66474a3fg081eg44bbg9df6ga2614c38cb7e" version="1">You and nearby allies add your &lt;LSTag Tooltip="Dexterity"&gt;Dexterity&lt;/LSTag&gt; modifier as a bonus to Stealth &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.</content>
+	<content contentuid="h66474a3fg081eg44bbg9df6ga2614c38cb7e" version="1">You and nearby allies add your &lt;LSTag Tooltip="Dexterity"&gt;Dexterity&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt; as a bonus to &lt;LSTag Tooltip="Stealth"&gt;Stealth&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.</content>
+	<!-- "ASPECT_OF_THE_WOLF" --> 
+	<content contentuid="h74323719g0b38g4d3dgbe22g678fc1024bc0" version="1">Affected entity and nearby allies have a +[1] bonus to &lt;LSTag Tooltip="Stealth"&gt;Stealth&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.</content>
+	<!-- "ASPECT_OF_THE_WOLF_AURA" --> 
+	<content contentuid="h753f79d5gde41g4185g8a16gd1e36b5e91b7" version="1">Affected entity has a +[1] bonus to &lt;LSTag Tooltip="Stealth"&gt;Stealth&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;, as long as it stays near the barbarian.</content>
+
+	<!-- "AspectOfTheBeast_Wolverine" --> 
+	<content contentuid="hd3be191bge3efg4563gb462g5aa6a715c974" version="1">The Aspect of the Wolverine grants you the tools to relentlessly pursue your prey. &lt;br&gt;&lt;br&gt;When you hit a &lt;LSTag Type="Status" Tooltip="BLEEDING"&gt;Bleeding&lt;/LSTag&gt; or &lt;LSTag Type="Status" Tooltip="POISONED"&gt;Poisoned&lt;/LSTag&gt; target with a weapon or unarmed &lt;LSTag Tooltip="AttackRoll"&gt;attack&lt;/LSTag&gt;, you also &lt;LSTag Type="Status" Tooltip="CRIPPLED"&gt;Maim&lt;/LSTag&gt; it for [1] turn.</content>
 
 	<!-- ==================================== Wildheart stuff ==================================== -->
 	<!-- "Shout_PackHowl_Barbarian" --> 
