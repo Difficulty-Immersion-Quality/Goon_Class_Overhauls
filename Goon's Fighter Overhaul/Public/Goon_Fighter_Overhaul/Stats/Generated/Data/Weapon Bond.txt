@@ -1,14 +1,46 @@
 // ==================================== Eldritch Knight - Weapon Bond ====================================
 // Changes: Bonded weapons gain the Thrown weapon property.
-// Bonus: Native support for Ninjoma's Returning Weapon QoL mod. (Hard requirement)
+
+// new entry "Shout_WeaponBond"
+// type "SpellData"
+// data "SpellType" "Shout"
+// data "SpellProperties" "ApplyEquipmentStatus(MainHand, WEAPON_BOND,100, -1)"
+// data "TargetConditions" "Self()"
+// data "Icon" "Action_WeaponBond"
+// // Weapon Bond
+// data "DisplayName" "h965341dcg56d8g4869g9f1egc1ad2275e37d;2"
+// // Ritually bind the weapon in your main hand. The weapon can't be knocked out of your hand, and it automatically returns to you when &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;Thrown&lt;/LSTag&gt;.
+// data "Description" "h7e10fe1ag6935g4055gb5eegbf2474a5e0f8;5"
+// data "TooltipStatusApply" "ApplyStatus(WEAPON_BOND,100, -1)"
+// data "CastSound" "Action_Cast_Fighter_WeaponBond"
+// data "CastTextEvent" "Cast"
+// data "UseCosts" "ActionPoint:1"
+// data "SpellAnimation" "8b8bb757-21ce-4e02-a2f3-97d55cf2f90b,,;,,;35b644cf-5c13-4407-9dc1-23bf4309216e,,;823e3ddf-c670-41ef-b7b4-9f4a4e38300b,,;7bb52cd4-0b1c-4926-9165-fa92b75876a3,,;,,;0b07883a-08b8-43b6-ac18-84dc9e84ff50,,;,,;,,"
+// data "VerbalIntent" "Buff"
+// data "SpellStyleGroup" "Class"
+// data "Requirements" "!Combat"
+// data "RequirementConditions" "not Unarmed()"
+// data "PrepareEffect" "e3faa4ab-3c09-456d-997a-23a48eac2b09"
+// data "CastEffect" "aec764bd-7542-462d-bd73-9d048fea33f8"
+// data "Sheathing" "Melee"
 
 new entry "WEAPON_BOND"
 type "StatusData"
 data "StatusType" "BOOST"
 using "WEAPON_BOND"
-// Ritually bound to its wielder. &lt;br&gt;&lt;br&gt;The weapon can't be knocked out of the wielder's hand, and automatically returns to the wielder when &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;Thrown&lt;/LSTag&gt;.
+// // Ritually bound to its wielder. &lt;br&gt;&lt;br&gt;The weapon can't be knocked out of the wielder's hand, and automatically returns to the wielder when &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;Thrown&lt;/LSTag&gt;.
 // data "Description" "hbb94f893g8fd0g414fg97dfg28ffbda5c54c;3"
-// Ritually bound to its wielder. &lt;br&gt;&lt;br&gt;The weapon gains the &lt;LSTag Tooltip="Thrown"&gt;Thrown&lt;/LSTag&gt; property, can't be knocked out of the wielder's hand, and automatically returns to the wielder when &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;Thrown&lt;/LSTag&gt;.
+// // Ritually bound to its wielder. &lt;br&gt;&lt;br&gt;The weapon gains the &lt;LSTag Tooltip="Thrown"&gt;Thrown&lt;/LSTag&gt; property, can't be knocked out of the wielder's hand, and automatically returns to the wielder when &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;Thrown&lt;/LSTag&gt;.
 data "Description" "h80265c57geff1g46fegbe9dg082f562211b0;1"
 // data "Boosts" "CannotBeDisarmed();ItemReturnToOwner()"
 data "Boosts" "CannotBeDisarmed();ItemReturnToOwner();WeaponProperty(Thrown)"
+
+// new entry "MAG_WEAPON_BOND"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "WEAPON_BOND"
+// data "StackPriority" "10"
+// data "StackType" "Ignore"
+// data "StatusPropertyFlags" "IgnoreResting;DisableOverhead"
+// data "OnRemoveFunctors" ""
+// data "StatusGroups" ""

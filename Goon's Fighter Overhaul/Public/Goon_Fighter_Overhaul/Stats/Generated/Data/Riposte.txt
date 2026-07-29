@@ -1,3 +1,88 @@
-// Just do it 
-// Don't let your dreams be dreams
-// JUST DO IT
+// ======================================== Riposte ========================================
+// Bug Fix: Now requires that you are wielding a melee weapon.
+// Changes: Uses Goon's Library proprietary overhauling functionality to deliver the most optimised and robust end user experience. (Yeah I just need to write up all that I'm doing with interrupts somewhere and link to it, it's good though.)
+// Changes: Interrupt is set to "ask" by default.
+// TODO: Unarmed variant?
+// TODO: Offhand variant for sure.
+
+new entry "Riposte"
+type "PassiveData"
+using "Riposte"
+// // Riposte
+// data "DisplayName" "h3e7d3c00gcc62g4673g80bcg8fa56b901fb7;2"
+// // When a hostile creature misses you with a melee attack, expend a superiority die to retaliate with a powerful strike that deals an additional [1] damage.
+// data "Description" "hf964daddge4e5g40e0g9e6fg5ef070887bc0;5"
+// // When a hostile creature misses you with a melee attack, expend a &lt;LSTag Type="ActionResource" Tooltip="SuperiorityDie"&gt;Superiority Die&lt;/LSTag&gt; to retaliate with a powerful strike that deals an additional [1] damage.
+data "Description" "h92c9bd2ag3740g4353gb3e8g89d55248f0ee;1"
+// data "DescriptionParams" "LevelMapValue(SuperiorityDie)"
+// data "TooltipUseCosts" "ReactionActionPoint:1;SuperiorityDie:1"
+// data "Icon" "PassiveFeature_Riposte"
+data "Properties" "Highlighted"
+// data "Boosts" "UnlockInterrupt(Interrupt_Riposte)"
+
+new entry "Interrupt_Riposte"
+type "InterruptData"
+using "Interrupt_Riposte"
+// // Riposte
+// data "DisplayName" "h8206f7fbg6fa5g4ceeg9411gbbb7ec7e11e8;1"
+// // When a creature misses you with a melee attack, you can retaliate with a powerful strike that deals an additional 1d8 damage if you are wielding a melee weapon. 
+// data "Description" "h29c21e7bg1694g40bbg9ffdg7de76393c235;3"
+// data "Icon" "PassiveFeature_Riposte"
+// data "InterruptContext" "OnCastHit"
+// data "InterruptContextScope" "Self"
+// data "Container" "YesNoDecision"
+// data "Conditions" "IsAbleToReact(context.Observer) and Enemy(context.Source,context.Observer) and IsMeleeAttack() and IsMiss() and not HasStatus('INVISIBILITY') and not AnyEntityIsItem() and not DistanceToEntityGreaterThan(2, context.ObserverPosition, context.Source) and HasLastAttackTriggered()"
+data "Conditions" "Goon_BasicHarmfulInterruptConditions(true) and Goon_InAttackRange(false,false) and IsMeleeAttack() and IsMiss() and HasLastAttackTriggered()"
+// data "Properties" "UseSpell(SWAP,Target_Riposte,true,true,true);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_RIPOSTE,100,0)"
+// data "Cost" "ReactionActionPoint:1;SuperiorityDie:1"
+// data "InterruptDefaultValue" "Enabled"
+data "InterruptDefaultValue" "Ask;Enabled"
+// data "EnableCondition" "not HasAnyStatus({'SG_Polymorph','SG_Blinded'}) or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
+data "EnableCondition" "Goon_BasicHarmfulInterruptEnableConditions() and Goon_HasWeaponTypeInSlot(false,false)"
+// data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+data "EnableContext" "OnStatusApplied;OnStatusRemoved;OnEquip"
+data "InterruptFlags" "InterruptWhileInvisible"
+
+// Goon_Interrupt_Riposte_Offhand
+//  and Goon_InAttackRange(false,false,true) and IsMeleeAttack() and IsMiss() and HasLastAttackTriggered()
+
+// new entry "Interrupt_Riposte"
+// type "InterruptData"
+// using "Interrupt_Riposte"
+// data "DisplayName" "LHB_RE_RiposteWeapon_Name;1"
+// data "Description" "LHB_RE_RiposteWeapon_Description;1"
+// data "DescriptionParams" "LevelMapValue(SuperiorityDie)"
+// data "Conditions" "IsAbleToReact(context.Observer) and Enemy(context.Source,context.Observer) and (IsMeleeAttack() or IsAttackType(AttackType.MeleeSpellAttack) or IsAttackType(AttackType.MeleeUnarmedAttack) or IsRangedAttack() or IsAttackType(AttackType.RangedSpellAttack) or IsAttackType(AttackType.RangedUnarmedAttack)) and IsMiss() and not AnyEntityIsItem() and not DistanceToEntityGreaterThan(2, context.ObserverPosition, context.Source) and HasLastAttackTriggered()"
+// data "Properties" "IF(not HasWeaponProperty(WeaponProperties.Melee, GetItemInEquipmentSlot(EquipmentSlot.MeleeOffHand, context.Source))):UseSpell(SWAP,Target_Riposte,true,true,true);IF(HasWeaponProperty(WeaponProperties.Melee, GetItemInEquipmentSlot(EquipmentSlot.MeleeOffHand, context.Source))):UseSpell(SWAP,Target_Riposte_Dual,true,true,true);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_RIPOSTE,100,0)"
+// data "Stack" "Interrupt_Riposte"
+// data "InterruptDefaultValue" "Enabled;Ask"
+// data "EnableCondition" "HasWeaponProperty(WeaponProperties.Melee, GetItemInEquipmentSlot(EquipmentSlot.MeleeMainHand, context.Source)) and (not HasAnyStatus({'SG_Polymorph'}) or Tagged('MINDFLAYER')  or HasStatus('SG_Disguise'))"
+
+// new entry "Target_Riposte"
+// type "SpellData"
+// data "SpellType" "Target"
+// using "Target_MainHandAttack"
+// data "TargetRadius" "MeleeMainWeaponRange"
+// data "SpellRoll" "Attack(AttackType.MeleeWeaponAttack)"
+// data "SpellSuccess" "DealDamage(MainMeleeWeapon + LevelMapValue(SuperiorityDie), MainMeleeWeaponDamageType); ExecuteWeaponFunctors(MainHand)"
+// data "TargetConditions" "Character() and not Self()"
+// data "Icon" "Action_Riposte"
+// // Riposte
+// data "DisplayName" "h1a436f64g1059g490bg8eb7gecb5b68a1636;1"
+// // Retaliate with a formidable strike when a creature misses you with a melee attack.
+// data "Description" "hf64b0c8ag9df4g4cd3g83a9ga3253b2ea302;3"
+// data "TooltipDamageList" "DealDamage(MainMeleeWeapon + LevelMapValue(SuperiorityDie), MainMeleeWeaponDamageType)"
+// data "CastSound" "Action_Cast_Riposte"
+// data "TargetSound" "Action_Impact_Riposte"
+// data "CastTextEvent" "Cast"
+// data "UseCosts" ""
+// data "HitCosts" ""
+// data "SpellAnimation" "79f8640c-612a-4b13-aac7-bdc1b90458c2,,;655f5d8e-39c7-45b4-8a36-fdd3358a448c,,;c07a9d83-9a39-464a-b281-15c67c528ffb,,;32c33123-7962-4d95-b497-532b1a897e85,,;7f20e242-be7c-4fd1-a2bd-5715b2adca03,,;7465f7f7-67ea-41f2-8dd4-3c97f1089a54,,;0b07883a-08b8-43b6-ac18-84dc9e84ff50,,;,,;,,"
+// data "DualWieldingSpellAnimation" "6f9e662c-b10c-4388-9e56-d74320efa0c0,,;d668f9d6-bd9d-435c-83b5-6d46ac54761f,,;8e60eacb-12be-4711-96e2-d6d906a1ce25,,;603a7bfb-d53e-41c2-98dd-e004fdf5a0e8,,;003e58fc-f11d-41b6-90d9-ea8bc943826b,,;b850a756-6bd6-4c4d-a3fc-6c524a49a818,,;0b07883a-08b8-43b6-ac18-84dc9e84ff50,,;,,;,,"
+// data "SpellStyleGroup" "Class"
+// data "WeaponTypes" "Melee"
+// data "SpellFlags" "IsMelee;IsHarmful"
+// data "PrepareEffect" "e3faa4ab-3c09-456d-997a-23a48eac2b09"
+// data "CastEffect" "e4013228-0f3c-4c9c-a0d9-59417c9de652"
+// data "TargetEffect" "fe37f6cc-0a5e-4a27-b953-19f46bf91ca5"
+// data "Sheathing" "Melee"
