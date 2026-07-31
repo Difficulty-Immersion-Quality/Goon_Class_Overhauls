@@ -1,0 +1,274 @@
+// ==================================== Draconic Bloodline - Elemental Affinity ====================================
+// Changes: Now functions while under the effects of non-humanoid polymorphs.
+// Bonus: Native support for Draconic Bloodline Expanded and Platinum Draconic Bloodline for Sorcerers.
+
+// ==================================== Draconic Bloodline - Elemental Affinity: Damage
+// Changes: Elemental Affinity: Damage's Charisma modifier damage bonus now only triggers once per action, per target.
+// Changes: Elemental Affinity: Damage's Charisma modifier damage bonus will now deal damage based on the damage type of the spell for spells using weapons that deal conditional damage (e.g. Booming Blade), instead of being a damage rider for both the weapon damage and conditional damage, or just the weapon damage itself. If the conditions are not met for the conditional damage, per RAW the weapon damage will not benefit from the damage bonus, e.g. if you are using Booming Blade prior to being level 5.
+// Note: Cantrips are manually supported in the "Goon_IsConditionalDamageCantripEligible()" function within Goon's Library, if they are not they will behave the same as is expected of vanilla.
+
+new entry "ElementalAffinity_Damage"
+type "PassiveData"
+using "ElementalAffinity_Damage"
+// // Elemental Affinity: Damage
+// data "DisplayName" "h5288bd8fg7e82g4c6cgae28gacd825b1f8e9;3"
+// // When you cast a spell that deals damage of the type associated with your draconic ancestry, you add your Charisma &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt; to the damage.
+// data "Description" "hf32ca0b3g8a45g43f6gaf4ag5f343ed8eaa6;5"
+// // When you cast a spell whose damage type matches your draconic ancestry, you add your &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt; to its damage.
+data "Description" "hef4f7a1agb94fg48dcgbe08g39c9ef2786de;1"
+// data "Icon" "PassiveFeature_ElementalAffinity_ExtraDamage"
+// data "Properties" "Highlighted"
+// // &lt;LSTag Type="Image" Info="SoftWarning"/&gt; This effect can only trigger once per &lt;LSTag Tooltip="Action"&gt;action&lt;/LSTag&gt; for each target.
+// // &lt;LSTag Type="Image" Info="SoftWarning"/&gt; Continues to function while willingly under the effects of &lt;LSTag Type="Status" Tooltip="POLYMORPH_SHEEP"&gt;Polymorphs&lt;/LSTag&gt;, including &lt;LSTag Type="Spell" Tooltip="Shout_WildShape"&gt;Wild Shape&lt;/LSTag&gt;.
+data "TooltipPermanentWarnings" "2e9bcfe0-6444-477c-a767-40e967ca7b55;28186bf3-e19b-43a9-8395-7dc31a6a211d"
+data "Boosts" "IF(Goon_EAD_Acid(false)):DamageBonus(max(0,CharismaModifier),Acid);IF(Goon_EAD_Acid(true)):CharacterWeaponDamage(max(0,CharismaModifier),Acid);IF(Goon_EAD_Cold(false)):DamageBonus(max(0,CharismaModifier),Cold);IF(Goon_EAD_Cold(true)):CharacterWeaponDamage(max(0,CharismaModifier),Cold);IF(Goon_EAD_Fire(false)):DamageBonus(max(0,CharismaModifier),Fire);IF(Goon_EAD_Fire(true)):CharacterWeaponDamage(max(0,CharismaModifier),Fire);IF(Goon_EAD_Lightning(false)):DamageBonus(max(0,CharismaModifier),Lightning);IF(Goon_EAD_Lightning(true)):CharacterWeaponDamage(max(0,CharismaModifier),Lightning);IF(Goon_EAD_Poison(false)):DamageBonus(max(0,CharismaModifier),Poison);IF(Goon_EAD_Poison(true)):CharacterWeaponDamage(max(0,CharismaModifier),Poison);IF(Goon_EAD_Force(false)):DamageBonus(max(0,CharismaModifier),Force);IF(Goon_EAD_Force(true)):CharacterWeaponDamage(max(0,CharismaModifier),Force);IF(Goon_EAD_Radiant(false)):DamageBonus(max(0,CharismaModifier),Radiant);IF(Goon_EAD_Radiant(true)):CharacterWeaponDamage(max(0,CharismaModifier),Radiant);IF(Goon_EAD_Psychic(false)):DamageBonus(max(0,CharismaModifier),Psychic);IF(Goon_EAD_Psychic(true)):CharacterWeaponDamage(max(0,CharismaModifier),Psychic);IF(Goon_EAD_Thunder(false)):DamageBonus(max(0,CharismaModifier),Thunder);IF(Goon_EAD_Thunder(true)):CharacterWeaponDamage(max(0,CharismaModifier),Thunder);IF(Goon_EAD_Necrotic(false)):DamageBonus(max(0,CharismaModifier),Necrotic);IF(Goon_EAD_Necrotic(true)):CharacterWeaponDamage(max(0,CharismaModifier),Necrotic);IF(Goon_EAD_Bludgeoning(false)):DamageBonus(max(0,CharismaModifier),Bludgeoning);IF(Goon_EAD_Bludgeoning(true)):CharacterWeaponDamage(max(0,CharismaModifier),Bludgeoning);IF(Goon_EAD_Piercing(false)):DamageBonus(max(0,CharismaModifier),Piercing);IF(Goon_EAD_Piercing(true)):CharacterWeaponDamage(max(0,CharismaModifier),Piercing);IF(Goon_EAD_Slashing(false)):DamageBonus(max(0,CharismaModifier),Slashing);IF(Goon_EAD_Slashing(true)):CharacterWeaponDamage(max(0,CharismaModifier),Slashing)"
+// data "StatsFunctorContext" "OnCreate"
+data "StatsFunctorContext" "OnDamage"
+data "Conditions" "not HasStatus('GOON_ONCEPERACTION_COOLDOWN_ELEMENTALAFFINITY',context.Target)"
+// data "StatsFunctors" "IF(HasPassive('DraconicAncestry_Black',context.Source) or HasPassive('DraconicAncestry_Copper',context.Source)):ApplyStatus(ELEMENTALAFFINITY_ACID_EXTRA_DAMAGE_TECHNICAL,100,-1);IF(HasPassive('DraconicAncestry_Silver',context.Source) or HasPassive('DraconicAncestry_White',context.Source)):ApplyStatus(ELEMENTALAFFINITY_COLD_EXTRA_DAMAGE_TECHNICAL,100,-1);IF(HasPassive('DraconicAncestry_Red',context.Source)  or HasPassive('DraconicAncestry_Gold',context.Source) or HasPassive('DraconicAncestry_Brass',context.Source)):ApplyStatus(ELEMENTALAFFINITY_FIRE_EXTRA_DAMAGE_TECHNICAL,100,-1);IF(HasPassive('DraconicAncestry_Blue',context.Source) or HasPassive('DraconicAncestry_Bronze',context.Source)):ApplyStatus(ELEMENTALAFFINITY_LIGHTNING_EXTRA_DAMAGE_TECHNICAL,100,-1);IF(HasPassive('DraconicAncestry_Green',context.Source)):ApplyStatus(ELEMENTALAFFINITY_POISON_EXTRA_DAMAGE_TECHNICAL,100,-1)"
+data "StatsFunctors" "IF(IsSpell()):ApplyStatus(GOON_ONCEPERACTION_COOLDOWN_ELEMENTALAFFINITY, 100, 1)"
+
+// RemoveStatus(SELF,ELEMENTALAFFINITY_ACID_EXTRA_DAMAGE_TECHNICAL);RemoveStatus(SELF,ELEMENTALAFFINITY_COLD_EXTRA_DAMAGE_TECHNICAL);RemoveStatus(SELF,ELEMENTALAFFINITY_FIRE_EXTRA_DAMAGE_TECHNICAL);RemoveStatus(SELF,ELEMENTALAFFINITY_LIGHTNING_EXTRA_DAMAGE_TECHNICAL);RemoveStatus(SELF,ELEMENTALAFFINITY_POISON_EXTRA_DAMAGE_TECHNICAL)
+
+new entry "ELEMENTALAFFINITY_ACID_EXTRA_DAMAGE_TECHNICAL"
+type "StatusData"
+data "StatusType" "BOOST"
+using "ELEMENTALAFFINITY_ACID_EXTRA_DAMAGE_TECHNICAL"
+// // Elemental Affinity: Additional Acid Damage
+// data "DisplayName" "hc14c7064gd139g44bbgaef6g174ad1a83e30;3"
+// // When you cast a spell whose damage type matches your draconic ancestry, you add your &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt; to its damage.
+data "Description" "hef4f7a1agb94fg48dcgbe08g39c9ef2786de;1"
+// data "Icon" "PassiveFeature_ElementalAffinity_ExtraDamage"
+// data "StackId" "ELEMENTALAFFINITY_ACID_EXTRA_DAMAGE_TECHNICAL"
+// data "Boosts" "IF(IsSpell() and IsDamageTypeAcid()):DamageBonus(max(0, CharismaModifier))"
+// data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator;ApplyToDead;IgnoreResting"
+// data "StatusGroups" "SG_RemoveOnRespec"
+
+// new entry "ELEMENTALAFFINITY_COLD_EXTRA_DAMAGE_TECHNICAL"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "ELEMENTALAFFINITY_ACID_EXTRA_DAMAGE_TECHNICAL"
+// // Elemental Affinity: Additional Cold Damage
+// data "DisplayName" "h2c0e2f3bg31deg4cffg8703g6cd90ce47de1;3"
+// data "StackId" "ELEMENTALAFFINITY_COLD_EXTRA_DAMAGE_TECHNICAL"
+// data "Boosts" "IF(IsSpell() and IsDamageTypeCold()):DamageBonus(max(0, CharismaModifier))"
+
+// new entry "ELEMENTALAFFINITY_FIRE_EXTRA_DAMAGE_TECHNICAL"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "ELEMENTALAFFINITY_ACID_EXTRA_DAMAGE_TECHNICAL"
+// // Elemental Affinity: Additional Fire Damage
+// data "DisplayName" "h249e93e4g907fg410cg83ddgdb9e20201e51;3"
+// data "StackId" "ELEMENTALAFFINITY_FIRE_EXTRA_DAMAGE_TECHNICAL"
+// data "Boosts" "IF(IsSpell() and IsDamageTypeFire()):DamageBonus(max(0, CharismaModifier))"
+
+new entry "ELEMENTALAFFINITY_LIGHTNING_EXTRA_DAMAGE_TECHNICAL"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "ELEMENTALAFFINITY_ACID_EXTRA_DAMAGE_TECHNICAL"
+using "ELEMENTALAFFINITY_LIGHTNING_EXTRA_DAMAGE_TECHNICAL"
+// // Elemental Affinity: Additional Lightning Damage
+// data "DisplayName" "hc7746429g35b5g480bg957fgd041a77ac48a;3"
+// // %%%Don't Destub - You add your charisma modifier to one damage roll of your lightning spell.
+// data "Description" "hd3306fe7g5825g4618g8808g597e939aa5a3;1"
+// // When you cast a spell whose damage type matches your draconic ancestry, you add your &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt; to its damage.
+data "Description" "hef4f7a1agb94fg48dcgbe08g39c9ef2786de;1"
+// data "StackId" "ELEMENTALAFFINITY_LIGHTNING_EXTRA_DAMAGE_TECHNICAL"
+// data "Boosts" "IF(IsSpell() and IsDamageTypeLightning()):DamageBonus(max(0, CharismaModifier))"
+
+// new entry "ELEMENTALAFFINITY_POISON_EXTRA_DAMAGE_TECHNICAL"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "ELEMENTALAFFINITY_ACID_EXTRA_DAMAGE_TECHNICAL"
+// // Elemental Affinity: Additional Poison Damage
+// data "DisplayName" "h76fd5715g1cf0g4aa4g892cgfc751babbb75;3"
+// data "StackId" "ELEMENTALAFFINITY_POISON_EXTRA_DAMAGE_TECHNICAL"
+// data "Boosts" "IF(IsSpell() and IsDamageTypePoison()):DamageBonus(max(0, CharismaModifier))"
+
+// ==================================== Draconic Bloodline - Elemental Affinity: Resistance
+// Changes: Elemental Affinity: Resistance can now be used by Invisible characters.
+
+new entry "ElementalAffinity_Resistance_Check"
+type "PassiveData"
+using "ElementalAffinity_Resistance_Check"
+// // Elemental Affinity: Resistance
+// data "DisplayName" "h6948c0efg778bg41d3g88e4g9f4c658120a4;2"
+// // When you cast a spell that deals damage of the type associated with your draconic ancestry, you can spend 1 &lt;LSTag Type="ActionResource" Tooltip="SorceryPoint"&gt;Sorcery Point&lt;/LSTag&gt; to gain &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to that damage type.
+// data "Description" "hc7a73dbbg61a2g446ag9514g3b03426dee75;3"
+// data "Icon" "Skill_Sorcerer_Passive_ElementalAffinity_Resistance"
+// data "Properties" "Highlighted"
+// // &lt;LSTag Type="Image" Info="SoftWarning"/&gt; Continues to function while willingly under the effects of &lt;LSTag Type="Status" Tooltip="POLYMORPH_SHEEP"&gt;Polymorphs&lt;/LSTag&gt;, including &lt;LSTag Type="Spell" Tooltip="Shout_WildShape"&gt;Wild Shape&lt;/LSTag&gt;.
+data "TooltipPermanentWarnings" "28186bf3-e19b-43a9-8395-7dc31a6a211d"
+// data "Boosts" "UnlockInterrupt(Interrupt_ElementalAffinity)"
+
+new entry "Interrupt_ElementalAffinity"
+type "InterruptData"
+using "Interrupt_ElementalAffinity"
+// // Elemental Affinity: Resistance
+// data "DisplayName" "h90065760g7b74g4325gab16g362b59683106;1"
+// // >When you cast a spell that deals damage matching your draconic ancestry, you can spend 1 &lt;LSTag Type="ActionResource" Tooltip="SorceryPoint"&gt;Sorcery Point&lt;/LSTag&gt; to gain &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to that damage type.
+// data "Description" "h0ada409agdc13g40c5g98b8g166bbd646730;2"
+// // When you cast a spell that deals damage of the type associated with your draconic ancestry, you can spend 1 &lt;LSTag Type="ActionResource" Tooltip="SorceryPoint"&gt;Sorcery Point&lt;/LSTag&gt; to gain &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to that damage type.
+data "Description" "hc7a73dbbg61a2g446ag9514g3b03426dee75;3"
+// data "Icon" "Skill_Sorcerer_Passive_ElementalAffinity_Resistance"
+// // &lt;LSTag Type="Image" Info="SoftWarning"/&gt; Continues to function while willingly under the effects of &lt;LSTag Type="Status" Tooltip="POLYMORPH_SHEEP"&gt;Polymorphs&lt;/LSTag&gt;, including &lt;LSTag Type="Spell" Tooltip="Shout_WildShape"&gt;Wild Shape&lt;/LSTag&gt;.
+data "TooltipPermanentWarnings" "28186bf3-e19b-43a9-8395-7dc31a6a211d"
+// data "InterruptContext" "OnSpellCast"
+// data "InterruptContextScope" "Self"
+// data "Container" "YesNoDecision"
+// data "Conditions" "Self(context.Source,context.Observer) and ElementalAffinityCheck() and not AnyEntityIsItem()"
+data "Conditions" "Goon_InterruptConditions() and Self(context.Source,context.Observer) and ElementalAffinityCheck() and Goon_IsSpellDealingFunctorDamage()"
+// data "Properties" "IF(HasPassive('DraconicAncestry_Black',context.Source) or HasPassive('DraconicAncestry_Copper',context.Source)):ApplyStatus(OBSERVER_OBSERVER,ELEMENTALAFFINITY_ACID,100,-1);IF(HasPassive('DraconicAncestry_Silver',context.Source) or HasPassive('DraconicAncestry_White',context.Source)):ApplyStatus(OBSERVER_OBSERVER,ELEMENTALAFFINITY_COLD,100,-1);IF(HasPassive('DraconicAncestry_Red',context.Source)  or HasPassive('DraconicAncestry_Gold',context.Source) or HasPassive('DraconicAncestry_Brass',context.Source)):ApplyStatus(OBSERVER_OBSERVER,ELEMENTALAFFINITY_FIRE,100,-1);IF(HasPassive('DraconicAncestry_Blue',context.Source) or HasPassive('DraconicAncestry_Bronze',context.Source)):ApplyStatus(OBSERVER_OBSERVER,ELEMENTALAFFINITY_LIGHTNING,100,-1);IF(HasPassive('DraconicAncestry_Green',context.Source)):ApplyStatus(OBSERVER_OBSERVER,ELEMENTALAFFINITY_POISON,100,-1)"
+data "Properties" "IF(Goon_EAD_Acid()):ApplyStatus(OBSERVER_OBSERVER,ELEMENTALAFFINITY_ACID,100,-1);IF(Goon_EAD_Cold()):ApplyStatus(OBSERVER_OBSERVER,ELEMENTALAFFINITY_COLD,100,-1);IF(Goon_EAD_Fire()):ApplyStatus(OBSERVER_OBSERVER,ELEMENTALAFFINITY_FIRE,100,-1);IF(Goon_EAD_Lightning()):ApplyStatus(OBSERVER_OBSERVER,ELEMENTALAFFINITY_LIGHTNING,100,-1);IF(Goon_EAD_Poison()):ApplyStatus(OBSERVER_OBSERVER,ELEMENTALAFFINITY_POISON,100,-1);IF(Goon_EAD_Force()):ApplyStatus(OBSERVER_OBSERVER,GOON_ELEMENTALAFFINITY_FORCE,100,-1);IF(Goon_EAD_Radiant()):ApplyStatus(OBSERVER_OBSERVER,GOON_ELEMENTALAFFINITY_RADIANT,100,-1);IF(Goon_EAD_Psychic()):ApplyStatus(OBSERVER_OBSERVER,GOON_ELEMENTALAFFINITY_PSYCHIC,100,-1);IF(Goon_EAD_Thunder()):ApplyStatus(OBSERVER_OBSERVER,GOON_ELEMENTALAFFINITY_THUNDER,100,-1);IF(Goon_EAD_Necrotic()):ApplyStatus(OBSERVER_OBSERVER,GOON_ELEMENTALAFFINITY_NECROTIC,100,-1);IF(Goon_EAD_Bludgeoning()):ApplyStatus(OBSERVER_OBSERVER,GOON_ELEMENTALAFFINITY_BLUDGEONING,100,-1);IF(Goon_EAD_Piercing()):ApplyStatus(OBSERVER_OBSERVER,GOON_ELEMENTALAFFINITY_PIERCING,100,-1);IF(Goon_EAD_Slashing()):ApplyStatus(OBSERVER_OBSERVER,GOON_ELEMENTALAFFINITY_SLASHING,100,-1)"
+// data "Cost" "SorceryPoint:1"
+// data "InterruptDefaultValue" "Ask;Enabled"
+// data "EnableCondition" "not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
+data "EnableCondition" "Goon_InterruptEnableConditions(true) and Goon_NoElementalAffinityStatus()"
+// data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"
+
+
+new entry "ELEMENTALAFFINITY_ACID"
+type "StatusData"
+data "StatusType" "BOOST"
+using "ELEMENTALAFFINITY_ACID"
+// // Elemental Affinity: Acid Resistance
+// data "DisplayName" "h3fe580c8gf363g4b19ga784g63cbfa4714e9;3"
+// // You are &lt;LSTag Tooltip="Resistant"&gt;Resistant&lt;/LSTag&gt; to Acid damage.
+// data "Description" "ha005a988g7ee9g4026gb30ag6a03bd689483;2"
+// // You are &lt;LSTag Tooltip="Resistant"&gt;Resistant&lt;/LSTag&gt; to[1].
+data "Description" "he50e46a0g877fg4ef1g9454g8f21b1cf75b2;1"
+data "DescriptionParams" "DealDamage(,Acid)"
+// data "Icon" "Skill_Sorcerer_Passive_ElementalAffinity_Resistance"
+// data "StackId" "ELEMENTALAFFINITY"
+// data "Boosts" "Resistance(Acid,Resistant)"
+// data "StatusGroups" "SG_RemoveOnRespec"
+
+new entry "ELEMENTALAFFINITY_COLD"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "ELEMENTALAFFINITY_ACID"
+using "ELEMENTALAFFINITY_COLD"
+// // Elemental Affinity: Cold Resistance
+// data "DisplayName" "hb8c89f4fg27b1g4260g9d30g016ee085819d;2"
+// // You are &lt;LSTag Tooltip="Resistant"&gt;Resistant&lt;/LSTag&gt; to Cold damage.
+// data "Description" "hf3367b6cgec0bg4d06ga3dcgeb87b1f17167;2"
+// // You are &lt;LSTag Tooltip="Resistant"&gt;Resistant&lt;/LSTag&gt; to[1].
+data "Description" "he50e46a0g877fg4ef1g9454g8f21b1cf75b2;1"
+data "DescriptionParams" "DealDamage(,Cold)"
+// data "Boosts" "Resistance(Cold,Resistant)"
+
+new entry "ELEMENTALAFFINITY_FIRE"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "ELEMENTALAFFINITY_ACID"
+using "ELEMENTALAFFINITY_FIRE"
+// // Elemental Affinity: Fire Resistance
+// data "DisplayName" "hd358dba0gf59fg46eagb7b1gba7ea5822d2d;2"
+// // You are &lt;LSTag Tooltip="Resistant"&gt;Resistant&lt;/LSTag&gt; to Fire damage.
+// data "Description" "he8cf4ca0gdbfbg438bgb248g97f995b53b4c;2"
+// // You are &lt;LSTag Tooltip="Resistant"&gt;Resistant&lt;/LSTag&gt; to[1].
+data "Description" "he50e46a0g877fg4ef1g9454g8f21b1cf75b2;1"
+data "DescriptionParams" "DealDamage(,Fire)"
+// data "Boosts" "Resistance(Fire,Resistant)"
+
+new entry "ELEMENTALAFFINITY_LIGHTNING"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "ELEMENTALAFFINITY_ACID"
+using "ELEMENTALAFFINITY_LIGHTNING"
+// // Elemental Affinity: Lightning Resistance
+// data "DisplayName" "h574edf43g4ee3g4b88gb135gf24fae6761f5;2"
+// // You are &lt;LSTag Tooltip="Resistant"&gt;Resistant&lt;/LSTag&gt; to Lightning damage.
+// data "Description" "h64605517ga3d7g4a4bg817cg90a784d61955;2"
+// // You are &lt;LSTag Tooltip="Resistant"&gt;Resistant&lt;/LSTag&gt; to[1].
+data "Description" "he50e46a0g877fg4ef1g9454g8f21b1cf75b2;1"
+data "DescriptionParams" "DealDamage(,Lightning)"
+// data "Boosts" "Resistance(Lightning,Resistant)"
+
+new entry "ELEMENTALAFFINITY_POISON"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "ELEMENTALAFFINITY_ACID"
+using "ELEMENTALAFFINITY_POISON"
+// // Elemental Affinity: Poison Resistance
+// data "DisplayName" "h707589b7g3499g4220gbe9dg10b47a5ffed5;2"
+// // You are &lt;LSTag Tooltip="Resistant"&gt;Resistant&lt;/LSTag&gt; to Poison damage.
+// data "Description" "h3328d8ddgc6c1g4336gbfccg018c307d7501;2"
+// // You are &lt;LSTag Tooltip="Resistant"&gt;Resistant&lt;/LSTag&gt; to[1].
+data "Description" "he50e46a0g877fg4ef1g9454g8f21b1cf75b2;1"
+data "DescriptionParams" "DealDamage(,Poison)"
+// data "Boosts" "Resistance(Poison,Resistant)"
+
+// Custom
+new entry "GOON_ELEMENTALAFFINITY_FORCE"
+type "StatusData"
+data "StatusType" "BOOST"
+using "ELEMENTALAFFINITY_ACID"
+// // Elemental Affinity: Force Resistance
+data "DisplayName" "h089ee93dg58b3g448fga005ge059a0c70b0a;1"
+data "DescriptionParams" "DealDamage(,Force)"
+data "Boosts" "Resistance(Force,Resistant)"
+
+new entry "GOON_ELEMENTALAFFINITY_RADIANT"
+type "StatusData"
+data "StatusType" "BOOST"
+using "ELEMENTALAFFINITY_ACID"
+// // Elemental Affinity: Radiant Resistance
+data "DisplayName" "hbecf28f0gdb07g4cc4ga736g6581c20e2867;1"
+data "DescriptionParams" "DealDamage(,Radiant)"
+data "Boosts" "Resistance(Radiant,Resistant)"
+
+new entry "GOON_ELEMENTALAFFINITY_PSYCHIC"
+type "StatusData"
+data "StatusType" "BOOST"
+using "ELEMENTALAFFINITY_ACID"
+// // Elemental Affinity: Psychic Resistance
+data "DisplayName" "h955dda19gbf3fg4de6gb860gc0bb7a8c5326;1"
+data "DescriptionParams" "DealDamage(,Psychic)"
+data "Boosts" "Resistance(Psychic,Resistant)"
+
+new entry "GOON_ELEMENTALAFFINITY_THUNDER"
+type "StatusData"
+data "StatusType" "BOOST"
+using "ELEMENTALAFFINITY_ACID"
+// // Elemental Affinity: Thunder Resistance
+data "DisplayName" "h3692f41fg0fe1g4a2agb97cgcd96e63a1c20;1"
+data "DescriptionParams" "DealDamage(,Thunder)"
+data "Boosts" "Resistance(Thunder,Resistant)"
+
+new entry "GOON_ELEMENTALAFFINITY_NECROTIC"
+type "StatusData"
+data "StatusType" "BOOST"
+using "ELEMENTALAFFINITY_ACID"
+// // Elemental Affinity: Necrotic Resistance
+data "DisplayName" "h9434feadgd9c2g4c33gaa19g94b9b908dd08;1"
+data "DescriptionParams" "DealDamage(,Necrotic)"
+data "Boosts" "Resistance(Necrotic,Resistant)"
+
+new entry "GOON_ELEMENTALAFFINITY_BLUDGEONING"
+type "StatusData"
+data "StatusType" "BOOST"
+using "ELEMENTALAFFINITY_ACID"
+// // Elemental Affinity: Bludgeoning Resistance
+data "DisplayName" "hb280e151gf3abg45f4gbe17g34bfb3458815;1"
+data "DescriptionParams" "DealDamage(,Bludgeoning)"
+data "Boosts" "Resistance(Bludgeoning,Resistant)"
+
+new entry "GOON_ELEMENTALAFFINITY_PIERCING"
+type "StatusData"
+data "StatusType" "BOOST"
+using "ELEMENTALAFFINITY_ACID"
+// // Elemental Affinity: Piercing Resistance
+data "DisplayName" "he0343e7egd8b1g4d8agaaacg24b490436a45;1"
+data "DescriptionParams" "DealDamage(,Piercing)"
+data "Boosts" "Resistance(Piercing,Resistant)"
+
+new entry "GOON_ELEMENTALAFFINITY_SLASHING"
+type "StatusData"
+data "StatusType" "BOOST"
+using "ELEMENTALAFFINITY_ACID"
+// // Elemental Affinity: Slashing Resistance
+data "DisplayName" "h267fbe74gd223g4269g95feg9cd07db9e0f4;1"
+data "DescriptionParams" "DealDamage(,Slashing)"
+data "Boosts" "Resistance(Slashing,Resistant)"

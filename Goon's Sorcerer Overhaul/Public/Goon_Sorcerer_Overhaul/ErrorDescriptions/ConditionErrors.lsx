@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<save>
+    <version major="4" minor="3" revision="0" build="0"/>
+    <region id="ConditionErrors">
+        <node id="root">
+            <children>
+            <!-- ==================================== Elemental Affinity ==================================== -->
+                <node id="ConditionErrors">
+                    <!-- Elemental Affinity is already active. -->
+                    <attribute id="DisplayName" type="TranslatedString" handle="hcd621df8gcffag41cag9e3fg3e831e192f21" version="1" />
+                    <attribute id="ErrorDescriptionType" type="uint8" value="0" />
+                    <attribute id="Identifier" type="FixedString" value="Goon_ElementalAffinity_Active" />
+                    <attribute id="UUID" type="guid" value="6f511a6a-10a8-4b66-b378-96ebff2c40a8" />
+                </node>
+            </children>
+        </node>
+    </region>
+</save>

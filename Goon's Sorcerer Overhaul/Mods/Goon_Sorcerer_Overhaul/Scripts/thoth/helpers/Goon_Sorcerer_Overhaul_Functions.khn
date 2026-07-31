@@ -1,0 +1,195 @@
+-- ==================================== Draconic Bloodline - Elemental Affinity: Damage ====================================
+
+function Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+    target = target or context.Target
+
+    local conditions = ~HasStatus('GOON_ONCEPERACTION_COOLDOWN_ELEMENTALAFFINITY', target)
+                     & IsSpell()
+                     & (Goon_IsSpellDamageTypeAcid()
+                     | Goon_IsSpellDamageTypeCold()
+                     | Goon_IsSpellDamageTypeFire()
+                     | Goon_IsSpellDamageTypeLightning()
+                     | Goon_IsSpellDamageTypePoison()
+                     | Goon_IsSpellDamageTypeForce()
+                     | Goon_IsSpellDamageTypeRadiant()
+                     | Goon_IsSpellDamageTypePsychic()
+                     | Goon_IsSpellDamageTypeThunder()
+                     | Goon_IsSpellDamageTypeNecrotic()
+                     | Goon_IsSpellDamageTypeBludgeoning()
+                     | Goon_IsSpellDamageTypePiercing()
+                     | Goon_IsSpellDamageTypeSlashing())
+
+    if conditionalDamageSpell ~= nil then
+        if conditionalDamageSpell then
+            return conditions & Goon_IsConditionalDamageCantripEligible()
+        else
+            return conditions & ~Goon_IsConditionalDamageCantripEligible()
+        end
+    end
+
+    return conditions
+end
+
+function Goon_EAD_Acid(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+         & Goon_DraconicAncestry_Acid(source)
+         & Goon_IsSpellDamageTypeAcid()
+end
+
+function Goon_EAD_Cold(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+         & Goon_DraconicAncestry_Cold(source)
+         & Goon_IsSpellDamageTypeCold()
+end
+
+function Goon_EAD_Fire(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+         & Goon_DraconicAncestry_Fire(source)
+         & Goon_IsSpellDamageTypeFire()
+end
+
+function Goon_EAD_Lightning(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+         & Goon_DraconicAncestry_Lightning(source)
+         & Goon_IsSpellDamageTypeLightning()
+end
+
+function Goon_EAD_Poison(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+         & Goon_DraconicAncestry_Poison(source)
+         & Goon_IsSpellDamageTypePoison()
+end
+
+-- Custom
+function Goon_EAD_Force(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+         & Goon_DraconicAncestry_Force(source)
+         & Goon_IsSpellDamageTypeForce()
+end
+
+function Goon_EAD_Radiant(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+         & Goon_DraconicAncestry_Radiant(source)
+         & Goon_IsSpellDamageTypeRadiant()
+end
+
+function Goon_EAD_Psychic(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+         & Goon_DraconicAncestry_Psychic(source)
+         & Goon_IsSpellDamageTypePsychic()
+end
+
+function Goon_EAD_Thunder(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+         & Goon_DraconicAncestry_Thunder(source)
+         & Goon_IsSpellDamageTypeThunder()
+end
+
+function Goon_EAD_Necrotic(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+         & Goon_DraconicAncestry_Necrotic(source)
+         & Goon_IsSpellDamageTypeNecrotic()
+end
+
+function Goon_EAD_Bludgeoning(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+         & Goon_DraconicAncestry_Bludgeoning(source)
+         & Goon_IsSpellDamageTypeBludgeoning()
+end
+
+function Goon_EAD_Piercing(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+         & Goon_DraconicAncestry_Piercing(source)
+         & Goon_IsSpellDamageTypePiercing()
+end
+
+function Goon_EAD_Slashing(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+         & Goon_DraconicAncestry_Slashing(source)
+         & Goon_IsSpellDamageTypeSlashing()
+end
+
+-- ==================================== Draconic Bloodline - Elemental Affinity: Resistance ====================================
+
+function Goon_NoElementalAffinityStatus(source)
+    source = source or context.Source
+
+    local result = ~HasAnyStatus({ 'ELEMENTALAFFINITY_ACID', 'ELEMENTALAFFINITY_COLD', 'ELEMENTALAFFINITY_FIRE', 'ELEMENTALAFFINITY_LIGHTNING', 'ELEMENTALAFFINITY_POISON', 'GOON_ELEMENTALAFFINITY_FORCE', 'ELEMENTALAFFINITY_FORCE', 'GOON_ELEMENTALAFFINITY_RADIANT', 'ELEMENTALAFFINITY_RADIANT', 'GOON_ELEMENTALAFFINITY_PSYCHIC', 'ELEMENTALAFFINITY_PSYCHIC', 'GOON_ELEMENTALAFFINITY_THUNDER', 'ELEMENTALAFFINITY_THUNDER', 'GOON_ELEMENTALAFFINITY_NECROTIC', 'ELEMENTALAFFINITY_NECROTIC', 'GOON_ELEMENTALAFFINITY_BLUDGEONING', 'ELEMENTALAFFINITY_BLUDGEONING', 'GOON_ELEMENTALAFFINITY_PIERCING', 'ELEMENTALAFFINITY_PIERCING', 'GOON_ELEMENTALAFFINITY_SLASHING', 'ELEMENTALAFFINITY_SLASHING' }, {}, {}, source)
+
+    if not result.Result then
+        return ConditionResult(false, { ConditionError('Goon_ElementalAffinity_Active') })
+    end
+
+    return result
+end
+
+function ElementalAffinityCheck(observer, source, target)
+    observer = observer or context.Observer
+    source = source or context.Source
+    target = target or context.Target
+
+    local noStatus = Goon_NoElementalAffinityStatus(observer).Result
+
+    local acid        = Goon_EAD_Acid(nil, source, target).Result
+    local cold        = Goon_EAD_Cold(nil, source, target).Result
+    local fire        = Goon_EAD_Fire(nil, source, target).Result
+    local lightning   = Goon_EAD_Lightning(nil, source, target).Result
+    local poison      = Goon_EAD_Poison(nil, source, target).Result
+    local force       = Goon_EAD_Force(nil, source, target).Result -- Custom
+    local radiant     = Goon_EAD_Radiant(nil, source, target).Result
+    local psychic     = Goon_EAD_Psychic(nil, source, target).Result
+    local thunder     = Goon_EAD_Thunder(nil, source, target).Result
+    local necrotic    = Goon_EAD_Necrotic(nil, source, target).Result
+    local bludgeoning = Goon_EAD_Bludgeoning(nil, source, target).Result
+    local piercing    = Goon_EAD_Piercing(nil, source, target).Result
+    local slashing    = Goon_EAD_Slashing(nil, source, target).Result
+
+    if (acid or cold or fire or lightning or poison or force or radiant or psychic or thunder or necrotic or bludgeoning or piercing or slashing) and noStatus then
+        return ConditionResult(true)
+    end
+
+    return ConditionResult(false)
+end
+
+-- function ElementalAffinityCheck(entity)
+--     local entity = entity or context.Observer
+
+--     local noStatus = (~HasStatus('ELEMENTALAFFINITY_ACID',entity) & ~HasStatus('ELEMENTALAFFINITY_COLD',entity) & ~HasStatus('ELEMENTALAFFINITY_FIRE',entity) & ~HasStatus('ELEMENTALAFFINITY_LIGHTNING',entity) & ~HasStatus('ELEMENTALAFFINITY_POISON',entity)).Result
+--     local acid = (SpellDamageTypeIs(DamageType.Acid) & (HasPassive('DraconicAncestry_Black',entity) | HasPassive('DraconicAncestry_Copper',entity))).Result
+--     local cold = (SpellDamageTypeIs(DamageType.Cold) & (HasPassive('DraconicAncestry_Silver',entity) | HasPassive('DraconicAncestry_White',entity))).Result
+--     local fire = (SpellDamageTypeIs(DamageType.Fire) & (HasPassive('DraconicAncestry_Red',entity) | HasPassive('DraconicAncestry_Gold',entity) | HasPassive('DraconicAncestry_Brass',entity))).Result
+--     local lightning = (SpellDamageTypeIs(DamageType.Lightning) & (HasPassive('DraconicAncestry_Blue',entity) | HasPassive('DraconicAncestry_Bronze',entity))).Result
+--     local poison = (SpellDamageTypeIs(DamageType.Poison) & HasPassive('DraconicAncestry_Green',entity)).Result
+
+--     if (acid or cold or fire or lightning or poison) and noStatus then
+--         return ConditionResult(true)
+--     end
+
+--     return ConditionResult(false)
+-- end
