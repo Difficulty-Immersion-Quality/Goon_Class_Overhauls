@@ -17,6 +17,24 @@
 // TODO: Why am I excluding myrmidons?
 // TODO: It would be nice to filter druid shit by the actual DamageType on the actions, but it's unreliable. E.g. "Target_Claws" doesn't even change it from Bludgeoning to Slashing. (Fixed that in UNSO.)
 
+// TODO: Custom passive instead, and don't do dirty SE patching.
+new entry "Goon_SneakAttack_Unlock"
+type "PassiveData"
+// // %%% Empty
+data "DisplayName" "hda7154c9g13f4g4b24gbf26g96c03c4eb431;1"
+data "Properties" "IsHidden"
+data "BoostContext" "OnCreate"
+data "BoostConditions" "not Goon_HasUniqueSneakAttack() and not HasPassive('DWE_SneakAttack', context.Source)"
+// data "Boosts" "UnlockInterrupt(Interrupt_SneakAttack);UnlockInterrupt(Interrupt_SneakAttack_Critical);UnlockSpell(Target_SneakAttack);UnlockSpell(Projectile_SneakAttack)"
+// data "Boosts" "UnlockInterrupt(Interrupt_SneakAttack);UnlockInterrupt(Interrupt_SneakAttack_Critical)"
+data "Boosts" "UnlockInterrupt(Interrupt_SneakAttack);UnlockInterrupt(Interrupt_SneakAttack_Critical)"
+
+new entry "Goon_SneakAttack_Unlock_DWE"
+type "PassiveData"
+using "Goon_SneakAttack_Unlock"
+data "BoostConditions" "not Goon_HasUniqueSneakAttack() and HasPassive('DWE_SneakAttack', context.Source)"
+data "Boosts" "UnlockInterrupt(Interrupt_DWE_SneakAttack);UnlockInterrupt(Goon_Interrupt_DWE_SneakAttack_Critical)"
+
 // ==================================== Sneak Attack - Spells
 
 new entry "Target_SneakAttack"

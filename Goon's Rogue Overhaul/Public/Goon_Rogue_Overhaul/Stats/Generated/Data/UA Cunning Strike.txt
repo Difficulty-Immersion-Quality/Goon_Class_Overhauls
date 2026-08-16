@@ -1,5 +1,33 @@
 // ==================================== UA Sneak Attack ====================================
 
+new entry "DWE_SneakAttack"
+type "PassiveData"
+using "DWE_SneakAttack"
+// // Sneak Attack
+// data "DisplayName" "hc999d4c5ga839g45afgb385g5f648e0bb34b;1"
+// // Once per turn, you can deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; when you hit with an &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt; made with &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; or against an enemy standing near your allies. The attack must use a &lt;LSTag Tooltip="Finesse"&gt;Finesse&lt;/LSTag&gt; or ranged weapon.
+// data "Description" "h755ab8f7g8ab0g4810gb181gf094e39271cc;1"
+// // The damage scales by 1d6 every other Rogue level.
+// data "ExtraDescription" "h89476184g6b63g4c7fgadccgc30d02d3317d;1"
+// data "DescriptionParams" "LevelMapValue(DWE_SneakAttack)"
+// data "Icon" "DWE_UACunningStrike_SneakAttack"
+// data "Properties" "Highlighted"
+// data "Boosts" "ActionResource(DWE_SneakAttack,1,0,d6); UnlockInterrupt(Interrupt_DWE_SneakAttack)"
+data "Boosts" "ActionResource(DWE_SneakAttack,1,0,d6)"
+// data "StatsFunctorContext" "OnTurn"
+// data "StatsFunctors" "RestoreResource(SELF,SneakAttack_Charge,100%,0); ApplyStatus(DWE_SNEAK_ATTACK_OWN_TURN,100,1)"
+
+// TODO: Expansion support.
+// new entry "DWE_SneakAttack_DelayedReactions"
+// type "PassiveData"
+// data "Icon" "DWE_UACunningStrike_SneakAttack"
+// data "Properties" "IsHidden"
+// data "StatsFunctorContext" "OnStatusApplied"
+// data "Conditions" "HasStatus('COMMANDERS_STRIKE_D8') or HasStatus('COMMANDERS_STRIKE_D10')"
+// data "StatsFunctors" "ApplyStatus(DWE_SNEAK_ATTACK_DELAYED_REACTION_RESOURCE,1)"
+
+// ====================================
+
 new entry "Interrupt_DWE_SneakAttack"
 type "InterruptData"
 using "Interrupt_DWE_SneakAttack"
@@ -16,7 +44,7 @@ data "DescriptionParams" "LevelMapValue(SneakAttack);Distance(1.5);Distance(2)"
 // data "InterruptContextScope" "Self"
 // data "Container" "YesNoDecision"
 // data "Conditions" "DWE_SneakAttackInterruptCondition() and not IsKillingBlow()"
-data "Conditions" "Goon_SneakAttackInterruptConditions()"
+data "Conditions" "Goon_SneakAttackInterruptConditions() and not IsCritical()"
 // data "Properties" "IF(IsAttackType(AttackType.MeleeWeaponAttack)):DealDamage(LevelMapValue(DWE_SneakAttack), MainMeleeWeaponDamageType,,,0,,true,true); IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):DealDamage(LevelMapValue(DWE_SneakAttack), OffhandMeleeWeaponDamageType,,,0,,true,true); IF(IsAttackType(AttackType.RangedWeaponAttack)):DealDamage(LevelMapValue(DWE_SneakAttack), MainRangedWeaponDamageType,,,0,,true,true); IF(IsAttackType(AttackType.RangedOffHandWeaponAttack)):DealDamage(LevelMapValue(DWE_SneakAttack), OffhandRangedWeaponDamageType,,,0,,true,true); IF(IsThrowAttackRoll()):DealDamage(LevelMapValue(DWE_SneakAttack), ThrownWeaponDamageType,,,0,,true,true); IF(HasPassive('MAG_ForcefulSneakAttack_Passive', context.Source)):DealDamage(1d4, Force,Magical,,0,,true,true)"
 data "Properties" "IF(IsAttackType(AttackType.MeleeWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainMeleeWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.MeleeOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), OffhandMeleeWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), MainRangedWeaponDamageType,,,0,,true,true);IF(IsAttackType(AttackType.RangedOffHandWeaponAttack)):DealDamage(LevelMapValue(SneakAttack), OffhandRangedWeaponDamageType,,,0,,true,true);IF(IsThrowAttackRoll()):DealDamage(LevelMapValue(SneakAttack), ThrownWeaponDamageType,,,0,,true,true);IF(Goon_UnarmedSnek()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,,,0,,true,true);IF(Goon_UnarmedSnek_Magic()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,Magical,,0,,true,true);IF(Goon_WSSnek_Pierce()):DealDamage(LevelMapValue(SneakAttack), Piercing,,,0,,true,true);IF(Goon_WSSnek_Pierce_Magic()):DealDamage(LevelMapValue(SneakAttack), Piercing,Magical,,0,,true,true);IF(Goon_WSSnek_Slash()):DealDamage(LevelMapValue(SneakAttack), Slashing,,,0,,true,true);IF(Goon_WSSnek_Slash_Magic()):DealDamage(LevelMapValue(SneakAttack), Slashing,Magical,,0,,true,true);IF(Goon_WSSnek_Bludge()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,,,0,,true,true);IF(Goon_WSSnek_Bludge_Magic()):DealDamage(LevelMapValue(SneakAttack), Bludgeoning,Magical,,0,,true,true);IF(Goon_ForcefulSnek()):DealDamage(1d4, Force,Magical,,0,,true,false)"
 // data "Cost" "SneakAttack_Charge:1"
@@ -27,6 +55,13 @@ data "InterruptDefaultValue" "Ask;Enabled"
 // data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or SpellTypeIs(SpellType.Throw)) and not HasStatus('SG_Polymorph_BeastShape')"
 data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (((not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus())) or Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph())"
 // data "InterruptFlags" "InterruptWhileInvisible"
+
+new entry "Goon_Interrupt_DWE_SneakAttack_Critical"
+type "InterruptData"
+using "Interrupt_DWE_SneakAttack"
+// // Sneak Attack (Critical Hit)
+data "DisplayName" "haf81f97cgee6ag46cbg8749g814ddcccccec;1"
+data "Conditions" "Goon_SneakAttackInterruptConditions() and IsCritical()"
 
 // ==================================== UA Sneak Attack - Substracted variants
 // TODO: Unarmed melee damage (both wildshape and humanoid) does not work when using cunning strikes, or Cunning Strike: Poison at the very least. Can't figure that rn, adjusted conditions to exclude them.
@@ -102,7 +137,7 @@ using "Interrupt_DWE_CunningStrike_Disarm"
 // data "Description" "hd3569f73g41a8g4ff1g9411g5497f807d096;1"
 // data "Icon" "DWE_UACunningStrike_Disarm"
 // data "Conditions" "DWE_SneakAttackInterruptCondition() and not IsKillingBlow() and DWE_HasWeaponInAnyHand()"
-data "Conditions" "Goon_SneakAttackInterruptConditions() and not IsMeleeUnarmedAttack() and DWE_HasWeaponInAnyHand()"
+data "Conditions" "Goon_SneakAttackInterruptConditions() and (not IsMeleeUnarmedAttack() and Goon_WieldingWeapon())"
 // data "Success" "ApplyStatus(OBSERVER_TARGET,DWE_CUNNING_STRIKE_APPLY_DISARM,100,0)"
 // data "TooltipAttackSave" "Dexterity"
 // data "InterruptDefaultValue" "Ask"
@@ -144,7 +179,7 @@ using "Interrupt_DWE_CunningStrike_Trip"
 // data "Description" "hd3d27832g9819g45eagb2cfg5d95ab1ad57a;1"
 // data "Icon" "DWE_UACunningStrike_Trip"
 // data "Conditions" "DWE_SneakAttackInterruptCondition() and not IsKillingBlow() and TargetSizeEqualOrSmaller(Size.Large) and not HasStatus('SG_Prone')"
-data "Conditions" "Goon_SneakAttackInterruptConditions() and not IsMeleeUnarmedAttack() and TargetSizeEqualOrSmaller(Size.Large) and not HasStatus('SG_Prone')"
+data "Conditions" "Goon_SneakAttackInterruptConditions() and (not IsMeleeUnarmedAttack() and TargetSizeEqualOrSmaller(Size.Large) and not HasStatus('SG_Prone'))"
 // data "Success" "ApplyStatus(OBSERVER_TARGET,DWE_CUNNING_STRIKE_APPLY_TRIP,100,0)"
 // data "TooltipAttackSave" "Dexterity"
 
@@ -158,7 +193,7 @@ using "Interrupt_DWE_CunningStrike_Withdraw"
 // data "Description" "h66c557adgdaf0g429fg9515gc13c98462643;1"
 // data "Icon" "DWE_UACunningStrike_Withdraw"
 // data "Conditions" "DWE_SneakAttackInterruptCondition() and HasStatus('DWE_SNEAK_ATTACK_OWN_TURN',context.Source)"
-data "Conditions" "Goon_SneakAttackInterruptConditions() and not IsMeleeUnarmedAttack() and HasStatus('DWE_SNEAK_ATTACK_OWN_TURN',context.Source)"
+data "Conditions" "Goon_SneakAttackInterruptConditions() and (not IsMeleeUnarmedAttack() and HasStatus('DWE_SNEAK_ATTACK_OWN_TURN', context.Source))"
 // data "Success" "ApplyStatus(OBSERVER_OBSERVER,DWE_CUNNING_STRIKE_WITHDRAW,100,1)"
 
 // new entry "Interrupt_DWE_CunningStrike_Daze"

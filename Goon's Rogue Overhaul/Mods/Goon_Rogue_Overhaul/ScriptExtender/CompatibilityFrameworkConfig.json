@@ -1,9 +1,9 @@
 {
-	"FileVersion": 1,
-	"Progressions": [
-		{
-      "Comment":"Bug Fix: Arcane Trickster is no longer given 2 level 1 spell slots at level 10, and is instead given 1 level 2 spell slot.",
-			"UUID": "53ecef19-2f1c-4d4b-81e9-11a72ad3e0ac",
+  "FileVersion": 1,
+  "Progressions": [
+    {
+      "Comment": "Bug Fix: Arcane Trickster is no longer given 2 level 1 spell slots at level 10, and is instead given 1 level 2 spell slot.",
+      "UUID": "53ecef19-2f1c-4d4b-81e9-11a72ad3e0ac",
       "Strings": [
         {
           "Action": "Remove",
@@ -14,8 +14,40 @@
           "Action": "Insert",
           "Type": "Boosts",
           "Strings": ["ActionResource(SpellSlot,1,2)"]
-				}
-			]
-		}
-	]
+        }
+      ]
+    },
+    {
+      "Comment": "Add custom passives for unlocking Sneak Attack interrupts.",
+      "UUID": "16f00e7f-12f6-4cff-b610-4ee738b02d62",
+      "Strings": [
+        {
+          "Action": "Remove",
+          "Type": "PassivesAdded",
+          "Strings": ["SneakAttack_Unlock"]
+        },
+        {
+          "Action": "Insert",
+          "Type": "PassivesAdded",
+          "Strings": ["Goon_SneakAttack_Unlock", "Goon_SneakAttack_Unlock_DWE"]
+        }
+      ]
+    },
+    {
+      "Comment": "Add custom passives for unlocking Sneak Attack interrupts.",
+      "UUID": "cd3d8b16-37ce-4107-a2e3-e729751c2b1c",
+      "Strings": [
+        {
+          "Action": "Remove",
+          "Type": "PassivesAdded",
+          "Strings": ["SneakAttack_Unlock"]
+        },
+        {
+          "Action": "Insert",
+          "Type": "PassivesAdded",
+          "Strings": ["Goon_SneakAttack_Unlock", "Goon_SneakAttack_Unlock_DWE"]
+        }
+      ]
+    }
+  ]
 }
