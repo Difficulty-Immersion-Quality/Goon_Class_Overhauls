@@ -4,7 +4,9 @@
 // TODO: Buff levelmapvalues probably.
 
 // ==================================== Blade of Rime ====================================
-// Changes: Now considered a spell.
+// Changes: Now flagged as a spell.
+// TODO: Standard inheritance.
+// TODO: Upcasting.
 
 new entry "Projectile_BladeOfTheRime"
 type "SpellData"
@@ -16,11 +18,13 @@ using "Projectile_BladeOfTheRime"
 // data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:CreateSurface(2,2,WaterFrozen);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
 // data "Trajectories" "086f7395-9d32-4e27-92f1-9db66a1ab1c9"
 // data "Icon" "Spell_Conjuration_IceKnife"
-// Blade of Rime
+// data "Icon" "Action_Monk_BladeOfTheRime"
+data "Icon" "Spell_Conjuration_IceKnife"
+// // Blade of Rime
 // data "DisplayName" "hf04d6f71gca7fg42aega6c5g478aafbb6551;2"
-// Throw a shard of ice that deals [1]. It explodes and deals [2] to anyone nearby. It leaves an ice surface.
+// // Throw a shard of ice that deals [1]. It explodes and deals [2] to anyone nearby. It leaves an ice surface.
 // data "Description" "h4773a2d8g7c21g4c0bgb067g0127ff338df4;1"
-// This spell can be cast while you are &lt;LSTag Type="Status" Tooltip="SILENCED"&gt;Silenced&lt;/LSTag&gt;.
+// // This spell can be cast while you are &lt;LSTag Type="Status" Tooltip="SILENCED"&gt;Silenced&lt;/LSTag&gt;.
 // data "ExtraDescription" "hb20d489bg56dfg4abfg9128gba50ebeba313;1"
 // data "PrepareSound" "Vocal_Component_Monk_Damage"
 // data "CastSound" "Spell_Cast_Monk_BladeoftheRime_L1to3"
@@ -34,7 +38,9 @@ data "SpellFlags" "HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHa
 // data "CastEffect" "577d7896-70e2-419e-b4b9-33c03ecd8df1"
 
 // ==================================== Chill of the Mountain ====================================
-// Changes: Now considered a spell.
+// Changes: Now flagged as a spell.
+// TODO: Standard inheritance.
+// TODO: Upcasting.
 
 new entry "Projectile_RayOfFrost_Monk"
 type "SpellData"
@@ -63,7 +69,9 @@ data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVe
 
 // ==================================== Clench of the North Wind ====================================
 // Bug Fix: Added missing LSTag (hyperlink) for Critical Hits.
-// Changes: Now considered a spell.
+// Changes: Now flagged as a spell.
+// TODO: Standard inheritance.
+// TODO: Upcasting.
 
 new entry "Target_HoldPerson_Monk"
 type "SpellData"
@@ -74,11 +82,11 @@ using "Target_HoldPerson_Monk"
 // data "SpellProperties" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
 // data "SpellSuccess" "ApplyStatus(HOLD_PERSON_MONK,100,10)"
 // data "AmountOfTargets" "LevelMapValue(HoldPerson_Monk)"
-// Clench of the North Wind
+// // Clench of the North Wind
 // data "DisplayName" "hd82ec163ge78ag4ecbgae09g7fab45598d2d;2"
-// &lt;LSTag Type="Status" Tooltip="HOLD_PERSON"&gt;Hold&lt;/LSTag&gt; a humanoid enemy still. They can't move, act or react. Attacks from within 3m are always Critical Hits.
+// // &lt;LSTag Type="Status" Tooltip="HOLD_PERSON"&gt;Hold&lt;/LSTag&gt; a humanoid enemy still. They can't move, act or react. Attacks from within 3m are always Critical Hits.
 // data "Description" "he64de87egcc5fg499fgb827g1f28db161d10;3"
-// &lt;LSTag Type="Status" Tooltip="HOLD_PERSON"&gt;Hold&lt;/LSTag&gt; a humanoid enemy still. They can't move, act or react. Attacks from within [1] are always &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hits&lt;/LSTag&gt;.
+// // &lt;LSTag Type="Status" Tooltip="HOLD_PERSON"&gt;Hold&lt;/LSTag&gt; a humanoid enemy still. They can't move, act or react. Attacks from within [1] are always &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hits&lt;/LSTag&gt;.
 data "Description" "hcd87bb08g774ag4881g8194g3aac50e64f70;6"
 // data "TooltipStatusApply" "ApplyStatus(HOLD_PERSON_MONK,100,10)"
 // data "PrepareSound" "Vocal_Component_Monk_Control"
@@ -95,7 +103,9 @@ data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;HasHighGroundRangeExte
 // data "TargetEffect" "57190c62-9877-46f5-acd4-ca35093a5e8a"
 
 // ==================================== Embrace of the Inferno ====================================
-// Changes: Now considered a spell.
+// Changes: Now flagged as a spell.
+// TODO: Standard inheritance.
+// TODO: Upcasting.
 
 new entry "Projectile_ScorchingRay_Monk"
 type "SpellData"
@@ -106,9 +116,9 @@ using "Projectile_ScorchingRay_Monk"
 // data "SpellProperties" "GROUND:SurfaceChange(Ignite);GROUND:SurfaceChange(Melt);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
 // data "AmountOfTargets" "LevelMapValue(ScorchingRay_Monk)"
 // data "Trajectories" "a4512cd1-aa87-4cda-afca-fd354868d6ee"
-// Embrace of the Inferno
+// // Embrace of the Inferno
 // data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
-// Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
+// // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
 // data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
 // data "DescriptionParams" "LevelMapValue(ScorchingRay_Monk);DealDamage(2d6,Fire)"
 // data "TooltipDamageList" "DealDamage(2d6,Fire)"
@@ -125,7 +135,9 @@ data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVe
 // data "CastEffect" "04ced9a3-6eaa-49ad-9c99-cafaef061ed3"
 
 // ==================================== Fangs of the Fire Snake ====================================
-// Changes: Now considered a spell.
+// Bug Fix: Added missing Honour ruleset bools to prevent damage riders acting as a damage rider source.
+// Bug Fix: Fangs of the Fire Snake condition no longer increases damage for ranged weapons.
+// TODO: RAW - "When you use the Attack action on your turn, you can spend 1 ki point to cause tendrils of flame to stretch out from your fists and feet. Your reach with your unarmed strikes increases by 10 feet for that action, as well as the rest of the turn. A hit with such an attack deals fire damage instead of bludgeoning damage, and if you spend 1 ki point when the attack hits, it also deals an extra 1d10 fire damage."
 
 new entry "Projectile_FangsOfTheFireSnake"
 type "SpellData"
@@ -136,13 +148,14 @@ using "Projectile_FangsOfTheFireSnake"
 // data "TargetRadius" "6"
 // data "SpellRoll" "Attack(AttackType.MeleeUnarmedAttack)	"
 // data "SpellSuccess" "DealDamage(UnarmedDamage , Bludgeoning);DealDamage(1d10,Fire,Magical)"
+data "SpellSuccess" "DealDamage(UnarmedDamage,Bludgeoning);DealDamage(1d10,Fire,Magical,,0,,true,false)"
 // data "SpellFail" ""
 // data "ExtraProjectileTargetConditions" ""
 // data "Trajectories" "10cfd191-3a8c-4a03-b22c-289334d651d2"
 // data "Icon" "Action_Monk_FangsOfTheFireSnake"
-// Fangs of the Fire Snake
+// // Fangs of the Fire Snake
 // data "DisplayName" "hb1682b67g6375g4276g965dgcd8ad9e243d8;2"
-// Hit your foe from afar. Your next melee attacks deal an additional [1].
+// // Hit your foe from afar. Your next melee attacks deal an additional [1].
 // data "Description" "h6bd79379g6ec1g475eg9585g6fdbb7fe09dd;6"
 // data "DescriptionParams" "DealDamage(1d4,Fire)"
 // data "TooltipDamageList" "DealDamage(MartialArtsUnarmedDamage, Bludgeoning);DealDamage(1d10,Fire) "
@@ -160,15 +173,33 @@ using "Projectile_FangsOfTheFireSnake"
 // data "SpellStyleGroup" "Class"
 // data "WeaponTypes" ""
 // data "SpellFlags" "HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful"
-data "SpellFlags" "HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful;IsSpell"
 // data "PrepareEffect" "cf4ffbe0-cf90-4e21-b74b-e62bb0662035"
 // data "CastEffect" "cc6bc4ff-33f2-4494-a6d5-7b88f10ef806"
 // data "DamageType" "Fire"
 // data "Sheathing" "Melee"
+data "Sheathing" "Sheathed"
+
+new entry "FANGS_OF_THE_FIRE_SNAKE"
+type "StatusData"
+data "StatusType" "BOOST"
+using "FANGS_OF_THE_FIRE_SNAKE"
+// // Fangs of the Fire Snake
+// data "DisplayName" "h60dd4652gfc75g4a9dg8256gbc9bbeb1395b;1"
+// // Affected entity's fists are flickering with flame. Its melee attacks deal an additional [1].
+// data "Description" "h742a06dcg1814g432eg945dg7ccf3f55fb26;3"
+// data "DescriptionParams" "DealDamage(1d4,Fire)"
+// data "Icon" "Action_Monk_FangsOfTheFireSnake"
+// data "StackId" "FANGS_OF_THE_FIRE_SNAKE"
+// data "TickType" "StartTurn"
+// data "Boosts" "CharacterWeaponDamage(1d4,Fire);CharacterUnarmedDamage(1d4, Fire)"
+data "Boosts" "IF(Goon_IsAttackUsingMeleeWeapon()):CharacterWeaponDamage(1d4,Fire);CharacterUnarmedDamage(1d4, Fire)"
+// data "StatusEffect" "9c1c9ea9-e5d5-4f1e-91f2-415f5e80e942"
 
 // ==================================== Fist of Four Thunders ====================================
 // Bug Fix: Now correctly triggers Martial Arts: Bonus Unarmed Strike.
-// Changes: Now considered a spell.
+// Changes: Now flagged as a spell.
+// TODO: Standard inheritance.
+// TODO: Upcasting.
 
 new entry "Zone_Thunderwave_Monk"
 type "SpellData"
@@ -179,9 +210,9 @@ using "Zone_Thunderwave_Monk"
 data "SpellProperties" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
 // data "SpellSuccess" "DealDamage(LevelMapValue(Thunderwave_Monk),Thunder,Magical);Force(8, OriginToTarget)"
 // data "SpellFail" "DealDamage((LevelMapValue(Thunderwave_Monk))/2,Thunder,Magical);"
-// Fist of Four Thunders
+// // Fist of Four Thunders
 // data "DisplayName" "hd3e28c15gfb0fg42d1g98e1gf65e6d78ce6a;2"
-// Release a wave of thunderous force that pushes away all creatures and objects.
+// // Release a wave of thunderous force that pushes away all creatures and objects.
 // data "Description" "h1780b369gb2c3g4bbagb0c5ga163962737e3;2"
 // data "TooltipDamageList" "DealDamage(LevelMapValue(Thunderwave_Monk),Thunder)"
 // data "PrepareSound" "Vocal_Component_Monk_Damage"
@@ -197,7 +228,6 @@ data "SpellFlags" "HasSomaticComponent;AddFallDamageOnLand;IsHarmful;IsSpell"
 // data "TargetEffect" "154802bd-3dae-4bdc-9889-4addfdc0ca57"
 
 // ==================================== Fist of Unbroken Air ====================================
-// Changes: Now considered a spell.
 // Changes: Can now slightly control the trajectory of the push based on cursor position on the target entity.
 
 new entry "Target_FistOfUnbrokenAir"
@@ -211,9 +241,9 @@ using "Target_FistOfUnbrokenAir"
 data "SpellSuccess" "DealDamage(LevelMapValue(FistOfUnbrokenAir),Bludgeoning);Force(6,OriginToTarget,Aggressive);ApplyStatus(PRONE,100,1)"
 // data "SpellFail" "DealDamage((LevelMapValue(FistOfUnbrokenAir))/2,Bludgeoning)"
 // data "Icon" "Action_Monk_FistOfUnbrokenAir"
-// Fist of Unbroken Air
+// // Fist of Unbroken Air
 // data "DisplayName" "h133847b1gabedg4325gae61g968ab733a058;2"
-// Push the target back [1] and knock it &lt;LSTag Type="Status" Tooltip="PRONE"&gt;Prone&lt;/LSTag&gt;.
+// // Push the target back [1] and knock it &lt;LSTag Type="Status" Tooltip="PRONE"&gt;Prone&lt;/LSTag&gt;.
 // data "Description" "hb580f508g6b4cg463ega722g7b92469c17e5;7"
 // data "DescriptionParams" "Distance(6)"
 // data "TooltipDamageList" "DealDamage(LevelMapValue(FistOfUnbrokenAir),Bludgeoning)"
@@ -227,7 +257,6 @@ data "SpellSuccess" "DealDamage(LevelMapValue(FistOfUnbrokenAir),Bludgeoning);Fo
 // data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;761e67fa-d2da-42a7-a2bc-3ec24633309f,,;2aa08b98-0999-40a6-9ae8-a27e35a6a5f8,,;5c9e3bb0-8963-4cc3-aa24-c0ba1c49494b,,;,,;c79f1495-5c5c-4e22-bed4-38beb3779b23,,;,,;,,"
 // data "SpellStyleGroup" "Class"
 // data "SpellFlags" "IsHarmful;DisableBlood;AddFallDamageOnLand"
-data "SpellFlags" "IsHarmful;DisableBlood;AddFallDamageOnLand;IsSpell"
 // data "PrepareEffect" "09001287-db22-4054-9165-4926ecb9b9b4"
 // data "CastEffect" "6cba6b96-0fc2-4536-b8d5-7e6c804aa6b7"
 // data "TargetEffect" "224776ab-51cb-45f1-ae1e-f20c0c63d40c"
@@ -235,7 +264,9 @@ data "SpellFlags" "IsHarmful;DisableBlood;AddFallDamageOnLand;IsSpell"
 // data "DamageType" "Bludgeoning"
 
 // ==================================== Flames of the Phoenix ====================================
-// Changes: Now considered a spell.
+// Changes: Now flagged as a spell.
+// TODO: Standard inheritance.
+// TODO: Upcasting.
 
 new entry "Projectile_Fireball_Monk"
 type "SpellData"
@@ -262,7 +293,9 @@ data "SpellFlags" "HasSomaticComponent;HasHighGroundRangeExtension;RangeIgnoreVe
 // data "CastEffect" "a758e379-9f9f-43de-a9d1-c0f01480770e"
 
 // ==================================== Gong of the Summit ====================================
-// Changes: Now considered a spell.
+// Changes: Now flagged as a spell.
+// TODO: Standard inheritance.
+// TODO: Upcasting.
 
 new entry "Target_Shatter_Monk"
 type "SpellData"
@@ -290,7 +323,9 @@ data "SpellFlags" "HasHighGroundRangeExtension;HasVerbalComponent;HasSomaticComp
 // data "PositionEffect" "af4a94aa-0a09-492b-8268-ca250bb6f9b0"
 
 // ==================================== Mist Stance ====================================
-// Changes: Now considered a spell.
+// Changes: Now flagged as a spell.
+// TODO: Standard inheritance.
+// TODO: Upcasting.
 
 new entry "Shout_GaseousForm_Monk"
 type "SpellData"
@@ -326,7 +361,9 @@ data "SpellFlags" "HasSomaticComponent;IsConcentration;IsSpell"
 // data "CastEffect" "040020de-33d8-41ac-9f79-f255bb656814"
 
 // ==================================== Ride the Wind ====================================
-// Changes: Now considered a spell.
+// Changes: Now flagged as a spell.
+// TODO: Standard inheritance.
+// TODO: Upcasting.
 
 new entry "Shout_Fly_Monk"
 type "SpellData"
@@ -359,7 +396,9 @@ data "SpellFlags" "HasSomaticComponent;IsConcentration;IsSpell"
 // data "CastEffect" "31c7da90-3ba8-4579-a8b7-9610885604fb"
 
 // ==================================== Rush of the Gale Spirits ====================================
-// Changes: Now considered a spell.
+// Changes: Now flagged as a spell.
+// TODO: Standard inheritance.
+// TODO: Upcasting.
 
 new entry "Zone_GustOfWind_Monk"
 type "SpellData"
@@ -384,7 +423,9 @@ data "SpellFlags" "HasSomaticComponent;AddFallDamageOnLand;IsSpell"
 // data "TargetEffect" "848e06e7-0156-47af-bcdb-13ec549d83d8"
 
 // ==================================== Shaping of the Ice ====================================
-// Changes: Now considered a spell.
+// Changes: Now flagged as a spell.
+// TODO: Standard inheritance.
+// TODO: Upcasting.
 
 new entry "Target_ShapeTheFlowingRiver_IceBlock"
 type "SpellData"
@@ -414,7 +455,9 @@ data "SpellFlags" "HasSomaticComponent;IsSpell"
 // data "PositionEffect" "dfa70660-5330-48a8-af94-05ceda8fab4c"
 
 // ==================================== Sphere of Elemental Balance ====================================
-// Changes: Now considered a spell.
+// Changes: Now flagged as a spell.
+// TODO: Standard inheritance.
+// TODO: Upcasting.
 
 new entry "Projectile_ChromaticOrb_Monk"
 type "SpellData"
@@ -575,7 +618,9 @@ data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVe
 // data "CastEffect" "8bb23006-3e88-45df-a7ff-376a205f0292"
 
 // ==================================== Sweeping Cinder Strike ====================================
-// Changes: Now considered a spell.
+// Changes: Now flagged as a spell.
+// TODO: Standard inheritance.
+// TODO: Upcasting.
 
 new entry "Zone_BurningHands_Monk"
 type "SpellData"
@@ -606,7 +651,9 @@ data "SpellFlags" "HasSomaticComponent;IsHarmful;CanAreaDamageEvade;IsSpell"
 // data "TargetEffect" "53412dd1-8066-4860-a2ae-b27e77bfdab5"
 
 // ==================================== Touch of the Storm ====================================
-// Changes: Now considered a spell.
+// Changes: Now flagged as a spell.
+// TODO: Standard inheritance.
+// TODO: Upcasting.
 
 new entry "Target_ShockingGrasp_Monk"
 type "SpellData"
@@ -635,7 +682,6 @@ data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsMelee;IsHarmful;Disa
 // ==================================== Water Whip ====================================
 // Bug Fix: Water Whip: Knock Prone no longer applies Prone until Long Rest, instead applying it for 1 turn. (1 turn is arbitrary from me, could be 2?)
 // Bug Fix: Water Whip: Pull can now cause fall damage to the target.
-// Changes: Now considered a spell.
 // Changes: Water Whip: Pull can now slightly control the trajectory of the pull based on cursor position on the target entity. 
 
 new entry "Target_WaterWhip"
@@ -665,7 +711,6 @@ using "Target_WaterWhip"
 // data "VerbalIntent" "Damage"
 // data "SpellStyleGroup" "Class"
 // data "SpellFlags" "IsHarmful;IsLinkedSpellContainer;DisableBlood"
-data "SpellFlags" "IsHarmful;IsLinkedSpellContainer;DisableBlood;IsSpell"
 // data "PrepareEffect" "8e096e97-26bb-4da1-bb6a-374acb434c54"
 // data "CastEffect" "903263b5-afca-4370-bf00-32aba5f01757"
 // data "TargetEffect" "7f8485a2-920d-49e7-903e-bdf8e684db46"
@@ -689,7 +734,7 @@ data "SpellSuccess" "DealDamage(LevelMapValue(WaterWhip),Bludgeoning);Force(-9,O
 // data "Description" "h7e38ea30g1795g4b98gaca8gf6278ebb561d;2"
 // data "SpellAnimation" "101629c4-d30c-4ae7-b316-9d6423e7298a,,;,,;ab4c9091-4f03-4545-9194-11eb280f41a4,,;0bbaec15-d206-4956-839f-c07d7738b9a6,,;9af429ab-54e8-455b-99d0-71c62e66ad64,,;,,;e550f983-faab-412b-a55d-237a1e17d4da,,;,,;,,"
 // data "SpellFlags" "IsHarmful;DisableBlood"
-data "SpellFlags" "IsHarmful;DisableBlood;IsSpell;AddFallDamageOnLand"
+data "SpellFlags" "IsHarmful;DisableBlood;AddFallDamageOnLand"
 
 new entry "Target_WaterWhip_Prone"
 type "SpellData"
@@ -710,4 +755,3 @@ data "SpellSuccess" "DealDamage(LevelMapValue(WaterWhip),Bludgeoning);ApplyStatu
 data "TooltipStatusApply" "ApplyStatus(PRONE,100,1)"
 // data "SpellAnimation" "101629c4-d30c-4ae7-b316-9d6423e7298a,,;,,;5787f12b-23ba-4fcb-8404-2580b7bdb6bd,,;f0ad7144-f061-4bf0-97be-b7ac68b9fe95,,;9af429ab-54e8-455b-99d0-71c62e66ad64,,;,,;e550f983-faab-412b-a55d-237a1e17d4da,,;,,;,,"
 // data "SpellFlags" "IsHarmful;DisableBlood"
-data "SpellFlags" "IsHarmful;DisableBlood;IsSpell"
