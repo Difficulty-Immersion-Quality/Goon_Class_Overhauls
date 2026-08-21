@@ -363,8 +363,7 @@ data "SpellFlags" "HasSomaticComponent;IsConcentration;IsSpell"
 
 // ==================================== Ride the Wind ====================================
 // Changes: Now flagged as a spell.
-// TODO: Standard inheritance.
-// TODO: Upcasting.
+// TODO: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 
 new entry "Shout_Fly_Monk"
 type "SpellData"
@@ -373,19 +372,24 @@ using "Shout_Fly_Monk"
 // data "Level" ""
 // data "SpellSchool" "Transmutation"
 // data "SpellProperties" "ApplyStatus(FLY_MONK,100,-1);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
+data "SpellProperties" "ApplyStatus(FLY_MONK,100,-1)"
 // data "TargetConditions" "Self()	"
+data "TargetConditions" "Self()"
 // data "Icon" "Action_Fly"
-// Ride the Wind
+// // Ride the Wind
 // data "DisplayName" "h52037116g1029g44f2ga259gfa173bc595fc;2"
-// Gain the ability to &lt;LSTag Type="Spell" Tooltip="Projectile_Fly"&gt;Fly&lt;/LSTag&gt;.
+// // Gain the ability to &lt;LSTag Type="Spell" Tooltip="Projectile_Fly"&gt;Fly&lt;/LSTag&gt;.
 // data "Description" "hfe7175fcg8de3g4f52g9386ge739232c0c59;4"
 // data "TooltipStatusApply" "ApplyStatus(FLY_MONK,100,-1) "
+data "TooltipStatusApply" "ApplyStatus(FLY_MONK,100,-1)"
 // data "PrepareSound" "Vocal_Component_Monk_Utility"
 // data "CastSound" "Action_Cast_Monk_RidetheWind"
 // data "VocalComponentSound" "Vocal_Compoenent_Stop"
 // data "PreviewCursor" "Cast"
 // data "CastTextEvent" "Cast		"
+data "CastTextEvent" "Cast"
 // data "UseCosts" "ActionPoint:1;KiPoint:4	"
+data "UseCosts" "ActionPoint:1;KiPoint:4"
 // data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;9dec9d1f-ac78-4e2d-9095-1e0c8351144c,,;bd7104f0-6bb8-413c-8a38-ca0b2072a624,,;1853afa3-d7c2-4957-a293-c32b6ec9a88a,,;36a98c4d-bab0-4302-ae78-d7a75c3bb9e4,,;,,;688653ba-7032-4d40-ac02-ce8b3af93516,,;,,;,,"
 // data "VerbalIntent" "Buff"
 // data "SpellStyleGroup" "Class"
@@ -430,22 +434,19 @@ data "SpellFlags" "HasSomaticComponent;AddFallDamageOnLand;IsSpell"
 // data "TargetEffect" "848e06e7-0156-47af-bcdb-13ec549d83d8"
 
 // ==================================== Shaping of the Ice ====================================
-// Changes: Now flagged as a spell.
-// TODO: Standard inheritance.
-// TODO: Upcasting.
+// Bug Fix: Now correctly triggers Martial Arts: Bonus Unarmed Strike.
 
-new entry "Target_ShapeTheFlowingRiver_IceBlock"
-type "SpellData"
-data "SpellType" "Target"
-using "Target_ShapeTheFlowingRiver_IceBlock"
+// new entry "Target_ShapeTheFlowingRiver_IceBlock"
+// type "SpellData"
+// data "SpellType" "Target"
 // data "Level" ""
 // data "SpellProperties" "GROUND:Summon(408559c5-ac6c-4fab-b629-7fd6e52e108a, 10)"
 // data "TargetRadius" "18"
 // data "TargetConditions" "CanStand('408559c5-ac6c-4fab-b629-7fd6e52e108a')"
 // data "Icon" "Action_Monk_IceCube"
-// Shaping of the Ice
+// // Shaping of the Ice
 // data "DisplayName" "h577c9c4eg7abbg40b5g825eg54e9b436c4f7;4"
-// Create a climbable ice cube.
+// // Create a climbable ice cube.
 // data "Description" "hac166b0dg75d6g44a8ga360g8ccb37bb7bd7;4"
 // data "PrepareSound" "Vocal_Component_Monk_Utility"
 // data "VocalComponentSound" "Vocal_Component_Stop"
@@ -455,7 +456,6 @@ using "Target_ShapeTheFlowingRiver_IceBlock"
 // data "VerbalIntent" "Summon"
 // data "SpellStyleGroup" "Class"
 // data "SpellFlags" "HasSomaticComponent"
-data "SpellFlags" "HasSomaticComponent;IsSpell"
 // data "PowerLevel" "0"
 // data "PrepareEffect" "44b17546-f1c8-41c4-940e-2244ba5bc53c"
 // data "CastEffect" "98f9b895-4dae-4e8d-8348-948010e83255"
