@@ -476,6 +476,8 @@ data "SpellFlags" "HasSomaticComponent;IsConcentration;IsSpell"
 // data "CastEffect" "040020de-33d8-41ac-9f79-f255bb656814"
 
 // ==================================== Ride the Wind ====================================
+// Bug Fix: Vocal_Compoenent_Stop typo corrected to Vocal_Component_Stop.
+// Bug Fix: Weird trailing whitespaces removed.
 // Changes: Now flagged as a spell.
 // TODO: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 
@@ -499,6 +501,7 @@ data "TooltipStatusApply" "ApplyStatus(FLY_MONK,100,-1)"
 // data "PrepareSound" "Vocal_Component_Monk_Utility"
 // data "CastSound" "Action_Cast_Monk_RidetheWind"
 // data "VocalComponentSound" "Vocal_Compoenent_Stop"
+data "VocalComponentSound" "Vocal_Component_Stop"
 // data "PreviewCursor" "Cast"
 // data "CastTextEvent" "Cast		"
 data "CastTextEvent" "Cast"
