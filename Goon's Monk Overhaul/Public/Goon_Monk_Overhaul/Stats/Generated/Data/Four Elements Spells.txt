@@ -529,167 +529,250 @@ data "TargetEffect" "848e06e7-0156-47af-bcdb-13ec549d83d8"
 // data "PositionEffect" "dfa70660-5330-48a8-af94-05ceda8fab4c"
 
 // ==================================== Sphere of Elemental Balance ====================================
+// Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 // Changes: Now flagged as a spell.
-// TODO: Standard inheritance.
+// Changes: Now flagged as having a verbal component.
 // TODO: Upcasting.
 
 new entry "Projectile_ChromaticOrb_Monk"
 type "SpellData"
 data "SpellType" "Projectile"
 // using "Projectile_ChromaticOrb"
-using "Projectile_ChromaticOrb_Monk"
-// data "Level" ""
-// data "ContainerSpells" "Projectile_ChromaticOrb_Acid_Monk;Projectile_ChromaticOrb_Cold_Monk;Projectile_ChromaticOrb_Fire_Monk;Projectile_ChromaticOrb_Lightning_Monk;Projectile_ChromaticOrb_Poison_Monk;Projectile_ChromaticOrb_Thunder_Monk"
-// data "SpellProperties" "GROUND:CreateSurface(2,2,Acid);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
-// Sphere of Elemental Balance
-// data "DisplayName" "h58c98d36gffd6g48e0g9c0cg27183a0b49f8;2"
-// Hurl a sphere that deals [1] and possibly creates a surface on impact.
-// data "Description" "h5dbeb57bg6089g4fccgb4b1ga71c314599f1;6"
-// data "DescriptionParams" "DealDamage(3d8,Thunder)"
-// data "UseCosts" "ActionPoint:1;KiPoint:2"
-// data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;,,;206575b7-21c0-4dcf-a9c1-a048f76d3126,,;f8469c98-cffd-4c36-8999-7e99879006be,,;36a98c4d-bab0-4302-ae78-d7a75c3bb9e4,,;,,;688653ba-7032-4d40-ac02-ce8b3af93516,,;,,;,,"
-// data "SpellStyleGroup" "Class"
-// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful;IsLinkedSpellContainer"
-data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful;IsLinkedSpellContainer;IsSpell"
-// data "MemoryCost" ""
+using "Projectile_ChromaticOrb"
+// data "Level" "1" (Projectile_ChromaticOrb)
+// data "Level" "" (Projectile_ChromaticOrb_Monk)
+// data "ContainerSpells" "Projectile_ChromaticOrb_Acid;Projectile_ChromaticOrb_Cold;Projectile_ChromaticOrb_Fire;Projectile_ChromaticOrb_Lightning;Projectile_ChromaticOrb_Poison;Projectile_ChromaticOrb_Thunder" (Projectile_ChromaticOrb)
+data "ContainerSpells" "Projectile_ChromaticOrb_Acid_Monk;Projectile_ChromaticOrb_Cold_Monk;Projectile_ChromaticOrb_Fire_Monk;Projectile_ChromaticOrb_Lightning_Monk;Projectile_ChromaticOrb_Poison_Monk;Projectile_ChromaticOrb_Thunder_Monk"
+// data "SpellProperties" "GROUND:CreateSurface(2,2,Acid)" (Projectile_ChromaticOrb)
+// data "SpellProperties" "GROUND:CreateSurface(2,2,Acid);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Projectile_ChromaticOrb_Monk)
+// // Chromatic Orb
+// data "DisplayName" "hd64d5d0ag20a6g4d74g8676gc34ad9ae4185;1" (Projectile_ChromaticOrb)
+// // Sphere of Elemental Balance
+data "DisplayName" "h58c98d36gffd6g48e0g9c0cg27183a0b49f8;2"
+// // Hurl a sphere that deals [1] and possibly creates a surface on impact. Alternatively, choose a different type of damage. 
+// data "Description" "h9ebff45bg8d4bg4074gb735gaafbb06d6d32;5" (Projectile_ChromaticOrb)
+// // Hurl a sphere that deals [1] and possibly creates a surface on impact.
+data "Description" "h5dbeb57bg6089g4fccgb4b1ga71c314599f1;6"
+// data "DescriptionParams" "DealDamage(3d8,Thunder)" (Projectile_ChromaticOrb)
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:1" (Projectile_ChromaticOrb)
+data "UseCosts" "ActionPoint:1;KiPoint:2"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;38cdb41c-2eec-4e03-bb31-83cff0346c35,,;85414f5f-b448-4dda-9370-1b6c4b38b561,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_ChromaticOrb)
+data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;,,;206575b7-21c0-4dcf-a9c1-a048f76d3126,,;f8469c98-cffd-4c36-8999-7e99879006be,,;36a98c4d-bab0-4302-ae78-d7a75c3bb9e4,,;,,;688653ba-7032-4d40-ac02-ce8b3af93516,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasVerbalComponent;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful;IsLinkedSpellContainer" (Projectile_ChromaticOrb)
+// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful;IsLinkedSpellContainer" (Projectile_ChromaticOrb_Monk)
+// data "MemoryCost" "1" (Projectile_ChromaticOrb)
+// data "MemoryCost" "" (Projectile_ChromaticOrb_Monk)
 
 new entry "Projectile_ChromaticOrb_Acid_Monk"
 type "SpellData"
 data "SpellType" "Projectile"
 // using "Projectile_ChromaticOrb_Acid"
-using "Projectile_ChromaticOrb_Acid_Monk"
-// data "Level" ""
-// data "SpellContainerID" "Projectile_ChromaticOrb_Monk"
-// data "SpellProperties" "GROUND:CreateSurface(2,2,Acid);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
-// data "Trajectories" "fb41b1d8-b5b4-492e-9194-be94bf3d43f6"
-// Sphere of Elemental Balance: Acid
-// data "DisplayName" "hf44d9d9bg8122g40adg8dc2g9e972e370867;2"
-// data "PrepareSound" "Vocal_Component_Monk_Damage"
-// data "CastSound" "Spell_Cast_Monk_SphereOfElementalBalanceAcid_L1to3"
-// data "VocalComponentSound" "Vocal_Component_Stop"
-// data "UseCosts" "ActionPoint:1;KiPoint:2"
-// data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;,,;206575b7-21c0-4dcf-a9c1-a048f76d3126,,;f8469c98-cffd-4c36-8999-7e99879006be,,;36a98c4d-bab0-4302-ae78-d7a75c3bb9e4,,;,,;688653ba-7032-4d40-ac02-ce8b3af93516,,;,,;,,"
-// data "SpellStyleGroup" "Class"
-// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful"
-data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful;IsSpell"
-// data "MemoryCost" ""
-// data "PrepareEffect" "8d84b59f-2727-4571-9f64-c643e8f1cb5b"
-// data "CastEffect" "62fc54c9-5fec-4f09-9f8d-dd46f8ce837a"
+using "Projectile_ChromaticOrb_Acid"
+// data "Level" "1" (Projectile_ChromaticOrb_Acid)
+// data "Level" "" (Projectile_ChromaticOrb_Acid_Monk)
+// data "SpellContainerID" "Projectile_ChromaticOrb" (Projectile_ChromaticOrb_Acid)
+data "SpellContainerID" "Projectile_ChromaticOrb_Monk"
+// data "SpellProperties" "GROUND:CreateSurface(2,2,Acid)" (Projectile_ChromaticOrb_Acid)
+// data "SpellProperties" "GROUND:CreateSurface(2,2,Acid);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Projectile_ChromaticOrb_Acid_Monk)
+// data "Trajectories" "f77c14be-cc25-40d6-a7dd-99b2e0a2df1c" (Projectile_ChromaticOrb_Acid)
+data "Trajectories" "fb41b1d8-b5b4-492e-9194-be94bf3d43f6"
+// // Chromatic Orb: Acid
+// data "DisplayName" "he0705c2fg021dg49c0ga56egc5a406dc1928;1" (Projectile_ChromaticOrb_Acid)
+// // Sphere of Elemental Balance: Acid
+data "DisplayName" "hf44d9d9bg8122g40adg8dc2g9e972e370867;2"
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Acid_ChromaticOrbAcid_L1to3" (Projectile_ChromaticOrb_Acid)
+data "CastSound" "Spell_Cast_Monk_SphereOfElementalBalanceAcid_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:1" (Projectile_ChromaticOrb_Acid)
+data "UseCosts" "ActionPoint:1;KiPoint:2"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;38cdb41c-2eec-4e03-bb31-83cff0346c35,,;85414f5f-b448-4dda-9370-1b6c4b38b561,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_ChromaticOrb_Acid)
+data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;,,;206575b7-21c0-4dcf-a9c1-a048f76d3126,,;f8469c98-cffd-4c36-8999-7e99879006be,,;36a98c4d-bab0-4302-ae78-d7a75c3bb9e4,,;,,;688653ba-7032-4d40-ac02-ce8b3af93516,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasVerbalComponent;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ChromaticOrb_Acid)
+// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ChromaticOrb_Acid_Monk)
+// data "MemoryCost" "1" (Projectile_ChromaticOrb_Acid)
+// data "MemoryCost" "" (Projectile_ChromaticOrb_Acid_Monk)
+// data "PrepareEffect" "17173dd6-e330-4769-b6bd-d757689e7f9a" (Projectile_ChromaticOrb_Acid)
+data "PrepareEffect" "8d84b59f-2727-4571-9f64-c643e8f1cb5b"
+// data "CastEffect" "eb96a8c6-37b4-4a13-a622-034a1dcbee60" (Projectile_ChromaticOrb_Acid)
+data "CastEffect" "62fc54c9-5fec-4f09-9f8d-dd46f8ce837a"
 
 new entry "Projectile_ChromaticOrb_Cold_Monk"
 type "SpellData"
 data "SpellType" "Projectile"
 // using "Projectile_ChromaticOrb_Cold"
-using "Projectile_ChromaticOrb_Cold_Monk"
-// data "Level" ""
-// data "SpellContainerID" "Projectile_ChromaticOrb_Monk"
-// data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:CreateSurface(2,2,WaterFrozen);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
-// data "Trajectories" "8dfa6051-1c61-493a-bcdf-1380e1c26ed9"
-// Sphere of Elemental Balance: Cold
-// data "DisplayName" "hec0d44a0gb433g41e9g82fcg8c7c8fa0738f;2"
-// data "PrepareSound" "Vocal_Component_Monk_Damage"
-// data "CastSound" "Spell_Cast_Monk_SphereOfElementalBalanceIce_L1to3"
-// data "VocalComponentSound" "Vocal_Component_Stop"
-// data "UseCosts" "ActionPoint:1;KiPoint:2"
-// data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;,,;206575b7-21c0-4dcf-a9c1-a048f76d3126,,;f8469c98-cffd-4c36-8999-7e99879006be,,;36a98c4d-bab0-4302-ae78-d7a75c3bb9e4,,;,,;688653ba-7032-4d40-ac02-ce8b3af93516,,;,,;,,"
-// data "SpellStyleGroup" "Class"
-// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful"
-data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful;IsSpell"
-// data "MemoryCost" ""
-// data "PrepareEffect" "db4f3a99-7c98-4aed-8f15-ab0845bbecfa"
-// data "CastEffect" "e9c12d8e-5323-4f08-8ad3-72cbcd3ddf79"
+using "Projectile_ChromaticOrb_Cold"
+// data "Level" "1" (Projectile_ChromaticOrb_Acid)
+// data "Level" "" (Projectile_ChromaticOrb_Cold_Monk)
+// data "SpellContainerID" "Projectile_ChromaticOrb" (Projectile_ChromaticOrb_Acid)
+data "SpellContainerID" "Projectile_ChromaticOrb_Monk"
+// data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:CreateSurface(2,2,WaterFrozen)" (Projectile_ChromaticOrb_Cold)
+// data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:CreateSurface(2,2,WaterFrozen);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Projectile_ChromaticOrb_Cold_Monk)
+// data "Trajectories" "32fab210-8c88-4fe2-a33c-ade6a9c880b7" (Projectile_ChromaticOrb_Cold)
+data "Trajectories" "8dfa6051-1c61-493a-bcdf-1380e1c26ed9"
+// // Chromatic Orb: Cold
+// data "DisplayName" "h64960e42g8ab3g4a60g93b4g537985a8407f;1" (Projectile_ChromaticOrb_Cold)
+// // Sphere of Elemental Balance: Cold
+data "DisplayName" "hec0d44a0gb433g41e9g82fcg8c7c8fa0738f;2"
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Ice_ChromaticOrbIce_L1to3" (Projectile_ChromaticOrb_Cold)
+data "CastSound" "Spell_Cast_Monk_SphereOfElementalBalanceIce_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:1" (Projectile_ChromaticOrb_Acid)
+data "UseCosts" "ActionPoint:1;KiPoint:2"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;38cdb41c-2eec-4e03-bb31-83cff0346c35,,;85414f5f-b448-4dda-9370-1b6c4b38b561,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_ChromaticOrb_Acid)
+data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;,,;206575b7-21c0-4dcf-a9c1-a048f76d3126,,;f8469c98-cffd-4c36-8999-7e99879006be,,;36a98c4d-bab0-4302-ae78-d7a75c3bb9e4,,;,,;688653ba-7032-4d40-ac02-ce8b3af93516,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasVerbalComponent;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ChromaticOrb_Acid)
+// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ChromaticOrb_Cold_Monk)
+// data "MemoryCost" "1" (Projectile_ChromaticOrb_Acid)
+// data "MemoryCost" "" (Projectile_ChromaticOrb_Cold_Monk)
+// data "PrepareEffect" "cc7c02e9-b4f2-4c4d-bb4a-7526d7bef885" (Projectile_ChromaticOrb_Cold)
+data "PrepareEffect" "db4f3a99-7c98-4aed-8f15-ab0845bbecfa"
+// data "CastEffect" "31fdeb9c-f917-4fc5-a0ac-93993a17cab4" (Projectile_ChromaticOrb_Cold)
+data "CastEffect" "e9c12d8e-5323-4f08-8ad3-72cbcd3ddf79"
 
 new entry "Projectile_ChromaticOrb_Fire_Monk"
 type "SpellData"
 data "SpellType" "Projectile"
 // using "Projectile_ChromaticOrb_Fire"
-using "Projectile_ChromaticOrb_Fire_Monk"
-// data "Level" ""
-// data "SpellContainerID" "Projectile_ChromaticOrb_Monk"
-// data "SpellProperties" "GROUND:SurfaceChange(Ignite);GROUND:SurfaceChange(Melt);GROUND:CreateSurface(2,2,Fire);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
-// data "Trajectories" "f3096300-ab26-41ce-a157-c19015add148"
-// Sphere of Elemental Balance: Fire
-// data "DisplayName" "h29742f15g42a7g4d47gbdddg67eeb7bdf6b9;2"
-// data "PrepareSound" "Vocal_Component_Monk_Damage"
-// data "CastSound" "Spell_Cast_Monk_SphereOfElementalBalanceFire_L1to3"
-// data "VocalComponentSound" "Vocal_Component_Stop"
-// data "UseCosts" "ActionPoint:1;KiPoint:2"
-// data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;,,;206575b7-21c0-4dcf-a9c1-a048f76d3126,,;f8469c98-cffd-4c36-8999-7e99879006be,,;36a98c4d-bab0-4302-ae78-d7a75c3bb9e4,,;,,;688653ba-7032-4d40-ac02-ce8b3af93516,,;,,;,,"
-// data "SpellStyleGroup" "Class"
-// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful"
-data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful;IsSpell"
-// data "MemoryCost" ""
-// data "PrepareEffect" "50ae6ea3-3ee9-4360-baae-ad15f676e8fc"
-// data "CastEffect" "9e28a69e-d0ec-4214-9c29-041bb367813d"
+using "Projectile_ChromaticOrb_Fire"
+// data "Level" "1" (Projectile_ChromaticOrb_Acid)
+// data "Level" "" (Projectile_ChromaticOrb_Fire_Monk)
+// data "SpellContainerID" "Projectile_ChromaticOrb" (Projectile_ChromaticOrb_Acid)
+data "SpellContainerID" "Projectile_ChromaticOrb_Monk"
+// data "SpellProperties" "GROUND:SurfaceChange(Ignite);GROUND:SurfaceChange(Melt);GROUND:CreateSurface(2,2,Fire)" (Projectile_ChromaticOrb_Fire)
+// data "SpellProperties" "GROUND:SurfaceChange(Ignite);GROUND:SurfaceChange(Melt);GROUND:CreateSurface(2,2,Fire);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Projectile_ChromaticOrb_Fire_Monk)
+// data "Trajectories" "02038395-3092-4580-a119-0e5fd1a650ee" (Projectile_ChromaticOrb_Fire)
+data "Trajectories" "f3096300-ab26-41ce-a157-c19015add148"
+// // Chromatic Orb: Fire
+// data "DisplayName" "he160b381g7b4fg4babg801cgcc1ad3153559;1" (Projectile_ChromaticOrb_Fire)
+// // Sphere of Elemental Balance: Fire
+data "DisplayName" "h29742f15g42a7g4d47gbdddg67eeb7bdf6b9;2"
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Fire_ChromaticOrbFire_L1to3" (Projectile_ChromaticOrb_Fire)
+data "CastSound" "Spell_Cast_Monk_SphereOfElementalBalanceFire_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:1" (Projectile_ChromaticOrb_Acid)
+data "UseCosts" "ActionPoint:1;KiPoint:2"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;38cdb41c-2eec-4e03-bb31-83cff0346c35,,;85414f5f-b448-4dda-9370-1b6c4b38b561,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_ChromaticOrb_Acid)
+data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;,,;206575b7-21c0-4dcf-a9c1-a048f76d3126,,;f8469c98-cffd-4c36-8999-7e99879006be,,;36a98c4d-bab0-4302-ae78-d7a75c3bb9e4,,;,,;688653ba-7032-4d40-ac02-ce8b3af93516,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasVerbalComponent;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ChromaticOrb_Acid)
+// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ChromaticOrb_Fire_Monk)
+// data "MemoryCost" "1" (Projectile_ChromaticOrb_Acid)
+// data "MemoryCost" "" (Projectile_ChromaticOrb_Fire_Monk)
+// data "PrepareEffect" "25fc6c31-fc26-497a-af6d-ef816a82be3c" (Projectile_ChromaticOrb_Fire)
+data "PrepareEffect" "50ae6ea3-3ee9-4360-baae-ad15f676e8fc"
+// data "CastEffect" "3911e604-b850-43da-baa6-816ca49aa823" (Projectile_ChromaticOrb_Fire)
+data "CastEffect" "9e28a69e-d0ec-4214-9c29-041bb367813d"
 
 new entry "Projectile_ChromaticOrb_Lightning_Monk"
 type "SpellData"
 data "SpellType" "Projectile"
 // using "Projectile_ChromaticOrb_Lightning"
-using "Projectile_ChromaticOrb_Lightning_Monk"
-// data "Level" ""
-// data "SpellContainerID" "Projectile_ChromaticOrb_Monk"
-// data "SpellProperties" "GROUND:SurfaceChange(Electrify);GROUND:CreateSurface(2,2,WaterElectrified);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
-// data "Trajectories" "09410842-1a06-4457-89ab-607877ccaede"
-// Sphere of Elemental Balance: Lightning
-// data "DisplayName" "h9e0d5cd0g805eg42dbg8e49g1b114f488f7c;2"
-// data "PrepareSound" "Vocal_Component_Monk_Damage"
-// data "CastSound" "Spell_Cast_Monk_SphereOfElementalBalanceLightning_L1to3"
-// data "VocalComponentSound" "Vocal_Component_Stop"
-// data "UseCosts" "ActionPoint:1;KiPoint:2"
-// data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;,,;206575b7-21c0-4dcf-a9c1-a048f76d3126,,;f8469c98-cffd-4c36-8999-7e99879006be,,;36a98c4d-bab0-4302-ae78-d7a75c3bb9e4,,;,,;688653ba-7032-4d40-ac02-ce8b3af93516,,;,,;,,"
-// data "SpellStyleGroup" "Class"
-// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful"
-data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful;IsSpell"
-// data "MemoryCost" ""
-// data "PrepareEffect" "21dcbca6-469c-4a63-9d80-c732468623a5"
-// data "CastEffect" "2a061853-8b26-4692-9adf-d9bf9ee7f12a"
+using "Projectile_ChromaticOrb_Lightning"
+// data "Level" "1" (Projectile_ChromaticOrb_Acid)
+// data "Level" "" (Projectile_ChromaticOrb_Lightning_Monk)
+// data "SpellContainerID" "Projectile_ChromaticOrb" (Projectile_ChromaticOrb_Acid)
+data "SpellContainerID" "Projectile_ChromaticOrb_Monk"
+// data "SpellProperties" "GROUND:SurfaceChange(Electrify);GROUND:CreateSurface(2,2,WaterElectrified)" (Projectile_ChromaticOrb_Lightning)
+// data "SpellProperties" "GROUND:SurfaceChange(Electrify);GROUND:CreateSurface(2,2,WaterElectrified);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Projectile_ChromaticOrb_Lightning_Monk)
+// data "Trajectories" "7a2eea92-5a51-408d-ac76-c45098c87d93" (Projectile_ChromaticOrb_Lightning)
+data "Trajectories" "09410842-1a06-4457-89ab-607877ccaede"
+// // Chromatic Orb: Lightning
+// data "DisplayName" "h29931577g6a99g4401gb83dg0da8d4022753;1" (Projectile_ChromaticOrb_Lightning)
+// // Sphere of Elemental Balance: Lightning
+data "DisplayName" "h9e0d5cd0g805eg42dbg8e49g1b114f488f7c;2"
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Lightning_ChromaticOrbLightning_L1to3" (Projectile_ChromaticOrb_Lightning)
+data "CastSound" "Spell_Cast_Monk_SphereOfElementalBalanceLightning_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:1" (Projectile_ChromaticOrb_Acid)
+data "UseCosts" "ActionPoint:1;KiPoint:2"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;38cdb41c-2eec-4e03-bb31-83cff0346c35,,;85414f5f-b448-4dda-9370-1b6c4b38b561,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_ChromaticOrb_Acid)
+data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;,,;206575b7-21c0-4dcf-a9c1-a048f76d3126,,;f8469c98-cffd-4c36-8999-7e99879006be,,;36a98c4d-bab0-4302-ae78-d7a75c3bb9e4,,;,,;688653ba-7032-4d40-ac02-ce8b3af93516,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasVerbalComponent;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ChromaticOrb_Acid)
+// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ChromaticOrb_Lightning_Monk)
+// data "MemoryCost" "1" (Projectile_ChromaticOrb_Acid)
+// data "MemoryCost" "" (Projectile_ChromaticOrb_Lightning_Monk)
+// data "PrepareEffect" "a0aead53-5047-4b0f-a31f-ecc89e5599c0" (Projectile_ChromaticOrb_Lightning)
+data "PrepareEffect" "21dcbca6-469c-4a63-9d80-c732468623a5"
+// data "CastEffect" "fa7b3b8f-3187-45c2-9895-f1ce4c432679" (Projectile_ChromaticOrb_Lightning)
+data "CastEffect" "2a061853-8b26-4692-9adf-d9bf9ee7f12a"
 
 new entry "Projectile_ChromaticOrb_Poison_Monk"
 type "SpellData"
 data "SpellType" "Projectile"
 // using "Projectile_ChromaticOrb_Poison"
-using "Projectile_ChromaticOrb_Poison_Monk"
-// data "Level" ""
-// data "SpellContainerID" "Projectile_ChromaticOrb_Monk"
-// data "SpellProperties" "GROUND:CreateSurface(2,2,Poison);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
-// data "Trajectories" "cb8ba1ef-aaa5-42f4-805d-e2994b78c94e"
-// Sphere of Elemental Balance: Poison
-// data "DisplayName" "h1ad4bdffga8a4g4c4eg9686gfabda82713f8;2"
-// data "PrepareSound" "Vocal_Component_Monk_Damage"
-// data "CastSound" "Spell_Cast_Monk_SphereOfElementalBalancePoison_L1to3"
-// data "VocalComponentSound" "Vocal_Component_Stop"
-// data "UseCosts" "ActionPoint:1;KiPoint:2"
-// data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;,,;206575b7-21c0-4dcf-a9c1-a048f76d3126,,;f8469c98-cffd-4c36-8999-7e99879006be,,;36a98c4d-bab0-4302-ae78-d7a75c3bb9e4,,;,,;688653ba-7032-4d40-ac02-ce8b3af93516,,;,,;,,"
-// data "SpellStyleGroup" "Class"
-// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful"
-data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful;IsSpell"
-// data "MemoryCost" ""
-// data "PrepareEffect" "a6d13ad5-0346-4211-933a-6f69b77fafaa"
-// data "CastEffect" "880a5387-8995-4026-8033-f3d7a50b5bd1"
+using "Projectile_ChromaticOrb_Poison"
+// data "Level" "1" (Projectile_ChromaticOrb_Acid)
+// data "Level" "" (Projectile_ChromaticOrb_Poison_Monk)
+// data "SpellContainerID" "Projectile_ChromaticOrb" (Projectile_ChromaticOrb_Acid)
+data "SpellContainerID" "Projectile_ChromaticOrb_Monk"
+// data "SpellProperties" "GROUND:CreateSurface(2,2,Poison)" (Projectile_ChromaticOrb_Poison)
+// data "SpellProperties" "GROUND:CreateSurface(2,2,Poison);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Projectile_ChromaticOrb_Poison_Monk)
+// data "Trajectories" "8c7bb016-4706-45b0-bcf4-5b59011ced12" (Projectile_ChromaticOrb_Poison)
+data "Trajectories" "cb8ba1ef-aaa5-42f4-805d-e2994b78c94e"
+// // Chromatic Orb: Poison
+// data "DisplayName" "h760f1d3egc419g4ab1ga9d4g17fe092ff800;1" (Projectile_ChromaticOrb_Poison)
+// // Sphere of Elemental Balance: Poison
+data "DisplayName" "h1ad4bdffga8a4g4c4eg9686gfabda82713f8;2"
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Poison_ChromaticOrbPoison_L1to3" (Projectile_ChromaticOrb_Poison)
+data "CastSound" "Spell_Cast_Monk_SphereOfElementalBalancePoison_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:1" (Projectile_ChromaticOrb_Acid)
+data "UseCosts" "ActionPoint:1;KiPoint:2"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;38cdb41c-2eec-4e03-bb31-83cff0346c35,,;85414f5f-b448-4dda-9370-1b6c4b38b561,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_ChromaticOrb_Acid)
+data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;,,;206575b7-21c0-4dcf-a9c1-a048f76d3126,,;f8469c98-cffd-4c36-8999-7e99879006be,,;36a98c4d-bab0-4302-ae78-d7a75c3bb9e4,,;,,;688653ba-7032-4d40-ac02-ce8b3af93516,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasVerbalComponent;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ChromaticOrb_Acid)
+// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ChromaticOrb_Poison_Monk)
+// data "MemoryCost" "1" (Projectile_ChromaticOrb_Acid)
+// data "MemoryCost" "" (Projectile_ChromaticOrb_Poison_Monk)
+// data "PrepareEffect" "92a96bf8-28c7-4565-8ceb-7cd02978b1ee" (Projectile_ChromaticOrb_Poison)
+data "PrepareEffect" "a6d13ad5-0346-4211-933a-6f69b77fafaa"
+// data "CastEffect" "ecd2a765-5888-42bc-bc88-7bb2303e82b7" (Projectile_ChromaticOrb_Poison)
+data "CastEffect" "880a5387-8995-4026-8033-f3d7a50b5bd1"
 
 new entry "Projectile_ChromaticOrb_Thunder_Monk"
 type "SpellData"
 data "SpellType" "Projectile"
 // using "Projectile_ChromaticOrb_Thunder"
-using "Projectile_ChromaticOrb_Thunder_Monk"
-// data "Level" ""
-// data "SpellContainerID" "Projectile_ChromaticOrb_Monk"
-// data "SpellProperties" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
-// data "Trajectories" "44d4db49-85c5-4d98-a578-45191edba5bd"
-// Sphere of Elemental Balance: Thunder
-// data "DisplayName" "h0b149685ga450g4848gb4a2gf08a3f0d8c30;2"
-// data "PrepareSound" "Vocal_Component_Monk_Damage"
-// data "CastSound" "Spell_Cast_Monk_SphereOfElementalBalanceThunder_L1to3"
-// data "VocalComponentSound" "Vocal_Component_Stop"
-// data "UseCosts" "ActionPoint:1;KiPoint:2"
-// data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;,,;206575b7-21c0-4dcf-a9c1-a048f76d3126,,;f8469c98-cffd-4c36-8999-7e99879006be,,;36a98c4d-bab0-4302-ae78-d7a75c3bb9e4,,;,,;688653ba-7032-4d40-ac02-ce8b3af93516,,;,,;,,"
-// data "SpellStyleGroup" "Class"
-// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful"
-data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful;IsSpell"
-// data "MemoryCost" ""
-// data "PrepareEffect" "b70c0a6b-f58e-4f27-9844-1b3b27e45329"
-// data "CastEffect" "8bb23006-3e88-45df-a7ff-376a205f0292"
+using "Projectile_ChromaticOrb_Thunder"
+// data "Level" "1" (Projectile_ChromaticOrb_Acid)
+// data "Level" "" (Projectile_ChromaticOrb_Thunder_Monk)
+// data "SpellContainerID" "Projectile_ChromaticOrb" (Projectile_ChromaticOrb_Acid)
+data "SpellContainerID" "Projectile_ChromaticOrb_Monk"
+// data "SpellProperties" "" (Projectile_ChromaticOrb_Thunder)
+// data "SpellProperties" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Projectile_ChromaticOrb_Thunder_Monk)
+// data "Trajectories" "c7cd4b0a-2b2e-47ae-a4e8-849ad5d448f8" (Projectile_ChromaticOrb_Thunder)
+data "Trajectories" "44d4db49-85c5-4d98-a578-45191edba5bd"
+// // Chromatic Orb: Thunder
+// data "DisplayName" "h908f12d1g1c03g4a7fg93e3g15d8f1ad5e98;1" (Projectile_ChromaticOrb_Thunder)
+// // Sphere of Elemental Balance: Thunder
+data "DisplayName" "h0b149685ga450g4848gb4a2gf08a3f0d8c30;2"
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Thunder_ChromaticOrbThunder_L1to3" (Projectile_ChromaticOrb_Thunder)
+data "CastSound" "Spell_Cast_Monk_SphereOfElementalBalanceThunder_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:1" (Projectile_ChromaticOrb_Acid)
+data "UseCosts" "ActionPoint:1;KiPoint:2"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;38cdb41c-2eec-4e03-bb31-83cff0346c35,,;85414f5f-b448-4dda-9370-1b6c4b38b561,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_ChromaticOrb_Acid)
+data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;,,;206575b7-21c0-4dcf-a9c1-a048f76d3126,,;f8469c98-cffd-4c36-8999-7e99879006be,,;36a98c4d-bab0-4302-ae78-d7a75c3bb9e4,,;,,;688653ba-7032-4d40-ac02-ce8b3af93516,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasVerbalComponent;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ChromaticOrb_Acid)
+// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ChromaticOrb_Thunder_Monk)
+// data "MemoryCost" "1" (Projectile_ChromaticOrb_Acid)
+// data "MemoryCost" "" (Projectile_ChromaticOrb_Thunder_Monk)
+// data "PrepareEffect" "db5705a1-824d-42a3-8d09-2352b9cd4af9" (Projectile_ChromaticOrb_Thunder)
+data "PrepareEffect" "b70c0a6b-f58e-4f27-9844-1b3b27e45329"
+// data "CastEffect" "2b284468-04a1-4730-a5c0-8ce54afbd937" (Projectile_ChromaticOrb_Thunder)
+data "CastEffect" "8bb23006-3e88-45df-a7ff-376a205f0292"
 
 // ==================================== Sweeping Cinder Strike ====================================
 // Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
