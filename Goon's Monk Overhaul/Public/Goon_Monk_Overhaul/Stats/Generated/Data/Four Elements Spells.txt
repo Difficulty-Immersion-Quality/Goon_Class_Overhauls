@@ -345,34 +345,48 @@ data "SpellFlags" "HasSomaticComponent;HasHighGroundRangeExtension;RangeIgnoreVe
 // data "CastEffect" "a758e379-9f9f-43de-a9d1-c0f01480770e"
 
 // ==================================== Gong of the Summit ====================================
+// Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 // Changes: Now flagged as a spell.
-// TODO: Standard inheritance.
 // TODO: Upcasting.
 
 new entry "Target_Shatter_Monk"
 type "SpellData"
 data "SpellType" "Target"
 // using "Target_Shatter"
-using "Target_Shatter_Monk"
-// data "Level" ""
-// data "SpellProperties" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
-// data "SpellSuccess" "DealDamage(LevelMapValue(Shatter_Monk),Thunder,Magical)"
-// data "SpellFail" "DealDamage((LevelMapValue(Shatter_Monk))/2,Thunder,Magical)"
+using "Target_Shatter"
+// data "Level" "2" (Target_Shatter)
+// data "Level" "" (Target_Shatter_Monk)
+// data "SpellProperties" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Target_Shatter_Monk)
+// data "SpellSuccess" "DealDamage(3d8,Thunder,Magical)" (Target_Shatter)
+data "SpellSuccess" "DealDamage(LevelMapValue(Shatter_Monk),Thunder,Magical)"
+// data "SpellFail" "DealDamage((3d8)/2,Thunder,Magical)" (Target_Shatter)
+data "SpellFail" "DealDamage((LevelMapValue(Shatter_Monk))/2,Thunder,Magical)"
+// // Shatter
+// data "DisplayName" "hb26926acgf931g4400g9ccdgccde00ee2d5a;1" (Target_Shatter)
 // // Gong of the Summit
-// data "DisplayName" "h2fcb712dg0aa1g4dbdg8790g4429c6fc96c4;2"
-// data "TooltipDamageList" "DealDamage(LevelMapValue(Shatter_Monk),Thunder)"
-// data "PrepareSound" "Vocal_Component_Monk_Damage"
-// data "CastSound" "Spell_Cast_Monk_GongoftheSummit_L1to3"
-// data "TargetSound" "Vocal_Component_Stop"
-// data "VocalComponentSound" "Vocal_Component_Stop"
-// data "UseCosts" "ActionPoint:1;KiPoint:3"
-// data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;8dc0bedb-00d7-4410-ab8f-42061c5f364b,,;d1870467-0403-4d35-b629-2e1a959c9661,,;5c9e3bb0-8963-4cc3-aa24-c0ba1c49494b,,;,,;c79f1495-5c5c-4e22-bed4-38beb3779b23,,;,,;,,"
-// data "SpellStyleGroup" "Class"
-// data "SpellFlags" "HasHighGroundRangeExtension;HasVerbalComponent;HasSomaticComponent;IsHarmful"
-data "SpellFlags" "HasHighGroundRangeExtension;HasVerbalComponent;HasSomaticComponent;IsHarmful;IsSpell"
-// data "PrepareEffect" "84dc9994-2d11-4866-87e8-0f79a83347ae"
-// data "CastEffect" "264106e7-dbb1-4d8a-b32b-1f3dd57175a3"
-// data "PositionEffect" "af4a94aa-0a09-492b-8268-ca250bb6f9b0"
+data "DisplayName" "h2fcb712dg0aa1g4dbdg8790g4429c6fc96c4;2"
+// data "TooltipDamageList" "DealDamage(3d8,Thunder)" (Target_Shatter)
+data "TooltipDamageList" "DealDamage(LevelMapValue(Shatter_Monk),Thunder)"
+// data "PrepareSound" "Spell_Prepare_Damage_Thunder_Gen_L1to3" (Target_Shatter)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
+data "CastSound" "Spell_Cast_Monk_GongoftheSummit_L1to3"
+// data "TargetSound" "Spell_Impact_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
+data "TargetSound" "Vocal_Component_Stop"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:2" (Target_Shatter)
+data "UseCosts" "ActionPoint:1;KiPoint:3"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;39daf365-ec06-49a8-81f3-9032640699d7,,;5c400e93-0266-499c-a2e1-75d53358460f,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Target_Shatter)
+data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;8dc0bedb-00d7-4410-ab8f-42061c5f364b,,;d1870467-0403-4d35-b629-2e1a959c9661,,;5c9e3bb0-8963-4cc3-aa24-c0ba1c49494b,,;,,;c79f1495-5c5c-4e22-bed4-38beb3779b23,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasVerbalComponent;HasSomaticComponent;IsHarmful" (Target_Shatter)
+// data "SpellFlags" "HasHighGroundRangeExtension;HasVerbalComponent;HasSomaticComponent;IsHarmful" (Target_Shatter_Monk)
+// data "PrepareEffect" "2af907e1-127c-4c83-a117-af18f211c59d" (Target_Shatter)
+data "PrepareEffect" "84dc9994-2d11-4866-87e8-0f79a83347ae"
+// data "CastEffect" "ee3c85ae-0078-4223-9345-c2594535d1f2" (Target_Shatter)
+data "CastEffect" "264106e7-dbb1-4d8a-b32b-1f3dd57175a3"
+// data "PositionEffect" "326e77b8-3951-4507-b42a-838533b274e2" (Target_Shatter)
+data "PositionEffect" "af4a94aa-0a09-492b-8268-ca250bb6f9b0"
 
 // ==================================== Mist Stance ====================================
 // Changes: Now flagged as a spell.
