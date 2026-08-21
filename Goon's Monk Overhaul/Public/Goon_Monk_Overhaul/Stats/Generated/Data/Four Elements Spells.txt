@@ -692,37 +692,55 @@ data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVe
 // data "CastEffect" "8bb23006-3e88-45df-a7ff-376a205f0292"
 
 // ==================================== Sweeping Cinder Strike ====================================
+// Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 // Changes: Now flagged as a spell.
-// TODO: Standard inheritance.
+// Changes: Now flagged as having a verbal component.
 // TODO: Upcasting.
 
 new entry "Zone_BurningHands_Monk"
 type "SpellData"
 data "SpellType" "Zone"
 // using "Zone_BurningHands"
-using "Zone_BurningHands_Monk"
-// data "Level" ""
-// data "SpellProperties" "GROUND:SurfaceChange(Ignite);GROUND:SurfaceChange(Melt);TARGET:IF(Item()):ApplyStatus(BURNING,100,2);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
-// data "SpellSuccess" "DealDamage(LevelMapValue(BurningHands_Monk), Fire,Magical)"
-// data "SpellFail" "DealDamage(LevelMapValue(BurningHands_Monk)/2, Fire,Magical)"
-// Sweeping Cinder Strike
-// data "DisplayName" "hf3c69a0agc6b0g4e79g9d03g856f0f56dca5;2"
-// Expel fire from your outstretched hands and ignite anything flammable.
-// data "Description" "hedc3040eg8cd8g4a32g97c2g65d5e5c6c33d;1"
-// data "TooltipDamageList" "DealDamage(LevelMapValue(BurningHands_Monk),Fire)"
-// data "PrepareSound" "Vocal_Component_Monk_Damage"
-// data "CastSound" "Spell_Cast_Monk_SweepingCinderStrike_L1to3"
-// data "TargetSound" "Spell_Impact_Monk_SweepingCinderStrike_L1to3"
-// data "VocalComponentSound" "Vocal_Component_Stop"
-// data "UseCosts" "ActionPoint:1;KiPoint:2"
-// data "SpellAnimation" "ba181bb4-331a-4e69-92af-d09bde86d835,,;,,;2c5aae21-74b6-452d-9d76-53d4c36e5ba2,,;4c923700-3192-4c7c-8009-26e1087fa91e,,;a1c2c833-b2c8-465f-a902-b6ae38f6553d,,;,,;74dead2e-d842-4d29-976a-d1cb373f7f0e,,;,,;,,"
-// data "SpellStyleGroup" "Class"
-// data "SpellFlags" "HasSomaticComponent;IsHarmful;CanAreaDamageEvade"
-data "SpellFlags" "HasSomaticComponent;IsHarmful;CanAreaDamageEvade;IsSpell"
+using "Zone_BurningHands"
+// data "Level" "1" (Zone_BurningHands)
+// data "Level" "" (Zone_BurningHands_Monk)
+// data "SpellProperties" "GROUND:SurfaceChange(Ignite);GROUND:SurfaceChange(Melt);TARGET:IF(Item()):ApplyStatus(BURNING,100,2);" (Zone_BurningHands)
+// data "SpellProperties" "GROUND:SurfaceChange(Ignite);GROUND:SurfaceChange(Melt);TARGET:IF(Item()):ApplyStatus(BURNING,100,2);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Zone_BurningHands_Monk)
+// data "SpellSuccess" "DealDamage(3d6, Fire,Magical)" (Zone_BurningHands)
+data "SpellSuccess" "DealDamage(LevelMapValue(BurningHands_Monk), Fire,Magical)"
+// data "SpellFail" "DealDamage(3d6/2, Fire,Magical)" (Zone_BurningHands)
+data "SpellFail" "DealDamage(LevelMapValue(BurningHands_Monk)/2, Fire,Magical)"
+// // Burning Hands
+// data "DisplayName" "h5c7a28e3geb16g40abg82e9g066a3384ecc1;1" (Zone_BurningHands)
+// // Sweeping Cinder Strike
+data "DisplayName" "hf3c69a0agc6b0g4e79g9d03g856f0f56dca5;2"
+// // Each flammable target is hit with [1].
+// data "Description" "h620bc6e9g274cg4077g9cd4g117e396188a2;10" (Zone_BurningHands)
+// // Expel fire from your outstretched hands and ignite anything flammable.
+data "Description" "hedc3040eg8cd8g4a32g97c2g65d5e5c6c33d;1"
+// data "TooltipDamageList" "DealDamage(3d6,Fire)" (Zone_BurningHands)
+data "TooltipDamageList" "DealDamage(LevelMapValue(BurningHands_Monk),Fire)"
+// data "PrepareSound" "TMP_Silence" (Zone_BurningHands)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Fire_BurningHands_L1to3" (Zone_BurningHands)
+data "CastSound" "Spell_Cast_Monk_SweepingCinderStrike_L1to3"
+// data "TargetSound" "Spell_Impact_Damage_Fire_BurningHands_L1to3" (Zone_BurningHands)
+data "TargetSound" "Spell_Impact_Monk_SweepingCinderStrike_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:1" (Zone_BurningHands)
+data "UseCosts" "ActionPoint:1;KiPoint:2"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;d30d2b40-c45a-45bd-94d7-9b2baaf0f77b,,;a601b33c-5320-455d-b4d4-74d6dc35b757,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Zone_BurningHands)
+data "SpellAnimation" "ba181bb4-331a-4e69-92af-d09bde86d835,,;,,;2c5aae21-74b6-452d-9d76-53d4c36e5ba2,,;4c923700-3192-4c7c-8009-26e1087fa91e,,;a1c2c833-b2c8-465f-a902-b6ae38f6553d,,;,,;74dead2e-d842-4d29-976a-d1cb373f7f0e,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasSomaticComponent;HasVerbalComponent;IsSpell;IsHarmful;CanAreaDamageEvade" (Zone_BurningHands)
+// data "SpellFlags" "HasSomaticComponent;IsHarmful;CanAreaDamageEvade" (Zone_BurningHands_Monk)
 // data "PowerLevel" ""
-// data "PrepareEffect" "8e955204-7c26-4ac8-8595-94f87b25ac71"
-// data "CastEffect" "5aac9d6e-ca02-40d3-a59c-e1d0fc6af5c8"
-// data "TargetEffect" "53412dd1-8066-4860-a2ae-b27e77bfdab5"
+// data "PrepareEffect" "fab371de-227d-4fde-aad6-868ae34c36da" (Zone_BurningHands)
+data "PrepareEffect" "8e955204-7c26-4ac8-8595-94f87b25ac71"
+// data "CastEffect" "5438d3f5-6041-432d-9708-be99fac223ae" (Zone_BurningHands)
+data "CastEffect" "5aac9d6e-ca02-40d3-a59c-e1d0fc6af5c8"
+// data "TargetEffect" "a4786ee9-eb7c-4d0d-aaa9-9a637d9eaeaf" (Zone_BurningHands)
+data "TargetEffect" "53412dd1-8066-4860-a2ae-b27e77bfdab5"
 
 // ==================================== Touch of the Storm ====================================
 // Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
