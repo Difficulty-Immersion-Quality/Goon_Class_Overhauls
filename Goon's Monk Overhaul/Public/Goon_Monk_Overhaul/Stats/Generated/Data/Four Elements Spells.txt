@@ -106,39 +106,54 @@ data "PrepareEffect" "2992e832-81f9-4a70-8cf6-0f5281d69390"
 data "CastEffect" "b89fdfba-d70d-4d45-95da-ad0fe16982d1"
 
 // ==================================== Clench of the North Wind ====================================
-// Bug Fix: Added missing LSTag (hyperlink) for Critical Hits.
+// Bug Fix: Added missing LSTag (hyperlink) for Critical Hits in the description. (Inherited)
+// Bug Fix: Can no longer target the same entity multiple times.
+// Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 // Changes: Now flagged as a spell.
-// TODO: Standard inheritance.
 // TODO: Upcasting.
 
 new entry "Target_HoldPerson_Monk"
 type "SpellData"
 data "SpellType" "Target"
 // using "Target_HoldPerson"
-using "Target_HoldPerson_Monk"
-// data "Level" ""
-// data "SpellProperties" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
-// data "SpellSuccess" "ApplyStatus(HOLD_PERSON_MONK,100,10)"
-// data "AmountOfTargets" "LevelMapValue(HoldPerson_Monk)"
+using "Target_HoldPerson"
+// data "Level" "2" (Target_HoldPerson)
+// data "Level" "" (Target_HoldPerson_Monk)
+// data "SpellSuccess" "ApplyStatus(HOLD_PERSON,100,10)" (Target_HoldPerson)
+data "SpellSuccess" "ApplyStatus(HOLD_PERSON_MONK,100,10)"
+// data "SpellProperties" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Target_HoldPerson_Monk)
+data "AmountOfTargets" "LevelMapValue(HoldPerson_Monk)"
+// // Hold Person
+// data "DisplayName" "h3f38a5afg839cg41eagb34bgc40e7ccdde7a;1" (Target_HoldPerson)
 // // Clench of the North Wind
-// data "DisplayName" "hd82ec163ge78ag4ecbgae09g7fab45598d2d;2"
-// // &lt;LSTag Type="Status" Tooltip="HOLD_PERSON"&gt;Hold&lt;/LSTag&gt; a humanoid enemy still. They can't move, act or react. Attacks from within 3m are always Critical Hits.
-// data "Description" "he64de87egcc5fg499fgb827g1f28db161d10;3"
+data "DisplayName" "hd82ec163ge78ag4ecbgae09g7fab45598d2d;1"
 // // &lt;LSTag Type="Status" Tooltip="HOLD_PERSON"&gt;Hold&lt;/LSTag&gt; a humanoid enemy still. They can't move, act or react. Attacks from within [1] are always &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hits&lt;/LSTag&gt;.
-data "Description" "hcd87bb08g774ag4881g8194g3aac50e64f70;6"
-// data "TooltipStatusApply" "ApplyStatus(HOLD_PERSON_MONK,100,10)"
-// data "PrepareSound" "Vocal_Component_Monk_Control"
-// data "CastSound" "Spell_Cast_Monk_ClenchoftheNorthwind_L1to3"
-// data "TargetSound" "Vocal_Component_Stop"
-// data "VocalComponentSound" "Vocal_Component_Stop"
-// data "UseCosts" "ActionPoint:1;KiPoint:3"
-// data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;32415fee-295d-4fed-a7f4-d2f9218ff9c1,,;05f29a9a-58d1-43d2-84cf-5a95ab5baa24,,;5c9e3bb0-8963-4cc3-aa24-c0ba1c49494b,,;,,;c79f1495-5c5c-4e22-bed4-38beb3779b23,,;,,;,,"
-// data "SpellStyleGroup" "Class"
-// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;HasHighGroundRangeExtension;IsConcentration;IsHarmful"
-data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;HasHighGroundRangeExtension;IsConcentration;IsHarmful;IsSpell"
-// data "PrepareEffect" "76154940-c4fc-4adb-b700-87051865380f"
-// data "CastEffect" "b05bd9fd-c2d2-44c9-ae77-c58b17aa2443"
-// data "TargetEffect" "57190c62-9877-46f5-acd4-ca35093a5e8a"
+// data "Description" "hcd87bb08g774ag4881g8194g3aac50e64f70;6" (Target_HoldPerson)
+// // &lt;LSTag Type="Status" Tooltip="HOLD_PERSON"&gt;Hold&lt;/LSTag&gt; a humanoid enemy still. They can't move, act or react. Attacks from within 3m are always Critical Hits.
+// data "Description" "he64de87egcc5fg499fgb827g1f28db161d10;3" (Target_HoldPerson_Monk)
+// data "TooltipStatusApply" "ApplyStatus(HOLD_PERSON,100,10)" (Target_HoldPerson)
+data "TooltipStatusApply" "ApplyStatus(HOLD_PERSON_MONK,100,10)"
+// data "PrepareSound" "Spell_Prepare_Control_Gen_L1to3_01" (Target_HoldPerson)
+data "PrepareSound" "Vocal_Component_Monk_Control"
+// data "CastSound" "Spell_Cast_Control_HoldPerson_L1to3" (Target_HoldPerson)
+data "CastSound" "Spell_Cast_Monk_ClenchoftheNorthwind_L1to3"
+// data "TargetSound" "Spell_Impact_Control_HoldPerson_L1to3" (Target_HoldPerson)
+// data "TargetSound" "Vocal_Component_Stop" (Target_HoldPerson_Monk)
+// data "VocalComponentSound" "Vocal_Component_Paralyze" (Target_HoldPerson)
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:2" (Target_HoldPerson)
+data "UseCosts" "ActionPoint:1;KiPoint:3"
+// data "SpellAnimation" "554a18f7-952e-494a-b301-7702a85d4bc9,,;,,;3e441d3f-11f9-432d-877c-c0ba4d92c74a,,;8b7ae969-2a04-4720-9685-3bde54c18ffe,,;22dfbbf4-f417-4c84-b39e-2039315961e6,,;,,;5bfbe9f9-4fc3-4f26-b112-43d404db6a89,,;,,;,," (Target_HoldPerson)
+data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;32415fee-295d-4fed-a7f4-d2f9218ff9c1,,;05f29a9a-58d1-43d2-84cf-5a95ab5baa24,,;5c9e3bb0-8963-4cc3-aa24-c0ba1c49494b,,;,,;c79f1495-5c5c-4e22-bed4-38beb3779b23,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;HasHighGroundRangeExtension;IsConcentration;IsHarmful;IgnorePreviouslyPickedEntities" (Target_HoldPerson)
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;HasHighGroundRangeExtension;IsConcentration;IsHarmful" (Target_HoldPerson_Monk)
+// data "PrepareEffect" "bcdca947-b1ba-475f-8e3b-9ac850da90fa" (Target_HoldPerson)
+data "PrepareEffect" "76154940-c4fc-4adb-b700-87051865380f"
+// data "CastEffect" "d2ef6b50-243f-478d-85c6-892086a1477e" (Target_HoldPerson)
+data "CastEffect" "b05bd9fd-c2d2-44c9-ae77-c58b17aa2443"
+// data "TargetEffect" "e1b340b6-78a9-413a-bb7e-8299848238ae" (Target_HoldPerson)
+data "TargetEffect" "57190c62-9877-46f5-acd4-ca35093a5e8a"
 
 // ==================================== Embrace of the Inferno ====================================
 // Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
