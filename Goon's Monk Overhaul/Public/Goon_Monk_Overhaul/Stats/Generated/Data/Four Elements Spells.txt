@@ -9,7 +9,7 @@ type "PassiveData"
 data "Properties" "IsHidden"
 data "StatsFunctorContext" "OnCastResolved"
 data "Conditions" "Goon_IsWayOfFourElementsSpell()"
-data "StatsFunctors" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
+data "StatsFunctors" "ApplyStatus(MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
 
 // ==================================== Blade of Rime ====================================
 // Bug Fix: Now douses surfaces and removes Burning.
