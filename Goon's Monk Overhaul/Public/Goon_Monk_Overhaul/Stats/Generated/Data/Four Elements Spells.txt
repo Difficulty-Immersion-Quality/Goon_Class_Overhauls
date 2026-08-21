@@ -46,34 +46,49 @@ data "SpellFlags" "HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHa
 // data "CastEffect" "577d7896-70e2-419e-b4b9-33c03ecd8df1"
 
 // ==================================== Chill of the Mountain ====================================
+// Bug Fix: Now douses surfaces.
+// Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 // Changes: Now flagged as a spell.
-// TODO: Standard inheritance.
-// TODO: Upcasting.
+// Changes: Now flagged as having a verbal component.
 
 new entry "Projectile_RayOfFrost_Monk"
 type "SpellData"
 data "SpellType" "Projectile"
 // using "Projectile_RayOfFrost"
-using "Projectile_RayOfFrost_Monk"
-// data "Level" ""
-// data "SpellProperties" "GROUND:SurfaceChange(Freeze);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
-// data "SpellSuccess" "DealDamage(LevelMapValue(RayOfFrost_Monk),Cold,Magical);ApplyStatus(RAY_OF_FROST,100,1)"
-// data "Trajectories" "2aefac3d-6d62-48cf-8a38-c798ef7bca41"
-// Chill of the Mountain
-// data "DisplayName" "he665a132g2048g43bdga4e4gce2bbfba80f6;2"
-// Call forth the cold mountain winds and reduce the target's &lt;LSTag Tooltip="MovementSpeed"&gt;movement speed&lt;/LSTag&gt; by [1].
-// data "Description" "hfd677da6gb613g4624g8edeg15ec661985f7;2"
-// data "TooltipDamageList" "DealDamage(LevelMapValue(RayOfFrost_Monk),Cold)"
-// data "PrepareSound" "Vocal_Component_Monk_Damage"
-// data "CastSound" "Spell_Cast_Monk_ChilloftheMountain_L1to3"
-// data "VocalComponentSound" "Vocal_Component_Stop"
-// data "UseCosts" "ActionPoint:1;KiPoint:1"
-// data "SpellAnimation" "101629c4-d30c-4ae7-b316-9d6423e7298a,,;,,;12b416e1-32ee-402e-a4c4-3dbd2d835b17,,;720cc2b8-917e-4012-8f89-f40bcc0ba287,,;9af429ab-54e8-455b-99d0-71c62e66ad64,,;,,;e550f983-faab-412b-a55d-237a1e17d4da,,;,,;,,"
-// data "SpellStyleGroup" "Class"
-// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful"
-data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful;IsSpell"
-// data "PrepareEffect" "2992e832-81f9-4a70-8cf6-0f5281d69390"
-// data "CastEffect" "b89fdfba-d70d-4d45-95da-ad0fe16982d1"
+using "Projectile_RayOfFrost"
+// data "Level" "0" (Projectile_RayOfFrost)
+// data "Level" "" (Projectile_RayOfFrost_Monk)
+// data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:SurfaceChange(Douse)" (Projectile_RayOfFrost)
+// data "SpellProperties" "GROUND:SurfaceChange(Freeze);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Projectile_RayOfFrost_Monk)
+// data "SpellSuccess" "DealDamage(LevelMapValue(D8Cantrip),Cold,Magical);ApplyStatus(RAY_OF_FROST,100,1)" (Projectile_RayOfFrost)
+data "SpellSuccess" "DealDamage(LevelMapValue(RayOfFrost_Monk),Cold,Magical);ApplyStatus(RAY_OF_FROST,100,1)"
+// data "Trajectories" "47ac1e9a-3b62-4010-bde9-0dc602edd114" (Projectile_RayOfFrost)
+data "Trajectories" "2aefac3d-6d62-48cf-8a38-c798ef7bca41"
+// // Ray of Frost
+// data "DisplayName" "hb948d03cg36b4g4428gbbbbg8f9de9ef46c0;1" (Projectile_RayOfFrost)
+// // Chill of the Mountain
+data "DisplayName" "he665a132g2048g43bdga4e4gce2bbfba80f6;2"
+// // Reduces the target's &lt;LSTag Tooltip="MovementSpeed"&gt;movement speed&lt;/LSTag&gt; by [1].
+// data "Description" "h2af8dfb6g7f9ag4feag8c69gc290977fad80;8" (Projectile_RayOfFrost)
+// // Call forth the cold mountain winds and reduce the target's &lt;LSTag Tooltip="MovementSpeed"&gt;movement speed&lt;/LSTag&gt; by [1].
+data "Description" "hfd677da6gb613g4624g8edeg15ec661985f7;2"
+// data "TooltipDamageList" "DealDamage(LevelMapValue(D8Cantrip),Cold)" (Projectile_RayOfFrost)
+data "TooltipDamageList" "DealDamage(LevelMapValue(RayOfFrost_Monk),Cold)"
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Ice_RayOfFrost_L0" (Projectile_RayOfFrost)
+data "CastSound" "Spell_Cast_Monk_ChilloftheMountain_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1" (Projectile_RayOfFrost)
+data "UseCosts" "ActionPoint:1;KiPoint:1"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;cd5e5d4a-38e1-4d4d-b346-3fbc1e4c3c90,,;141f48d9-9615-496a-8737-9240f0dba60d,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_RayOfFrost)
+data "SpellAnimation" "101629c4-d30c-4ae7-b316-9d6423e7298a,,;,,;12b416e1-32ee-402e-a4c4-3dbd2d835b17,,;720cc2b8-917e-4012-8f89-f40bcc0ba287,,;9af429ab-54e8-455b-99d0-71c62e66ad64,,;,,;e550f983-faab-412b-a55d-237a1e17d4da,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasVerbalComponent;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_RayOfFrost)
+// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_RayOfFrost_Monk)
+// data "PrepareEffect" "ee97e6e4-90a1-4181-b7fa-f6fe8b2af2d0" (Projectile_RayOfFrost)
+data "PrepareEffect" "2992e832-81f9-4a70-8cf6-0f5281d69390"
+// data "CastEffect" "f3d3763c-1cbb-4d7a-94da-d9f703b7d67a" (Projectile_RayOfFrost)
+data "CastEffect" "b89fdfba-d70d-4d45-95da-ad0fe16982d1"
 
 // ==================================== Clench of the North Wind ====================================
 // Bug Fix: Added missing LSTag (hyperlink) for Critical Hits.
