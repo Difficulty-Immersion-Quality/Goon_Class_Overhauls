@@ -725,33 +725,48 @@ data "SpellFlags" "HasSomaticComponent;IsHarmful;CanAreaDamageEvade;IsSpell"
 // data "TargetEffect" "53412dd1-8066-4860-a2ae-b27e77bfdab5"
 
 // ==================================== Touch of the Storm ====================================
+// Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 // Changes: Now flagged as a spell.
-// TODO: Standard inheritance.
+// Changes: No longer flagged as disabling blood.
 // TODO: Upcasting.
 
 new entry "Target_ShockingGrasp_Monk"
 type "SpellData"
 data "SpellType" "Target"
 // using "Target_ShockingGrasp"
-using "Target_ShockingGrasp_Monk"
-// data "Level" ""
-// data "SpellProperties" "GROUND:SurfaceChange(Electrify);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
-// data "SpellSuccess" "ApplyStatus(SHOCKING_GRASP,100,1);DealDamage(LevelMapValue(ShockingGrasp_Monk),Lightning,Magical)"
-// Touch of the Storm
-// data "DisplayName" "h227e145dg4ea6g47fdg9a48g75cfe8c2625b;3"
-// data "TooltipDamageList" "DealDamage(LevelMapValue(ShockingGrasp_Monk),Lightning)"
-// data "PrepareSound" "Vocal_Component_Monk_Damage"
-// data "CastSound" "Spell_Cast_Monk_TouchOfTheThunderousSky_L1to3"
-// data "TargetSound" "Spell_Impact_Monk_TouchOfTheThunderousSky_L1to3"
-// data "VocalComponentSound" "Vocal_Component_Stop"
-// data "UseCosts" "ActionPoint:1;KiPoint:1"
-// data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;1b0f0454-b552-4f73-b4f1-42769b13319f,,;4c002ca1-fc5a-4132-b8d1-c440111a46a5,,;5c9e3bb0-8963-4cc3-aa24-c0ba1c49494b,,;,,;c79f1495-5c5c-4e22-bed4-38beb3779b23,,;,,;,,"
-// data "SpellStyleGroup" "Class"
-// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsMelee;IsHarmful;DisableBlood"
-data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsMelee;IsHarmful;DisableBlood;IsSpell"
-// data "PrepareEffect" "d7be823c-3dcc-4b93-bbcf-5fbe2863d26f"
-// data "CastEffect" "62304a83-3c0c-4ee9-9759-7bbf1204bd6f"
-// data "TargetEffect" "15929690-0a9b-4f77-9c2c-6f7dda893aaf"
+using "Target_ShockingGrasp"
+// data "Level" "0" (Target_ShockingGrasp)
+// data "Level" "" (Target_ShockingGrasp_Monk)
+// data "SpellProperties" "GROUND:SurfaceChange(Electrify)" (Target_ShockingGrasp)
+// data "SpellProperties" "GROUND:SurfaceChange(Electrify);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Target_ShockingGrasp_Monk)
+// data "SpellSuccess" "ApplyStatus(SHOCKING_GRASP,100,1);DealDamage(LevelMapValue(D8Cantrip),Lightning,Magical)" (Target_ShockingGrasp)
+data "SpellSuccess" "ApplyStatus(SHOCKING_GRASP,100,1);DealDamage(LevelMapValue(ShockingGrasp_Monk),Lightning,Magical)"
+// // Shocking Grasp
+// data "DisplayName" "h83428213g0a17g4b04g9dbfg2cde3aed8b78;1" (Target_ShockingGrasp)
+// // Touch of the Storm
+data "DisplayName" "h227e145dg4ea6g47fdg9a48g75cfe8c2625b;3"
+// data "TooltipDamageList" "DealDamage(LevelMapValue(D8Cantrip),Lightning)" (Target_ShockingGrasp)
+data "TooltipDamageList" "DealDamage(LevelMapValue(ShockingGrasp_Monk),Lightning)"
+// data "PrepareSound" "Spell_Prepare_Damage_Lightning_Gen_L1to3" (Target_ShockingGrasp)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Lightning_ShockingGrasp_L0" (Target_ShockingGrasp)
+data "CastSound" "Spell_Cast_Monk_TouchOfTheThunderousSky_L1to3"
+// data "TargetSound" "Spell_Impact_Damage_Lightning_ShockingGrasp_L0" (Target_ShockingGrasp)
+data "TargetSound" "Spell_Impact_Monk_TouchOfTheThunderousSky_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1" (Target_ShockingGrasp)
+data "UseCosts" "ActionPoint:1;KiPoint:1"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;c17a3562-3758-4c4a-96e8-790cebed1df4,a1227ad0-1db2-4941-836b-0a8d85b87a0b,aef20313-abe9-4abb-8ecf-65c22d25ea80;a8012b19-b279-45ec-89b0-86a1b73ad584,92b2bf7e-5fd5-4016-acb9-dae833b7c2e2,a6874259-8dd1-46fa-99f8-6a19ebb19087;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;efbf3ee5-7340-4b29-8ab5-113b004a8e7b,,;95c387b6-3756-4bb5-accf-75a117eefb5f,," (Target_ShockingGrasp)
+data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;1b0f0454-b552-4f73-b4f1-42769b13319f,,;4c002ca1-fc5a-4132-b8d1-c440111a46a5,,;5c9e3bb0-8963-4cc3-aa24-c0ba1c49494b,,;,,;c79f1495-5c5c-4e22-bed4-38beb3779b23,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasVerbalComponent;HasSomaticComponent;IsMelee;IsHarmful" (Target_ShockingGrasp)
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsMelee;IsHarmful;DisableBlood" (Target_ShockingGrasp_Monk)
+// data "PrepareEffect" "77241e8c-ae8d-4402-92d8-a871ce64d86f" (Target_ShockingGrasp)
+data "PrepareEffect" "d7be823c-3dcc-4b93-bbcf-5fbe2863d26f"
+// data "CastEffect" "10fc784a-4312-47a8-a6b8-6b529c646ac4" (Target_ShockingGrasp)
+data "CastEffect" "62304a83-3c0c-4ee9-9759-7bbf1204bd6f"
+// data "TargetEffect" "a3e2368b-f486-4cfc-b04a-b02e23383280" (Target_ShockingGrasp)
+data "TargetEffect" "15929690-0a9b-4f77-9c2c-6f7dda893aaf"
 
 // ==================================== Water Whip ====================================
 // Bug Fix: Water Whip: Knock Prone no longer applies Prone until Long Rest, instead applying it for 1 turn. (1 turn is arbitrary from me, could be 2?)
