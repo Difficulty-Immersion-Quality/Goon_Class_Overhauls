@@ -138,6 +138,7 @@ data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVe
 // Bug Fix: Added missing Honour ruleset bools to prevent damage riders acting as a damage rider source.
 // Bug Fix: Fangs of the Fire Snake condition no longer increases damage for ranged weapons.
 // TODO: RAW - "When you use the Attack action on your turn, you can spend 1 ki point to cause tendrils of flame to stretch out from your fists and feet. Your reach with your unarmed strikes increases by 10 feet for that action, as well as the rest of the turn. A hit with such an attack deals fire damage instead of bludgeoning damage, and if you spend 1 ki point when the attack hits, it also deals an extra 1d10 fire damage."
+// TODO: Rewrite descriptions.
 
 new entry "Projectile_FangsOfTheFireSnake"
 type "SpellData"
@@ -177,7 +178,6 @@ data "SpellSuccess" "DealDamage(UnarmedDamage,Bludgeoning);DealDamage(1d10,Fire,
 // data "CastEffect" "cc6bc4ff-33f2-4494-a6d5-7b88f10ef806"
 // data "DamageType" "Fire"
 // data "Sheathing" "Melee"
-data "Sheathing" "Sheathed"
 
 new entry "FANGS_OF_THE_FIRE_SNAKE"
 type "StatusData"
@@ -336,13 +336,14 @@ using "Shout_GaseousForm_Monk"
 // data "SpellProperties" "ApplyStatus(GASEOUS_FORM,100,-1);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
 // data "TargetConditions" "Self()"
 // data "Icon" "Spell_Transmutation_GaseousForm"
-// Mist Stance
+// // Mist Stance
 // data "DisplayName" "h445ec992g45d2g4315gbf37g72f9a691fce5;2"
-// Transform into a tiny mist cloud. It can't fall, and fits through small openings. It is very hard to damage.
+// // Transform into a tiny mist cloud. It can't fall, and fits through small openings. It is very hard to damage.
 // data "Description" "h1d96960fg2753g4db8ga3aag470b8fa7b6f9;3"
-// The cloud has <LSTag Tooltip="Advantage">Advantage</LSTag> on Constitution, Dexterity, and Strength <LSTag Tooltip="SavingThrow">Saving Throws</LSTag>.
+// // The cloud has &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Constitution, Dexterity, and Strength &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
 // data "ExtraDescription" "he1c94924g15ccg411dg9f60g20f72e486944;2"
 // data "TooltipStatusApply" "ApplyStatus(GASEOUS_FORM,100,-1)"
+// // &lt;LSTag Type="Image" Info="SoftWarning"/&gt; While transformed, you won't be able to attack, cast spells, or talk. 
 // data "TooltipPermanentWarnings" "bfefd859-3cb5-488f-93f5-839bc03f7e59"
 // data "PrepareSound" "Vocal_Component_Monk_Utility"
 // data "CastSound" "Spell_Cast_Monk_MistStance_L1to3"
@@ -394,6 +395,12 @@ data "SpellFlags" "HasSomaticComponent;IsConcentration;IsSpell"
 // data "PowerLevel" ""
 // data "PrepareEffect" "7bb2af21-e943-4e9e-92f0-ab5143c1a9d7"
 // data "CastEffect" "31c7da90-3ba8-4579-a8b7-9610885604fb"
+
+// new entry "FLY_MONK"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "FLY"
+// data "StatusEffect" "407af258-4652-4e47-8b54-bab89678947d"
 
 // ==================================== Rush of the Gale Spirits ====================================
 // Changes: Now flagged as a spell.
@@ -682,7 +689,7 @@ data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsMelee;IsHarmful;Disa
 // ==================================== Water Whip ====================================
 // Bug Fix: Water Whip: Knock Prone no longer applies Prone until Long Rest, instead applying it for 1 turn. (1 turn is arbitrary from me, could be 2?)
 // Bug Fix: Water Whip: Pull can now cause fall damage to the target.
-// Changes: Water Whip: Pull can now slightly control the trajectory of the pull based on cursor position on the target entity. 
+// Changes: Water Whip: Pull can now slightly control the trajectory of the pull based on cursor position on the target entity.
 
 new entry "Target_WaterWhip"
 type "SpellData"
@@ -695,9 +702,9 @@ using "Target_WaterWhip"
 // data "SpellSuccess" "DealDamage(LevelMapValue(WaterWhip),Bludgeoning);"
 // data "SpellFail" "DealDamage((LevelMapValue(WaterWhip))/2,Bludgeoning)"
 // data "Icon" "Action_Monk_WaterWhip"
-// Water Whip
+// // Water Whip
 // data "DisplayName" "ha633c1fcgac36g45adgb749ga28d05c7a68f;2"
-// Possibly pulls the target towards you or knocks it &lt;LSTag Type="Status" Tooltip="PRONE"&gt;Prone&lt;/LSTag&gt;.
+// // Possibly pulls the target towards you or knocks it &lt;LSTag Type="Status" Tooltip="PRONE"&gt;Prone&lt;/LSTag&gt;.
 // data "Description" "h0248f2cagdd2ag46b6ga4e7g7af9a4581dd8;4"
 // data "TooltipDamageList" "DealDamage(LevelMapValue(WaterWhip),Bludgeoning);"
 // data "TooltipAttackSave" "Dexterity"
@@ -728,9 +735,9 @@ using "Target_WaterWhip_Pull"
 data "SpellSuccess" "DealDamage(LevelMapValue(WaterWhip),Bludgeoning);Force(-9,OriginToTarget,Neutral)"
 // data "TargetConditions" "Character() and not Dead()"
 // data "Icon" "Action_Monk_WaterWhip_Pull"
-// Water Whip: Pull
+// // Water Whip: Pull
 // data "DisplayName" "h7067326fg983fg480egb39cg7e48c4ecb0a9;2"
-// Use the water whip to pull the target towards you.
+// // Use the water whip to pull the target towards you.
 // data "Description" "h7e38ea30g1795g4b98gaca8gf6278ebb561d;2"
 // data "SpellAnimation" "101629c4-d30c-4ae7-b316-9d6423e7298a,,;,,;ab4c9091-4f03-4545-9194-11eb280f41a4,,;0bbaec15-d206-4956-839f-c07d7738b9a6,,;9af429ab-54e8-455b-99d0-71c62e66ad64,,;,,;e550f983-faab-412b-a55d-237a1e17d4da,,;,,;,,"
 // data "SpellFlags" "IsHarmful;DisableBlood"
@@ -747,9 +754,9 @@ using "Target_WaterWhip_Prone"
 data "SpellSuccess" "DealDamage(LevelMapValue(WaterWhip),Bludgeoning);ApplyStatus(PRONE,100,1)"
 // data "TargetConditions" "Character() and not Dead()"
 // data "Icon" "Action_Monk_WaterWhip_Prone"
-// Water Whip: Knock Prone
+// // Water Whip: Knock Prone
 // data "DisplayName" "h69d10209g95b7g4c7bg99ceg5359055d74b5;2"
-// Use the water whip to knock the target &lt;LSTag Type="Status" Tooltip="PRONE"&gt;Prone&lt;/LSTag&gt;.
+// // Use the water whip to knock the target &lt;LSTag Type="Status" Tooltip="PRONE"&gt;Prone&lt;/LSTag&gt;.
 // data "Description" "hf00f123ag9b13g4ed1ga501g1fbeddd86817;2"
 // data "TooltipStatusApply" "ApplyStatus(PRONE,100,-1)"
 data "TooltipStatusApply" "ApplyStatus(PRONE,100,1)"
