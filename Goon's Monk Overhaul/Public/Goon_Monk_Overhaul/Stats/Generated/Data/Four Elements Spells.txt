@@ -220,35 +220,48 @@ data "Boosts" "IF(Goon_IsAttackUsingMeleeWeapon()):CharacterWeaponDamage(1d4,Fir
 
 // ==================================== Fist of Four Thunders ====================================
 // Bug Fix: Now correctly triggers Martial Arts: Bonus Unarmed Strike.
+// Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 // Changes: Now flagged as a spell.
-// TODO: Standard inheritance.
+// Changes: Now flagged as having a verbal component.
 // TODO: Upcasting.
 
 new entry "Zone_Thunderwave_Monk"
 type "SpellData"
 data "SpellType" "Zone"
 // using "Zone_Thunderwave"
-using "Zone_Thunderwave_Monk"
-// data "Level" ""
-data "SpellProperties" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
-// data "SpellSuccess" "DealDamage(LevelMapValue(Thunderwave_Monk),Thunder,Magical);Force(8, OriginToTarget)"
-// data "SpellFail" "DealDamage((LevelMapValue(Thunderwave_Monk))/2,Thunder,Magical);"
+using "Zone_Thunderwave"
+// data "Level" "1" (Zone_Thunderwave)
+// data "Level" "" (Zone_Thunderwave_Monk)
+// data "SpellProperties" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Zone_Thunderwave_Monk)
+// data "SpellSuccess" "DealDamage(2d8,Thunder,Magical);Force(8, OriginToTarget)" (Zone_Thunderwave)
+data "SpellSuccess" "DealDamage(LevelMapValue(Thunderwave_Monk),Thunder,Magical);Force(8, OriginToTarget)"
+// data "SpellFail" "DealDamage((2d8)/2,Thunder,Magical);" (Zone_Thunderwave)
+data "SpellFail" "DealDamage((LevelMapValue(Thunderwave_Monk))/2,Thunder,Magical);"
+// // Thunderwave
+// data "DisplayName" "h40c21f52g0271g4082g8742gba105f44c91d;1" (Zone_Thunderwave)
 // // Fist of Four Thunders
-// data "DisplayName" "hd3e28c15gfb0fg42d1g98e1gf65e6d78ce6a;2"
+data "DisplayName" "hd3e28c15gfb0fg42d1g98e1gf65e6d78ce6a;2"
 // // Release a wave of thunderous force that pushes away all creatures and objects.
-// data "Description" "h1780b369gb2c3g4bbagb0c5ga163962737e3;2"
-// data "TooltipDamageList" "DealDamage(LevelMapValue(Thunderwave_Monk),Thunder)"
-// data "PrepareSound" "Vocal_Component_Monk_Damage"
-// data "CastSound" "Spell_Cast_Monk_FistofFourThunders_L1to3"
-// data "VocalComponentSound" "Vocal_Component_Stop"
-// data "UseCosts" "ActionPoint:1;KiPoint:2"
-// data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;9f3b2b6f-433c-4dd5-9be1-2874cba6c1be,,;c3fb6016-8964-4756-82f9-7045c9928917,,;5c9e3bb0-8963-4cc3-aa24-c0ba1c49494b,,;,,;c79f1495-5c5c-4e22-bed4-38beb3779b23,,;,,;,,"
-// data "SpellStyleGroup" "Class"
-// data "SpellFlags" "HasSomaticComponent;AddFallDamageOnLand;IsHarmful"
-data "SpellFlags" "HasSomaticComponent;AddFallDamageOnLand;IsHarmful;IsSpell"
-// data "PrepareEffect" "e24845e1-b6cf-49fe-bd74-f4d6a3067be3"
-// data "CastEffect" "2571b33b-1ec3-4c9d-8e5f-ef9bf9db501d"
-// data "TargetEffect" "154802bd-3dae-4bdc-9889-4addfdc0ca57"
+// data "Description" "hb9f84afcgb059g4e4eg9d82g612350b77b2c;12" (Zone_Thunderwave)
+// data "Description" "h1780b369gb2c3g4bbagb0c5ga163962737e3;2" (Zone_Thunderwave_Monk)
+// data "TooltipDamageList" "DealDamage(2d8,Thunder)" (Zone_Thunderwave)
+data "TooltipDamageList" "DealDamage(LevelMapValue(Thunderwave_Monk),Thunder)"
+// data "PrepareSound" "Spell_Prepare_Damage_Thunder_Gen_L1to3" (Zone_Thunderwave)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Thunder_Thunderwave_L1to3_01" (Zone_Thunderwave)
+data "CastSound" "Spell_Cast_Monk_FistofFourThunders_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:1" (Zone_Thunderwave)
+data "UseCosts" "ActionPoint:1;KiPoint:2"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;5e7e63e1-0e69-46e7-ade7-fe3dadcc9184,,;e9ad50df-e7f1-43a0-b782-4c08f92b0f5a,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Zone_Thunderwave)
+data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;9f3b2b6f-433c-4dd5-9be1-2874cba6c1be,,;c3fb6016-8964-4756-82f9-7045c9928917,,;5c9e3bb0-8963-4cc3-aa24-c0ba1c49494b,,;,,;c79f1495-5c5c-4e22-bed4-38beb3779b23,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;AddFallDamageOnLand;IsHarmful" (Zone_Thunderwave)
+// data "SpellFlags" "HasSomaticComponent;AddFallDamageOnLand;IsHarmful" (Zone_Thunderwave_Monk)
+// data "PrepareEffect" "2af907e1-127c-4c83-a117-af18f211c59d" (Zone_Thunderwave)
+data "PrepareEffect" "e24845e1-b6cf-49fe-bd74-f4d6a3067be3"
+// data "CastEffect" "9c6f07ae-dd92-4e02-aa30-730644cd0d1d" (Zone_Thunderwave)
+data "CastEffect" "2571b33b-1ec3-4c9d-8e5f-ef9bf9db501d"
 
 // ==================================== Fist of Unbroken Air ====================================
 // Changes: Can now slightly control the trajectory of the push based on cursor position on the target entity.
