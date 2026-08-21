@@ -316,33 +316,47 @@ data "SpellSuccess" "DealDamage(LevelMapValue(FistOfUnbrokenAir),Bludgeoning);Fo
 // data "DamageType" "Bludgeoning"
 
 // ==================================== Flames of the Phoenix ====================================
+// Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 // Changes: Now flagged as a spell.
-// TODO: Standard inheritance.
+// Changes: Now flagged as having a verbal component.
 // TODO: Upcasting.
 
 new entry "Projectile_Fireball_Monk"
 type "SpellData"
 data "SpellType" "Projectile"
 // using "Projectile_Fireball"
-using "Projectile_Fireball_Monk"
-// data "Level" ""
-// data "SpellProperties" "GROUND:SurfaceChange(Ignite);GROUND:SurfaceChange(Melt);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
-// data "Trajectories" "6e0864cb-3453-4bf7-bc1e-8ab9f1aeb98e"
-// Flames of the Phoenix
-// data "DisplayName" "h5673bf89g34fcg446fg83a9g06faaa74f466;2"
-// Shoot a bright flame from your fingers that explodes upon contact, torching everything in the vicinity.
-// data "Description" "h9d9a8ff7g786cg470bga997gf10647ce8df2;1"
-// data "PrepareSound" "Vocal_Component_Monk_Damage"
-// data "CastSound" "Spell_Cast_Monk_FlamesofthePhoenix_L5"
-// data "VocalComponentSound" "Vocal_Component_Stop"
-// data "UseCosts" "ActionPoint:1;KiPoint:4"
-// data "SpellAnimation" "ba181bb4-331a-4e69-92af-d09bde86d835,,;,,;f5fb622a-71f4-4f14-9b19-a31d2d3e6d59,,;fdb800db-41b6-4c7d-a386-f649bff4f0c7,,;a1c2c833-b2c8-465f-a902-b6ae38f6553d,,;,,;74dead2e-d842-4d29-976a-d1cb373f7f0e,,;,,;,,"
-// data "SpellStyleGroup" "Class"
-// data "SpellFlags" "HasSomaticComponent;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful;CanAreaDamageEvade"
-data "SpellFlags" "HasSomaticComponent;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful;CanAreaDamageEvade;IsSpell"
-// data "MemoryCost" ""
-// data "PrepareEffect" "12b395bd-32d7-45d5-b75f-288f1c0f6a7f"
-// data "CastEffect" "a758e379-9f9f-43de-a9d1-c0f01480770e"
+using "Projectile_Fireball"
+// data "Level" "3" (Projectile_Fireball)
+// data "Level" "" (Projectile_Fireball_Monk)
+// data "SpellProperties" "GROUND:SurfaceChange(Ignite);GROUND:SurfaceChange(Melt)" (Projectile_Fireball)
+// data "SpellProperties" "GROUND:SurfaceChange(Ignite);GROUND:SurfaceChange(Melt);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Projectile_Fireball_Monk)
+// data "Trajectories" "f5855e43-2e8f-4971-b8c2-7faa36e3381b" (Projectile_Fireball)
+data "Trajectories" "6e0864cb-3453-4bf7-bc1e-8ab9f1aeb98e"
+// // Fireball
+// data "DisplayName" "h297f1716g8822g481fgb2bcg6c7a0f6f757c;2" (Projectile_Fireball)
+// // Flames of the Phoenix
+data "DisplayName" "h5673bf89g34fcg446fg83a9g06faaa74f466;2"
+// // Shoot a bright flame from your fingers that explodes upon contact, torching everything in the vicinity.
+// data "Description" "hf6dae528gfd1eg426dg9776g4fff66e4734f;6" (Projectile_Fireball)
+// // Shoot a bright flame from your fingers that explodes upon contact, torching everything in the vicinity.
+// data "Description" "h9d9a8ff7g786cg470bga997gf10647ce8df2;1" (Projectile_Fireball_Monk)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Fireball_L5" (Projectile_Fireball)
+data "CastSound" "Spell_Cast_Monk_FlamesofthePhoenix_L5"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:3" (Projectile_Fireball)
+data "UseCosts" "ActionPoint:1;KiPoint:4"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;38cdb41c-2eec-4e03-bb31-83cff0346c35,,;85414f5f-b448-4dda-9370-1b6c4b38b561,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_Fireball)
+data "SpellAnimation" "ba181bb4-331a-4e69-92af-d09bde86d835,,;,,;f5fb622a-71f4-4f14-9b19-a31d2d3e6d59,,;fdb800db-41b6-4c7d-a386-f649bff4f0c7,,;a1c2c833-b2c8-465f-a902-b6ae38f6553d,,;,,;74dead2e-d842-4d29-976a-d1cb373f7f0e,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful;CanAreaDamageEvade" (Projectile_Fireball)
+// data "SpellFlags" "HasSomaticComponent;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful;CanAreaDamageEvade" (Projectile_Fireball_Monk)
+// data "MemoryCost" "1" (Projectile_Fireball)
+// data "MemoryCost" "" (Projectile_Fireball_Monk)
+// data "PrepareEffect" "fdbf8e88-c3a5-4151-a81d-429985de422c" (Projectile_Fireball)
+data "PrepareEffect" "12b395bd-32d7-45d5-b75f-288f1c0f6a7f"
+// data "CastEffect" "69aaec35-fb5f-489e-a4cc-47310f4377e9" (Projectile_Fireball)
+data "CastEffect" "a758e379-9f9f-43de-a9d1-c0f01480770e"
 
 // ==================================== Gong of the Summit ====================================
 // Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
