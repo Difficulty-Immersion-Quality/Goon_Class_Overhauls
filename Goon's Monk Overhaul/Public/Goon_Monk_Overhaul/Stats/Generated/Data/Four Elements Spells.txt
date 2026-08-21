@@ -141,36 +141,55 @@ data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;HasHighGroundRangeExte
 // data "TargetEffect" "57190c62-9877-46f5-acd4-ca35093a5e8a"
 
 // ==================================== Embrace of the Inferno ====================================
+// Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 // Changes: Now flagged as a spell.
-// TODO: Standard inheritance.
+// Changes: Now flagged as having a verbal component.
 // TODO: Upcasting.
+// TODO: Inherit the TooltipDamageList whenever proper upcasting is implemented. For now it works well enough.
 
 new entry "Projectile_ScorchingRay_Monk"
 type "SpellData"
 data "SpellType" "Projectile"
 // using "Projectile_ScorchingRay"
-using "Projectile_ScorchingRay_Monk"
-// data "Level" ""
-// data "SpellProperties" "GROUND:SurfaceChange(Ignite);GROUND:SurfaceChange(Melt);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
-// data "AmountOfTargets" "LevelMapValue(ScorchingRay_Monk)"
-// data "Trajectories" "a4512cd1-aa87-4cda-afca-fd354868d6ee"
+using "Projectile_ScorchingRay"
+// data "Level" "2" (Projectile_ScorchingRay)
+// data "Level" "" (Projectile_ScorchingRay_Monk)
+// data "SpellProperties" "GROUND:SurfaceChange(Ignite);GROUND:SurfaceChange(Melt)" (Projectile_ScorchingRay)
+// data "SpellProperties" "GROUND:SurfaceChange(Ignite);GROUND:SurfaceChange(Melt);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Projectile_ScorchingRay_Monk)
+// data "AmountOfTargets" "3" (Projectile_ScorchingRay)
+data "AmountOfTargets" "LevelMapValue(ScorchingRay_Monk)"
+// data "Trajectories" "76dc68a0-5bc5-4ffc-be02-547f690af36b" (Projectile_ScorchingRay)
+data "Trajectories" "a4512cd1-aa87-4cda-afca-fd354868d6ee"
+// // Scorching Ray
+// data "DisplayName" "h0b8ccf68g4ea7g4d92g9c77g6ab716600ab0;1" (Projectile_ScorchingRay)
 // // Embrace of the Inferno
-// data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
+data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
+// // Hurl [2] rays of fire. Each ray deals [1].
+// data "Description" "h8683be5fg3434g4e62g8027g3275339e7735;4" (Projectile_ScorchingRay)
 // // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
-// data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
-// data "DescriptionParams" "LevelMapValue(ScorchingRay_Monk);DealDamage(2d6,Fire)"
-// data "TooltipDamageList" "DealDamage(2d6,Fire)"
-// data "PrepareSound" "Vocal_Component_Monk_Damage"
-// data "CastSound" "Spell_Cast_Monk_EmbraceoftheInferno_L1to3"
-// data "VocalComponentSound" "Vocal_Component_Stop"
-// data "UseCosts" "ActionPoint:1;KiPoint:3"
-// data "SpellAnimation" "ba181bb4-331a-4e69-92af-d09bde86d835,,;,,;8a8b04d4-101f-48bb-a7d2-5b3c613c76b0,,;82f88eb6-b71d-44da-9da9-48349e82ba63,,;a1c2c833-b2c8-465f-a902-b6ae38f6553d,,;,,;74dead2e-d842-4d29-976a-d1cb373f7f0e,,;,,;,,"
-// data "SpellStyleGroup" "Class"
-// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful"
-data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful;IsSpell"
-// data "MemoryCost" ""
-// data "PrepareEffect" "836ddd4d-dd0d-42a2-876b-dc1034056903"
-// data "CastEffect" "04ced9a3-6eaa-49ad-9c99-cafaef061ed3"
+data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
+// data "DescriptionParams" "DealDamage(2d6,Fire);3" (Projectile_ScorchingRay)
+data "DescriptionParams" "LevelMapValue(ScorchingRay_Monk);DealDamage(2d6,Fire)"
+// data "TooltipDamageList" "DealDamage(6d6,Fire)" (Projectile_ScorchingRay)
+data "TooltipDamageList" "DealDamage(2d6,Fire)"
+// data "PrepareSound" "Spell_Prepare_Damage_Fire_Gen_L1to3" (Projectile_ScorchingRay)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Fire_ScorchingRay_L0" (Projectile_ScorchingRay)
+data "CastSound" "Spell_Cast_Monk_EmbraceoftheInferno_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:2" (Projectile_ScorchingRay)
+data "UseCosts" "ActionPoint:1;KiPoint:3"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;cd5e5d4a-38e1-4d4d-b346-3fbc1e4c3c90,,;141f48d9-9615-496a-8737-9240f0dba60d,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_ScorchingRay)
+data "SpellAnimation" "ba181bb4-331a-4e69-92af-d09bde86d835,,;,,;8a8b04d4-101f-48bb-a7d2-5b3c613c76b0,,;82f88eb6-b71d-44da-9da9-48349e82ba63,,;a1c2c833-b2c8-465f-a902-b6ae38f6553d,,;,,;74dead2e-d842-4d29-976a-d1cb373f7f0e,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasSomaticComponent;HasVerbalComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ScorchingRay)
+// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ScorchingRay_Monk)
+// data "MemoryCost" "1" (Projectile_ScorchingRay)
+// data "MemoryCost" "" (Projectile_ScorchingRay_Monk)
+// data "PrepareEffect" "c88e9cfa-df92-477a-ae75-cbfb932350b4" (Projectile_ScorchingRay)
+data "PrepareEffect" "836ddd4d-dd0d-42a2-876b-dc1034056903"
+// data "CastEffect" "4481fb37-77c2-4b70-8675-01638932c01b" (Projectile_ScorchingRay)
+data "CastEffect" "04ced9a3-6eaa-49ad-9c99-cafaef061ed3"
 
 // ==================================== Fangs of the Fire Snake ====================================
 // Bug Fix: Added missing Honour ruleset bools to prevent damage riders acting as a damage rider source.
