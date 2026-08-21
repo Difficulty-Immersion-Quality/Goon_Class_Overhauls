@@ -112,23 +112,34 @@ data "PrepareEffect" "12b395bd-32d7-45d5-b75f-288f1c0f6a7f"
 data "CastEffect" "a758e379-9f9f-43de-a9d1-c0f01480770e"
 
 // ==================================== Wave of Rolling Earth ====================================
-// TODO: Standard inheritance.
+// Changes: Now flagged as a spell.
 // TODO: Upcasting.
 
 new entry "Wall_WallOfStone_Monk"
 type "SpellData"
 data "SpellType" "Wall"
 // using "Wall_WallOfStone"
-using "Wall_WallOfStone_Monk"
-// data "Level" ""
-// data "SpellProperties" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
+using "Wall_WallOfStone"
+// data "Level" "5" (Wall_WallOfStone)
+// data "Level" "" (Wall_WallOfStone_Monk)
+// data "SpellProperties" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Wall_WallOfStone_Monk)
+// // Wall of Stone
+// data "DisplayName" "h5515836dg1a37g44faga4f1ge8a1c375e44d;2" (Wall_WallOfStone)
 // // Wave of Rolling Earth
-// data "DisplayName" "h17ca6cdaga428g48bcg88b3g4047f05e1585;1"
-// data "PrepareSound" "Vocal_Component_Monk_Utility"
-// data "TargetSound" "Vocal_Component_Stop"
-// data "VocalComponentSound" "Vocal_Component_Stop"
-// data "UseCosts" "ActionPoint:1;KiPoint:6"
-// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration"
-data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsSpell"
-// data "SpellStyleGroup" "Class"
-// data "MemoryCost" ""
+data "DisplayName" "h17ca6cdaga428g48bcg88b3g4047f05e1585;1"
+// // Raise a wall of non-magical, solid stone.
+// data "Description" "h2688263cg5479g49dbg9ce1gd93a0c59615f;2"
+// // Casting this spell at a higher level doesn't grant any additional benefits.
+// data "TooltipUpcastDescription" "6ff1780a-855a-414c-a8bf-811251537206"
+// data "PrepareSound" "Spell_Prepare_Summon_ConjureElemental_Myrmidon_Earth_L6to8" (Wall_WallOfStone)
+data "PrepareSound" "Vocal_Component_Monk_Utility"
+data "TargetSound" "Vocal_Component_Stop"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:5" (Wall_WallOfStone)
+data "UseCosts" "ActionPoint:1;KiPoint:6"
+// data "SpellAnimation" "6f42f5f3-7a5a-4441-a02e-71b0450ac4b7,,;,,;6123de84-27e4-4e81-9e1f-8031cc0ebc0d,,;cb171bda-f065-4520-b470-e447f678ba1f,,;42aaefdc-cf9b-4249-b159-285041851f69,,;,,;20e11c98-fff9-4417-88de-5bcc2368a1bd,,;,,;,," (Wall_WallOfStone)
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration" (Wall_WallOfStone)
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsSpell" (Wall_WallOfStone_Monk)
+data "SpellStyleGroup" "Class"
+// data "MemoryCost" "1" (Wall_WallOfStone)
+// data "MemoryCost" "" (Wall_WallOfStone_Monk)
