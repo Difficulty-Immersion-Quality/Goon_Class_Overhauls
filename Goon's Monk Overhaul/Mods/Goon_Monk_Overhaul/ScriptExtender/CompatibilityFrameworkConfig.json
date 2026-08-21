@@ -1,0 +1,16 @@
+{
+  "FileVersion": 1,
+  "Progressions": [
+    {
+      "Comment": "Add custom passive for Way of Four Elements Martial Arts synergy.",
+      "UUID": "cae2ce43-a1b8-473a-b163-c961d0048bd6",
+      "Strings": [
+        {
+          "Action": "Insert",
+          "Type": "PassivesAdded",
+          "Strings": ["Goon_WayOfFourElementsSpellCast"]
+        }
+      ]
+    }
+  ]
+}

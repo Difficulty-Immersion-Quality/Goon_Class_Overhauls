@@ -1,7 +1,15 @@
 // ==================================== Way of Four Elements - Spells ====================================
+// Changes: All Way of Four Elements spells are now flagged as such. This allows synergy with items, class features etc. that unintuitively do not work with Monk spells in vanilla. (Note: some are just actions per RAW and in this mod.)
+// Changes: All Way of Four Elements spells now require somatic and verbal components, unless the base spell being inherited also doesn't require them.
+// Changes: All Way of Four Elements spells now only have minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells. Additionally, Martial Arts: Unarmed Strike condition is applied via a hidden passive instead of SpellProperties to reduce the amount of mechanically important fields that need overwriting.
+// TODO: Test "VocalComponentSound" "Vocal_Component_Stop" removal.
 
-// Changes: All Way of Four Elements spells are now considered spells. This allows synergy with items, class features etc. that unintuitively do not work with Monk spells in vanilla.
-// TODO: Buff levelmapvalues probably.
+new entry "Goon_WayOfFourElementsSpellCast"
+type "PassiveData"
+data "Properties" "IsHidden"
+data "StatsFunctorContext" "OnCastResolved"
+data "Conditions" "Goon_IsWayOfFourElementsSpell()"
+data "StatsFunctors" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
 
 // ==================================== Blade of Rime ====================================
 // Changes: Now flagged as a spell.
@@ -235,6 +243,7 @@ type "SpellData"
 data "SpellType" "Target"
 using "Target_FistOfUnbrokenAir"
 // data "SpellProperties" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
+data "SpellProperties" ""
 // data "TargetRadius" "9"
 // data "SpellRoll" "not SavingThrow(Ability.Strength, SourceSpellDC())"
 // data "SpellSuccess" "DealDamage(LevelMapValue(FistOfUnbrokenAir),Bludgeoning);Force(6);ApplyStatus(PRONE,100,1)"
@@ -324,8 +333,8 @@ data "SpellFlags" "HasHighGroundRangeExtension;HasVerbalComponent;HasSomaticComp
 
 // ==================================== Mist Stance ====================================
 // Changes: Now flagged as a spell.
-// TODO: Standard inheritance.
 // TODO: Upcasting.
+// TODO: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 
 new entry "Shout_GaseousForm_Monk"
 type "SpellData"
@@ -697,6 +706,7 @@ data "SpellType" "Target"
 using "Target_WaterWhip"
 // data "ContainerSpells" "Target_WaterWhip_Pull;Target_WaterWhip_Prone"
 // data "SpellProperties" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
+data "SpellProperties" ""
 // data "TargetRadius" "9"
 // data "SpellRoll" "not SavingThrow(Ability.Dexterity, ManeuverSaveDC())"
 // data "SpellSuccess" "DealDamage(LevelMapValue(WaterWhip),Bludgeoning);"
