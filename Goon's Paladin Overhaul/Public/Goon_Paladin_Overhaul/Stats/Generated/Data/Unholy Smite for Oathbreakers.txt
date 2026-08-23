@@ -376,7 +376,7 @@ data "TooltipDamageList" "DealDamage(2d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad
 // data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(2d8,Necrotic,Magical);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(3d8,Necrotic,Magical);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(2d8,Necrotic,Magical,,0,,true,false);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(3d8,Necrotic,Magical,,0,,true,false);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 // data "EnableCondition" "(not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
-data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
+data "EnableCondition" "Goon_InterruptEnableConditions()"
 // data "InterruptFlags" "InterruptWhileInvisible"
 
 new entry "Interrupt_CHIZ_Unholy_Smite_Critical"
@@ -399,7 +399,7 @@ data "TooltipDamageList" "DealDamage(2d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad
 // data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(2d8,Necrotic,Magical);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(3d8,Necrotic,Magical);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(2d8,Necrotic,Magical,,0,,true,false);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(3d8,Necrotic,Magical,,0,,true,false);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 // data "EnableCondition" "(not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
-data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
+data "EnableCondition" "Goon_InterruptEnableConditions()"
 // data "InterruptFlags" "InterruptWhileInvisible"
 
 new entry "Interrupt_CHIZ_Unholy_Smite_2"
@@ -418,7 +418,7 @@ data "TooltipDamageList" "DealDamage(3d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad
 // data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(3d8,Necrotic,Magical);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(4d8,Necrotic,Magical);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(3d8,Necrotic,Magical,,0,,true,false);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(4d8,Necrotic,Magical,,0,,true,false);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 // data "EnableCondition" "(not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
-data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
+data "EnableCondition" "Goon_InterruptEnableConditions()"
 // data "InterruptFlags" "InterruptWhileInvisible"
 
 new entry "Interrupt_CHIZ_Unholy_Smite_Critical_2"
@@ -441,7 +441,7 @@ data "TooltipDamageList" "DealDamage(3d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad
 // data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(3d8,Necrotic,Magical);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(4d8,Necrotic,Magical);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(3d8,Necrotic,Magical,,0,,true,false);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(4d8,Necrotic,Magical,,0,,true,false);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 // data "EnableCondition" "(not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
-data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
+data "EnableCondition" "Goon_InterruptEnableConditions()"
 // data "InterruptFlags" "InterruptWhileInvisible"
 
 new entry "Interrupt_CHIZ_Unholy_Smite_3"
@@ -460,7 +460,7 @@ data "TooltipDamageList" "DealDamage(4d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad
 // data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(4d8,Necrotic,Magical);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(5d8,Necrotic,Magical);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(4d8,Necrotic,Magical,,0,,true,false);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(5d8,Necrotic,Magical,,0,,true,false);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 // data "EnableCondition" "(not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
-data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
+data "EnableCondition" "Goon_InterruptEnableConditions()"
 // data "InterruptFlags" "InterruptWhileInvisible"
 
 new entry "Interrupt_CHIZ_Unholy_Smite_Critical_3"
@@ -483,7 +483,7 @@ data "TooltipDamageList" "DealDamage(4d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad
 // data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(4d8,Necrotic,Magical);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(5d8,Necrotic,Magical);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(4d8,Necrotic,Magical,,0,,true,false);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(5d8,Necrotic,Magical,,0,,true,false);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 // data "EnableCondition" "(not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
-data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
+data "EnableCondition" "Goon_InterruptEnableConditions()"
 // data "InterruptFlags" "InterruptWhileInvisible"
 
 new entry "Interrupt_CHIZ_Unholy_Smite_4"
@@ -502,7 +502,7 @@ data "TooltipDamageList" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad
 // data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(5d8,Necrotic,Magical);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(6d8,Necrotic,Magical);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(5d8,Necrotic,Magical,,0,,true,false);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(6d8,Necrotic,Magical,,0,,true,false);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 // data "EnableCondition" "(not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
-data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
+data "EnableCondition" "Goon_InterruptEnableConditions()"
 // data "InterruptFlags" "InterruptWhileInvisible"
 
 new entry "Interrupt_CHIZ_Unholy_Smite_Critical_4"
@@ -525,7 +525,7 @@ data "TooltipDamageList" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad
 // data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(5d8,Necrotic,Magical);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(6d8,Necrotic,Magical);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(5d8,Necrotic,Magical,,0,,true,false);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(6d8,Necrotic,Magical,,0,,true,false);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 // data "EnableCondition" "(not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
-data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
+data "EnableCondition" "Goon_InterruptEnableConditions()"
 // data "InterruptFlags" "InterruptWhileInvisible"
 
 new entry "Interrupt_CHIZ_Unholy_Smite_Critical_5"
@@ -548,7 +548,7 @@ data "TooltipDamageList" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad
 // data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(5d8,Necrotic,Magical);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(6d8,Necrotic,Magical);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(5d8,Necrotic,Magical,,0,,true,false);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(6d8,Necrotic,Magical,,0,,true,false);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 // data "EnableCondition" "(not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
-data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
+data "EnableCondition" "Goon_InterruptEnableConditions()"
 // data "InterruptFlags" "InterruptWhileInvisible"
 
 new entry "Interrupt_CHIZ_Unholy_Smite_5"
@@ -567,7 +567,7 @@ data "TooltipDamageList" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad
 // data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(5d8,Necrotic,Magical);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(6d8,Necrotic,Magical);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(5d8,Necrotic,Magical,,0,,true,false);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(6d8,Necrotic,Magical,,0,,true,false);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 // data "EnableCondition" "(not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
-data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
+data "EnableCondition" "Goon_InterruptEnableConditions()"
 // data "InterruptFlags" "InterruptWhileInvisible"
 
 new entry "Interrupt_CHIZ_Unholy_Smite_6"
@@ -586,7 +586,7 @@ data "TooltipDamageList" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad
 // data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(5d8,Necrotic,Magical);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(6d8,Necrotic,Magical);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(5d8,Necrotic,Magical,,0,,true,false);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(6d8,Necrotic,Magical,,0,,true,false);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 // data "EnableCondition" "(not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
-data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
+data "EnableCondition" "Goon_InterruptEnableConditions()"
 // data "InterruptFlags" "InterruptWhileInvisible"
 
 new entry "Interrupt_CHIZ_Unholy_Smite_Critical_6"
@@ -609,7 +609,7 @@ data "TooltipDamageList" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad
 // data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(5d8,Necrotic,Magical);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(6d8,Necrotic,Magical);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 data "Properties" "IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(5d8,Necrotic,Magical,,0,,true,false);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(6d8,Necrotic,Magical,,0,,true,false);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0);ApplyStatus(SELF,TRIGGER_DREADFUL_ASPECT,100,1)"
 // data "EnableCondition" "(not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'}));"
-data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
+data "EnableCondition" "Goon_InterruptEnableConditions()"
 // data "InterruptFlags" "InterruptWhileInvisible"
 
 // new entry "Interrupt_CHIZ_Unholy_Smite_7"
