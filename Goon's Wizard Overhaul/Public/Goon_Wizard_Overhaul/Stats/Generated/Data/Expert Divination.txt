@@ -1,10 +1,25 @@
 // ==================================== Divination School - Prophecy: Delivering Alms ====================================
 // Bug Fix: The referenced but non-existent "Divination_Ally_Downed" passive now exists, with functionality befitting the description.
+// Changes: Now functions with more help actions instead of just the base common action.
+// Changes: Improved description.
+
+new entry "DIVINATION_ALLY_HELP"
+type "StatusData"
+data "StatusType" "BOOST"
+using "DIVINATION_ALLY_HELP"
+// // Prophecy: Delivering Alms
+// data "DisplayName" "h0d7312c5g33f6g48d3ga577g99a43bc429b2;1"
+// // When you &lt;LSTag Type="Spell" Tooltip="Target_Help"&gt;Help&lt;/LSTag&gt; an ally, you will gain a new &lt;LSTag Tooltip="PortentDice"&gt;Portent Die&lt;/LSTag&gt; on your next short rest.
+// data "Description" "h3109de3dg7f06g4c35g880cgbb772981ce51;3"
+// // When you &lt;LSTag Type="Spell" Tooltip="Target_Help"&gt;Help&lt;/LSTag&gt; an ally or take a similar action, you will gain a new &lt;LSTag Tooltip="PortentDice"&gt;Portent Die&lt;/LSTag&gt; on your next &lt;LSTag Tooltip="ShortRest"&gt;Short Rest&lt;/LSTag&gt;.
+data "Description" "h6eb83ec9gbad4g48beg9722g51304b1ea789;1"
+// data "Icon" "Action_Help"
+// data "Passives" "Divination_Ally_Downed"
 
 new entry "Divination_Ally_Downed"
 type "PassiveData"
 using "Divination_Damage_Fire"
 data "Icon" "GenericIcon_Intent_Utility"
 data "StatsFunctorContext" "OnCast"
-data "Conditions" "SpellId('Target_Help') and Ally(context.Target)"
+data "Conditions" "Goon_IsHelpSpell() and Ally(context.Target)"
 data "StatsFunctors" "ApplyStatus(SELF,PORTENT,100,1);RemoveStatus(SELF,DIVINATION_ALLY_HELP)"

@@ -1,9 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentList>
-	<!-- "ImprovedMinorIllusion" --> <content contentuid="h6ebaf275g6028g4257g9ff2g1b8885a772f4" version="1">You can cast &lt;LSTag Type="Spell" Tooltip="Target_ImprovedMinorIllusion"&gt;Improved Minor Illusion&lt;/LSTag&gt; using a &lt;LSTag Type="ActionResource" Tooltip="BonusActionPoint"&gt;Bonus Action&lt;/LSTag&gt;.</content>
+	<!-- "ImprovedMinorIllusion" -->
+	<content contentuid="h6ebaf275g6028g4257g9ff2g1b8885a772f4" version="1">You can cast &lt;LSTag Type="Spell" Tooltip="Target_ImprovedMinorIllusion"&gt;Improved Minor Illusion&lt;/LSTag&gt; using a &lt;LSTag Type="ActionResource" Tooltip="BonusActionPoint"&gt;Bonus Action&lt;/LSTag&gt;.</content>
 
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
+	<!-- "DIVINATION_ALLY_HELP" -->
+	<content contentuid="h6eb83ec9gbad4g48beg9722g51304b1ea789" version="1">When you &lt;LSTag Type="Spell" Tooltip="Target_Help"&gt;Help&lt;/LSTag&gt; an ally or take a similar action, you will gain a new &lt;LSTag Tooltip="PortentDice"&gt;Portent Die&lt;/LSTag&gt; on your next &lt;LSTag Tooltip="ShortRest"&gt;Short Rest&lt;/LSTag&gt;.</content>
+
+	<!-- "" -->
+	<content contentuid="" version="1"></content>
+	<!-- "" -->
+	<content contentuid="" version="1"></content>
+	<!-- "" -->
+	<content contentuid="" version="1"></content>
 </contentList>
