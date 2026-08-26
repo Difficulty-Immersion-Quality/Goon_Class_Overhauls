@@ -6,7 +6,7 @@
 // Bug Fix: Animations are no longer weird for the base action and level 3+ upcasts when using the Honour ruleset.
 // Bug Fix: Oath of the Crown now has its unique VFX. (It shares SFX with Oath of Devotion.)
 // Changes: Interrupts are now defaulted to ask, instead of being used automatically.
-// Changes: Interrupts can now trigger with for all using melee weapons, including when they are thrown.
+// Changes: Interrupts can now trigger in all contexts where a melee weapon deals damage, including when they are thrown.
 // Changes: Interrupts can now be used by Invisible player characters.
 // Changes: Forced Honour ruleset changes to damage riders not functioning as damage rider sources.
 // Changes: Altered AI helpers so NPCs see appropriate value in using it.

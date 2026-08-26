@@ -1,6 +1,6 @@
 // ==================================== Improved Divine Smite ====================================
 // Changes: Now a toggleable passive.
-// Changes: Additional damage now applies to all contexts where a melee weapon deals damage, such as throwing or blade cantrips.
+// Changes: Additional damage now applies to all contexts where a melee weapon deals damage, including when they are thrown.
 // Bonus: Native support for Improved Unholy Smite for Oathbreakers's Improved Unholy Smite.
 // Bonus: Native support for Blackguard - A Homebrew Dark Paladin Class's Improved Profane Smite.
 

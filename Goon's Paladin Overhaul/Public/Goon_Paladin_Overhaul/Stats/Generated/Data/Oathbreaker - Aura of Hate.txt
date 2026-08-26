@@ -1,6 +1,6 @@
 // ==================================== Oathbreaker - Aura of Hate ====================================
-// Changes: The additional damage now works with all attacks using melee weapons, including when they are thrown.
 // Changes: The aura now only buffs non-hostile fiends and undead.
+// Changes: Damage now applies to all contexts where a melee weapon deals damage, including when they are thrown.
 // Changes: descriptions improved.
 // Bonus: Native support for Expansion (with Bladesinger) Level 13-20 (Configurable).
 
