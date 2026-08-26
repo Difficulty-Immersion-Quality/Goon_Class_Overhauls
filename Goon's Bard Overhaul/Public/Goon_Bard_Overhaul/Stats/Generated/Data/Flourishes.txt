@@ -7,13 +7,13 @@
 new entry "MastersFlourish"
 type "PassiveData"
 using "MastersFlourish"
-// Master's Flourish
+// // Master's Flourish
 // data "DisplayName" "he350131bga4f6g4e14g867egaaf0dac15a3d;1"
-// Whenever you use a Blade Flourish option, you can roll a [1] and use it instead of expending a &lt;LSTag Type="Status" Tooltip="BARDIC_INSPIRATION"&gt;Bardic Inspiration&lt;/LSTag&gt; die.
+// // Whenever you use a Blade Flourish option, you can roll a [1] and use it instead of expending a &lt;LSTag Type="Status" Tooltip="BARDIC_INSPIRATION"&gt;Bardic Inspiration&lt;/LSTag&gt; die.
 // data "Description" "h06702d9cg291eg4020gb8aag400f35e7951e;1"
 // data "DescriptionParams" "1d6"
 // data "Icon" "PassiveFeature_MastersFlourish"
-// data "Properties" "Highlighted;IsToggled;ToggledDefaultAddToHotbar"
+// data "Properties" "Highlighted;IsToggled;ToggledDefaultAddToHotbar;Temporary"
 // data "Boosts" "IF(SpellId('Projectile_BladeFlourish_Defensive') or SpellId('Projectile_BladeFlourish_Mobile') or SpellId('Projectile_BladeFlourish_Slashing') or SpellId('Target_BladeFlourish_Defensive') or SpellId('Target_BladeFlourish_Mobile') or SpellId('Zone_BladeFlourish_Slashing')):DamageBonus(1d6)"
 data "Boosts" "IF((Goon_IsFlourishSpell() or (Goon_IsFlourishTemporarySpell() and HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source))) and not SpellId('Goon_Throw_BladeFlourish_Slashing_Temporary')):DamageBonus(1d6)"
 // data "ToggleOnFunctors" "ApplyStatus(MASTERS_FLOURISH,100,-1)"
@@ -21,6 +21,18 @@ data "Boosts" "IF((Goon_IsFlourishSpell() or (Goon_IsFlourishTemporarySpell() an
 data "Conditions" "SpellId('Goon_Throw_BladeFlourish_Slashing_Temporary')"
 data "StatsFunctorContext" "OnDamage"
 data "StatsFunctors" "IF(not HasWeaponProperty(WeaponProperties.Magical, context.HitDescription.ThrownObject) and HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DealDamage(1d6, ThrownWeaponDamageType,,,0,,true,true);IF(HasWeaponProperty(WeaponProperties.Magical, context.HitDescription.ThrownObject) and HasStatus('GOON_MASTERS_FLOURISH_TEMPORARY',context.Source)):DealDamage(1d6, ThrownWeaponDamageType,Magical,,0,,true,true)"
+
+// new entry "MASTERS_FLOURISH"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// // Master's Flourish
+// data "DisplayName" "he350131bga4f6g4e14g867egaaf0dac15a3d;1"
+// // Blade Flourish options roll a [1] instead of expending &lt;LSTag Type="Status" Tooltip="BARDIC_INSPIRATION"&gt;Bardic Inspiration&lt;/LSTag&gt; die.
+// data "Description" "h30b12a16gb3f7g49acg9150ge596f064f2ad;1"
+// data "DescriptionParams" "1d6"
+// data "Icon" "PassiveFeature_MastersFlourish"
+// data "StackId" "MASTERS_FLOURISH"
+// data "StatusPropertyFlags" "IgnoreResting;ApplyToDead"
 
 // ==================================== Slashing Flourish ====================================
 // Bug Fix: Tooltip damage now includes Bardic Inspiration.
@@ -35,23 +47,24 @@ data "SpellType" "Target"
 using "Target_MainHandAttack"
 // data "Cooldown" ""
 // data "SpellSuccess" "DealDamage(MainMeleeWeapon + LevelMapValue(BardicInspiration), MainWeaponDamageType);GROUND:ExecuteWeaponFunctors(MainHand)"
-// data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(MainMeleeWeapon + LevelMapValue(BardicInspiration), MainWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(MainMeleeWeapon, MainWeaponDamageType);GROUND:ExecuteWeaponFunctors(MainHand)" <-- Expansion
+// data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(MainMeleeWeapon + LevelMapValue(BardicInspiration), MainWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(MainMeleeWeapon, MainWeaponDamageType);GROUND:ExecuteWeaponFunctors(MainHand)"
 data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon + LevelMapValue(BardicInspiration)), MainWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon, MainWeaponDamageType));ExecuteWeaponFunctors(MainHand)"
 // data "Icon" "Action_SlashingFlourish_Melee"
 data "Icon" "Action_SlashingFlourish_Melee"
-// Slashing Flourish (Melee)
+// // Slashing Flourish (Melee)
 // data "DisplayName" "hd10ce415gd4b5g478dgb2a5ga762aea981dd;5"
-// Slashing Flourish (Melee)
+// // Slashing Flourish (Melee)
 data "DisplayName" "hd10ce415gd4b5g478dgb2a5ga762aea981dd;5"
-// Attack up to [1] enemies at once.
+// // Attack up to [1] enemies at once.
 // data "Description" "h220ea5ebg4051g43e3ga04age5adb1149822;4"
-// Attack up to [1] enemies at once.
+// // Attack up to [1] enemies at once.
 data "Description" "h220ea5ebg4051g43e3ga04age5adb1149822;4"
-// Catch multiple targets in the same motion, attacking up to [1] enemies at once.
+// // Catch multiple targets in the same motion, attacking up to [1] enemies at once.
 data "Description" "h63b93244g2249g4365g96a0g2f45d87f6350;1"
 // data "DescriptionParams" "2"
 data "DescriptionParams" "2"
 // data "TooltipDamageList" "DealDamage(MainMeleeWeapon+1d6, MainWeaponDamageType)"
+// data "TooltipDamageList" "DealDamage(MainMeleeWeapon+LevelMapValue(BardicInspiration), MainWeaponDamageType)"
 data "TooltipDamageList" "DealDamage(MainMeleeWeapon + LevelMapValue(BardicInspiration), MainMeleeWeaponDamageType)"
 // data "TooltipAttackSave" "MeleeWeaponAttack"
 // data "PrepareSound" "Action_Prepare_Bard_Flourish"
@@ -96,14 +109,15 @@ data "SpellType" "Projectile"
 using "Projectile_BladeFlourish_Slashing"
 // data "AmountOfTargets" "2"
 // data "SpellSuccess" "DealDamage(max(1,MainRangedWeapon + LevelMapValue(BardicInspiration)), MainRangedWeaponDamageType); ExecuteWeaponFunctors(MainHand)"
+// data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon + LevelMapValue(BardicInspiration)), MainRangedWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon), MainRangedWeaponDamageType); ExecuteWeaponFunctors(MainHand)"
 data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon + LevelMapValue(BardicInspiration)), MainRangedWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon), MainRangedWeaponDamageType);ExecuteWeaponFunctors(MainHand)"
 // data "SpellFail" "IF(HasStatus('YSRSLIDFWWADNIWHWIHLY')):SpawnExtraProjectiles(Projectile_BladeFlourish_Slashing);ApplyStatus(YSRSLIDFWWADNIWHWIHLY_YWNK,100,1)"
 // data "Icon" "Action_SlashingFlourish_Ranged"
-// Slashing Flourish (Ranged)
+// // Slashing Flourish (Ranged)
 // data "DisplayName" "heb634e12g0cefg4e3eg98d1ge9640cf537ae;3"
-// Attack up to [1] enemies at once.
+// // Attack up to [1] enemies at once.
 // data "Description" "h41a799d2gcfaag4f5cga5caga114345edb03;4"
-// Catch multiple targets in the same motion, attacking up to [1] enemies at once.
+// // Catch multiple targets in the same motion, attacking up to [1] enemies at once.
 data "Description" "h63b93244g2249g4365g96a0g2f45d87f6350;1"
 // data "DescriptionParams" "2;DealDamage(MainRangedWeapon, MainRangedWeaponDamageType)"
 // data "TooltipStatusApply" ""
@@ -124,12 +138,12 @@ data "SpellType" "Target"
 using "Target_BladeFlourish_Defensive"
 // data "SpellProperties" "GROUND:DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);GROUND:ExecuteWeaponFunctors(MainHand);IF(not Player(context.Source)):ApplyStatus(SELF,AI_HELPER_EXTRAATTACK,100,1);"
 // data "SpellRoll" "Attack(AttackType.MeleeWeaponAttack)"
-// data "SpellSuccess" "DealDamage(max(1,MainMeleeWeapon + LevelMapValue(BardicInspiration)), MainMeleeWeaponDamageType); ExecuteWeaponFunctors(MainHand); ApplyStatus(SELF,BLADE_FLOURISH_DEFENSIVE,100,1)"
+// data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon + LevelMapValue(BardicInspiration)), MainMeleeWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon), MainMeleeWeaponDamageType); ExecuteWeaponFunctors(MainHand); ApplyStatus(SELF,BLADE_FLOURISH_DEFENSIVE,100,1)"
 data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon + LevelMapValue(BardicInspiration)), MainMeleeWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon), MainMeleeWeaponDamageType); ExecuteWeaponFunctors(MainHand); ApplyStatus(SELF,BLADE_FLOURISH_DEFENSIVE,100,1)"
 // data "Icon" "Action_DefensiveFlourish_Melee"
-// Defensive Flourish (Melee)
+// // Defensive Flourish (Melee)
 // data "DisplayName" "h044a8a17g48efg4beeg928dgab0da805d9f8;4"
-// Attack defensively, increasing your &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt; by [1] if you hit.
+// // Attack defensively, increasing your &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt; by [1] if you hit.
 // data "Description" "h8a371d2dg2e4ag40f6ga81fgdc54201ae616;7"
 // data "DescriptionParams" "4"
 // data "TooltipDamageList" "DealDamage(MainMeleeWeapon + LevelMapValue(BardicInspiration), MainMeleeWeaponDamageType)"
@@ -156,14 +170,15 @@ using "Projectile_BladeFlourish_Defensive"
 // data "SpellProperties" "GROUND:DealDamage(MainRangedWeapon, MainRangedWeaponDamageType);GROUND:ExecuteWeaponFunctors(MainHand);IF(not Player(context.Source)):ApplyStatus(SELF,AI_HELPER_EXTRAATTACK,100,1)"
 // data "SpellRoll" "Attack(AttackType.RangedWeaponAttack)"
 // data "SpellSuccess" "DealDamage(max(1,MainRangedWeapon + LevelMapValue(BardicInspiration)), MainRangedWeaponDamageType); ExecuteWeaponFunctors(MainHand); ApplyStatus(SELF,BLADE_FLOURISH_DEFENSIVE,100,1)"
+// data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon + LevelMapValue(BardicInspiration)), MainRangedWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon), MainRangedWeaponDamageType); ExecuteWeaponFunctors(MainHand); ApplyStatus(SELF,BLADE_FLOURISH_DEFENSIVE,100,1)"
 data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon + LevelMapValue(BardicInspiration)), MainRangedWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon), MainRangedWeaponDamageType); ExecuteWeaponFunctors(MainHand); ApplyStatus(SELF,BLADE_FLOURISH_DEFENSIVE,100,1)"
 // data "SpellFail" "IF(HasStatus('YSRSLIDFWWADNIWHWIHLY')):SpawnExtraProjectiles(Projectile_BladeFlourish_Defensive);ApplyStatus(YSRSLIDFWWADNIWHWIHLY_YWNK,100,1)"
 // data "ExtraProjectileTargetConditions" "Character() and not Ally();"
 // data "Trajectories" "4d75cb6e-0fa2-4305-a18c-15876e55e031"
 // data "Icon" "Action_DefensiveFlourish_Ranged"
-// Defensive Flourish (Ranged)
+// // Defensive Flourish (Ranged)
 // data "DisplayName" "h9425b988gfa9fg4032g9858g68069eb341a2;3"
-// Attack defensively, increasing your &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt; by [1] if you hit.
+// // Attack defensively, increasing your &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt; by [1] if you hit.
 // data "Description" "h13e4b442gcfacg4213g8a47gc852e5d82796;7"
 // data "DescriptionParams" "4"
 // data "TooltipDamageList" "DealDamage(MainRangedWeapon + LevelMapValue(BardicInspiration), MainRangedWeaponDamageType)"
@@ -188,11 +203,12 @@ data "SpellType" "Target"
 // using "Target_BladeFlourish_Defensive"
 using "Target_BladeFlourish_Mobile"
 // data "SpellSuccess" "DealDamage(max(1,MainMeleeWeapon + LevelMapValue(BardicInspiration)), MainMeleeWeaponDamageType); ExecuteWeaponFunctors(MainHand); Force(6); ApplyStatus(BLADE_FLOURISH_MOBILE_TARGET,100,1); ApplyStatus(SELF,BLADE_FLOURISH_MOBILE,100,1)"
+// data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon + LevelMapValue(BardicInspiration)), MainMeleeWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon), MainMeleeWeaponDamageType); ExecuteWeaponFunctors(MainHand); Force(6); ApplyStatus(BLADE_FLOURISH_MOBILE_TARGET,100,1); ApplyStatus(SELF,BLADE_FLOURISH_MOBILE,100,1)"
 data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon + LevelMapValue(BardicInspiration)), MainMeleeWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainMeleeWeapon), MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand);Force(6,OriginToTarget,Aggressive);ApplyStatus(BLADE_FLOURISH_MOBILE_TARGET,100,1);ApplyStatus(SELF,BLADE_FLOURISH_MOBILE,100,1)"
 // data "Icon" "Action_MobileFlourish_Melee"
-// Mobile Flourish (Melee)
+// // Mobile Flourish (Melee)
 // data "DisplayName" "h1d68bdddgab35g467bgad0dg4a8e07d9d83e;4"
-// Thrust your weapon with enough force to push your target back [1]. Afterwards, you can &lt;LSTag Type="Spell" Tooltip="Target_BladeFlourish_Mobile_FollowUp"&gt;Teleport&lt;/LSTag&gt; to the target.
+// // Thrust your weapon with enough force to push your target back [1]. Afterwards, you can &lt;LSTag Type="Spell" Tooltip="Target_BladeFlourish_Mobile_FollowUp"&gt;Teleport&lt;/LSTag&gt; to the target.
 // data "Description" "hc329d774gdabeg476agab5eg226cc81dd318;4"
 // data "DescriptionParams" "Distance(6)"
 // data "TooltipStatusApply" ""
@@ -210,12 +226,13 @@ data "SpellType" "Projectile"
 // using "Projectile_BladeFlourish_Defensive"
 using "Projectile_BladeFlourish_Mobile"
 // data "SpellSuccess" "DealDamage(max(1,MainRangedWeapon + LevelMapValue(BardicInspiration)), MainRangedWeaponDamageType); ExecuteWeaponFunctors(MainHand); Force(6); ApplyStatus(BLADE_FLOURISH_MOBILE_TARGET,100,1); ApplyStatus(SELF,BLADE_FLOURISH_MOBILE,100,1)"
+// data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon + LevelMapValue(BardicInspiration)), MainRangedWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon), MainRangedWeaponDamageType); ExecuteWeaponFunctors(MainHand); Force(6); ApplyStatus(BLADE_FLOURISH_MOBILE_TARGET,100,1); ApplyStatus(SELF,BLADE_FLOURISH_MOBILE,100,1)"
 data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon + LevelMapValue(BardicInspiration)), MainRangedWeaponDamageType);IF(HasStatus('MASTERS_FLOURISH',context.Source)):DealDamage(max(1,MainRangedWeapon),MainRangedWeaponDamageType);ExecuteWeaponFunctors(MainHand);Force(6,OriginToTarget,Aggressive);ApplyStatus(BLADE_FLOURISH_MOBILE_TARGET,100,1);ApplyStatus(SELF,BLADE_FLOURISH_MOBILE,100,1)"
 // data "SpellFail" "IF(HasStatus('YSRSLIDFWWADNIWHWIHLY')):SpawnExtraProjectiles(Projectile_BladeFlourish_Mobile);ApplyStatus(YSRSLIDFWWADNIWHWIHLY_YWNK,100,1)"
 // data "Icon" "Action_MobileFlourish_Ranged"
-// Mobile Flourish (Ranged)
+// // Mobile Flourish (Ranged)
 // data "DisplayName" "h91b9b587gbf8ag4c6eg9702g3c00e2aaa512;3"
-// Shoot a target with enough force to push it back [2]. Afterwards, you can &lt;LSTag Type="Spell" Tooltip="Target_BladeFlourish_Mobile_FollowUp"&gt;Teleport&lt;/LSTag&gt; to the target.
+// // Shoot a target with enough force to push it back [2]. Afterwards, you can &lt;LSTag Type="Spell" Tooltip="Target_BladeFlourish_Mobile_FollowUp"&gt;Teleport&lt;/LSTag&gt; to the target.
 // data "Description" "h10a8c9aeg528cg4e75g8eabg75a40280d77d;2"
 // data "DescriptionParams" "DealDamage(MainRangedWeapon+1d6, MainRangedWeaponDamageType);Distance(6)"
 // data "TooltipStatusApply" ""
@@ -235,9 +252,9 @@ data "SpellSuccess" "IF(not HasStatus('MASTERS_FLOURISH',context.Source)):DealDa
 // data "TargetRadius" "9"
 // data "TargetConditions" "HasStatus('BLADE_FLOURISH_MOBILE_TARGET',context.Target,context.Source)"
 // data "Icon" "Action_Monk_MobileFlourish_Teleport"
-// Mobile Flourish: Teleport
+// // Mobile Flourish: Teleport
 // data "DisplayName" "h6185b26agbf8ag4568g8c59ga2dc9a92bce5;2"
-// Teleport to the target you hit with your Mobile Flourish (&lt;LSTag Type="Spell" Tooltip="Target_BladeFlourish_Mobile"&gt;melee&lt;/LSTag&gt; or &lt;LSTag Type="Spell" Tooltip="Projectile_BladeFlourish_Mobile"&gt;ranged&lt;/LSTag&gt;).
+// // Teleport to the target you hit with your Mobile Flourish (&lt;LSTag Type="Spell" Tooltip="Target_BladeFlourish_Mobile"&gt;melee&lt;/LSTag&gt; or &lt;LSTag Type="Spell" Tooltip="Projectile_BladeFlourish_Mobile"&gt;ranged&lt;/LSTag&gt;).
 // data "Description" "h9c3bed2cg0b7dg4032g9cbagf7a5df33e52a;6"
 // data "CastSound" "Action_Cast_Bard_MobileFlourishTeleport"
 // data "TargetSound" "Action_Impact_Bard_MobileFlourishTeleport"
