@@ -1,6 +1,8 @@
 // ==================================== Oathbreaker - Aura of Hate ====================================
-// Changes: The additional damage now works with all melee attacks, and when throwing melee weapons.
+// Changes: The additional damage now works with all attacks using melee weapons, including when they are thrown.
 // Changes: The aura now only buffs non-hostile fiends and undead.
+// Changes: descriptions improved.
+// Bonus: Native support for Expansion (with Bladesinger) Level 13-20 (Configurable).
 
 new entry "Shout_AuraOf_Hate"
 type "SpellData"
@@ -10,11 +12,11 @@ using "Shout_AuraOf_Hate"
 // data "AreaRadius" "3"
 // data "TargetConditions" "Self()"
 // data "Icon" "Action_Paladin_AuraOfHate"
-// Aura of Hate
+// // Aura of Hate
 // data "DisplayName" "h927a9140g56d3g460fg9314g40fbd232b361;2"
-// You and any nearby fiends and undead gain an additional [1] to damage dealt with melee weapons.
+// // You and any nearby fiends and undead gain an additional [1] to damage dealt with melee weapons.
 // data "Description" "h0c2bc9a2g8e6bg4550ga8b9gfba7b2e8462d;7"
-// You and allied Fiends and Undead within [1] deal additional damage equal to your &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; modifier with melee &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; and when &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;throwing&lt;/LSTag&gt; melee weapons.
+// // You and allied fiends and undead within [1] deal additional damage equal to your &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt;, to a minimum of 1, with melee weapons.
 data "Description" "h78b5693cge759g4e86g8160gd23afbcaa0f8;1"
 // data "DescriptionParams" "DealDamage(max(1,CharismaModifier), MainMeleeWeaponDamageType)"
 data "DescriptionParams" "Distance(3)"
@@ -34,11 +36,11 @@ new entry "AURA_OF_HATE"
 type "StatusData"
 data "StatusType" "BOOST"
 using "AURA_OF_HATE"
-// Aura of Hate
+// // Aura of Hate
 // data "DisplayName" "h8aa4cdf9ga9e7g46d5gb7a1gb32901defe3c;2"
-// The paladin and any nearby fiends and undead deal an additional [1] to damage dealt with melee weapons.
+// // The paladin and any nearby fiends and undead deal an additional [1] to damage dealt with melee weapons.
 // data "Description" "h1b60bee0geb62g4184ga679g1e7f6de42926;3"
-// The paladin and allied fiends and undead within [1] deal additional damage equal to the paladin's &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; modifier with melee &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; and when &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;throwing&lt;/LSTag&gt; melee weapons.
+// // The paladin and allied fiends and undead within [1] deal additional damage equal to the paladin's &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt;, to a minimum of 1, with melee weapons.
 data "Description" "h8e371248gddd7g40dag8d49g785183b1f9eb;1"
 // data "DescriptionParams" "DealDamage(max(1,Cause.CharismaModifier), MainMeleeWeaponDamageType)"
 data "DescriptionParams" "Distance(3)"
@@ -49,7 +51,7 @@ data "DescriptionParams" "Distance(3)"
 // data "AuraStatuses" "IF(not Self() and (Tagged('UNDEAD') or Tagged('FIEND'))):ApplyStatus(AURA_OF_HATE_BUFF)"
 data "AuraStatuses" "IF(not Self() and not Enemy() and (Tagged('UNDEAD') or Tagged('FIEND'))):ApplyStatus(AURA_OF_HATE_BUFF)"
 // data "Boosts" "IF(IsMeleeAttack()):CharacterWeaponDamage(max(1, Cause.CharismaModifier))"
-data "Boosts" "IF(IsMeleeAttack() or (IsRangedUnarmedAttack() and HasWeaponProperty(WeaponProperties.Melee, context.HitDescription.ThrownObject))):DamageBonus(max(1, Cause.CharismaModifier))"
+data "Boosts" "IF(Goon_IsAttackUsingMeleeWeapon()):CharacterWeaponDamage(max(1, Cause.CharismaModifier))"
 // data "StatusPropertyFlags" "ApplyToDead;IgnoreResting"
 // data "StatusGroups" "SG_RemoveOnRespec"
 
@@ -57,11 +59,11 @@ new entry "AURA_OF_HATE_BUFF"
 type "StatusData"
 data "StatusType" "BOOST"
 using "AURA_OF_HATE_BUFF"
-// Aura of Hate
+// // Aura of Hate
 // data "DisplayName" "hfa4ad8dfge9efg4f7fg8bc2g664c49a83964;2"
-// Deals an additional [2] to damage dealt with melee weapons within [1] of the spellcaster.
+// // Deals an additional [2] to damage dealt with melee weapons within [1] of the spellcaster.
 // data "Description" "hb90cac90gf224g4f5dg85aeg85fb08a983d9;3"
-// Deals additional damage equal to the caster's &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; modifier with melee &lt;LSTag Tooltip="AttackRoll"&gt;Attacks&lt;/LSTag&gt; and when &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;throwing&lt;/LSTag&gt; melee weapons.
+// // Deals additional damage equal to the caster's &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt;, to a minimum of 1, with melee weapons.
 data "Description" "hb7b88a5bg94a0g459cga5e4gea0863985113;1"
 // data "DescriptionParams" "Distance(3);DealDamage(max(1,Cause.CharismaModifier), MainMeleeWeaponDamageType)	"
 data "DescriptionParams" "Distance(3)"
@@ -69,8 +71,34 @@ data "DescriptionParams" "Distance(3)"
 // data "StackId" "AURA_OF_HATE"
 // data "StackPriority" "5"
 // data "Boosts" "IF(IsMeleeAttack()):CharacterWeaponDamage(max(1, Cause.CharismaModifier))"
-data "Boosts" "IF(IsMeleeAttack() or (IsRangedUnarmedAttack() and HasWeaponProperty(WeaponProperties.Melee, context.HitDescription.ThrownObject))):DamageBonus(max(1, Cause.CharismaModifier))"
+data "Boosts" "IF(Goon_IsAttackUsingMeleeWeapon()):CharacterWeaponDamage(max(1, Cause.CharismaModifier))"
 // data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog"
 // data "StatusGroups" "SG_RemoveOnRespec"
 // data "ApplyEffect" "d21494e5-5c30-4a69-85ef-75a785e71105"
 // data "EndEffect" "a5c11e94-efa3-4998-a76b-fc12502ea565"
+
+// ==================================== Oathbreaker - Aura of Hate (Expansion)
+
+// new entry "Shout_AuraOf_Hate_2"
+// type "SpellData"
+// data "SpellType" "Shout"
+// using "Shout_AuraOf_Hate"
+// data "SpellProperties" "ApplyStatus(AURA_OF_HATE_2,100,-1);"
+// data "AreaRadius" "9"
+// data "RequirementConditions" "NotHasAuraOfHate()"
+
+new entry "AURA_OF_HATE_2"
+type "StatusData"
+data "StatusType" "BOOST"
+// using "AURA_OF_HATE"
+using "AURA_OF_HATE_2"
+// data "AuraRadius" "9"
+// data "AuraStatuses" "IF(not Self() and (Tagged('UNDEAD') or Tagged('FIEND'))):ApplyStatus(AURA_OF_HATE_BUFF_2)"
+data "AuraStatuses" "IF(not Self() and not Enemy() and (Tagged('UNDEAD') or Tagged('FIEND'))):ApplyStatus(AURA_OF_HATE_BUFF_2)"
+
+new entry "AURA_OF_HATE_BUFF_2"
+type "StatusData"
+data "StatusType" "BOOST"
+using "AURA_OF_HATE_BUFF"
+// data "DescriptionParams" "Distance(9);DealDamage(max(1,Cause.CharismaModifier), MainMeleeWeaponDamageType)"
+data "DescriptionParams" "Distance(9)"

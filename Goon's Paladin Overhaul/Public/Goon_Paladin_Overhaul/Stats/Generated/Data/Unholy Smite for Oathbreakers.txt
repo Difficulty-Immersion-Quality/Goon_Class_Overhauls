@@ -3,7 +3,7 @@
 // new entry "CHIZ_Smite_Unholy_Passive"
 // type "PassiveData"
 // using "Smite_Divine"
-// Unholy Smite
+// // Unholy Smite
 // data "DisplayName" "h810785ffg2d2bg93d0g58a8g7c12db8d7080;1"
 // data "Boosts" "UnlockInterrupt(Interrupt_CHIZ_Unholy_Smite);UnlockInterrupt(Interrupt_CHIZ_Unholy_Smite_Critical)"
 
@@ -20,11 +20,11 @@ data "SpellProperties" "GROUND:DealDamage(MainMeleeWeapon, MainMeleeWeaponDamage
 // data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand);IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(2d8,Necrotic,Magical);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(3d8,Necrotic,Magical);"
 data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand);AI_IGNORE:IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(2d8,Necrotic,Magical,,0,,true,false);AI_IGNORE:IF(HasStatus('SG_Frightened', context.Target)):DealDamage(3d8,Necrotic,Magical,,0,,true,false);AI_ONLY:DealDamage(6d8,Necrotic,Magical)"
 // data "Icon" "UnholySmiteAction"
-// Unholy Smite
+// // Unholy Smite
 // data "DisplayName" "h3d3fa9adg7f20gd0d2g997cgb925f450b073;1"
-// Deals an additional [1] on top of your weapon damage and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
+// // Deals an additional [1] on top of your weapon damage and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
 // data "Description" "h1edfb300g7fb9ge012g8650g3241669d349c;4"
-// Deals an additional [1] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
+// // Deals an additional [1] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
 data "Description" "hfd68a4c8gfe1cg4703g85e8g4d2f3e398631;1"
 // data "DescriptionParams" "DealDamage(2d8,Necrotic);DealDamage(1d8,Necrotic)"
 data "DescriptionParams" "DealDamage(1d8,Necrotic)"
@@ -46,11 +46,11 @@ data "SpellProperties" "GROUND:DealDamage(MainMeleeWeapon, MainMeleeWeaponDamage
 // data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand);IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(2d8,Necrotic,Magical);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(3d8,Necrotic,Magical);"
 data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand);AI_IGNORE:IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(2d8,Necrotic,Magical,,0,,true,false);AI_IGNORE:IF(HasStatus('SG_Frightened', context.Target)):DealDamage(3d8,Necrotic,Magical,,0,,true,false);AI_ONLY:DealDamage(6d8,Necrotic,Magical)"
 // data "Icon" "UnholySmiteAction"
-// Unholy Smite: Reaction
+// // Unholy Smite: Reaction
 // data "DisplayName" "he3c5ecf6g4723g211cg9c30g71c22901162d;1"
-// Deals an additional [1] on top of your weapon damage and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
+// // Deals an additional [1] on top of your weapon damage and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
 // data "Description" "h19aef87dg7d06gfbc6gc9ecg003bccc7fa75;3"
-// Deals an additional [1] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
+// // Deals an additional [1] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
 data "Description" "hfd68a4c8gfe1cg4703g85e8g4d2f3e398631;1"
 // data "DescriptionParams" "DealDamage(2d8,Necrotic);DealDamage(1d8,Necrotic)"
 data "DescriptionParams" "DealDamage(1d8,Necrotic)"
@@ -73,11 +73,11 @@ data "SpellProperties" "GROUND:DealDamage(MainMeleeWeapon, MainMeleeWeaponDamage
 // data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand);IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(2d8,Necrotic,Magical);IF(HasStatus('SG_Frightened', context.Target)):DealDamage(3d8,Necrotic,Magical);"
 data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand);AI_IGNORE:IF(not HasStatus('SG_Frightened', context.Target)):DealDamage(2d8,Necrotic,Magical,,0,,true,false);AI_IGNORE:IF(HasStatus('SG_Frightened', context.Target)):DealDamage(3d8,Necrotic,Magical,,0,,true,false);AI_ONLY:DealDamage(6d8,Necrotic,Magical)"
 // data "Icon" "UnholySmiteAction_Critical"
-// Unholy Smite Critical: Reaction
+// // Unholy Smite Critical: Reaction
 // data "DisplayName" "h4ba7f5e4g9ce0g2696g4bcdg3c2e3c7a95f2;1"
-// Deals an additional [1] on top of your weapon damage and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
+// // Deals an additional [1] on top of your weapon damage and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
 // data "Description" "h5a9d2dfbg9941g1d29g437fg48f333d12aa5;3"
-// Deals an additional [1] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
+// // Deals an additional [1] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
 data "Description" "hfd68a4c8gfe1cg4703g85e8g4d2f3e398631;1"
 // data "DescriptionParams" "DealDamage(2d8,Necrotic);DealDamage(1d8,Necrotic)"
 data "DescriptionParams" "DealDamage(1d8,Necrotic)"
@@ -130,7 +130,7 @@ type "SpellData"
 data "SpellType" "Target"
 // using "Target_CHIZ_Unholy_Smite_Unlock_2"
 using "Target_CHIZ_Unholy_Smite_Unlock_Critical_2"
-// Unholy Smite Critical: Reaction
+// // Unholy Smite Critical: Reaction
 data "DisplayName" "h4ba7f5e4g9ce0g2696g4bcdg3c2e3c7a95f2;1"
 // data "Icon" "UnholySmiteAction_Critical"
 // data "InterruptPrototype" "Interrupt_CHIZ_Unholy_Smite_Critical_2"
@@ -173,7 +173,7 @@ type "SpellData"
 data "SpellType" "Target"
 // using "Target_CHIZ_Unholy_Smite_Unlock_3"
 using "Target_CHIZ_Unholy_Smite_Unlock_Critical_3"
-// Unholy Smite Critical: Reaction
+// // Unholy Smite Critical: Reaction
 data "DisplayName" "h4ba7f5e4g9ce0g2696g4bcdg3c2e3c7a95f2;1"
 // using "Target_CHIZ_Unholy_Smite_Unlock_3"
 // data "Icon" "UnholySmiteAction_Critical"
@@ -217,7 +217,7 @@ type "SpellData"
 data "SpellType" "Target"
 // using "Target_CHIZ_Unholy_Smite_Unlock_4"
 using "Target_CHIZ_Unholy_Smite_Unlock_Critical_4"
-// Unholy Smite Critical: Reaction
+// // Unholy Smite Critical: Reaction
 data "DisplayName" "h4ba7f5e4g9ce0g2696g4bcdg3c2e3c7a95f2;1"
 // using "Target_CHIZ_Unholy_Smite_Unlock_4"
 // data "Icon" "UnholySmiteAction_Critical"
@@ -351,9 +351,9 @@ data "DisplayName" "h4ba7f5e4g9ce0g2696g4bcdg3c2e3c7a95f2;1"
 // using "Target_CHIZ_Unholy_Smite"
 // data "SpellSchool" "Evocation"
 // data "Cooldown" "OncePerRest"
-// Unholy Smite: Free
+// // Unholy Smite: Free
 // data "DisplayName" "h46beb9afg94bfgcb26g1ed9g7f7d83d80798;1"
-// Once per Long Rest, an Oathbreaker can use this Unholy Smite without expending a spell slot. Deals [1] on top of your weapon damage and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
+// // Once per Long Rest, an Oathbreaker can use this Unholy Smite without expending a spell slot. Deals [1] on top of your weapon damage and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
 // data "Description" "h8c4b899ag89c7gfa16ge695ge4d238518563;1"
 // data "HitCosts" "BonusActionPoint:1;"
 // data "SpellFlags" "IsMelee;IsHarmful;IsSpell;NoCooldownOnMiss"
@@ -364,11 +364,11 @@ new entry "Interrupt_CHIZ_Unholy_Smite"
 type "InterruptData"
 // using "Interrupt_Smite_Divine"
 using "Interrupt_CHIZ_Unholy_Smite"
-// Unholy Smite
+// // Unholy Smite
 // data "DisplayName" "hd937acd1g9ff1gf3d9g5dcdg9a712e6f8da2;1"
-// Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
+// // Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
 // data "Description" "h1aa698ebga4e7g23f5gc415g4c8d6c706206;3"
-// Your melee or &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;thrown&lt;/LSTag&gt; &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt; using a melee weapon deals an additional [1], increased by another [2] when attacking &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
+// // Your melee weapon deals an additional [1], and a further [2] against &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
 data "Description" "h7f5160fag71f9g4818g8de0gd44665badebe;1"
 // data "DescriptionParams" "DealDamage(2d8,Necrotic);DealDamage(1d8,Necrotic)"
 data "TooltipDamageList" "DealDamage(2d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad727a13-c6f0-4b5b-aefd-aac79c6ed46e)"
@@ -383,16 +383,16 @@ new entry "Interrupt_CHIZ_Unholy_Smite_Critical"
 type "InterruptData"
 // using "Interrupt_Smite_Divine_Critical"
 using "Interrupt_CHIZ_Unholy_Smite_Critical"
-// Unholy Smite on Critical Hit
+// // Unholy Smite on Critical Hit
 // data "DisplayName" "ha050e9efg1127g71a0ga887gdbd49f1c00f6;1"
-// Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
+// // Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
 // data "Description" "h0b159c5bg8307gf170g886fg02ee5636dc4d;2"
-// Your melee or &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;thrown&lt;/LSTag&gt; &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt; using a melee weapon deals an additional [1], increased by another [2] when attacking &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
+// // Your melee weapon deals an additional [1], and a further [2] against &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
 data "Description" "h7f5160fag71f9g4818g8de0gd44665badebe;1"
 // data "DescriptionParams" "DealDamage(2d8,Necrotic);DealDamage(1d8,Necrotic)"
-// This reaction only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
+// // This reaction only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
 // data "ExtraDescription" "h8962b5a0g15e2ga272g6248g8ad8ad17cff5;1"
-// This &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
+// // This &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
 data "ExtraDescription" "h444ee19agd7c9g409ag8d79g9e37978d4498;1"
 data "TooltipDamageList" "DealDamage(2d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad727a13-c6f0-4b5b-aefd-aac79c6ed46e)"
 // data "Icon" "UnholySmiteAction_Critical"
@@ -406,11 +406,11 @@ new entry "Interrupt_CHIZ_Unholy_Smite_2"
 type "InterruptData"
 // using "Interrupt_Smite_Divine_2"
 using "Interrupt_CHIZ_Unholy_Smite_2"
-// Unholy Smite
+// // Unholy Smite
 // data "DisplayName" "h7cf11df5ge20ag1f63ge0aeg3e088086c04d;1"
-// Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
+// // Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
 // data "Description" "hf7b57046g66d9g4f46g1bddg39a8e61067ee;2"
-// Your melee or &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;thrown&lt;/LSTag&gt; &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt; using a melee weapon deals an additional [1], increased by another [2] when attacking &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
+// // Your melee weapon deals an additional [1], and a further [2] against &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
 data "Description" "h7f5160fag71f9g4818g8de0gd44665badebe;1"
 // data "DescriptionParams" "DealDamage(3d8,Necrotic);DealDamage(1d8,Necrotic)"
 data "TooltipDamageList" "DealDamage(3d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad727a13-c6f0-4b5b-aefd-aac79c6ed46e)"
@@ -425,16 +425,16 @@ new entry "Interrupt_CHIZ_Unholy_Smite_Critical_2"
 type "InterruptData"
 // using "Interrupt_Smite_Divine_Critical_2"
 using "Interrupt_CHIZ_Unholy_Smite_Critical_2"
-// Unholy Smite on Critical Hit
+// // Unholy Smite on Critical Hit
 // data "DisplayName" "h9d14fc41g5b5cg6945ge2d7g80d39cf5aafb;1"
-// Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
+// // Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
 // data "Description" "head40584gfae6g4bf2g2a52g3ff7ae9a66bc;2"
-// Your melee or &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;thrown&lt;/LSTag&gt; &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt; using a melee weapon deals an additional [1], increased by another [2] when attacking &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
+// // Your melee weapon deals an additional [1], and a further [2] against &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
 data "Description" "h7f5160fag71f9g4818g8de0gd44665badebe;1"
 // data "DescriptionParams" "DealDamage(3d8,Necrotic);DealDamage(1d8,Necrotic)"
-// This reaction only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
+// // This reaction only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
 // data "ExtraDescription" "h377211bag3121g0a49g0cdaga55b900b8f94;1"
-// This &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
+// // This &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
 data "ExtraDescription" "h444ee19agd7c9g409ag8d79g9e37978d4498;1"
 data "TooltipDamageList" "DealDamage(3d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad727a13-c6f0-4b5b-aefd-aac79c6ed46e)"
 // data "Icon" "UnholySmiteAction_Critical"
@@ -448,11 +448,11 @@ new entry "Interrupt_CHIZ_Unholy_Smite_3"
 type "InterruptData"
 // using "Interrupt_Smite_Divine_3"
 using "Interrupt_CHIZ_Unholy_Smite_3"
-// Unholy Smite
+// // Unholy Smite
 // data "DisplayName" "hb67f052fg4099g57b2ga827g0f5023dfba84;1"
-// Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
+// // Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
 // data "Description" "hbb476425gd9a0g87e9g9b14ge6e0bc6f7a78;2"
-// Your melee or &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;thrown&lt;/LSTag&gt; &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt; using a melee weapon deals an additional [1], increased by another [2] when attacking &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
+// // Your melee weapon deals an additional [1], and a further [2] against &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
 data "Description" "h7f5160fag71f9g4818g8de0gd44665badebe;1"
 // data "DescriptionParams" "DealDamage(4d8,Necrotic);DealDamage(1d8,Necrotic)"
 data "TooltipDamageList" "DealDamage(4d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad727a13-c6f0-4b5b-aefd-aac79c6ed46e)"
@@ -467,16 +467,16 @@ new entry "Interrupt_CHIZ_Unholy_Smite_Critical_3"
 type "InterruptData"
 // using "Interrupt_Smite_Divine_Critical_3"
 using "Interrupt_CHIZ_Unholy_Smite_Critical_3"
-// Unholy Smite on Critical Hit
+// // Unholy Smite on Critical Hit
 // data "DisplayName" "hdb266898gca1cg09a2g98d3g2a9078701019;1"
-// Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
+// // Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
 // data "Description" "hcdcd95c6g7cbag309age0ceg223d879c369a;2"
-// Your melee or &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;thrown&lt;/LSTag&gt; &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt; using a melee weapon deals an additional [1], increased by another [2] when attacking &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
+// // Your melee weapon deals an additional [1], and a further [2] against &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
 data "Description" "h7f5160fag71f9g4818g8de0gd44665badebe;1"
 // data "DescriptionParams" "DealDamage(4d8,Necrotic);DealDamage(1d8,Necrotic)"
-// This reaction only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
+// // This reaction only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
 // data "ExtraDescription" "hd54fecadg6a30gea3ag04c7gf57837500c42;1"
-// This &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
+// // This &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
 data "ExtraDescription" "h444ee19agd7c9g409ag8d79g9e37978d4498;1"
 data "TooltipDamageList" "DealDamage(4d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad727a13-c6f0-4b5b-aefd-aac79c6ed46e)"
 // data "Icon" "UnholySmiteAction_Critical"
@@ -490,11 +490,11 @@ new entry "Interrupt_CHIZ_Unholy_Smite_4"
 type "InterruptData"
 // using "Interrupt_Smite_Divine_4"
 using "Interrupt_CHIZ_Unholy_Smite_4"
-// Unholy Smite
+// // Unholy Smite
 // data "DisplayName" "h3d18dbacg5366g8c5fg5682g44347f569014;1"
-// Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
+// // Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
 // data "Description" "h83bfb331g34dcg90bagee6bgf2b835a00be2;2"
-// Your melee or &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;thrown&lt;/LSTag&gt; &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt; using a melee weapon deals an additional [1], increased by another [2] when attacking &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
+// // Your melee weapon deals an additional [1], and a further [2] against &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
 data "Description" "h7f5160fag71f9g4818g8de0gd44665badebe;1"
 // data "DescriptionParams" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic)"
 data "TooltipDamageList" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad727a13-c6f0-4b5b-aefd-aac79c6ed46e)"
@@ -509,16 +509,16 @@ new entry "Interrupt_CHIZ_Unholy_Smite_Critical_4"
 type "InterruptData"
 // using "Interrupt_Smite_Divine_Critical_4"
 using "Interrupt_CHIZ_Unholy_Smite_Critical_4"
-// Unholy Smite on Critical Hit
+// // Unholy Smite on Critical Hit
 // data "DisplayName" "h6d4e75b2gc4a1g39c4ga3fdg6e767fa72415;1"
-// Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
+// // Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
 // data "Description" "hf5892ab6gd559g5d33g370dg4ff6336136d0;2"
-// Your melee or &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;thrown&lt;/LSTag&gt; &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt; using a melee weapon deals an additional [1], increased by another [2] when attacking &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
+// // Your melee weapon deals an additional [1], and a further [2] against &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
 data "Description" "h7f5160fag71f9g4818g8de0gd44665badebe;1"
 // data "DescriptionParams" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic)"
-// This reaction only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
+// // This reaction only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
 // data "ExtraDescription" "h484d3d0eg3b7ag4091ga09dg12df1913d378;1"
-// This &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
+// // This &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
 data "ExtraDescription" "h444ee19agd7c9g409ag8d79g9e37978d4498;1"
 data "TooltipDamageList" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad727a13-c6f0-4b5b-aefd-aac79c6ed46e)"
 // data "Icon" "UnholySmiteAction_Critical"
@@ -532,16 +532,16 @@ new entry "Interrupt_CHIZ_Unholy_Smite_Critical_5"
 type "InterruptData"
 // using "Interrupt_Smite_Divine_Critical_5"
 using "Interrupt_CHIZ_Unholy_Smite_Critical_5"
-// Unholy Smite on Critical Hit
+// // Unholy Smite on Critical Hit
 // data "DisplayName" "hccbd87a2g8b0ag365fg9cb4g00a5ce76c44e;1"
-// Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
+// // Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
 // data "Description" "hc1f8b503gf2c6gfde1ge1c9g96b02a6a560f;2"
-// Your melee or &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;thrown&lt;/LSTag&gt; &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt; using a melee weapon deals an additional [1], increased by another [2] when attacking &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
+// // Your melee weapon deals an additional [1], and a further [2] against &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
 data "Description" "h7f5160fag71f9g4818g8de0gd44665badebe;1"
 // data "DescriptionParams" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic)"
-// This reaction only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
+// // This reaction only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
 // data "ExtraDescription" "h3e3066c7g3826ga31fg9ae5g255e0a20918c;1"
-// This &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
+// // This &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
 data "ExtraDescription" "h444ee19agd7c9g409ag8d79g9e37978d4498;1"
 data "TooltipDamageList" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad727a13-c6f0-4b5b-aefd-aac79c6ed46e)"
 // data "Icon" "UnholySmiteAction_Critical"
@@ -555,11 +555,11 @@ new entry "Interrupt_CHIZ_Unholy_Smite_5"
 type "InterruptData"
 // using "Interrupt_Smite_Divine_5"
 using "Interrupt_CHIZ_Unholy_Smite_5"
-// Unholy Smite
+// // Unholy Smite
 // data "DisplayName" "hcf812bf5g4ab4g7aaag634bga08c7cb5b6b5;1"
-// Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
+// // Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
 // data "Description" "hda35cacagf7acg013bg82d6g015525dc85f9;2"
-// Your melee or &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;thrown&lt;/LSTag&gt; &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt; using a melee weapon deals an additional [1], increased by another [2] when attacking &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
+// // Your melee weapon deals an additional [1], and a further [2] against &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
 data "Description" "h7f5160fag71f9g4818g8de0gd44665badebe;1"
 // data "DescriptionParams" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic)"
 data "TooltipDamageList" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad727a13-c6f0-4b5b-aefd-aac79c6ed46e)"
@@ -574,11 +574,11 @@ new entry "Interrupt_CHIZ_Unholy_Smite_6"
 type "InterruptData"
 // using "Interrupt_Smite_Divine_6"
 using "Interrupt_CHIZ_Unholy_Smite_6"
-// Unholy Smite
+// // Unholy Smite
 // data "DisplayName" "h4667c49dg541eg6ae7g1000gb19f4db0c415;1"
-// Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
+// // Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
 // data "Description" "h88a247adg4953g2de6g5186ge5fa6b71ab16;2"
-// Your melee or &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;thrown&lt;/LSTag&gt; &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt; using a melee weapon deals an additional [1], increased by another [2] when attacking &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
+// // Your melee weapon deals an additional [1], and a further [2] against &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
 data "Description" "h7f5160fag71f9g4818g8de0gd44665badebe;1"
 // data "DescriptionParams" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic)"
 data "TooltipDamageList" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad727a13-c6f0-4b5b-aefd-aac79c6ed46e)"
@@ -593,16 +593,16 @@ new entry "Interrupt_CHIZ_Unholy_Smite_Critical_6"
 type "InterruptData"
 // using "Interrupt_Smite_Divine_Critical_6"
 using "Interrupt_CHIZ_Unholy_Smite_Critical_6"
-// Unholy Smite on Critical Hit
+// // Unholy Smite on Critical Hit
 // data "DisplayName" "h583a5fbeg0c42gaf9bg5930gf80e03207e91;1"
-// Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
+// // Your weapon deals an additional [1] and an extra [2] to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; (or similar) targets.
 // data "Description" "h27186a03g3489g4a39g2e88g4d2de8fa4770;2"
-// Your melee or &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;thrown&lt;/LSTag&gt; &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt; using a melee weapon deals an additional [1], increased by another [2] when attacking &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
+// // Your melee weapon deals an additional [1], and a further [2] against &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; creatures.
 data "Description" "h7f5160fag71f9g4818g8de0gd44665badebe;1"
 // data "DescriptionParams" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic)"
-// This reaction only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
+// // This reaction only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
 // data "ExtraDescription" "h0be575d0g044agd62dg7c89gd1a7104f0ce2;1"
-// This &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
+// // This &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
 data "ExtraDescription" "h444ee19agd7c9g409ag8d79g9e37978d4498;1"
 data "TooltipDamageList" "DealDamage(5d8,Necrotic);DealDamage(1d8,Necrotic,,,,ad727a13-c6f0-4b5b-aefd-aac79c6ed46e)"
 // data "Icon" "UnholySmiteAction_Critical"

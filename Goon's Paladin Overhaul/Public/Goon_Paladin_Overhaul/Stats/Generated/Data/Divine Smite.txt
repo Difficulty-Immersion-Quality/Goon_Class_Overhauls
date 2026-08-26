@@ -6,10 +6,13 @@
 // Bug Fix: Animations are no longer weird for the base action and level 3+ upcasts when using the Honour ruleset.
 // Bug Fix: Oath of the Crown now has its unique VFX. (It shares SFX with Oath of Devotion.)
 // Changes: Interrupts are now defaulted to ask, instead of being used automatically.
-// Changes: Interrupts can trigger from throwing melee weapons.
+// Changes: Interrupts can now trigger with for all using melee weapons, including when they are thrown.
 // Changes: Interrupts can now be used by Invisible player characters.
 // Changes: Forced Honour ruleset changes to damage riders not functioning as damage rider sources.
 // Changes: Altered AI helpers so NPCs see appropriate value in using it.
+// Bonus: Native support for Expansion (with Bladesinger) Level 13-20 (Configurable).
+// Bonus: Native support for Unholy Smite for Oathbreakers's Unholy Smite.
+// Bonus: Native support for Mizora's Rewards - More Warlock Invocations's Eldritch Smite.
 // TODO: Offhand variants.
 // TODO: RechargeValues?
 
@@ -26,16 +29,16 @@ data "SpellProperties" "GROUND:DealDamage(MainMeleeWeapon,MainMeleeWeaponDamageT
 data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand);AI_IGNORE:IF(not UndeadOrFiend(context.Target)):DealDamage(2d8,Radiant,Magical,,0,,true,false);AI_IGNORE:IF(UndeadOrFiend(context.Target)):DealDamage(3d8,Radiant,Magical,,0,,true,false);AI_ONLY:DealDamage(6d8,Radiant,Magical)"
 // data "TargetConditions" "not Self() and Character()"
 // data "Icon" "Action_Paladin_DivineSmite"
-// Divine Smite
+// // Divine Smite
 // data "DisplayName" "h940c3156gad0fg4a92g8573gff26b0472ef2;1"
-// Deals an additional [1] to fiends and undead.
+// // Deals an additional [1] to fiends and undead.
 // data "Description" "he9150fbcg1b55g49aegaa3egc4717c987024;2"
-// Deals an additional [1] to Fiends and Undead.
+// // Deals an additional [1] to fiends and undead.
 data "Description" "h292322a1g75e0g4cd7ga56dg469ddf832871;1"
 // data "DescriptionParams" "DealDamage(1d8,Radiant)"
 // data "TooltipDamageList" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);DealDamage(2d8,Radiant)"
 data "TooltipDamageList" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);DealDamage(2d8,Radiant);DealDamage(1d8,Radiant,,,,ad727a13-c6f0-4b5b-aefd-aac79c6ed46e)"
-// Does not consume a &lt;LSTag Tooltip="SpellSlot"&gt;Spell Slot&lt;/LSTag&gt;.
+// // Does not consume a &lt;LSTag Tooltip="SpellSlot"&gt;Spell Slot&lt;/LSTag&gt;.
 // data "TooltipOnMiss" "4639a885-0f45-4bc9-93c7-1e0c39eb39ec"
 // data "TooltipUpcastDescription" "66388a6f-44dd-4c9f-a9e7-910c50e70755"
 // data "TooltipUpcastDescriptionParams" "DealDamage(1d8,Radiant)"
@@ -62,7 +65,7 @@ type "SpellData"
 data "SpellType" "Target"
 // using "Target_Smite_Divine"
 using "Target_Smite_Divine_Unlock"
-// Divine Smite: Reaction
+// // Divine Smite: Reaction
 // data "DisplayName" "h4e0629ebg6d6bg434fg963cgbce051ce778d;1"
 // data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType); ExecuteWeaponFunctors(MainHand);IF(not Tagged('FIEND') and not Tagged('UNDEAD')):DealDamage(2d8,Radiant,Magical,,0,,true,false);IF(Tagged('FIEND')):DealDamage(3d8,Radiant,Magical,,0,,true,false);IF(Tagged('UNDEAD')):DealDamage(3d8,Radiant,Magical,,0,,true,false)"
 data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand);AI_IGNORE:IF(not UndeadOrFiend(context.Target)):DealDamage(2d8,Radiant,Magical,,0,,true,false);AI_IGNORE:IF(UndeadOrFiend(context.Target)):DealDamage(3d8,Radiant,Magical,,0,,true,false);AI_ONLY:DealDamage(6d8,Radiant,Magical)"
@@ -73,7 +76,7 @@ type "SpellData"
 data "SpellType" "Target"
 // using "Target_Smite_Divine_Unlock"
 using "Target_Smite_Divine_Critical_Unlock"
-// Divine Smite Critical: Reaction
+// // Divine Smite Critical: Reaction
 // data "DisplayName" "hb322da36gf38cg4a57g999bgda784fb32423;1"
 // data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType); ExecuteWeaponFunctors(MainHand);IF(not Tagged('FIEND') and not Tagged('UNDEAD')):DealDamage(2d8,Radiant,Magical,,0,,true,false);IF(Tagged('FIEND')):DealDamage(3d8,Radiant,Magical,,0,,true,false);IF(Tagged('UNDEAD')):DealDamage(3d8,Radiant,Magical,,0,,true,false)"
 data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand);AI_IGNORE:IF(not UndeadOrFiend(context.Target)):DealDamage(2d8,Radiant,Magical,,0,,true,false);AI_IGNORE:IF(UndeadOrFiend(context.Target)):DealDamage(3d8,Radiant,Magical,,0,,true,false);AI_ONLY:DealDamage(6d8,Radiant,Magical)"
@@ -93,9 +96,9 @@ data "SpellProperties" "GROUND:DealDamage(MainMeleeWeapon,MainMeleeWeaponDamageT
 // data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType); ExecuteWeaponFunctors(MainHand);IF(not Tagged('FIEND') and not Tagged('UNDEAD')):DealDamage(3d8,Radiant,Magical);IF(Tagged('FIEND')):DealDamage(4d8,Radiant,Magical);IF(Tagged('UNDEAD')):DealDamage(4d8,Radiant,Magical)"
 // data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType); ExecuteWeaponFunctors(MainHand);IF(not Tagged('FIEND') and not Tagged('UNDEAD')):DealDamage(3d8,Radiant,Magical,,0,,true,false);IF(Tagged('FIEND')):DealDamage(4d8,Radiant,Magical,,0,,true,false);IF(Tagged('UNDEAD')):DealDamage(4d8,Radiant,Magical,,0,,true,false)"
 data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand);AI_IGNORE:IF(not UndeadOrFiend(context.Target)):DealDamage(3d8,Radiant,Magical,,0,,true,false);AI_IGNORE:IF(UndeadOrFiend(context.Target)):DealDamage(4d8,Radiant,Magical,,0,,true,false);AI_ONLY:DealDamage(7d8,Radiant,Magical)"
-// Deals an additional [1] to fiends and undead.
+// // Deals an additional [1] to fiends and undead.
 // data "Description" "h683d499agede4g4904g85ebg00cff74476d1;1"
-// Deals an additional [1] to Fiends and Undead.
+// // Deals an additional [1] to fiends and undead.
 data "Description" "h292322a1g75e0g4cd7ga56dg469ddf832871;1"
 // data "DescriptionParams" "DealDamage(1d8,Radiant)"
 // data "TooltipDamageList" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);DealDamage(3d8,Radiant)"
@@ -372,16 +375,16 @@ data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);Exec
 new entry "Interrupt_Smite_Divine"
 type "InterruptData"
 using "Interrupt_Smite_Divine"
-// Divine Smite
+// // Divine Smite
 // data "DisplayName" "hec12d3b6g365eg4809g8053gbbf4ec3c0686;1"
-// Your weapon deals an additional [1], increased by [2] when attacking fiends or undead.
+// // Your weapon deals an additional [1], increased by [2] when attacking fiends or undead.
 // data "Description" "h905cec81g7e41g4b05gaaddg3d51678f3ecc;4"
-// Your melee or &lt;LSTag Type="Spell" Tooltip="Throw_Throw"&gt;thrown&lt;/LSTag&gt; &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt; using a melee weapon deals an additional [1], increased by another [2] when attacking Fiends or Undead.
+// // Your melee weapon deals an additional [1], and a further [2] against fiends and undead.
 data "Description" "h67d9b056g2f06g46d1g998dgb42abcbbf693;1"
 // data "DescriptionParams" "DealDamage(2d8,Radiant);DealDamage(1d8,Radiant)"
-// This reaction won't trigger on a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
+// // This reaction won't trigger on a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
 // data "ExtraDescription" "hcd476fdag8f18g48b5gb90egc5d15da4b8e7;3"
-// This &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; won't trigger on a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
+// // This &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; won't trigger on a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
 data "ExtraDescription" "h4d7a9da4g5719g4f5dg9768g5120a1d42c3e;1"
 data "TooltipDamageList" "DealDamage(2d8,Radiant);DealDamage(1d8,Radiant,,,,ad727a13-c6f0-4b5b-aefd-aac79c6ed46e)"
 // data "Icon" "Action_Paladin_DivineSmite"
@@ -389,7 +392,7 @@ data "TooltipDamageList" "DealDamage(2d8,Radiant);DealDamage(1d8,Radiant,,,,ad72
 // data "InterruptContextScope" "Self"
 // data "Container" "YesNoDecision"
 // data "Conditions" "IsAbleToReact(context.Observer) and not Self() and not Item() and IsMeleeAttack() and not IsDivineSmite() and Self(context.Source,context.Observer) and HasDamageEffectFlag(DamageFlags.Hit) and IsWeaponAttack() and not IsCritical() and not IsKillingBlow() and not AnyEntityIsItem();"
-data "Conditions" "Goon_BasicHarmfulInterruptConditions(false,false,true) and not IsDivineSmite() and IsHit() and ((IsMeleeAttack() and IsWeaponAttack()) or HasWeaponProperty(WeaponProperties.Melee, context.HitDescription.ThrownObject)) and not IsCritical()"
+data "Conditions" "Goon_BasicHarmfulInterruptConditions(false,false,true) and not IsDivineSmite() and IsHit() and Goon_IsAttackUsingMeleeWeapon() and not IsCritical()"
 // data "Properties" "IF(not UndeadOrFiend(context.Target)):DealDamage(2d8,Radiant,Magical);IF(UndeadOrFiend(context.Target)):DealDamage(3d8,Radiant,Magical);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0)"
 data "Properties" "IF(not UndeadOrFiend(context.Target)):DealDamage(2d8,Radiant,Magical,,0,,true,false);IF(UndeadOrFiend(context.Target)):DealDamage(3d8,Radiant,Magical,,0,,true,false);ApplyStatus(INTERRUPT_SMITE_DIVINE_VFX,100,0)"
 // data "Cost" "SpellSlotsGroup:1:1:1"
@@ -404,15 +407,15 @@ new entry "Interrupt_Smite_Divine_Critical"
 type "InterruptData"
 // using "Interrupt_Smite_Divine"
 using "Interrupt_Smite_Divine_Critical"
-// Divine Smite on Critical Hit
+// // Divine Smite on Critical Hit
 // data "DisplayName" "h256bb30eg4f66g44d1gbad3gdb6ff146ee99;1"
-// Deals an additional [1] to fiends and undead.&lt;br&gt;&lt;br&gt;This reaction only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
+// // Deals an additional [1] to fiends and undead.&lt;br&gt;&lt;br&gt;This reaction only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
 // data "ExtraDescription" "h58f06fcfg1cd8g4343gb734gff3f6de6a62b;1"
-// This &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
+// // This &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; only triggers when you land a &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hit&lt;/LSTag&gt;.
 data "ExtraDescription" "h444ee19agd7c9g409ag8d79g9e37978d4498;1"
 // data "Icon" "Action_Paladin_DivineSmite"
 // data "Conditions" "IsAbleToReact(context.Observer) and not Self() and not Item() and IsMeleeAttack() and not IsDivineSmite() and Self(context.Source,context.Observer) and HasDamageEffectFlag(DamageFlags.Hit) and IsWeaponAttack() and IsCritical() and not IsKillingBlow() and not AnyEntityIsItem();"
-data "Conditions" "Goon_BasicHarmfulInterruptConditions(false,false,true) and not IsDivineSmite() and IsHit() and ((IsMeleeAttack() and IsWeaponAttack()) or HasWeaponProperty(WeaponProperties.Melee, context.HitDescription.ThrownObject)) and IsCritical()"
+data "Conditions" "Goon_BasicHarmfulInterruptConditions(false,false,true) and not IsDivineSmite() and IsHit() and Goon_IsAttackUsingMeleeWeapon() and IsCritical()"
 // data "Cost" "SpellSlotsGroup:1:1:1"
 // data "InterruptDefaultValue" "Enabled"
 data "InterruptDefaultValue" "Ask;Enabled"
